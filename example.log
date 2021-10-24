@@ -1,0 +1,155 @@
+DEBUG main druid.sql.Connection - {conn-10001,procId-18} connected
+DEBUG main druid.sql.Connection - {conn-10002,procId-19} connected
+DEBUG main druid.sql.Connection - {conn-10003,procId-20} connected
+DEBUG main druid.sql.Connection - {conn-10004,procId-21} connected
+DEBUG main druid.sql.Connection - {conn-10005,procId-22} connected
+DEBUG main druid.sql.Connection - {conn-10005} pool-connect
+DEBUG main druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG SpringApplicationShutdownHook druid.sql.Connection - {conn-10001} closed
+DEBUG SpringApplicationShutdownHook druid.sql.Connection - {conn-10002} closed
+DEBUG SpringApplicationShutdownHook druid.sql.Connection - {conn-10003} closed
+DEBUG SpringApplicationShutdownHook druid.sql.Connection - {conn-10004} closed
+DEBUG SpringApplicationShutdownHook druid.sql.Connection - {conn-10005} closed
+DEBUG http-nio-8080-exec-5 druid.sql.Connection - {conn-10001,procId-23} connected
+DEBUG http-nio-8080-exec-5 druid.sql.Connection - {conn-10002,procId-24} connected
+DEBUG http-nio-8080-exec-5 druid.sql.Connection - {conn-10003,procId-25} connected
+DEBUG http-nio-8080-exec-5 druid.sql.Connection - {conn-10004,procId-26} connected
+DEBUG http-nio-8080-exec-5 druid.sql.Connection - {conn-10005,procId-27} connected
+DEBUG http-nio-8080-exec-5 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-5 druid.sql.Statement - {conn-10005, pstmt-20000} created. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-5 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-5 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-5 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 51.3802 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-5 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} open
+DEBUG http-nio-8080-exec-5 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} Header: [id, name]
+DEBUG http-nio-8080-exec-5 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} Result: [1, mal]
+DEBUG http-nio-8080-exec-5 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} closed
+DEBUG http-nio-8080-exec-5 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-5 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-8 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 42.1887 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50001} open
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50001} Header: [id, name]
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50001} Result: [1, mal]
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50001} closed
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-8 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-1 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 43.837 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50002} open
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50002} Header: [id, name]
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50002} Result: [1, mal]
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50002} closed
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-1 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-9 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 41.8902 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50003} open
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50003} Header: [id, name]
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50003} Result: [1, mal]
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50003} closed
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-9 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-4 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-4 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-4 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-4 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 46.2359 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-4 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50004} open
+DEBUG http-nio-8080-exec-4 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50004} Header: [id, name]
+DEBUG http-nio-8080-exec-4 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50004} Result: [1, mal]
+DEBUG http-nio-8080-exec-4 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50004} closed
+DEBUG http-nio-8080-exec-4 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-4 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-7 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-7 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-7 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-7 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 42.246 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-7 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50005} open
+DEBUG http-nio-8080-exec-7 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50005} Header: [id, name]
+DEBUG http-nio-8080-exec-7 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50005} Result: [1, mal]
+DEBUG http-nio-8080-exec-7 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50005} closed
+DEBUG http-nio-8080-exec-7 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-7 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-8 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 43.1335 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50006} open
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50006} Header: [id, name]
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50006} Result: [1, mal]
+DEBUG http-nio-8080-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50006} closed
+DEBUG http-nio-8080-exec-8 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-8 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-1 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 43.6674 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50007} open
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50007} Header: [id, name]
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50007} Result: [1, mal]
+DEBUG http-nio-8080-exec-1 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50007} closed
+DEBUG http-nio-8080-exec-1 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-1 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-9 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 41.9314 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50008} open
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50008} Header: [id, name]
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50008} Result: [1, mal]
+DEBUG http-nio-8080-exec-9 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50008} closed
+DEBUG http-nio-8080-exec-9 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-9 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-3 druid.sql.Connection - {conn-10001,procId-29} connected
+DEBUG http-nio-8080-exec-3 druid.sql.Connection - {conn-10002,procId-30} connected
+DEBUG http-nio-8080-exec-3 druid.sql.Connection - {conn-10003,procId-31} connected
+DEBUG http-nio-8080-exec-3 druid.sql.Connection - {conn-10004,procId-32} connected
+DEBUG http-nio-8080-exec-3 druid.sql.Connection - {conn-10005,procId-33} connected
+DEBUG http-nio-8080-exec-3 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-8080-exec-3 druid.sql.Statement - {conn-10005, pstmt-20000} created. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-3 druid.sql.Statement - {conn-10005, pstmt-20000} Parameters : []
+DEBUG http-nio-8080-exec-3 druid.sql.Statement - {conn-10005, pstmt-20000} Types : []
+DEBUG http-nio-8080-exec-3 druid.sql.Statement - {conn-10005, pstmt-20000} executed. 53.0913 millis. select *
+        from myblog.user;
+DEBUG http-nio-8080-exec-3 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} open
+DEBUG http-nio-8080-exec-3 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} Header: [id, name]
+DEBUG http-nio-8080-exec-3 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} Result: [1, mal]
+DEBUG http-nio-8080-exec-3 druid.sql.ResultSet - {conn-10005, pstmt-20000, rs-50000} closed
+DEBUG http-nio-8080-exec-3 druid.sql.Statement - {conn-10005, pstmt-20000} clearParameters. 
+DEBUG http-nio-8080-exec-3 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG http-nio-8080-exec-6 druid.sql.Connection - {conn-10005} closed
+DEBUG http-nio-8080-exec-6 druid.sql.Connection - {conn-10004} closed
+DEBUG Druid-ConnectionPool-Create-1344944082 druid.sql.Connection - {conn-10006,procId-34} connected
+DEBUG http-nio-8080-exec-6 druid.sql.Connection - {conn-10003} closed
+DEBUG http-nio-8080-exec-6 druid.sql.Connection - {conn-10006} pool-connect
+DEBUG http-nio-8080-exec-6 druid.sql.Statement - {conn-10006, pstmt-20001} created. select *
+        from myblog.user
+        where id = ?;
+DEBUG http-nio-8080-exec-6 druid.sql.Statement - {conn-10006, pstmt-20001} Parameters : [32]
+DEBUG http-nio-8080-exec-6 druid.sql.Statement - {conn-10006, pstmt-20001} Types : [INTEGER]
+DEBUG http-nio-8080-exec-6 druid.sql.Statement - {conn-10006, pstmt-20001} executed. 43.63 millis. select *
+        from myblog.user
+        where id = ?;
+DEBUG http-nio-8080-exec-6 druid.sql.ResultSet - {conn-10006, pstmt-20001, rs-50001} open
+DEBUG http-nio-8080-exec-6 druid.sql.ResultSet - {conn-10006, pstmt-20001, rs-50001} Header: [id, name]
+DEBUG http-nio-8080-exec-6 druid.sql.ResultSet - {conn-10006, pstmt-20001, rs-50001} closed
+DEBUG http-nio-8080-exec-6 druid.sql.Statement - {conn-10006, pstmt-20001} clearParameters. 
+DEBUG http-nio-8080-exec-6 druid.sql.Connection - {conn-10006} pool-recycle
+DEBUG Druid-ConnectionPool-Create-1344944082 druid.sql.Connection - {conn-10007,procId-35} connected

@@ -1,0 +1,20 @@
+[DEBUG][21-10-24][druid.sql.Connection]{conn-10001,procId-36} connected
+[DEBUG][21-10-24][druid.sql.Connection]{conn-10002,procId-37} connected
+[DEBUG][21-10-24][druid.sql.Connection]{conn-10003,procId-38} connected
+[DEBUG][21-10-24][druid.sql.Connection]{conn-10004,procId-39} connected
+[DEBUG][21-10-24][druid.sql.Connection]{conn-10005,procId-40} connected
+[DEBUG][21-10-24][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-10-24][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.user
+        where id = ?;
+[DEBUG][21-10-24][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [1]
+[DEBUG][21-10-24][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [INTEGER]
+[DEBUG][21-10-24][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 51.7957 millis. select *
+        from myblog.user
+        where id = ?;
+[DEBUG][21-10-24][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-10-24][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, name]
+[DEBUG][21-10-24][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [1, mal]
+[DEBUG][21-10-24][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-10-24][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-10-24][druid.sql.Connection]{conn-10005} pool-recycle
