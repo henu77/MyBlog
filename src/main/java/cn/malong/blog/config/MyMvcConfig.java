@@ -14,16 +14,25 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+
+        //首页
         registry.addViewController("/").setViewName("user/index");
         registry.addViewController("/index.html").setViewName("user/index");
+
+        //公共页首页
         registry.addViewController("/article.html").setViewName("user/article");
         registry.addViewController("/diary.html").setViewName("user/diary");
         registry.addViewController("/link.html").setViewName("user/link");
         registry.addViewController("/message.html").setViewName("user/message");
         registry.addViewController("/read.html").setViewName("user/read");
-        registry.addViewController("/test.html").setViewName("test");
+//        registry.addViewController("/test.html").setViewName("test");
         registry.addViewController("/login.html").setViewName("user/login");
 
+        //admin页面
+        registry.addViewController("/admin").setViewName("admin/index");
+        registry.addViewController("/admin/").setViewName("admin/index");
+        registry.addViewController("/admin/index.html").setViewName("admin/index");
+        registry.addViewController("/admin/welcome.html").setViewName("admin/welcome.html");
     }
 
     @Bean

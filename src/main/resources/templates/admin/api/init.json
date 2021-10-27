@@ -1,0 +1,79 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "admin/welcome.html"
+  },
+  "logoInfo": {
+    "title": "MyBlog",
+    "image": "/logo.png",
+    "href": "admin"
+  },
+  "menuInfo": [
+    {
+      "title": "博文管理",
+      "icon": "fa fa-lemon-o",
+      "href": "",
+      "target": "",
+      "child": [
+        {
+          "title": "内容管理",
+          "href": "",
+          "icon": "fa fa-bars",
+          "target": "",
+          "child": [
+            {
+              "title": "文章管理",
+              "href": "",
+              "icon": "fa fa-book",
+              "target": ""
+            },
+            {
+              "title": "分类管理",
+              "href": "",
+              "icon": "fa fa-tags",
+              "target": ""
+            },
+            {
+              "title": "评论管理",
+              "href": "",
+              "icon": "fa fa-commenting",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "title": "编辑文章",
+          "href": "",
+          "icon": "fa fa-pencil-square-o",
+          "target": ""
+        },
+        {
+          "title": "个人设置",
+          "href": "",
+          "icon": "fa fa-user-circle-o",
+          "target": ""
+        }
+      ]
+    },
+    {
+      "title": "用户管理",
+      "icon": "fa fa-slideshare",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "普通用户管理",
+          "href": "",
+          "icon": "fa fa-user",
+          "target": "_self"
+        },
+        {
+          "title": "管理员用户管理",
+          "href": "page/error.html",
+          "icon": "fa fa-user-md",
+          "target": "_self"
+        }
+      ]
+    }
+  ]
+}
