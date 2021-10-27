@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="root" width="1000" height="500"></canvas>
+<script th:src="@{/js/CanvasAnimate.js}"></script>
+<script>
+  var root = document.querySelector("#root")
+  var a = new CanvasAnimate(root,{length:80,clicked:true,moveon:true})
+  a.RoundColor="black"
+  a.Run() // 开始运行
+  // a.pause() //  暂停
+</script>
+</body>
+</html>
