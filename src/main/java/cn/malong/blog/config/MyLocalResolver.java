@@ -7,6 +7,9 @@ import org.springframework.web.servlet.LocaleResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
+/**
+ * @author malong
+ */
 @Configuration
 public class MyLocalResolver implements LocaleResolver {
     @Override

@@ -13,8 +13,9 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
- * @author 马龙
+ * @author malong
  */
 @Configuration
 public class DruidConfig {
