@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <title th:text="编辑文章"></title>
+    <link rel="stylesheet" th:href="@{/lib/editormd/css/editormd.min.css}">
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/other/user.css}"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form action="" class="layui-form" lay-filter="user-query-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类</label>
+                <div class="layui-input-inline">
+                    <select name="city" lay-verify="">
+                        <option value="">请选择一个城市</option>
+                        <option value="010">北京</option>
+                        <option value="021">上海</option>
+                        <option value="0571">杭州</option>
+                    </select>
+                </div>
+                <label class="layui-form-label">封面图片</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="first_picture" placeholder="" type="text">
+                </div>
+                <button class="pear-btn pear-btn-md " lay-filter="user-query" lay-submit>
+                    <i class="layui-icon layui-icon-note"></i>
+                    保存
+                </button>
+                <button class="pear-btn pear-btn-md pear-btn-primary" type="reset">
+                    <i class="layui-icon layui-icon-release"></i>
+                    发布
+                </button>
+                <div style="padding-top: 15px;">
+                    <input type="checkbox" name="" title="&nbsp;&nbsp;推荐" lay-skin="primary">
+                    <input type="checkbox" name="" title="&nbsp;&nbsp;赞赏" checked lay-skin="primary">
+                    <input type="checkbox" name="" title="&nbsp;&nbsp;评论" checked lay-skin="primary">
+                </div>
+                <div style="padding-top: 15px;">
+                    <input class="layui-input" type="text" lay-verify="required" name="title" placeholder="请输入标题">
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="user-main user-collasped">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div id="editor">
+                <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+                <textarea style="display:none;">### Hello Editor.md !</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/jquery/jquery.min.js}"></script>
+<script th:src="@{/lib/editormd/editormd.min.js}"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    layui.use('form', function () { //此段代码必不可少
+        var form = layui.form;
+        form.render();
+    });
+    $(function () {
+        let editor = editormd("editor", {
+            width: "100%",
+            height: 640,
+            syncScrolling: "single",
+            // width: "100%",
+            // height: "100%",
+            // markdown: "xxxx",     // dynamic set Markdown text
+            path: basePath + "lib/editormd/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+        });
+    });
+</script>
+</body>
+</html>

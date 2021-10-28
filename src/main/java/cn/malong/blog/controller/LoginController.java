@@ -1,9 +1,7 @@
 package cn.malong.blog.controller;
 
-import cn.malong.blog.service.LoginServiceImpl;
+import cn.malong.blog.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -15,18 +13,18 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     @Autowired
-    private LoginServiceImpl loginService;
+    private LoginService loginServiceImpl;
 
     @PostMapping("/user/login")
     @ResponseBody
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         HttpSession session) {
-        return loginService.login(username, password, session);
+        return loginServiceImpl.login(username, password, session);
     }
 
     @RequestMapping("/user/logout")
     public String logOut(HttpSession session) {
-        return loginService.logout(session);
+        return loginServiceImpl.logout(session);
     }
 }

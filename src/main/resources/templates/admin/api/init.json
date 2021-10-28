@@ -16,34 +16,26 @@
       "target": "",
       "child": [
         {
-          "title": "内容管理",
+          "title": "文章管理",
           "href": "",
-          "icon": "fa fa-bars",
-          "target": "",
-          "child": [
-            {
-              "title": "文章管理",
-              "href": "",
-              "icon": "fa fa-book",
-              "target": ""
-            },
-            {
-              "title": "分类管理",
-              "href": "",
-              "icon": "fa fa-tags",
-              "target": ""
-            },
-            {
-              "title": "评论管理",
-              "href": "",
-              "icon": "fa fa-commenting",
-              "target": ""
-            }
-          ]
+          "icon": "fa fa-book",
+          "target": ""
+        },
+        {
+          "title": "分类管理",
+          "href": "",
+          "icon": "fa fa-tags",
+          "target": ""
+        },
+        {
+          "title": "评论管理",
+          "href": "",
+          "icon": "fa fa-commenting",
+          "target": ""
         },
         {
           "title": "编辑文章",
-          "href": "",
+          "href": "/admin/write.html",
           "icon": "fa fa-pencil-square-o",
           "target": ""
         },
@@ -63,13 +55,13 @@
       "child": [
         {
           "title": "普通用户管理",
-          "href": "",
+          "href": "admin/user.html",
           "icon": "fa fa-user",
           "target": "_self"
         },
         {
           "title": "管理员用户管理",
-          "href": "page/error.html",
+          "href": "admin/adminUser.html",
           "icon": "fa fa-user-md",
           "target": "_self"
         }

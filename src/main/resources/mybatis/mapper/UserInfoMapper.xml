@@ -9,4 +9,34 @@
         from myblog.t_user
         where username = #{usernmae};
     </select>
+
+    <select id="getAllUserData" resultType="userInfo">
+        select *
+        from myblog.t_user;
+    </select>
+
+    <select id="getUserDataByLimit" resultType="userInfo">
+        select *
+        from myblog.t_user
+        limit #{startIndex},#{pageSize};
+    </select>
+    <select id="getUserDataByLimit_username" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where username = #{username}
+        limit #{startIndex},#{pageSize};
+    </select>
+    <select id="getUserDataByLimit_nickname" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where nickname = #{nickname}
+        limit #{startIndex},#{pageSize};
+    </select>
+    <select id="getUserDataByLimit_nick_username" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where username = #{username}
+          and nickname = #{nickname}
+        limit #{startIndex},#{pageSize};
+    </select>
 </mapper>
