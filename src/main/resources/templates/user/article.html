@@ -34,6 +34,8 @@
                     <li th:if="${session.userInfo != null}">
                         <a th:onclick="'javascript: logout()' ">注销</a>
                     </li>
+                    <li th:if="${ session.userInfo != null and session.userInfo.getRole() eq 'admin'}"><a
+                            th:href="@{/toAdminIndex}">管理员页面</a></li>
                 </ul>
             </nav>
             <a href="https://github.com/henu77" class="blog-user">
@@ -501,6 +503,12 @@
 <script th:inline="javascript">
     let basePath = [[${#httpServletRequest.getContextPath()}]];
     window.onload = function () {
+        let admin_msg = [[${session.admin_msg}]];
+        console.log(admin_msg);
+        if (admin_msg != "") {
+            layui.layer.msg(admin_msg);
+        }
+
         NProgress.done();
     };
 

@@ -158,7 +158,13 @@
 </div>
 
 <script type="text/javascript" th:inline="javascript">
-
+    $(function () {
+        let login_msg = [[${session.login_msg}]];
+        console.log(login_msg);
+        if (login_msg != "") {
+            layui.layer.msg(login_msg);
+        }
+    });
     layui.use(['form'], function () {
         var form = layui.form,
             layer = layui.layer;

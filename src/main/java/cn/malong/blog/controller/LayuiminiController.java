@@ -19,13 +19,13 @@ public class LayuiminiController {
     @Autowired
     private ReadJsonFile readJsonFile;
 
-    @RequestMapping("api/init.json")
+    @RequestMapping("/admin/api/init.json")
     public String init() throws FileNotFoundException {
         String path =  ResourceUtils.getFile("classpath:templates/admin/api/init.json").getPath();
         String json = readJsonFile.readFile(path);
         return json;
     }
-    @RequestMapping("api/clear.json")
+    @RequestMapping("/admin/api/clear.json")
     public String clear() throws FileNotFoundException {
         String path =  ResourceUtils.getFile("classpath:templates/admin/api/clear.json").getPath();
         String json = readJsonFile.readFile(path);

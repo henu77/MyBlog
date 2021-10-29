@@ -1,7 +1,7 @@
 {
   "homeInfo": {
     "title": "首页",
-    "href": "admin/welcome.html"
+    "href": "/admin/welcome.html"
   },
   "logoInfo": {
     "title": "MyBlog",
@@ -55,13 +55,13 @@
       "child": [
         {
           "title": "普通用户管理",
-          "href": "admin/user.html",
+          "href": "/admin/user.html",
           "icon": "fa fa-user",
           "target": "_self"
         },
         {
           "title": "管理员用户管理",
-          "href": "admin/adminUser.html",
+          "href": "/admin/adminUser.html",
           "icon": "fa fa-user-md",
           "target": "_self"
         }
