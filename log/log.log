@@ -2739,3 +2739,23 @@
 [DEBUG][21-10-29][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
 [DEBUG][21-10-29][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
 [DEBUG][21-10-29][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-10-29][druid.sql.Connection]{conn-10001,procId-441} connected
+[DEBUG][21-10-29][druid.sql.Connection]{conn-10002,procId-442} connected
+[DEBUG][21-10-29][druid.sql.Connection]{conn-10003,procId-443} connected
+[DEBUG][21-10-29][druid.sql.Connection]{conn-10004,procId-444} connected
+[DEBUG][21-10-29][druid.sql.Connection]{conn-10005,procId-445} connected
+[DEBUG][21-10-29][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-10-29][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-10-29][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [user]
+[DEBUG][21-10-29][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-10-29][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 68.024 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-10-29][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-10-29][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-10-29][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [3, 用户, user, ee11cbb19052e40b07aac0ca060c23ee, 1289596706@qq.com, /images/me.jpg, user]
+[DEBUG][21-10-29][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-10-29][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-10-29][druid.sql.Connection]{conn-10005} pool-recycle

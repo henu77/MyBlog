@@ -4,6 +4,8 @@ import cn.malong.blog.pojo.UserInfo;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author malong
@@ -26,6 +28,7 @@ public class RouterServiceImpl implements RouterService {
         if (null == userInfo) {
             session.setAttribute("login_msg", "请先登录！");
             System.out.println("toAdminIndex======>请先登录！");
+            this.removeAttribute(session,"login_msg");
             return "/user/login";
         } else {
             String role = userInfo.getRole();
@@ -35,8 +38,27 @@ public class RouterServiceImpl implements RouterService {
             } else {
                 session.setAttribute("admin_msg", "您没有管理员权限！");
                 System.out.println("toAdminIndex======>您没有管理员权限！");
+                this.removeAttribute(session,"admin_msg");
                 return "/user/article";
             }
         }
     }
+
+    /**
+     * 设置5分钟后删除session中的验证码
+     * @param session
+     * @param attrName
+     */
+    private void removeAttribute(final HttpSession session, final String attrName) {
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                // 删除session中存的验证码
+                session.removeAttribute(attrName);
+                timer.cancel();
+            }
+        }, 5 * 1000);
+    }
+
 }
