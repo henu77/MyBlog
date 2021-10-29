@@ -1,6 +1,7 @@
 package cn.malong.blog.service;
 
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.utils.StaticString;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -32,7 +33,7 @@ public class RouterServiceImpl implements RouterService {
             return "/user/login";
         } else {
             String role = userInfo.getRole();
-            if (role.equals("admin") || role.equals("root")) {
+            if (StaticString.ROLE_ADMIN.equals(role) || StaticString.ROLE_ROOT.equals(role)) {
                 System.out.println("toAdminIndex======>登录成功");
                 return "redirect:/admin/index.html";
             } else {
@@ -45,7 +46,7 @@ public class RouterServiceImpl implements RouterService {
     }
 
     /**
-     * 设置5分钟后删除session中的验证码
+     * 设置5s后删除session中的信息
      * @param session
      * @param attrName
      */

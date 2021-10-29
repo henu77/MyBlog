@@ -1,8 +1,11 @@
 package cn.malong.blog.config;
 
+import cn.malong.blog.interceptor.AdminIndexHandlerInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -11,6 +14,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
+
+    @Autowired
+    private AdminIndexHandlerInterceptor adminIndexHandlerInterceptor;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -41,4 +47,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
         return new MyLocalResolver();
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(adminIndexHandlerInterceptor)
+                .addPathPatterns("/admin/**");
+//                .excludePathPatterns("/", "/index.html", "/css/*", "/user/login", "/js/**", "/img/**");
+    }
 }

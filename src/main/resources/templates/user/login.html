@@ -159,10 +159,15 @@
 
 <script type="text/javascript" th:inline="javascript">
     $(function () {
+        let HandlerInterceptor = [[${Interceptor_msg}]];
         let login_msg = [[${session.login_msg}]];
         console.log(login_msg);
+        console.log(HandlerInterceptor);
         if (login_msg != "" && null != login_msg) {
             layui.layer.msg(login_msg);
+        }
+        if (HandlerInterceptor != "" && null != HandlerInterceptor) {
+            layui.layer.msg(HandlerInterceptor);
         }
     });
     layui.use(['form'], function () {
