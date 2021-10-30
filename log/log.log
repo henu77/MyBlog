@@ -3309,3 +3309,54 @@
 [DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50003} closed
 [DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
 [DEBUG][21-10-30][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10001,procId-570} connected
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10002,procId-571} connected
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10003,procId-572} connected
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10004,procId-573} connected
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10005,procId-574} connected
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 44.8627 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} created. select *
+        from myblog.t_user
+        limit ?,?;
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [0, 10]
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [INTEGER, INTEGER]
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 48.7728 millis. select *
+        from myblog.t_user
+        limit ?,?;
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} open
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Result: [1, 超级管理员, root, 63a9f0ea7bb98050796b649e85481845, 670551262@qq.com, /images/me.jpg, root]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Result: [3, 用户, user, ee11cbb19052e40b07aac0ca060c23ee, 1289596706@qq.com, /images/me.jpg, user]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} closed
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [0, 10]
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [INTEGER, INTEGER]
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 82.3051 millis. select *
+        from myblog.t_user
+        limit ?,?;
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50002} open
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50002} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50002} Result: [1, 超级管理员, root, 63a9f0ea7bb98050796b649e85481845, 670551262@qq.com, /images/me.jpg, root]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50002} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50002} Result: [3, 用户, user, ee11cbb19052e40b07aac0ca060c23ee, 1289596706@qq.com, /images/me.jpg, user]
+[DEBUG][21-10-30][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50002} closed
+[DEBUG][21-10-30][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-10-30][druid.sql.Connection]{conn-10005} pool-recycle
