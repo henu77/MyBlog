@@ -6,44 +6,44 @@
   "logoInfo": {
     "title": "MyBlog",
     "image": "/logo.png",
-    "href": "admin"
+    "href": "/admin/index.html"
   },
   "menuInfo": [
     {
       "title": "博文管理",
       "icon": "fa fa-lemon-o",
       "href": "",
-      "target": "",
+      "target": "_self",
       "child": [
         {
           "title": "文章管理",
-          "href": "",
+          "href": "/admin/blogs.html",
           "icon": "fa fa-book",
-          "target": ""
+          "target": "_self"
         },
         {
           "title": "分类管理",
-          "href": "",
+          "href": "/admin/tags.html",
           "icon": "fa fa-tags",
-          "target": ""
+          "target": "_self"
         },
         {
           "title": "评论管理",
-          "href": "",
+          "href": "/admin/comments.html",
           "icon": "fa fa-commenting",
-          "target": ""
+          "target": "_self"
         },
         {
           "title": "编辑文章",
           "href": "/admin/write.html",
           "icon": "fa fa-pencil-square-o",
-          "target": ""
+          "target": "_self"
         },
         {
           "title": "个人设置",
-          "href": "",
+          "href": "/admin/user-setting.html",
           "icon": "fa fa-user-circle-o",
-          "target": ""
+          "target": "_self"
         }
       ]
     },
