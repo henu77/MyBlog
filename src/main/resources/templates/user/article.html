@@ -14,7 +14,6 @@
     <link rel="stylesheet" th:href="@{/css/gloable.css}"/>
     <link rel="stylesheet" th:href="@{/css/nprogress.css}"/>
     <link rel="stylesheet" th:href="@{/css/blog.css}"/>
-    <script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
 </head>
 <body>
 <div class="header">
@@ -495,6 +494,7 @@
         </div>
     </div>
 </footer>
+<script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/js/yss/gloable.js}"></script>
 <script th:src="@{/js/plugins/nprogress.js}"></script>
@@ -525,7 +525,7 @@
                     if (jsonData.code == 1) {
                         //成功
                         layui.layer.msg(jsonData.msg, {icon: 1});
-                        window.location = basePath + '/index.html';
+                        window.location = basePath + '/article.html';
                     } else {
                         //失败
                         layer.msg(jsonData.msg, {icon: 2});
