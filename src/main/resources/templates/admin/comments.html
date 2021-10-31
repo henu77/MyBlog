@@ -120,17 +120,19 @@
             [
                 {type: 'checkbox'},
                 {title: '昵称', field: 'nickname', align: 'center'},
-                {title: '用户名', field: 'username', align: 'center'},
-                {title: '密码', field: 'password', align: 'center'},
-                {title: '电子邮箱', field: 'email', align: 'center'},
-                {title: '权限', field: 'role', align: 'center'},
+                {title: '邮箱', field: 'email', align: 'center'},
+                {title: '评论', field: 'content', align: 'center'},
+                {title: '评论时间', field: 'createTime', align: 'center'},
+                {title: '博客Id', field: 'blogId', align: 'center'},
+                {title: '被回复人昵称', field: 'replyName', align: 'center'},
+                {title: '父评论编号', field: 'parentCommentId', align: 'center'},
                 {title: '操作', toolbar: '#user-bar', align: 'center', width: 130}
             ]
         ]
 
         table.render({
             elem: '#user-table',
-            url: basePath + '/user/dataLimit',
+            url: basePath + '/comment/dataLimit',
             page: true,
             cols: cols,
             skin: 'line',

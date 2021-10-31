@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.malong.blog.dao.UserInfoMapper">
+
     <select id="getUserInfoByUsername" resultType="userInfo">
         select *
         from myblog.t_user
@@ -20,18 +21,21 @@
         from myblog.t_user
         limit #{startIndex},#{pageSize};
     </select>
+
     <select id="getUserDataByLimit_username" resultType="userInfo">
         select *
         from myblog.t_user
         where username = #{username}
         limit #{startIndex},#{pageSize};
     </select>
+
     <select id="getUserDataByLimit_nickname" resultType="userInfo">
         select *
         from myblog.t_user
         where nickname = #{nickname}
         limit #{startIndex},#{pageSize};
     </select>
+
     <select id="getUserDataByLimit_nick_username" resultType="userInfo">
         select *
         from myblog.t_user
@@ -39,4 +43,5 @@
           and nickname = #{nickname}
         limit #{startIndex},#{pageSize};
     </select>
+
 </mapper>

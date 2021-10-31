@@ -24,7 +24,7 @@ public class UserController {
 
     @RequestMapping("/dataLimit")
     public String getUserDataLimit(int page, int limit, String nickname, String username) {
-        System.out.println("nickname==" + nickname + ",username==" + username);
+//        System.out.println("nickname==" + nickname + ",username==" + username);
         return userServiceImpl.getUserDataByLimit(page, limit, nickname, username);
     }
 }

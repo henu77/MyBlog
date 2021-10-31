@@ -28,4 +28,14 @@ class MyBlogMasterApplicationTests {
 //        connection.close();
     }
 
+    @Test
+    void contextLoads1() throws SQLException {
+//        System.out.println(this.dataSource.getClass());
+//        Connection connection = this.dataSource.getConnection();
+//        System.out.println(connection);
+//        DruidDataSource druidDataSource = (DruidDataSource)this.dataSource;
+//        System.out.println("druidDataSource 数据源最大连接数：" + druidDataSource.getMaxActive());
+//        System.out.println("druidDataSource 数据源初始化连接数：" + druidDataSource.getInitialSize());
+//        connection.close();
+    }
 }
