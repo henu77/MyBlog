@@ -4459,3 +4459,1462 @@
 [DEBUG][21-10-31][druid.sql.Connection]{conn-10004} closed
 [DEBUG][21-10-31][druid.sql.Statement]{conn-10005, pstmt-20000} closed
 [DEBUG][21-10-31][druid.sql.Connection]{conn-10005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-669} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-670} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-671} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-672} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-673} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 47.7786 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006,procId-705} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20001} created. select *
+        from myblog.t_user
+        limit ?,?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20001} Parameters : [0, 10]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20001} Types : [INTEGER, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20001} executed. 42.0027 millis. select *
+        from myblog.t_user
+        limit ?,?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20001, rs-50001} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20001, rs-50001} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20001, rs-50001} Result: [1, 超级管理员, root, 63a9f0ea7bb98050796b649e85481845, 670551262@qq.com, /images/me.jpg, root]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20001, rs-50001} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20001, rs-50001} Result: [3, 用户, user, ee11cbb19052e40b07aac0ca060c23ee, 1289596706@qq.com, /images/me.jpg, user]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20001, rs-50001} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} created. select * from t_tag order by id limit 0,10;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Parameters : []
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Types : []
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} executed. 34.3081 millis. select * from t_tag order by id limit 0,10;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} Header: [id, name]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} Result: [4, Java]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} Result: [5, 前端基础]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} Result: [6, 动漫]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} Result: [7, 面试]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} Result: [8, 数据库]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007,procId-706} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008,procId-707} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20003} created. select *
+        from myblog.t_user
+        limit ?,?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20003} Parameters : [0, 10]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20003} Types : [INTEGER, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20003} executed. 340.4189 millis. select *
+        from myblog.t_user
+        limit ?,?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20003, rs-50003} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20003, rs-50003} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20003, rs-50003} Result: [1, 超级管理员, root, 63a9f0ea7bb98050796b649e85481845, 670551262@qq.com, /images/me.jpg, root]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20003, rs-50003} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20003, rs-50003} Result: [3, 用户, user, ee11cbb19052e40b07aac0ca060c23ee, 1289596706@qq.com, /images/me.jpg, user]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20003, rs-50003} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20003} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-710} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-711} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-712} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-713} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-714} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 56.6451 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [0]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 35.319499 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-715} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-716} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-717} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-718} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-719} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 66.0212 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [0]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 50.8145 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006,procId-720} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Parameters : [0]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} executed. 45.0056 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50002} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-721} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-722} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-723} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-724} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-725} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [0]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 59.2723 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 44.1587 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [0]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 41.2812 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50002} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50002} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50002} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 46.2606 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50003} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50003} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50003} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50003} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} Parameters : [admin, null, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} Types : [VARCHAR, OTHER, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[ERROR][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} execute error. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+java.sql.SQLIntegrityConstraintViolationException: Column 'nickname' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3461)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:660)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at com.sun.proxy.$Proxy58.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at com.sun.proxy.$Proxy62.updateUserInfo(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at com.sun.proxy.$Proxy63.updateUserInfo(Unknown Source)
+	at cn.malong.blog.service.UserServiceImpl.updateUserDate(UserServiceImpl.java:73)
+	at cn.malong.blog.controller.UserController.updateUserDate(UserController.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 38.4806 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50004} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50004} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50004} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50004} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20003} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20003} Parameters : [admin, null, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20003} Types : [VARCHAR, OTHER, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[ERROR][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20003} execute error. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+java.sql.SQLIntegrityConstraintViolationException: Column 'nickname' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3461)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:660)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at com.sun.proxy.$Proxy58.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at com.sun.proxy.$Proxy62.updateUserInfo(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at com.sun.proxy.$Proxy63.updateUserInfo(Unknown Source)
+	at cn.malong.blog.service.UserServiceImpl.updateUserDate(UserServiceImpl.java:73)
+	at cn.malong.blog.controller.UserController.updateUserDate(UserController.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20003} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20003} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006,procId-726} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} executed. 40.3791 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50005} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50005} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50005} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50005} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20005} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20005} Parameters : [admin, null, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20005} Types : [VARCHAR, OTHER, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[ERROR][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20005} execute error. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+java.sql.SQLIntegrityConstraintViolationException: Column 'nickname' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3461)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:660)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at com.sun.proxy.$Proxy58.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at com.sun.proxy.$Proxy62.updateUserInfo(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at com.sun.proxy.$Proxy63.updateUserInfo(Unknown Source)
+	at cn.malong.blog.service.UserServiceImpl.updateUserDate(UserServiceImpl.java:73)
+	at cn.malong.blog.controller.UserController.updateUserDate(UserController.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20005} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} executed. 249.8074 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50006} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50006} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50006} Result: [2, 管理员, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50006} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} Parameters : [admin, 管理员-01, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} executed. 394.854 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} executed. 43.799 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50007} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50007} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50007} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50007} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} Parameters : [admin, 管理员-01, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} executed. 95.2137 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} executed. 58.942 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50008} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50008} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50008} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20004, rs-50008} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20004} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} Parameters : [admin, 管理员-01, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} executed. 96.3217 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20006} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007,procId-727} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20007} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20007} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20007} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20007} executed. 56.5959 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20007, rs-50009} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20007, rs-50009} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20007, rs-50009} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20007, rs-50009} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20007} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20008} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20008} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20008} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20008} executed. 39.0481 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20008, rs-50010} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20008, rs-50010} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20008, rs-50010} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10007, pstmt-20008, rs-50010} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20008} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20009} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20009} Parameters : [admin, 管理员-001, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20009} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20009} executed. 92.1782 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20009} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008,procId-729} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20010} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20010} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20010} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20010} executed. 33.0166 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20010, rs-50011} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20010, rs-50011} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20010, rs-50011} Result: [2, 管理员-001, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10008, pstmt-20010, rs-50011} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20010} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20011} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20011} Parameters : [admin, 管理员-01, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20011} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20011} executed. 70.4187 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20011} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10009,procId-730} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10009} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20012} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20012} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20012} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20012} executed. 31.9882 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20012, rs-50012} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20012, rs-50012} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20012, rs-50012} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20012, rs-50012} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20012} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10009} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10009} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20013} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20013} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20013} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20013} executed. 36.7938 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20013, rs-50013} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20013, rs-50013} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20013, rs-50013} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10009, pstmt-20013, rs-50013} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20013} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10009} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10009} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20014} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20014} Parameters : [admin, 管理员-01, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20014} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20014} executed. 75.6705 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10009, pstmt-20014} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10009} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-736} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-737} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-738} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-739} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-740} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 46.0332 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 31.1327 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20001, rs-50001} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} Parameters : [admin, 管理员-01, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} executed. 70.1404 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20002} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006,procId-751} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} executed. 41.6226 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20003, rs-50002} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20003, rs-50002} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20003, rs-50002} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20003, rs-50002} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-766} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-767} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-768} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-769} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-770} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 49.3355 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-789} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-790} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-791} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-792} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-793} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 89.0836 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-794} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-795} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-796} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-797} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-798} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 47.6515 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-799} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-800} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-801} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-802} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-803} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 85.8663 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-806} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-807} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-808} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-809} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-810} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 53.1057 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-811} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-812} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-813} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-814} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-815} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 48.801 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-816} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-817} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-818} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-819} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-820} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 47.9028 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-826} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-827} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-828} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-829} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-830} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 77.0151 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, /images/me.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} created. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [{"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455063960704253952.jpg"}, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 74.2397 millis. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006,procId-831} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} created. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Parameters : [2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Types : [INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} executed. 86.0517 millis. select *
+        from myblog.t_user
+        where id = ?
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50001} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50001} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50001} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, {"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455063960704253952.jpg"}, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10006, pstmt-20002, rs-50001} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} created. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} Parameters : [admin, 管理员-01, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, {"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455063960704253952.jpg"}, admin, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} executed. 82.8944 millis. update myblog.t_user
+        set username=?,
+            nickname=?,
+            password=?,
+            email=?,
+            avatar=?,
+            role=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20003} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007,procId-837} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20004} created. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20004} Parameters : [{"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455065071897018368.jpg"}, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20004} Types : [VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20004} executed. 79.2001 millis. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20004} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008,procId-838} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20005} created. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20005} Parameters : [{}, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20005} Types : [VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20005} executed. 75.8877 millis. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10008, pstmt-20005} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10008} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-859} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-860} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-861} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-862} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-863} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 54.5428 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, {}, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} created. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [{"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455067122282528768.jpg"}, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} executed. 76.6343 millis. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-864} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-865} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-866} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-867} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-868} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 894.2822 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, {"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455067122282528768.jpg"}, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-869} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-870} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-871} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-872} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-873} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 105.1998 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, {"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455067122282528768.jpg"}, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-874} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-875} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-876} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-877} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-878} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 58.9859 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, {"avatar":"D:\\home\\uploads\\MyBlog\\2021-11-01\\1455067122282528768.jpg"}, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} created. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Parameters : [null, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} Types : [OTHER, INTEGER]
+[ERROR][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} execute error. update myblog.t_user
+        set avatar=?
+        where id = ?
+java.sql.SQLIntegrityConstraintViolationException: Column 'avatar' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3461)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:660)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at com.sun.proxy.$Proxy58.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at com.sun.proxy.$Proxy62.updateAvatar(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at com.sun.proxy.$Proxy63.updateAvatar(Unknown Source)
+	at cn.malong.blog.service.UserServiceImpl.updateAvatar(UserServiceImpl.java:93)
+	at cn.malong.blog.controller.UserController.updateAvatar(UserController.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:90)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20001} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006,procId-879} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} created. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Parameters : [D:\home\uploads\MyBlog\2021-11-01\1455070775844274176.jpg, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Types : [VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} executed. 110.2633 millis. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Parameters : [D:\home\uploads\MyBlog\2021-11-01\1455070981319032832.jpg, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} Types : [VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} executed. 148.0745 millis. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10006, pstmt-20002} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10006} closed
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007,procId-880} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20003} created. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20003} Parameters : [D:\home\uploads\MyBlog\2021-11-01\1455071338858283008.jpg, 2]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20003} Types : [VARCHAR, INTEGER]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20003} executed. 68.8424 millis. update myblog.t_user
+        set avatar=?
+        where id = ?
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10007, pstmt-20003} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10007} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-881} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-882} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-883} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-884} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-885} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 49.8067 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, D:\home\uploads\MyBlog\2021-11-01\1455071338858283008.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-897} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-898} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-899} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-900} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-901} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 63.6123 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, D:\home\uploads\MyBlog\2021-11-01\1455071338858283008.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10001,procId-902} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10002,procId-903} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10003,procId-904} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10004,procId-905} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005,procId-906} connected
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-connect
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} executed. 54.9466 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} open
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 909229859@qq.com, D:\home\uploads\MyBlog\2021-11-01\1455071338858283008.jpg, admin]
+[DEBUG][21-11-01][druid.sql.ResultSet]{conn-10005, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-01][druid.sql.Statement]{conn-10005, pstmt-20000} clearParameters. 
+[DEBUG][21-11-01][druid.sql.Connection]{conn-10005} pool-recycle

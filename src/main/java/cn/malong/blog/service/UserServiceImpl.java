@@ -3,9 +3,12 @@ package cn.malong.blog.service;
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.ResponseUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +63,42 @@ public class UserServiceImpl implements UserService {
                     userInfoMapper.getUserDataByLimit_nick_username(startIndex, limit, nickname, username);
         }
         return userDataToJson(userInfoList);
+    }
+
+    @Override
+    public String updateUserDate(UserInfo newUserInfo) {
+        UserInfo userInfoById = userInfoMapper.getUserInfoById(newUserInfo.getId());
+        System.out.println(newUserInfo);
+        userInfoById.setEmail(newUserInfo.getEmail());
+//        userInfoById.setRole(newUserInfo.getRole());
+//        userInfoById.setUsername(newUserInfo.getUsername());
+        userInfoById.setNickname(newUserInfo.getNickname());
+        int result = userInfoMapper.updateUserInfo(userInfoById);
+        ResponseUtil<String> json = new ResponseUtil<>();
+        if (result > 0) {
+            json.setCode(1);
+            json.setMsg("修改成功");
+        } else {
+            json.setCode(0);
+            json.setMsg("修改失败，请检查sql语句");
+        }
+        return json.toString();
+    }
+
+    @Override
+    public String updateAvatar(String avatar, HttpServletRequest request) {
+        ResponseUtil<String> json = new ResponseUtil<>();
+        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+        userInfo.setAvatar(avatar);
+        int result = userInfoMapper.updateAvatar(userInfo);
+        if (result > 0) {
+            json.setCode(1);
+            json.setMsg("更新成功");
+        } else {
+            json.setCode(0);
+            json.setMsg("更新失败");
+        }
+        return json.toString();
     }
 
     private boolean isEmpty(String s) {

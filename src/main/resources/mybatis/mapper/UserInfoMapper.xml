@@ -43,5 +43,27 @@
           and nickname = #{nickname}
         limit #{startIndex},#{pageSize};
     </select>
+    <select id="getUserInfoById" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where id = #{id}
+    </select>
 
+
+    <update id="updateUserInfo">
+        update myblog.t_user
+        set username=#{username},
+            nickname=#{nickname},
+            password=#{password},
+            email=#{email},
+            avatar=#{avatar},
+            role=#{role}
+        where id = #{id}
+    </update>
+
+    <update id="updateAvatar">
+        update myblog.t_user
+        set avatar=#{avatar}
+        where id = #{id}
+    </update>
 </mapper>

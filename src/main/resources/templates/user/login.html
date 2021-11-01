@@ -207,9 +207,6 @@
             loginLayer = layui.layer.msg('正在登录', {icon: 16, shade: 0.01, time: 0});
             let basePath = [[${#httpServletRequest.getContextPath()}]];
             $.ajax({
-
-            });
-            $.ajax({
                 type: "POST",
                 url: basePath + '/user/login',
                 data: {
@@ -218,6 +215,7 @@
                 },
                 success: function (result) {
                     layui.layer.close(loginLayer);
+                    console.log(result);
                     let jsonData = JSON.parse(result);
                     if (jsonData.code == 1) {
                         //成功

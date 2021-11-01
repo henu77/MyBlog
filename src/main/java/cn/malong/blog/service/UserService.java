@@ -1,5 +1,9 @@
 package cn.malong.blog.service;
 
+import cn.malong.blog.pojo.UserInfo;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author malong
  */
@@ -28,4 +32,19 @@ public interface UserService {
      * @return
      */
     String getUserDataByLimit(int page, int limit,String nickname,String username);
+
+    /**
+     * 更新用户信息
+     * @param userInfo
+     * @return
+     */
+    String updateUserDate(UserInfo userInfo);
+
+    /**
+     * 更新用户头像信息
+     * @param avatar
+     * @param request
+     * @return
+     */
+    String updateAvatar(String avatar, HttpServletRequest request);
 }
