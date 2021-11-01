@@ -3,6 +3,7 @@ package cn.malong.blog.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 
 import java.util.Date;
 
@@ -28,7 +29,7 @@ public class Blog {
     private Date creatTime;
     private Date updateTime;
     private String description;
-    private int typeId;
-    private int userId;
+    private Type typeId;
+    private UserInfo userId;
     private String tagIds;
 }

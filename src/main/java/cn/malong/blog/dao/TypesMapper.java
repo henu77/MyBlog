@@ -19,4 +19,6 @@ import java.util.List;
 public interface TypesMapper {
 
     List<Type> getTypesByLimit(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+
+    Type getType(@Param("typeId")int typeId);
 }

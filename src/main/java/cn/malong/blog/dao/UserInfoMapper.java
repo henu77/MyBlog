@@ -23,6 +23,13 @@ public interface UserInfoMapper {
     UserInfo getUserInfoByUsername(String username);
 
     /**
+     * 基于id 进行查询
+     * @param id
+     * @return
+     */
+    UserInfo getUserInfoById(@Param("id")int id);
+
+    /**
      * 获得所有的用户信息
      *
      * @return
