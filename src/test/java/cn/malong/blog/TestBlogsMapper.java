@@ -32,6 +32,29 @@ public class TestBlogsMapper {
 
     @Test
     public void testGetBlogsByLimitByTitle(){
+        List<Blog> blogs = blogsMapper.getBlogsByLimitByTitle(0,10,"工作");
+        if(null!=blogs){
+            for (Blog blog : blogs) {
+                System.out.println(blog);
+            }
+        }
+    }
 
+    @Test
+    public void testGetBlogByLimitByUser(){
+        List<Blog> blogs = blogsMapper.getBlogsByLimitByUser(0,10,"root");
+        if(null != blogs){
+            System.out.println(blogs);
+        }
+    }
+
+    @Test
+    public void testGetBlogsByLimitByTitleAndUser(){
+        List<Blog> blogs = blogsMapper.getBlogsByLimitByTitleAndUser(0,10,"工作","roott");
+        if(null != blogs){
+            for (Blog blog : blogs) {
+                System.out.println(blog);
+            }
+        }
     }
 }
