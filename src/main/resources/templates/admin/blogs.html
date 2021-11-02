@@ -15,11 +15,11 @@
     <div class="layui-card-body">
         <form action="" class="layui-form" lay-filter="user-query-form">
             <div class="layui-form-item">
-                <label class="layui-form-label">昵称</label>
+                <label class="layui-form-label">文章标题</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" name="nickname" placeholder="" type="text">
                 </div>
-                <label class="layui-form-label">用户名</label>
+                <label class="layui-form-label">作者</label>
                 <div class="layui-input-inline">
                     <input class="layui-input" name="username" placeholder="" type="text">
                 </div>
@@ -119,18 +119,19 @@
         let cols = [
             [
                 {type: 'checkbox'},
-                {title: '昵称', field: 'nickname', align: 'center'},
-                {title: '用户名', field: 'username', align: 'center'},
-                {title: '密码', field: 'password', align: 'center'},
-                {title: '电子邮箱', field: 'email', align: 'center'},
-                {title: '权限', field: 'role', align: 'center'},
+                {title: 'id', field: 'id', align: 'center'},
+                {title: '标题', field: 'title', align: 'center'},
+                {title: '类型', field: 'type', align: 'center'},
+                {title: '作者', field: 'user', align: 'center'},
+                {title: '创建时间', field: 'creatTime', align: 'center'},
+                {title: '更新时间', field: 'updateTime', align: 'center'},
                 {title: '操作', toolbar: '#user-bar', align: 'center', width: 130}
             ]
         ]
 
         table.render({
             elem: '#user-table',
-            url: basePath + '/user/dataLimit',
+            url: basePath + '/blog/dataLimit',
             page: true,
             cols: cols,
             skin: 'line',

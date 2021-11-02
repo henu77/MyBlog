@@ -31,4 +31,12 @@ public class TestTypesMapper {
         }
 
     }
+
+    @Test
+    public void testGetType(){
+        Type type = typesMapper.getType(1);
+        if(null != type){
+            System.out.println(type);
+        }
+    }
 }

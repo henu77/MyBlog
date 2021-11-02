@@ -22,6 +22,8 @@ public interface UserInfoMapper {
      */
     UserInfo getUserInfoByUsername(String username);
 
+
+
     /**
      * 获得所有的用户信息
      *

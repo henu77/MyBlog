@@ -28,7 +28,7 @@ public class Blog {
     private Date creatTime;
     private Date updateTime;
     private String description;
-    private int typeId;
-    private int userId;
+    private Type typeId;
+    private UserInfo userId;
     private String tagIds;
 }
