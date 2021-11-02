@@ -23,7 +23,7 @@
             <div class="layui-card-body" style="padding: 25px;">
                 <div class="text-center layui-text">
                     <div class="user-info-head" id="userInfoHead">
-                        <img alt="" height="115px" id="avatar" src="" width="115px">
+                        <img alt="图片加载失败" height="115px" id="avatar" src="" width="115px">
                     </div>
                     <h2 style="padding-top: 20px;font-size: 20px;" th:text="${session.userInfo.getNickname()}"></h2>
                     <p style="padding-top: 8px;margin-top: 10px;font-size: 13.5px;">China ， 中国</p>
@@ -57,43 +57,63 @@
                                     <label class="layui-form-label">编号</label>
                                     <div class="layui-input-block">
                                         <input autocomplete="off" class="layui-input" lay-verify="title"
-                                               name="userId"
+                                               name="id"
                                                placeholder="请输入标题" th:value="${session.userInfo.getId()}" type="text">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">用户名</label>
-                                    <div class="layui-input-block">
-                                        <input autocomplete="off" class="layui-input" lay-verify="title" name="username"
-                                               placeholder="请输入标题"
+                                    <div class="layui-input-inline">
+                                        <input autocomplete="off" class="layui-input"
+                                               name="username"
+                                               placeholder="请输入用户名"
                                                readonly th:value="${session.userInfo.getUsername()}" type="text">
                                     </div>
+                                    <div class="layui-form-mid layui-word-aux">用户名不可更改</div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">昵称</label>
-                                    <div class="layui-input-block">
-                                        <input autocomplete="off" class="layui-input" lay-verify="title"
-                                               name="realName"
-                                               placeholder="请输入标题" th:value="${session.userInfo.getNickname()}"
+                                    <div class="layui-input-inline">
+                                        <input autocomplete="off" class="layui-input" lay-verify="nickname"
+                                               name="nickname"
+                                               placeholder="请输入昵称" th:value="${session.userInfo.getNickname()}"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">邮箱</label>
-                                    <div class="layui-input-block">
-                                        <input autocomplete="off" class="layui-input" lay-verify="title" name="email"
-                                               placeholder="请输入标题" th:value="${session.userInfo.getEmail()}"
+                                    <div class="layui-input-inline">
+                                        <input autocomplete="off" class="layui-input" lay-verify="email" name="email"
+                                               placeholder="请输入邮箱" th:value="${session.userInfo.getEmail()}"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">权限</label>
-                                    <div class="layui-input-block">
-                                        <input autocomplete="off" class="layui-input" lay-verify="title" name="role"
-                                               placeholder="请输入标题" th:value="${session.userInfo.getRole()}"
-                                               type="text">
+                                    <div class="layui-input-inline">
+                                        <select name="role" disabled="disabled">
+                                            <option value="">请选择用户权限</option>
+                                            <option value="root" th:selected="${session.userInfo.getRole()=='root'}">
+                                                超级管理员
+                                            </option>
+                                            <option value="admin" th:selected="${session.userInfo.getRole()=='admin'}">
+                                                管理员
+                                            </option>
+                                            <option value="user" th:selected="${session.userInfo.getRole()=='user'}">
+                                                普通用户
+                                            </option>
+                                        </select>
                                     </div>
+                                    <div class="layui-form-mid layui-word-aux">请联系超级管理员进行修改</div>
                                 </div>
+                                <!--                                <div class="layui-form-item">-->
+                                <!--                                    <label class="layui-form-label">权限</label>-->
+                                <!--                                    <div class="layui-input-block">-->
+                                <!--                                        <input autocomplete="off" class="layui-input" lay-verify="title" name="role"-->
+                                <!--                                               placeholder="请输入标题" th:value="${session.userInfo.getRole()}"-->
+                                <!--                                               type="text">-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                                 <!--                                <div class="layui-form-item">-->
                                 <!--                                    <label class="layui-form-label">电话</label>-->
                                 <!--                                    <div class="layui-input-block">-->
@@ -199,7 +219,7 @@
 </div>
 <script th:src="@{/component/layui/layui.js}"></script>
 <script th:src="@{/component/pear/pear.js}"></script>
-<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
 <script th:inline="javascript">
     let basePath = [[${#httpServletRequest.getContextPath()}]];
     layui.use(['element', 'jquery', 'layer', 'form', 'convert'], function () {
@@ -214,13 +234,13 @@
                 title: '修改密码',
                 shade: 0.1,
                 area: ['550px', '280px'],
-                content: basePath+'/admin/password.html'
+                content: basePath + '/admin/password.html'
             });
             return false;
         })
 
         let image = new Image();
-        image.src = "/system/file/download/" + [[${session.userInfo.getAvatar()}]];
+        image.src = basePath + "/file/getHeadImg";
         image.onload = function () {
             $("#avatar").attr("src", convert.imageToBase64(image));
         }
@@ -231,8 +251,8 @@
                 title: '更换图片',
                 shade: 0.1,
                 area: ["900px", "500px"],
-                content: basePath+'/admin/profile.html',
-                    // '/' + [[${session.userInfo.getId()}]],
+                content: basePath + '/admin/profile.html',
+                // '/' + [[${session.userInfo.getId()}]],
                 btn: ['确定', '取消'],
                 yes: function (index, layero) {
                     window['layui-layer-iframe' + index].submitForm();
@@ -241,22 +261,49 @@
         });
 
         form.on('submit(user-update)', function (data) {
+
+            let loginLayer;
+            loginLayer = layui.layer.msg('正在修改', {icon: 16, shade: 0.01, time: 0});
             $.ajax({
-                url: '/system/user/updateInfo',
+                url: '/user/updateUserDate',
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json',
                 type: 'put',
                 success: function (result) {
-                    if (result.success) {
-                        layer.msg("修改成功", {icon: 1, time: 1000});
+                    layui.layer.close(loginLayer);
+                    console.log(result);
+                    if (result.code == 1) {
+                        //成功
+                        layui.layer.msg(result.msg, {icon: 1});
                     } else {
-                        layer.msg("修改失败", {icon: 2, time: 1000});
+                        //失败
+                        layer.msg(result.msg, {icon: 2});
                     }
+                },
+                error: function (arg) {
+                    layui.layer.close(loginLayer);
+                    layer.msg(arg);
                 }
             })
             return false;
         });
+
+        //自定义验证规则
+        form.verify({
+            nickname: [
+                /^[^\s]*$/
+                , '昵称不能出现空格'
+            ]
+            , password: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });
+
     })
 </script>
 </body>

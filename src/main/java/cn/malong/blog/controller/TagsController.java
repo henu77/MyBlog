@@ -15,12 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tag")
 public class TagsController {
 
-    private final TagsService tagsService;
-
     @Autowired
-    public TagsController(TagsService tagsService) {
-        this.tagsService = tagsService;
-    }
+    private TagsService tagsService;
 
     @RequestMapping("/dataLimit")
     public String getTagsByLimit(int page,int limit){

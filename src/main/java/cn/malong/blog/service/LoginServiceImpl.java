@@ -40,19 +40,19 @@ public class LoginServiceImpl implements LoginService {
         if (null == userInfo) {
             json.setCode(0);
             json.setMsg("用户名不存在");
-            System.out.println("用户名不存在");
+//            System.out.println("用户名不存在");
             return json.toString();
         }
         if (!MD5Util.passwordIsTrue(password, userInfo.getPassword())) {
             json.setCode(0);
             json.setMsg("密码错误");
-            System.out.println("密码错误");
+//            System.out.println("密码错误");
             return json.toString();
         }
         session.setAttribute("userInfo", userInfo);
         json.setCode(1);
         json.setMsg("登录成功");
-        System.out.println("登录成功");
+//        System.out.println("登录成功");
         return json.toString();
     }
 

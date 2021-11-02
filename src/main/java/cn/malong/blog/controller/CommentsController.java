@@ -1,8 +1,6 @@
 package cn.malong.blog.controller;
 
 import cn.malong.blog.service.CommentsService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommentsController {
 
     @Autowired
-    private  CommentsService commentsServiceImpl;
-
+    private CommentsService commentsServiceImpl;
 
     @RequestMapping("/dataLimit")
     public String getCommentDataLimit(int page, int limit) {

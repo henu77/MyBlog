@@ -23,13 +23,6 @@ public interface UserInfoMapper {
     UserInfo getUserInfoByUsername(String username);
 
     /**
-     * 基于id 进行查询
-     * @param id
-     * @return
-     */
-    UserInfo getUserInfoById(@Param("id")int id);
-
-    /**
      * 获得所有的用户信息
      *
      * @return
@@ -79,4 +72,25 @@ public interface UserInfoMapper {
     List<UserInfo> getUserDataByLimit_nick_username(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize,
                                                     String nickname,
                                                     String username);
+
+    /**
+     * 通过Id获得userInfo
+     * @param id
+     * @return
+     */
+    UserInfo getUserInfoById(int id);
+
+    /**
+     * 更新用户信息
+     * @param userInfoById
+     * @return
+     */
+    int updateUserInfo(UserInfo userInfoById);
+
+    /**
+     * 更新用户头像信息
+     * @param userInfo
+     * @return
+     */
+    int updateAvatar(UserInfo userInfo);
 }

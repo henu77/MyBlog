@@ -35,14 +35,15 @@
                    title="选择图片"></label>
             <input class="layui-upload-file" id="uploadPicture" type="file" value="选择图片">
         </div>
-        <div class="layui-form-mid layui-word-aux">建议:图片的尺寸宽高比为1:1,大小在5m以内。</div>
+        <div class="layui-form-mid layui-word-aux">建议:图片的尺寸宽高比为1:1,大小在5MB以内。</div>
     </div>
 </div>
 </body>
 <script th:src="@{/component/layui/layui.js}"></script>
 <script th:src="@{/component/pear/pear.js}"></script>
 <script th:src="@{/admin/js/jquery.min.js}"></script>
-<script>
+<script th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
     layui.use(['jquery', 'layer', 'cropper', 'popup'], function () {
         let $ = layui.jquery;
         let popup = layui.popup;
@@ -70,24 +71,26 @@
                 formData.append('fileToken', timeStamp);
                 $.ajax({
                     method: "post",
-                    url: "/system/file/upload", //用于文件上传的服务器端请求地址
+                    url: basePath + "/file/upload", //用于文件上传的服务器端请求地址
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function (result) {
-                        if (result.success) {
+                        result = JSON.parse(result);
+                        if (result.code) {
                             // 修改 avatar 字段
                             $.ajax({
                                 method: "put",
-                                url: "/system/user/updateAvatar",
-                                data: JSON.stringify({avatar: result.data}),
-                                dataType: "json",
-                                contentType: 'application/json',
-                                success: function (resu) {
-                                    if (resu.success) {
+                                url: basePath + "/user/updateAvatar",
+                                data: {
+                                    "avatar": result.data[0],
+                                },
+                                success: function (result2) {
+                                    result2 = JSON.parse(result2);
+                                    if (result2.code) {
                                         // 关闭当前弹层
-                                        parent.$("#avatar").attr("src", "/system/file/download/" + result.data);
-                                        top.$("#avatar").attr("src", "/system/file/download/" + result.data);
+                                        parent.$("#avatar").attr("src", "/file/getHeadImg/");
+                                        top.$("#avatar").attr("src", "/file/getHeadImg/");
                                         parent.layer.close(parent.layer.getFrameIndex(window.name));
                                     } else {
                                         popup.failure("上传失败")
