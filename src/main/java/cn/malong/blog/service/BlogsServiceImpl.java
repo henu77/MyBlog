@@ -78,8 +78,16 @@ public class BlogsServiceImpl implements BlogsService {
         blog.setViews(0);
         blog.setDescription("无");
         blog.setFirstPicture("1111");
-        blogsMapper.saveBlog(blog);
-        return "";
+        int result = blogsMapper.saveBlog(blog);
+        ResponseUtil<String> json = new ResponseUtil<>();
+        if (result > 0) {
+            json.setCode(1);
+            json.setMsg("发布成功");
+        } else {
+            json.setCode(0);
+            json.setMsg("发布失败");
+        }
+        return json.toString();
     }
 
     private boolean isEmpty(String s) {
