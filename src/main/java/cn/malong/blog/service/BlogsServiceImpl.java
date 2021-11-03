@@ -77,6 +77,7 @@ public class BlogsServiceImpl implements BlogsService {
         blog.setUpdateTime(date);
         blog.setViews(0);
         blog.setDescription("无");
+        blog.setFirstPicture("1111");
         blogsMapper.saveBlog(blog);
         return "";
     }
