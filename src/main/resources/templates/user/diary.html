@@ -166,10 +166,41 @@
 <script th:src="@{/js/plugins/nprogress.js}"></script>
 <script>NProgress.start();</script>
 <script th:src="@{/js/pagediary.js}"></script>
+<script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
 <script>
     window.onload = function () {
         NProgress.done();
     };
+
+    function logout() {
+        //询问框
+        layer.confirm('真的要退出登录吗？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                url: basePath + '/user/logout',
+                success: function (result) {
+                    let jsonData = JSON.parse(result);
+                    if (jsonData.code == 1) {
+                        //成功
+                        layui.layer.msg(jsonData.msg, {icon: 1});
+                        window.location = basePath + '/article.html';
+                    } else {
+                        //失败
+                        layer.msg(jsonData.msg, {icon: 2});
+                    }
+                },
+                error: function (arg) {
+                    layer.msg(arg);
+                }
+            })
+        }, function () {
+            layer.msg('取消退出登录', {
+                time: 1000, //1s后自动关闭
+            });
+
+        });
+    }
 </script>
 </body>
 </html>
