@@ -19,46 +19,61 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">分类</label>
                 <div class="layui-input-inline">
-                    <select name="city" lay-verify="">
-                        <option value="">请选择一个城市</option>
-                        <option value="010">北京</option>
-                        <option value="021">上海</option>
-                        <option value="0571">杭州</option>
+                    <select name="typeId" lay-verify="">
+                        <option value="">请选择文章类别</option>
+                        <option th:each="type:${allTypes}" th:text="${type.getName()}"
+                                th:value="${type.getId()}"></option>
                     </select>
                 </div>
-                <label class="layui-form-label">封面图片</label>
+                <label class="layui-form-label">文章类型</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="first_picture" placeholder="" type="text">
+                    <select name="flag" lay-verify="">
+                        <option value="">请选择文章类型</option>
+                        <option value="原创">原创</option>
+                        <option value="转载">转载</option>
+                    </select>
                 </div>
-                <button class="pear-btn pear-btn-md " lay-filter="user-query" lay-submit>
+
+                <input c type="checkbox" name="recommend" value="true" title="&nbsp;&nbsp;推荐" lay-skin="primary">
+                <input type="checkbox" name="appreciation" value="true" title="&nbsp;&nbsp;赞赏" checked
+                       lay-skin="primary">
+                <input type="checkbox" name="commentabled" value="true" title="&nbsp;&nbsp;评论" checked
+                       lay-skin="primary">
+                <span style="margin-left: 17%">
+                    <button class="pear-btn pear-btn-md " id="save" lay-submit lay-filter="saveArticle">
                     <i class="layui-icon layui-icon-note"></i>
                     保存
                 </button>
-                <button class="pear-btn pear-btn-md pear-btn-primary" type="reset">
+                <button class="pear-btn pear-btn-md pear-btn-primary" id="send" lay-submit lay-filter="postArticle">
                     <i class="layui-icon layui-icon-release"></i>
                     发布
                 </button>
+                </span>
+                <!--                <div style="padding-top: 15px;">-->
+                <!--                    <label class="layui-form-label">首图</label>-->
+                <!--                    <div class="layui-input-inline">-->
+                <!--                        <input class="layui-input" type="text" name="firstPicture" placeholder="首图引用地址，请用http://开头，可省略">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <div style="padding-top: 15px;">
-                    <input type="checkbox" name="" title="&nbsp;&nbsp;推荐" lay-skin="primary">
-                    <input type="checkbox" name="" title="&nbsp;&nbsp;赞赏" checked lay-skin="primary">
-                    <input type="checkbox" name="" title="&nbsp;&nbsp;评论" checked lay-skin="primary">
-                </div>
-                <div style="padding-top: 15px;">
-                    <input class="layui-input" type="text" lay-verify="required" name="title" placeholder="请输入标题">
+                    <label class="layui-form-label">文章标题</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" lay-verify="required" name="title" placeholder="请输入标题">
+                    </div>
                 </div>
 
             </div>
-        </form>
-    </div>
-</div>
-<div class="user-main user-collasped">
-    <div class="layui-card">
-        <div class="layui-card-body">
+            <!--            <div class="user-main user-collasped">-->
+            <!--                <div class="layui-card">-->
+            <!--                    <div class="layui-card-body">-->
             <div id="editor">
                 <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
-                <textarea style="display:none;">### Hello Editor.md !</textarea>
+                <textarea name="content" style="display:none;">### Hello Editor.md !</textarea>
             </div>
-        </div>
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+        </form>
     </div>
 </div>
 
@@ -67,10 +82,7 @@
 <script th:src="@{/layui/layui.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     let basePath = [[${#httpServletRequest.getContextPath()}]];
-    layui.use('form', function () { //此段代码必不可少
-        var form = layui.form;
-        form.render();
-    });
+
     $(function () {
         let editor = editormd("editor", {
             width: "100%",
@@ -82,6 +94,43 @@
             path: basePath + "lib/editormd/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
         });
     });
+    layui.use(['element', 'layer', 'form', 'convert'], function () {
+        let layer = layui.layer;
+        let form = layui.form;
+        let convert = layui.convert;
+
+
+        form.on('submit(postArticle)', function (data) {
+            data.field;
+            console.log(JSON.stringify(data.field));
+            let postLayer;
+            postLayer = layui.layer.msg('正在发布', {icon: 16, shade: 0.01, time: 0});
+            $.ajax({
+                url: '/blog/postArticle',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    layui.layer.close(postLayer);
+                    console.log(result);
+                    if (result.code == 1) {
+                        //成功
+                        layui.layer.msg(result.msg, {icon: 1});
+                    } else {
+                        //失败
+                        layui.layer.msg(result.msg, {icon: 2});
+                    }
+                },
+                error: function (arg) {
+                    layui.layer.close(postLayer);
+                    layui.layer.msg(arg);
+                }
+            })
+            return false;
+        });
+    });
+
 </script>
 </body>
 </html>

@@ -14,4 +14,8 @@ import lombok.NoArgsConstructor;
 public class Type {
     private int id;
     private String name;
+
+    public Type(int id) {
+        this.id = id;
+    }
 }

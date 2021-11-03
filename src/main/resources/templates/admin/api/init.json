@@ -35,7 +35,7 @@
         },
         {
           "title": "编辑文章",
-          "href": "/admin/write.html",
+          "href": "/admin/write",
           "icon": "fa fa-pencil-square-o",
           "target": "_self"
         },
