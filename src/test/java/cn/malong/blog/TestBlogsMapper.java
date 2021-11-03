@@ -42,7 +42,7 @@ public class TestBlogsMapper {
 
     @Test
     public void testGetBlogByLimitByUser(){
-        List<Blog> blogs = blogsMapper.getBlogsByLimitByUser(0,10,"root");
+        List<Blog> blogs = blogsMapper.getBlogsByLimitByUser(0,10,"roo0");
         if(null != blogs){
             System.out.println(blogs);
         }
