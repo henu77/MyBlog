@@ -1,10 +1,17 @@
 package cn.malong.blog.service;
 
+import cn.malong.blog.dao.TypesMapper;
+import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.StaticString;
+import cn.malong.blog.utils.servlet.ServletUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,6 +21,10 @@ import java.util.TimerTask;
  */
 @Service
 public class RouterServiceImpl implements RouterService {
+
+    @Autowired
+    private TypesMapper typesMapper;
+
     /**
      * 1.从session中取用户信息
      * 2. 用户信息为空 说明未登录 则返回登录页
@@ -29,7 +40,7 @@ public class RouterServiceImpl implements RouterService {
         if (null == userInfo) {
             session.setAttribute("login_msg", "请先登录！");
             System.out.println("toAdminIndex======>请先登录！");
-            this.removeAttribute(session,"login_msg");
+            this.removeAttribute(session, "login_msg");
             return "/user/login";
         } else {
             String role = userInfo.getRole();
@@ -39,14 +50,23 @@ public class RouterServiceImpl implements RouterService {
             } else {
                 session.setAttribute("admin_msg", "您没有管理员权限！");
                 System.out.println("toAdminIndex======>您没有管理员权限！");
-                this.removeAttribute(session,"admin_msg");
+                this.removeAttribute(session, "admin_msg");
                 return "/user/article";
             }
         }
     }
 
+    @Override
+    public String toAdminWrite(Model model) {
+        HttpServletRequest request = ServletUtil.getRequest();
+        List<Type> allTypes = typesMapper.getAllTypes();
+        model.addAttribute("allTypes", allTypes);
+        return "/admin/write";
+    }
+
     /**
      * 设置5s后删除session中的信息
+     *
      * @param session
      * @param attrName
      */

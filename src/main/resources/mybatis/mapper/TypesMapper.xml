@@ -8,10 +8,19 @@
         <result column="name" property="name"/>
     </resultMap>
     <select id="getTypesByLimit" resultMap="typesMap">
-        select * from t_type order by id limit #{startIndex},#{pageSize};
+        select *
+        from myblog.t_type
+        order by id
+        limit #{startIndex},#{pageSize};
     </select>
 
-    <select id="getType" resultType="type">
-        select * from t_type where id = #{typeId};
+    <select id="getTypeById" resultType="type">
+        select *
+        from myblog.t_type
+        where id = #{typeId};
+    </select>
+    <select id="getAllTypes" resultType="type">
+        select *
+        from myblog.t_type;
     </select>
 </mapper>

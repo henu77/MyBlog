@@ -1,5 +1,7 @@
 package cn.malong.blog.service;
 
+import cn.malong.blog.pojo.Blog;
+
 /**
  * @author Csy
  * @Classname BlogsService
@@ -10,4 +12,6 @@ public interface BlogsService {
     String getBlogsByLimit(int page,int limit);
 
     String getBlogsByLimit(int page,int limit,String title,String user);
+
+    String postArticle(Blog blog);
 }

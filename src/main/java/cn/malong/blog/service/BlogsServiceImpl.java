@@ -1,16 +1,17 @@
 package cn.malong.blog.service;
 
 import cn.malong.blog.dao.BlogsMapper;
+import cn.malong.blog.dao.TypesMapper;
 import cn.malong.blog.pojo.Blog;
+import cn.malong.blog.pojo.Type;
+import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.DateUtils;
 import cn.malong.blog.utils.ResponseUtil;
+import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Csy
@@ -25,12 +26,15 @@ public class BlogsServiceImpl implements BlogsService {
     @Autowired
     private BlogsMapper blogsMapper;
 
+    @Autowired
+    private TypesMapper typesMapper;
+
     @Override
     public String getBlogsByLimit(int page, int limit) {
-        int startIndex = (page-1)*limit;
-        List<Blog> blogData = blogsMapper.getBlogsByLimit(startIndex,limit);
+        int startIndex = (page - 1) * limit;
+        List<Blog> blogData = blogsMapper.getBlogsByLimit(startIndex, limit);
 
-        if(null == blogData){
+        if (null == blogData) {
             System.out.println("数据为空");
             return "";
         }
@@ -43,18 +47,38 @@ public class BlogsServiceImpl implements BlogsService {
 
     @Override
     public String getBlogsByLimit(int page, int limit, String title, String user) {
-        int startIndex = (page-1)*limit;
+        int startIndex = (page - 1) * limit;
         List<Blog> blogData = null;
-        if(isEmpty(title)&&isEmpty(user)){
-            return getBlogsByLimit(page,limit);
-        }else if(isEmpty(user)){
-            blogData = blogsMapper.getBlogsByLimitByTitle(startIndex,limit,title);
-        }else if(isEmpty(title)){
-            blogData = blogsMapper.getBlogsByLimitByUser(startIndex,limit,user);
-        }else{
-            blogData = blogsMapper.getBlogsByLimitByTitleAndUser(startIndex,limit,title,user);
+        if (isEmpty(title) && isEmpty(user)) {
+            return getBlogsByLimit(page, limit);
+        } else if (isEmpty(user)) {
+            blogData = blogsMapper.getBlogsByLimitByTitle(startIndex, limit, title);
+        } else if (isEmpty(title)) {
+            blogData = blogsMapper.getBlogsByLimitByUser(startIndex, limit, user);
+        } else {
+            blogData = blogsMapper.getBlogsByLimitByTitleAndUser(startIndex, limit, title, user);
         }
         return blogDataToJson(blogData);
+    }
+
+    /**
+     * @param blog
+     * @return
+     * @auther MaLong
+     */
+    @Override
+    public String postArticle(Blog blog) {
+        UserInfo userInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        blog.setUserId(userInfo);
+        Type typeById = typesMapper.getTypeById(blog.getTypeId().getId());
+        blog.setTypeId(typeById);
+        Date date = new Date();
+        blog.setCreatTime(date);
+        blog.setUpdateTime(date);
+        blog.setViews(0);
+        blog.setDescription("无");
+        blogsMapper.saveBlog(blog);
+        return "";
     }
 
     private boolean isEmpty(String s) {
@@ -75,7 +99,7 @@ public class BlogsServiceImpl implements BlogsService {
         if (null == blogData) {
             json.setCode(1);
             json.setMsg("获取用户信息失败");
-        } else if  (blogData.isEmpty()) {
+        } else if (blogData.isEmpty()) {
             json.setCode(1);
             json.setMsg("用户信息为空");
         } else {
@@ -86,13 +110,13 @@ public class BlogsServiceImpl implements BlogsService {
             // 处理返回json格式复合表格要求
             List<Map> jsonMap = new LinkedList<>();
             for (Blog blog : blogData) {
-                Map<String,Object> temp = new HashMap<>();
-                temp.put("id",blog.getId());
-                temp.put("title",blog.getTitle());
-                temp.put("type",blog.getTypeId().getName());
-                temp.put("user",blog.getUserId().getUsername());
+                Map<String, Object> temp = new HashMap<>();
+                temp.put("id", blog.getId());
+                temp.put("title", blog.getTitle());
+                temp.put("type", blog.getTypeId().getName());
+                temp.put("user", blog.getUserId().getUsername());
                 temp.put("creatTime", DateUtils.d2t(blog.getCreatTime()).toString());
-                temp.put("updateTime",DateUtils.d2t(blog.getUpdateTime()).toString());
+                temp.put("updateTime", DateUtils.d2t(blog.getUpdateTime()).toString());
                 jsonMap.add(temp);
             }
             json.setData(jsonMap);

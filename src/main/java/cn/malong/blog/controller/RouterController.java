@@ -3,6 +3,7 @@ package cn.malong.blog.controller;
 import cn.malong.blog.service.RouterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -21,4 +22,9 @@ public class RouterController {
     public String toAdminIndex(HttpSession session) {
         return routerServiceImpl.toAdminIndex(session);
     }
+    @RequestMapping("/admin/write")
+    public String toAdminWrite(Model model) {
+        return routerServiceImpl.toAdminWrite(model);
+    }
+
 }
