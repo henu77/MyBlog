@@ -47,6 +47,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/admin/comments.html").setViewName("admin/comments");
         registry.addViewController("/admin/blogs.html").setViewName("admin/blogs");
         registry.addViewController("/admin/tags.html").setViewName("admin/tags");
+        registry.addViewController("/admin/user-edit.html").setViewName("admin/user-edit");
+
     }
 
     @Bean

@@ -38,11 +38,6 @@
 <div class="user-left user-collasped">
     <div class="layui-card">
         <div class="layui-card-body">
-            <!--            <div class="button button-primary user-group" user-group=""> 全 部 用 户</div>-->
-            <!--            <div class="button button-default user-group" user-group="-1"> 默 认 分 组</div>-->
-            <!--            <div style="overflow: auto">-->
-            <!--                <ul class="dept-tree" data-id="0" id="dept-tree"></ul>-->
-            <!--            </div>-->
         </div>
     </div>
 </div>
@@ -66,10 +61,6 @@
         <i class="pear-icon pear-icon-ashbin"></i>
         删除
     </button>
-    <!--    <button class="pear-btn pear-btn-md" lay-event="collasped">-->
-    <!--        <i class="pear-icon pear-icon-modular"></i>-->
-    <!--        高级-->
-    <!--    </button>-->
 </script>
 
 <script id="user-bar" type="text/html">
@@ -80,28 +71,6 @@
             class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="pear-icon pear-icon-ashbin"></i>
     </button>
 </script>
-
-<!--<script id="user-enable" type="text/html">-->
-<!--    <input type="checkbox" name="enable" value="{{d.userId}}" lay-skin="switch" lay-text="启用|禁用"-->
-<!--           lay-filter="user-enable" {{ d.enable== true ? 'checked' : '' }} />-->
-<!--</script>-->
-
-<script id="user-sex" type="text/html">
-    {{#if (d.sex == 0) { }}
-    <span>男</span>
-    {{# }else if(d.sex == 1){ }}
-    <span>女</span>
-    {{# } }}
-</script>
-
-<script id="user-login" type="text/html">
-    {{#if (d.login == 0) { }}
-    <span>在线</span>
-    {{# }else if(d.sex == 1){ }}
-    <span>离线</span>
-    {{# } }}
-</script>
-
 <script th:src="@{/component/layui/layui.js}"></script>
 <script th:src="@{/component/pear/pear.js}"></script>
 <script th:src="@{/admin/js/jquery.min.js}"></script>
@@ -111,7 +80,6 @@
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
-        // let dtree = layui.dtree;
         let popup = layui.popup;
         let common = layui.common;
 
@@ -130,7 +98,7 @@
 
         table.render({
             elem: '#user-table',
-            url: basePath + '/user/dataLimit',
+            url: basePath + '/user/dataLimitAdmin',
             page: true,
             cols: cols,
             skin: 'line',
@@ -143,42 +111,6 @@
                 title: "刷新"
             }, 'filter', 'print', 'exports']
         });
-
-        // dtree.render({
-        //     elem: "#dept-tree",
-        //     method: "get",
-        //     url: "/system/dept/tree",
-        //     dataFormat: "list",
-        //     line: true,
-        //     skin: "laySimple",
-        //     icon: "-1",
-        //     response: {treeId: "deptId", parentId: "parentId", title: "deptName"},
-        // });
-
-        // dtree.on("node('dept-tree')", function (obj) {
-        //     let field = form.val("user-query-form");
-        //     field.deptId = obj.param.nodeId;
-        //     window.refresh(field);
-        // });
-
-        // $(".user-group").click(function () {
-        //     let group = $(this).attr("user-group");
-        //     let field = form.val("user-query-form");
-        //     if (group === "-1") {
-        //         field.deptId = group;
-        //         $(this).removeClass("button-default");
-        //         $(this).prev().removeClass("button-primary");
-        //         $(this).prev().addClass("button-default");
-        //         $(this).addClass("button-primary");
-        //     } else {
-        //         field.deptId = group;
-        //         $(this).removeClass("button-default");
-        //         $(this).next().removeClass("button-primary");
-        //         $(this).next().addClass("button-default");
-        //         $(this).addClass("button-primary");
-        //     }
-        //     window.refresh(field);
-        // })
 
         table.on('tool(user-table)', function (obj) {
             if (obj.event === 'remove') {
@@ -196,11 +128,6 @@
             } else if (obj.event === 'batchRemove') {
                 window.batchRemove(obj);
             }
-            // else if (obj.event == 'collasped') {
-            //     $(".user-left").toggleClass("user-collasped");
-            //     $(".user-main").toggleClass("user-collasped");
-            //     table.resize();
-            // }
         });
 
         form.on('submit(user-query)', function (data) {
@@ -208,31 +135,6 @@
             window.refresh(data.field);
             return false;
         });
-
-        // form.on('switch(user-enable)', function (obj) {
-        //     let operate;
-        //     if (obj.elem.checked) {
-        //         operate = "enable";
-        //     } else {
-        //         operate = "disable";
-        //     }
-        //     let loading = layer.load();
-        //     $.ajax({
-        //         url: '/system/user/' + operate,
-        //         data: JSON.stringify({userId: this.value}),
-        //         dataType: 'json',
-        //         contentType: 'application/json',
-        //         type: 'put',
-        //         success: function (result) {
-        //             layer.close(loading);
-        //             if (result.success) {
-        //                 popup.success(result.msg);
-        //             } else {
-        //                 popup.failure(result.msg);
-        //             }
-        //         }
-        //     })
-        // });
 
         window.add = function () {
             layer.open({
@@ -250,7 +152,7 @@
                 title: '修改',
                 shade: 0.1,
                 area: ['550px', '500px'],
-                content: basePath + 'edit?userId=' + obj.data['userId']
+                content: basePath + '/admin/toUserEdit?Id=' + obj.data['id']
             });
         }
 

@@ -5,6 +5,7 @@
 
 <mapper namespace="cn.malong.blog.dao.UserInfoMapper">
 
+    <!-- select -->
     <select id="getUserInfoByUsername" resultType="userInfo">
         select *
         from myblog.t_user
@@ -19,6 +20,7 @@
     <select id="getUserDataByLimit" resultType="userInfo">
         select *
         from myblog.t_user
+        where role = 'user'
         limit #{startIndex},#{pageSize};
     </select>
 
@@ -26,6 +28,7 @@
         select *
         from myblog.t_user
         where username = #{username}
+          and role = 'user'
         limit #{startIndex},#{pageSize};
     </select>
 
@@ -33,6 +36,7 @@
         select *
         from myblog.t_user
         where nickname = #{nickname}
+          and role = 'user'
         limit #{startIndex},#{pageSize};
     </select>
 
@@ -41,15 +45,53 @@
         from myblog.t_user
         where username = #{username}
           and nickname = #{nickname}
+          and role = 'user'
         limit #{startIndex},#{pageSize};
     </select>
+
+    <select id="getUserDataByLimitAdmin" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where role = 'admin'
+           or role = 'root'
+        limit #{startIndex},#{pageSize};
+    </select>
+
+    <select id="getUserDataByLimit_usernameAdmin" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where username = #{username}
+            and role = 'admin'
+           or role = 'root'
+        limit #{startIndex},#{pageSize};
+    </select>
+
+    <select id="getUserDataByLimit_nicknameAdmin" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where nickname = #{nickname}
+            and role = 'admin'
+           or role = 'root'
+        limit #{startIndex},#{pageSize};
+    </select>
+
+    <select id="getUserDataByLimit_nick_usernameAdmin" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where username = #{username}
+            and nickname = #{nickname}
+            and role = 'admin'
+           or role = 'root'
+        limit #{startIndex},#{pageSize};
+    </select>
+
     <select id="getUserInfoById" resultType="userInfo">
         select *
         from myblog.t_user
         where id = #{id}
     </select>
 
-
+    <!--  update  -->
     <update id="updateUserInfo">
         update myblog.t_user
         set username=#{username},

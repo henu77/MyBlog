@@ -22,9 +22,14 @@ public class RouterController {
     public String toAdminIndex(HttpSession session) {
         return routerServiceImpl.toAdminIndex(session);
     }
+
     @RequestMapping("/admin/write")
     public String toAdminWrite(Model model) {
         return routerServiceImpl.toAdminWrite(model);
     }
 
+    @RequestMapping("/admin/toUserEdit")
+    public String toUserEdit(int Id, Model model) {
+        return routerServiceImpl.toUserEdit(Id, model);
+    }
 }

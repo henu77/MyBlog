@@ -219,8 +219,9 @@
                     let jsonData = JSON.parse(result);
                     if (jsonData.code == 1) {
                         //成功
-                        layui.layer.msg(jsonData.msg, {icon: 1});
-                        window.location = basePath + '/article.html';
+                        layui.layer.msg(jsonData.msg, {icon: 1, time: 1000}, function () {
+                            window.location = basePath + '/article.html';
+                        });
                     } else {
                         //失败
                         layer.msg(jsonData.msg, {icon: 2});

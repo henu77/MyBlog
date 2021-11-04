@@ -91,7 +91,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">权限</label>
                                     <div class="layui-input-inline">
-                                        <select name="role" disabled="disabled">
+                                        <select name="role" th:disabled="${session.userInfo.getRole()!='root'}">
                                             <option value="">请选择用户权限</option>
                                             <option value="root" th:selected="${session.userInfo.getRole()=='root'}">
                                                 超级管理员
@@ -104,30 +104,10 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="layui-form-mid layui-word-aux">请联系超级管理员进行修改</div>
+                                    <div class="layui-form-mid layui-word-aux"
+                                         th:text="${session.userInfo.getRole()!='root'?'请联系超级管理员进行修改':''}">
+                                    </div>
                                 </div>
-                                <!--                                <div class="layui-form-item">-->
-                                <!--                                    <label class="layui-form-label">权限</label>-->
-                                <!--                                    <div class="layui-input-block">-->
-                                <!--                                        <input autocomplete="off" class="layui-input" lay-verify="title" name="role"-->
-                                <!--                                               placeholder="请输入标题" th:value="${session.userInfo.getRole()}"-->
-                                <!--                                               type="text">-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
-                                <!--                                <div class="layui-form-item">-->
-                                <!--                                    <label class="layui-form-label">电话</label>-->
-                                <!--                                    <div class="layui-input-block">-->
-                                <!--                                        <input autocomplete="off" class="layui-input" lay-verify="title" name="phone"-->
-                                <!--                                               placeholder="请输入标题" th:value="${userInfo.phone}" type="text">-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
-                                <!--                                <div class="layui-form-item layui-form-text">-->
-                                <!--                                    <label class="layui-form-label">描述</label>-->
-                                <!--                                    <div class="layui-input-block">-->
-                                <!--                                        <textarea class="layui-textarea" name="details" placeholder="请输入描述"-->
-                                <!--                                                  th:text="${userInfo.remark}"></textarea>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
                                 <div class="layui-form-item">
                                     <div class="layui-input-block">
                                         <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="user-update"

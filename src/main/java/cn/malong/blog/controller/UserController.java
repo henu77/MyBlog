@@ -17,25 +17,49 @@ public class UserController {
     @Autowired
     private UserService userServiceImpl;
 
+    /**
+     * 所有用户可用
+     */
+    @PutMapping("/updateAvatar")
+    public String updateAvatar(String avatar, HttpServletRequest request) {
+        return userServiceImpl.updateAvatar(avatar, request);
+    }
+
     @RequestMapping("/data")
     public String getAllUserData() {
         return userServiceImpl.getAllUserData();
     }
 
 
+    /**
+     * 以下函数仅对普通用户进行操作，即权限为user的用户
+     */
     @RequestMapping("/dataLimit")
     public String getUserDataLimit(int page, int limit, String nickname, String username) {
         return userServiceImpl.getUserDataByLimit(page, limit, nickname, username);
     }
 
-    @PutMapping(value = "/updateUserDate", consumes = "application/json")
-    public String updateUserDate(@RequestBody UserInfo userInfo) {
+    /**
+     * user-setting页面中使用
+     *
+     * @param userInfo
+     * @return
+     */
+    @PutMapping("/updateUserDate")
+    public String updateUserDate_userSetting(@RequestBody UserInfo userInfo) {
         return userServiceImpl.updateUserDate(userInfo);
     }
 
-    @PutMapping("/updateAvatar")
-    public String updateAvatar(String avatar, HttpServletRequest request) {
-        return userServiceImpl.updateAvatar(avatar, request);
+    @PutMapping("/update")
+    public String update_userEdit(@RequestBody UserInfo userInfo) {
+        return userServiceImpl.updateUserDate_userEdit(userInfo);
     }
 
+    /**
+     * 以下函数对管理页用户进行操作，即权限为admin或root的用户
+     */
+    @RequestMapping("/dataLimitAdmin")
+    public String getUserDataLimitAdmin(int page, int limit, String nickname, String username) {
+        return userServiceImpl.getUserDataByLimitAdmin(page, limit, nickname, username);
+    }
 }

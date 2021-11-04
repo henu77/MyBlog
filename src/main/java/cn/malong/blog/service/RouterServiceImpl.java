@@ -1,8 +1,10 @@
 package cn.malong.blog.service;
 
 import cn.malong.blog.dao.TypesMapper;
+import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.utils.MD5Util;
 import cn.malong.blog.utils.StaticString;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class RouterServiceImpl implements RouterService {
 
     @Autowired
     private TypesMapper typesMapper;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     /**
      * 1.从session中取用户信息
@@ -60,6 +64,13 @@ public class RouterServiceImpl implements RouterService {
         List<Type> allTypes = typesMapper.getAllTypes();
         model.addAttribute("allTypes", allTypes);
         return "/admin/write";
+    }
+
+    @Override
+    public String toUserEdit(int Id, Model model) {
+        UserInfo userInfoById = userInfoMapper.getUserInfoById(Id);
+        model.addAttribute("oldUserInfo", userInfoById);
+        return "/admin/user-edit";
     }
 
     /**

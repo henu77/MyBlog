@@ -119,8 +119,9 @@
         let cols = [
             [
                 {type: 'checkbox'},
-                {title: '昵称', field: 'nickname', align: 'center'},
+                {title: 'ID', field: 'id', align: 'center'},
                 {title: '用户名', field: 'username', align: 'center'},
+                {title: '昵称', field: 'nickname', align: 'center'},
                 {title: '密码', field: 'password', align: 'center'},
                 {title: '电子邮箱', field: 'email', align: 'center'},
                 {title: '权限', field: 'role', align: 'center'},
@@ -250,7 +251,7 @@
                 title: '修改',
                 shade: 0.1,
                 area: ['550px', '500px'],
-                content: basePath + 'edit?userId=' + obj.data['userId']
+                content: basePath + '/admin/toUserEdit?Id=' + obj.data['id'],
             });
         }
 

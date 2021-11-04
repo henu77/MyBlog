@@ -23,7 +23,6 @@ public interface UserInfoMapper {
     UserInfo getUserInfoByUsername(String username);
 
 
-
     /**
      * 获得所有的用户信息
      *
@@ -77,6 +76,7 @@ public interface UserInfoMapper {
 
     /**
      * 通过Id获得userInfo
+     *
      * @param id
      * @return
      */
@@ -84,6 +84,7 @@ public interface UserInfoMapper {
 
     /**
      * 更新用户信息
+     *
      * @param userInfoById
      * @return
      */
@@ -91,8 +92,17 @@ public interface UserInfoMapper {
 
     /**
      * 更新用户头像信息
+     *
      * @param userInfo
      * @return
      */
     int updateAvatar(UserInfo userInfo);
+
+    List<UserInfo> getUserDataByLimitAdmin(int startIndex, int pageSize);
+
+    List<UserInfo> getUserDataByLimit_usernameAdmin(int startIndex, int pageSize, String username);
+
+    List<UserInfo> getUserDataByLimit_nicknameAdmin(int startIndex, int pageSize, String nickname);
+
+    List<UserInfo> getUserDataByLimit_nick_usernameAdmin(int startIndex, int pageSize, String nickname, String username);
 }

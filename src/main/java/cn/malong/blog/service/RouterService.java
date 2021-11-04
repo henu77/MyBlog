@@ -24,4 +24,6 @@ public interface RouterService {
      * @return
      */
     String toAdminWrite(Model model);
+
+    String toUserEdit(int Id,Model model);
 }
