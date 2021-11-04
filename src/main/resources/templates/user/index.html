@@ -26,6 +26,8 @@
         <li th:if="${session.userInfo != null}">
             <a th:onclick="'javascript: logout()' ">注销</a>
         </li>
+        <li th:if="${ session.userInfo != null and session.userInfo.getRole() eq 'admin'}"><a
+                th:href="@{/toAdminIndex}">管理员页面</a></li>
     </ul>
     <div class="logo"><a>MyBlog</a></div>
 </div>
