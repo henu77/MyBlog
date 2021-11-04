@@ -55,6 +55,21 @@ public class UserController {
         return userServiceImpl.updateUserDate_userEdit(userInfo);
     }
 
+    @DeleteMapping("/remove")
+    public String removeUser(int id) {
+        return userServiceImpl.removeUser(id);
+    }
+
+    @DeleteMapping("/batchRemove")
+    public String batchRemove(int[] ids) {
+        return userServiceImpl.batchRemove(ids);
+    }
+
+    @PostMapping("/add")
+    public String userAdd(@RequestBody UserInfo userInfo) {
+        return userServiceImpl.userAdd(userInfo);
+    }
+
     /**
      * 以下函数对管理页用户进行操作，即权限为admin或root的用户
      */

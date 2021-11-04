@@ -4,9 +4,9 @@ import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.MD5Util;
 import cn.malong.blog.service.UserService;
-import cn.malong.blog.service.UserService;
 import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.StaticString;
+import cn.malong.blog.utils.SysFileUtil;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -144,10 +144,73 @@ public class UserServiceImpl implements UserService {
         return userDataToJson(userInfoList);
     }
 
+    @Override
+    public String removeUser(int id) {
+        UserInfo nowUserInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        if (id == nowUserInfo.getId()) {
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您不能删除您自己！");
+            return json.toString();
+        }
+        int result = userInfoMapper.removeUserById(id);
+        return getDeleteResult(result);
+    }
+
+    @Override
+    public String batchRemove(int[] ids) {
+        UserInfo nowUserInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        for (int i = 0; i < ids.length; i++) {
+            if (ids[i] == nowUserInfo.getId()) {
+                ResponseUtil<String> json = new ResponseUtil<>();
+                json.setCode(0);
+                json.setMsg("您不能删除您自己！");
+                return json.toString();
+            }
+        }
+        int result = userInfoMapper.batchRemoveByIds(ids);
+        return getDeleteResult(result);
+    }
+
+    @Override
+    public String userAdd(UserInfo userInfo) {
+        ResponseUtil<String> json = new ResponseUtil<>();
+        UserInfo nowUserInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        if (nowUserInfo.getRole().equals(StaticString.ROLE_ROOT)
+                || (nowUserInfo.getRole().equals(StaticString.ROLE_ADMIN) && !userInfo.getRole().equals(StaticString.ROLE_ROOT))) {
+            userInfo.setPassword(MD5Util.string2MD5(userInfo.getPassword()));
+            userInfo.setAvatar(SysFileUtil.getUploadPath() + "default.png");
+            int result = userInfoMapper.userAdd(userInfo);
+            if (result > 0) {
+                json.setCode(1);
+                json.setMsg("新增成功！");
+            } else {
+                json.setCode(0);
+                json.setMsg("新增失败！");
+            }
+        } else {
+            json.setCode(0);
+            json.setMsg("您没有权限设置新增用户的权限！");
+        }
+        return json.toString();
+    }
+
 
     /**
      * 以下为工具函数
      */
+    private String getDeleteResult(int result) {
+        ResponseUtil<String> json = new ResponseUtil<>();
+        if (result > 0) {
+            json.setCode(1);
+            json.setMsg("删除成功");
+        } else {
+            json.setCode(0);
+            json.setMsg("删除失败");
+        }
+        return json.toString();
+    }
+
     private String updateResult(UserInfo userInfoById) {
         int result = userInfoMapper.updateUserInfo(userInfoById);
         ResponseUtil<String> json = new ResponseUtil<>();

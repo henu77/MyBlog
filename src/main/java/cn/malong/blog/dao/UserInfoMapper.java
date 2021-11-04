@@ -105,4 +105,10 @@ public interface UserInfoMapper {
     List<UserInfo> getUserDataByLimit_nicknameAdmin(int startIndex, int pageSize, String nickname);
 
     List<UserInfo> getUserDataByLimit_nick_usernameAdmin(int startIndex, int pageSize, String nickname, String username);
+
+    int removeUserById(int id);
+
+    int batchRemoveByIds(int[] ids);
+
+    int userAdd(UserInfo userInfo);
 }

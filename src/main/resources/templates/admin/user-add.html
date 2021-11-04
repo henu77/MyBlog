@@ -6,7 +6,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <title th:text="用户修改"></title>
+    <title th:text="新增用户"></title>
     <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
 </head>
 <body>
@@ -18,35 +18,35 @@
                     <label class="layui-form-label">ID</label>
                     <div class="layui-input-block">
                         <input autocomplete="off" class="layui-input" lay-verify="title" name="id"
-                               placeholder="请输入ID" th:value="${oldUserInfo.getId()}" type="text" disabled="disabled">
+                               placeholder="请输入ID" type="text" disabled="disabled">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-block">
                         <input autocomplete="off" class="layui-input" lay-verify="title" name="username"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getUsername()}" type="text">
+                               placeholder="请输入标题" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">昵称</label>
                     <div class="layui-input-block">
                         <input autocomplete="off" class="layui-input" lay-verify="title" name="nickname"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getNickname()}" type="text">
+                               placeholder="请输入标题" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码</label>
                     <div class="layui-input-block">
                         <input autocomplete="off" class="layui-input" lay-verify="title" name="password"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getPassword()}" type="text">
+                               placeholder="请输入标题" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-block">
                         <input autocomplete="off" class="layui-input" lay-verify="email" name="email"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getEmail()}" type="text">
+                               placeholder="请输入标题" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -54,13 +54,13 @@
                     <div class="layui-input-inline">
                         <select name="role">
                             <option value="">请选择用户权限</option>
-                            <option value="root" th:selected="${oldUserInfo.getRole()=='root'}">
+                            <option value="root">
                                 超级管理员
                             </option>
-                            <option value="admin" th:selected="${oldUserInfo.getRole()=='admin'}">
+                            <option value="admin">
                                 管理员
                             </option>
-                            <option value="user" th:selected="${oldUserInfo.getRole()=='user'}">
+                            <option value="user">
                                 普通用户
                             </option>
                         </select>
@@ -94,11 +94,11 @@
 
         form.on('submit(user-update)', function (data) {
             $.ajax({
-                url: basePath + '/user/update',
+                url: basePath + '/user/add',
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json',
-                type: 'put',
+                type: 'post',
                 success: function (result) {
                     if (result.code) {
                         layer.msg(result.msg, {icon: 1, time: 1000}, function () {
@@ -106,7 +106,7 @@
                             parent.layui.table.reload("user-table");
                         });
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        layer.msg(result.msg, {icon: 2, time: 1500});
                     }
                 }
             })

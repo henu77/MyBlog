@@ -54,4 +54,9 @@ public interface UserService {
 
     String getUserDataByLimitAdmin(int page, int limit, String nickname, String username);
 
+    String removeUser(int id);
+
+    String batchRemove(int[] ids);
+
+    String userAdd(UserInfo userInfo);
 }

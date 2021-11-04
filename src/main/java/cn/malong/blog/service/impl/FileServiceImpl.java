@@ -5,6 +5,7 @@ import cn.malong.blog.service.FileService;
 import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.SequenceUtil;
 
+import cn.malong.blog.utils.SysFileUtil;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.stereotype.Service;
 
@@ -29,23 +30,6 @@ import java.util.List;
 @Service
 public class FileServiceImpl implements FileService {
 
-    /**
-     * windows 系统文件上传路径
-     */
-    private String windowsPath = "D:\\home\\uploads\\MyBlog\\";
-
-    /**
-     * linux 系统文件上传路径
-     */
-    private String linuxPath = "/home/uploads/MyBlog/";
-
-    /**
-     * upload path 根据系统环境获取上传路径
-     */
-    public String getUploadPath() {
-        return '\\' == File.separatorChar ? this.windowsPath : this.linuxPath;
-    }
-
 
     @Override
     public String upload(MultipartFile file) {
@@ -57,7 +41,7 @@ public class FileServiceImpl implements FileService {
             String suffixName = name.substring(name.lastIndexOf("."));
             String fileName = fileId + suffixName;
             String fileDir = LocalDate.now().toString();
-            String parentPath = getUploadPath() + fileDir;
+            String parentPath = SysFileUtil.getUploadPath() + fileDir;
             File filepath = new File(parentPath, fileName);
             if (!filepath.getParentFile().exists()) {
                 filepath.getParentFile().mkdirs();

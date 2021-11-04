@@ -76,11 +76,10 @@
 <script th:src="@{/admin/js/jquery.min.js}"></script>
 <script th:inline="javascript">
     let basePath = [[${#httpServletRequest.getContextPath()}]];
-    layui.use(['table', 'dtree', 'form', 'jquery', 'popup', 'common'], function () {
+    layui.use(['table', 'form', 'jquery', 'popup', 'common'], function () {
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
-        // let dtree = layui.dtree;
         let popup = layui.popup;
         let common = layui.common;
 
@@ -144,7 +143,7 @@
                 title: '新增',
                 shade: 0.1,
                 area: ['550px', '550px'],
-                content: basePath + 'add'
+                content: basePath + '/admin/user-add.html'
             });
         }
 
@@ -163,12 +162,12 @@
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: basePath + "remove/" + obj.data['userId'],
+                    url: basePath + "/user/remove?id=" + obj.data['id'],
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
                         layer.close(loading);
-                        if (result.success) {
+                        if (result.code) {
                             popup.success(result.msg, function () {
                                 obj.del();
                             });
@@ -181,7 +180,7 @@
         }
 
         window.batchRemove = function (obj) {
-            let ids = common.checkField(obj, 'userId');
+            let ids = common.checkField(obj, 'id');
             if (common.isEmpty(ids)) {
                 popup.warning("未选中数据");
                 return false;
@@ -190,12 +189,12 @@
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: basePath + "batchRemove/" + ids,
+                    url: basePath + "/user/batchRemove?ids=" + ids,
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
                         layer.close(loading);
-                        if (result.success) {
+                        if (result.code) {
                             popup.success(result.msg, function () {
                                 table.reload('user-table');
                             })
