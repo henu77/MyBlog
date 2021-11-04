@@ -22,9 +22,9 @@ public class BlogsController {
     private BlogsService blogsService;
 
     @RequestMapping("/dataLimit")
-    public String getBlogsByLimit(int page, int limit) {
+    public String getBlogsByLimit(int page, int limit,String title,String username) {
 //        System.out.println(blogsService.getBlogsByLimit(page, limit));
-        return blogsService.getBlogsByLimit(page, limit);
+        return blogsService.getBlogsByLimit(page, limit,title,username);
     }
 
     @PostMapping("/postArticle")
