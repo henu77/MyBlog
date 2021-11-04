@@ -539,7 +539,6 @@
 
         NProgress.done();
     };
-
     function logout() {
         //询问框
         layer.confirm('真的要退出登录吗？', {
@@ -569,6 +568,58 @@
 
         });
     }
+
+    layui.use('flow', function(){
+        var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
+        var flow = layui.flow;
+        flow.load({
+            elem: '#LAY_bloglist' //指定列表容器
+            ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+                var lis = [];
+                //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                $.get('/blog/more?page='+2, function(res){
+                    //假设你的列表返回在data集合中
+                    layui.each(res.data, function(index, item){
+                        lis.push('<section class="article-item zoomIn article">'+
+                            '<div class="fc-flag">'+是否置顶+'</div>'+
+                            '<h5 class="title">'+
+                            '<span class="fc-blue">【'+item.flag+'】</span>'+
+                        '<a th:href="@{read.html}">'+item.title+'</a>'+
+                        '</h5>'+
+                        '<div class="time">'+
+                            '<span class="day">'+天+'</span>'+
+                            '<span class="month fs-18">'+月份+'<span class="fs-14">'+月+'</span></span>'+
+                        '<span class="year fs-18 ml10">'+年份+'</span>'+
+                            '</div>'+
+                            '<div class="content">'+
+                            '<a th:href="@{read.html}" class="cover img-light">'+
+                            '<img th:src="@{/image/cover/2019121192339714.png}">'+
+                            '</a>'+
+                    '</div>'+
+                        '<div class="read-more">'+
+                            '<a th:href="@{read.html}" class="fc-black f-fwb">'+继续阅读+'</a>'+
+                            '</div>'+
+                            '<aside class="f-oh footer"> <div class="f-fl tags"> <span class="fa fa-tags fs-16"></span>'+
+                            '<a class="tag">'+tag+'</a>'+
+                        '</div>'+
+                        '<div class="f-fr">'+
+                            '<span class="read"> <i class="fa fa-eye fs-16"></i>'+
+                            '<i class="num">'+浏览次数+'</i>'+
+                            '</span>'+
+                            '<span class="ml20"> <i class="fa fa-comments fs-16"></i>'+
+                            '<a href="javascript:void(0)" class="num fc-grey">'+留言数+'</a></span>'+
+                            '</div>'+
+                            '</aside>'+
+                            '</section>');
+                    });
+
+                    //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                    //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                    next(lis.join(''), page < res.pages);
+                });
+            }
+        });
+    });
 </script>
 </body>
 </html>

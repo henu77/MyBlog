@@ -32,4 +32,9 @@ public class BlogsController {
         return blogsService.postArticle(blog);
     }
 
+    @RequestMapping("/more")
+    public String getBlogsByPage(int page){
+        return "";
+    }
+
 }

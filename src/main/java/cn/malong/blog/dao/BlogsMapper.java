@@ -19,6 +19,8 @@ public interface BlogsMapper {
 
     List<Blog> getBlogsByLimitByTitleAndUser(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize, @Param("title") String title, @Param("username") String username);
 
+
+
     /**
      * 保存博客
      * @author MaLong

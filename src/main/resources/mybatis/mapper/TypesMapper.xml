@@ -23,4 +23,16 @@
         select *
         from myblog.t_type;
     </select>
+
+    <insert id="addType" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into t_type(name) values(#{type.id});
+    </insert>
+
+    <delete id="deleteType">
+        delete from t_type where id = #{typeId};
+    </delete>
+
+    <update id="updateType">
+        update t_type set name = #{type.name} where id = #{type.id};
+    </update>
 </mapper>

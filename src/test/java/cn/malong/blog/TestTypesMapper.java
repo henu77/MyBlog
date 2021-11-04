@@ -5,6 +5,8 @@ import cn.malong.blog.pojo.Type;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
  */
 
 @SpringBootTest
+@Transactional
 public class TestTypesMapper {
     @Autowired
     TypesMapper typesMapper;
@@ -37,6 +40,37 @@ public class TestTypesMapper {
         Type type = typesMapper.getTypeById(1);
         if(null != type){
             System.out.println(type);
+        }
+    }
+
+    @Test
+    @Rollback
+    public void testAddType(){
+        Type bean = new Type();
+        bean.setName("SpringBoot");
+        int ret = typesMapper.addType(bean);
+        if(ret == 1){
+            System.out.println("添加成功");
+            System.out.println(bean);
+        }
+    }
+
+    @Test
+    @Rollback()
+    void testDelteType(){
+        int ret = typesMapper.deleteType(11);
+        if(ret == 1){
+            System.out.println("删除成功");
+        }
+    }
+
+    @Test
+    @Rollback(false)
+    void testUpdateType(){
+        Type type = new Type(10,"spring");
+        int ret = typesMapper.updateType(type);
+        if(ret == 1){
+            System.out.println("更新成功");
         }
     }
 }

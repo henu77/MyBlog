@@ -120,14 +120,14 @@
             [
                 {type: 'checkbox'},
                 {title: 'id', field: 'id', align: 'center'},
-                {title: '标签', field: 'name', align: 'center'},
+                {title: '分类', field: 'name', align: 'center'},
                 {title: '操作', toolbar: '#user-bar', align: 'center', width: 130}
             ]
         ]
 
         table.render({
             elem: '#user-table',
-            url: basePath + '/tag/dataLimit',
+            url: basePath + '/type/dataLimit',
             page: true,
             cols: cols,
             skin: 'line',
