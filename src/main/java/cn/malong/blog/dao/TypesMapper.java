@@ -25,4 +25,8 @@ public interface TypesMapper {
     List<Type> getAllTypes();
 
     int addType(@Param("type")Type type);
+
+    int deleteType(@Param("typeId")int typeId);
+
+    int updateType(@Param("type")Type type);
 }

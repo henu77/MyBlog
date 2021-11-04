@@ -53,6 +53,24 @@ public class TestTypesMapper {
             System.out.println("添加成功");
             System.out.println(bean);
         }
+    }
 
+    @Test
+    @Rollback()
+    void testDelteType(){
+        int ret = typesMapper.deleteType(11);
+        if(ret == 1){
+            System.out.println("删除成功");
+        }
+    }
+
+    @Test
+    @Rollback(false)
+    void testUpdateType(){
+        Type type = new Type(10,"spring");
+        int ret = typesMapper.updateType(type);
+        if(ret == 1){
+            System.out.println("更新成功");
+        }
     }
 }
