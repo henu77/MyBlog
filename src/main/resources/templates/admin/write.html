@@ -94,11 +94,11 @@
             path: basePath + "lib/editormd/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
         });
     });
-    layui.use(['element', 'layer', 'form', 'convert'], function () {
+    layui.use(['element', 'layer', 'form', 'convert', 'miniTab'], function () {
         let layer = layui.layer;
         let form = layui.form;
         let convert = layui.convert;
-
+        let miniTab = layui.miniTab;
 
         form.on('submit(postArticle)', function (data) {
             data.field;
@@ -106,7 +106,7 @@
             let postLayer;
             postLayer = layui.layer.msg('正在发布', {icon: 16, shade: 0.01, time: 0});
             $.ajax({
-                url: '/blog/postArticle',
+                url: basePath + '/blog/postArticle',
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json',
@@ -117,6 +117,10 @@
                     if (result.code == 1) {
                         //成功
                         layui.layer.msg(result.msg, {icon: 1});
+                        miniTab.openNewTabByIframe({
+                            href: basePath + "/admin/blogs.html",
+                            title: "文章管理",
+                        });
                     } else {
                         //失败
                         layui.layer.msg(result.msg, {icon: 2});

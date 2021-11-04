@@ -27,14 +27,6 @@
       select id,title,views,type_id,user_id,create_time,update_time from t_blog order by id limit #{startIndex},#{pageSize};
     </select>
 
-    <select id="getUserInfoById" resultType="userInfo">
-        select * from t_user where id = #{id};
-    </select>
-
-    <select id="getType" resultType="type">
-        select * from t_type where id = #{typeId};
-    </select>
-
     <select id="getBlogsByLimitByTitle" resultMap="blogMap">
         select id,title,views,type_id,user_id,create_time,update_time from t_blog where title like '%${title}%' order by id limit #{startIndex},#{pageSize};
     </select>
@@ -53,5 +45,27 @@
         order by id limit #{startIndex},#{pageSize};
     </select>
 
+    <select id="getUserInfoById" resultType="userInfo">
+        select *
+        from myblog.t_user
+        where id = #{id};
+    </select>
 
+    <select id="getType" resultType="type">
+        select *
+        from myblog.t_type
+        where id = #{typeId};
+    </select>
+    <insert id="saveBlog" parameterType="blog">
+        insert into myblog.t_blog(title, content, first_picture, flag,
+                                  views, appreciation,
+                                  commentabled, published, recommend,
+                                  create_time, update_time, description,
+                                  type_id, user_id)
+        values (#{title}, #{content}, #{firstPicture}, #{flag},
+                #{views}, #{appreciation},
+                #{commentabled}, #{published}, #{recommend},
+                #{creatTime}, #{updateTime}, #{description},
+                #{typeId.id}, #{userId.id});
+    </insert>
 </mapper>

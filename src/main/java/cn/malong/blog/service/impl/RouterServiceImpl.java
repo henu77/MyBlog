@@ -46,11 +46,9 @@ public class RouterServiceImpl implements RouterService {
         } else {
             String role = userInfo.getRole();
             if (StaticString.ROLE_ADMIN.equals(role) || StaticString.ROLE_ROOT.equals(role)) {
-                System.out.println("toAdminIndex======>登录成功");
                 return "redirect:/admin/index.html";
             } else {
                 session.setAttribute("admin_msg", "您没有管理员权限！");
-                System.out.println("toAdminIndex======>您没有管理员权限！");
                 this.removeAttribute(session, "admin_msg");
                 return "/user/article";
             }
