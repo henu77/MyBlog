@@ -1,6 +1,7 @@
-package cn.malong.blog.service;
+package cn.malong.blog.service.impl;
 
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.service.FileService;
 import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.SequenceUtil;
 

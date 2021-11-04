@@ -1,7 +1,8 @@
-package cn.malong.blog.service;
+package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.service.LoginService;
 import cn.malong.blog.utils.MD5Util;
 import cn.malong.blog.utils.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;

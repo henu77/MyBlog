@@ -1,7 +1,9 @@
-package cn.malong.blog.service;
+package cn.malong.blog.service.impl;
 
-import cn.malong.blog.dao.TagsMapper;
-import cn.malong.blog.pojo.Tag;
+import cn.malong.blog.dao.CommentsMapper;
+import cn.malong.blog.pojo.Comment;
+import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.service.CommentsService;
 import cn.malong.blog.utils.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,26 +11,24 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author Csy
- * @Classname TagsServiceImpl
- * @date 2021-10-31 22:52
- * @Description TODO
+ * @author malong
+ * @Date 2021-10-31 15:56:44
  */
 @Service
-public class TagsServiceImpl implements TagsService {
+public class CommentsServiceImpl implements CommentsService {
 
     @Autowired
-    private TagsMapper tagsMapper;
+    private CommentsMapper commentsMapper;
 
     @Override
-    public String getTagsByLimit(int page, int limit) {
+    public String getCommentDataLimit(int page, int limit) {
         int startIndex = (page - 1) * limit;
-        List<Tag> tags = tagsMapper.getTagsByLimit(startIndex,limit);
-        return tagDataToJson(tags);
+        List<Comment> commentDataByLimit = commentsMapper.getCommentDataByLimit(startIndex, limit);
+        return userDataToJson(commentDataByLimit);
     }
 
-    private String tagDataToJson(List<Tag> commentData) {
-        ResponseUtil<Tag> json = new ResponseUtil<>();
+    private String userDataToJson(List<Comment> commentData) {
+        ResponseUtil<Comment> json = new ResponseUtil<>();
         if (null == commentData) {
             json.setCode(1);
             json.setMsg("获取用户信息失败");

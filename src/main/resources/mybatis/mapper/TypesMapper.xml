@@ -23,4 +23,8 @@
         select *
         from myblog.t_type;
     </select>
+
+    <insert id="addType" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into t_type(name) values(#{type.name});
+    </insert>
 </mapper>

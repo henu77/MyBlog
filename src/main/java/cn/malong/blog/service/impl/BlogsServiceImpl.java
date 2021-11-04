@@ -1,10 +1,11 @@
-package cn.malong.blog.service;
+package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.BlogsMapper;
 import cn.malong.blog.dao.TypesMapper;
 import cn.malong.blog.pojo.Blog;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.service.BlogsService;
 import cn.malong.blog.utils.DateUtils;
 import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.servlet.ServletUtil;
@@ -59,6 +60,11 @@ public class BlogsServiceImpl implements BlogsService {
             blogData = blogsMapper.getBlogsByLimitByTitleAndUser(startIndex, limit, title, user);
         }
         return blogDataToJson(blogData);
+    }
+
+    public String getBlogsByPage(int page){
+        // 每次下拉时最多加载2条
+        return getBlogsByLimit(page,2);
     }
 
     /**

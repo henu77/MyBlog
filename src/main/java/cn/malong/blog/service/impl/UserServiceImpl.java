@@ -1,7 +1,8 @@
-package cn.malong.blog.service;
+package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.service.UserService;
 import cn.malong.blog.utils.ResponseUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

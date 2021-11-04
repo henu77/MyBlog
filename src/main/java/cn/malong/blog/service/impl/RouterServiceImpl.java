@@ -1,8 +1,9 @@
-package cn.malong.blog.service;
+package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.TypesMapper;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.service.RouterService;
 import cn.malong.blog.utils.StaticString;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
