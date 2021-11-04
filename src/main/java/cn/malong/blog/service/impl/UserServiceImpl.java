@@ -2,17 +2,11 @@ package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.UserInfo;
-<<<<<<< HEAD:src/main/java/cn/malong/blog/service/UserServiceImpl.java
 import cn.malong.blog.utils.MD5Util;
-=======
 import cn.malong.blog.service.UserService;
->>>>>>> origin/master:src/main/java/cn/malong/blog/service/impl/UserServiceImpl.java
 import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.StaticString;
 import cn.malong.blog.utils.servlet.ServletUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

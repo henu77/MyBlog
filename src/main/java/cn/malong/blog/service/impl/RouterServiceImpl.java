@@ -4,11 +4,7 @@ import cn.malong.blog.dao.TypesMapper;
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
-<<<<<<< HEAD:src/main/java/cn/malong/blog/service/RouterServiceImpl.java
-import cn.malong.blog.utils.MD5Util;
-=======
 import cn.malong.blog.service.RouterService;
->>>>>>> origin/master:src/main/java/cn/malong/blog/service/impl/RouterServiceImpl.java
 import cn.malong.blog.utils.StaticString;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
