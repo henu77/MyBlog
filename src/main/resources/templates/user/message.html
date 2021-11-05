@@ -34,6 +34,10 @@
                     </li>
                     <li th:if="${ session.userInfo != null and session.userInfo.getRole() eq 'admin'}"><a
                             th:href="@{/toAdminIndex}">管理员页面</a></li>
+                    <li><a href="#" class="">
+                        <img th:src="@{/file/getHeadImg}" class="layui-nav-img">
+                        <span th:text="${session.userInfo.getNickname()}"></span>
+                    </a></li>
                 </ul>
             </nav>
             <a href="#" class="blog-user">

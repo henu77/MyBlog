@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateAvatar(String avatar, HttpServletRequest request) {
         ResponseUtil<String> json = new ResponseUtil<>();
-        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+        UserInfo userInfo = getUserInfoFromSession();
         userInfo.setAvatar(avatar);
         int result = userInfoMapper.updateAvatar(userInfo);
         if (result > 0) {
@@ -106,8 +107,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updateUserDate_userEdit(UserInfo userInfo) {
+        if (!isHavingAuthority()) {
+            //用户权限为 user 时
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您的权限太低！");
+            return json.toString();
+        }
         UserInfo userInfoById = userInfoMapper.getUserInfoById(userInfo.getId());
-        UserInfo nowUserInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        UserInfo nowUserInfo = getUserInfoFromSession();
         if (nowUserInfo.getRole().equals(StaticString.ROLE_ADMIN)
                 && userInfo.getRole().equals(StaticString.ROLE_ROOT) || userInfoById.getRole().equals(StaticString.ROLE_ROOT)) {
             //如果当前用户 权限为 admin 但是想要修改用户权限为 root则禁止
@@ -154,7 +162,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String removeUser(int id) {
-        UserInfo nowUserInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        if (!isHavingAuthority()) {
+            //用户权限为 user 时
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您的权限太低！");
+            return json.toString();
+        }
+        UserInfo nowUserInfo = getUserInfoFromSession();
         if (id == nowUserInfo.getId()) {
             ResponseUtil<String> json = new ResponseUtil<>();
             json.setCode(0);
@@ -167,7 +182,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String batchRemove(int[] ids) {
-        UserInfo nowUserInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        if (!isHavingAuthority()) {
+            //用户权限为 user 时
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您的权限太低！");
+            return json.toString();
+        }
+        UserInfo nowUserInfo = getUserInfoFromSession();
         for (int i = 0; i < ids.length; i++) {
             if (ids[i] == nowUserInfo.getId()) {
                 ResponseUtil<String> json = new ResponseUtil<>();
@@ -182,8 +204,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String userAdd(UserInfo userInfo) {
+        if (!isHavingAuthority()) {
+            //用户权限为 user 时
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您的权限太低！");
+            return json.toString();
+        }
         ResponseUtil<String> json = new ResponseUtil<>();
-        UserInfo nowUserInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        UserInfo nowUserInfo = getUserInfoFromSession();
         if (nowUserInfo.getRole().equals(StaticString.ROLE_ROOT)
                 || (nowUserInfo.getRole().equals(StaticString.ROLE_ADMIN) && !userInfo.getRole().equals(StaticString.ROLE_ROOT))) {
             userInfo.setPassword(MD5Util.string2MD5(userInfo.getPassword()));
@@ -225,11 +254,44 @@ public class UserServiceImpl implements UserService {
         if (result > 0) {
             json.setCode(1);
             json.setMsg("修改成功");
+            if (userInfoById.getUsername().equals(getUserInfoFromSession().getUsername())) {
+                refreshUserInfo(userInfoById);
+            }
         } else {
             json.setCode(0);
             json.setMsg("修改失败，请检查sql语句");
         }
         return json.toString();
+    }
+
+    private void refreshUserInfo(UserInfo userInfo) {
+        HttpSession session = ServletUtil.getSession();
+        session.removeAttribute("userInfo");
+        session.setAttribute("userInfo", userInfo);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("刷新了userInfo");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
+    private UserInfo getUserInfoFromSession() {
+        UserInfo userInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        return userInfo;
+    }
+
+    private boolean isHavingAuthority() {
+        UserInfo userInfoFromSession = getUserInfoFromSession();
+        if (userInfoFromSession.getRole().equals(StaticString.ROLE_USER)) {
+            return false;
+        } else if (userInfoFromSession.getRole().equals(StaticString.ROLE_ADMIN)
+                || userInfoFromSession.getRole().equals(StaticString.ROLE_ROOT)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private String userDataToJson(List<UserInfo> userData) {

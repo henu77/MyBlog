@@ -8,7 +8,7 @@
     <meta content="" name="description">
     <title th:text="个人信息页"></title>
     <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
-    <link href="../../admin/css/other/center.css" rel="stylesheet"/>
+    <link th:href="@{/admin/css/other/center.css}" rel="stylesheet"/>
     <style>
         .layui-form-item {
             margin-top: 17px !important;
@@ -30,17 +30,6 @@
                 </div>
             </div>
         </div>
-        <!--        <div class="layui-card">-->
-        <!--            <div class="layui-card-header">-->
-        <!--                登录记录-->
-        <!--            </div>-->
-        <!--            <div class="layui-card-body">-->
-        <!--                <ul class="list">-->
-        <!--                    <li class="list-item" th:each="log:${logs}"><span class="title" th:text="${log.title}"></span><span-->
-        <!--                            class="footer" th:text="${log.createTime}"></span></li>-->
-        <!--                </ul>-->
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
     <div class="layui-col-md9">
         <div class="layui-card">
@@ -102,7 +91,10 @@
                                         </select>
                                     </div>
                                     <div class="layui-form-mid layui-word-aux"
-                                         th:text="${session.userInfo.getRole()!='root'?'请联系超级管理员进行修改':''}">
+                                         th:text="${session.userInfo.getRole()=='admin'?'请联系超级管理员进行修改':''}">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux"
+                                         th:text="${session.userInfo.getRole()=='user'?'请联系管理员进行修改':''}">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -114,79 +106,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-card">
-            <div class="layui-card-header">
-                我的文章
-            </div>
-            <div class="layui-card-body">
-                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-                    <div class="layui-tab-content">
-                        <div class="layui-tab-item layui-show">
-                            <div class="layui-row layui-col-space10" style="margin: 15px;">
-                                <div class="layui-col-md1">
-                                    <img src="../../admin/images/act.jpg"
-                                         style="width: 100%;height: 100%;border-radius: 5px;"/>
-                                </div>
-                                <div class="layui-col-md11" style="height: 80px;">
-                                    <div class="title">为什么程序员们愿意在GitHub上开源自己的成果给别人免费使用和学习？</div>
-                                    <div class="content">
-                                        “Git的精髓在于让所有人的贡献无缝合并。而GitHub的天才之处，在于理解了Git的精髓。”来一句我们程序员们接地气的话：分享是一种快乐~
-                                    </div>
-                                    <div class="comment">2020-06-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 评论 5 点赞 12 转发
-                                        4
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-row layui-col-space10" style="margin: 15px;">
-                                <div class="layui-col-md1">
-                                    <img src="../../admin/images/act.jpg"
-                                         style="width: 100%;height: 100%;border-radius: 5px;"/>
-                                </div>
-                                <div class="layui-col-md11" style="height: 80px;">
-                                    <div class="title">为什么程序员们愿意在GitHub上开源自己的成果给别人免费使用和学习？</div>
-                                    <div class="content">
-                                        “Git的精髓在于让所有人的贡献无缝合并。而GitHub的天才之处，在于理解了Git的精髓。”来一句我们程序员们接地气的话：分享是一种快乐~
-                                    </div>
-                                    <div class="comment">2020-06-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 评论 5 点赞 12 转发
-                                        4
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-row layui-col-space10" style="margin: 15px;">
-                                <div class="layui-col-md1">
-                                    <img src="../../admin/images/act.jpg"
-                                         style="width: 100%;height: 100%;border-radius: 5px;"/>
-                                </div>
-                                <div class="layui-col-md11" style="height: 80px;">
-                                    <div class="title">为什么程序员们愿意在GitHub上开源自己的成果给别人免费使用和学习？</div>
-                                    <div class="content">
-                                        “Git的精髓在于让所有人的贡献无缝合并。而GitHub的天才之处，在于理解了Git的精髓。”来一句我们程序员们接地气的话：分享是一种快乐~
-                                    </div>
-                                    <div class="comment">2020-06-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 评论 5 点赞 12 转发
-                                        4
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-row layui-col-space10" style="margin: 15px;">
-                                <div class="layui-col-md1">
-                                    <img src="../../admin/images/act.jpg"
-                                         style="width: 100%;height: 100%;border-radius: 5px;"/>
-                                </div>
-                                <div class="layui-col-md11" style="height: 80px;">
-                                    <div class="title">为什么程序员们愿意在GitHub上开源自己的成果给别人免费使用和学习？</div>
-                                    <div class="content">
-                                        “Git的精髓在于让所有人的贡献无缝合并。而GitHub的天才之处，在于理解了Git的精髓。”来一句我们程序员们接地气的话：分享是一种快乐~
-                                    </div>
-                                    <div class="comment">2020-06-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 评论 5 点赞 12 转发
-                                        4
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -211,7 +130,7 @@
                 title: '修改密码',
                 shade: 0.1,
                 area: ['550px', '280px'],
-                content: basePath + '/admin/password.html'
+                content: basePath + '/password.html'
             });
             return false;
         })
@@ -228,7 +147,7 @@
                 title: '更换图片',
                 shade: 0.1,
                 area: ["900px", "500px"],
-                content: basePath + '/admin/profile.html',
+                content: basePath + '/profile.html',
                 // '/' + [[${session.userInfo.getId()}]],
                 btn: ['确定', '取消'],
                 yes: function (index, layero) {
@@ -252,7 +171,10 @@
                     console.log(result);
                     if (result.code == 1) {
                         //成功
-                        layui.layer.msg(result.msg, {icon: 1});
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.refresh(data.field.nickname);
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                        });
                     } else {
                         //失败
                         layer.msg(result.msg, {icon: 2});
@@ -276,9 +198,6 @@
                 /^[\S]{6,12}$/
                 , '密码必须6到12位，且不能出现空格'
             ]
-            , content: function (value) {
-                layedit.sync(editIndex);
-            }
         });
 
     })

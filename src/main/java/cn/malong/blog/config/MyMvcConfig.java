@@ -33,6 +33,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/read.html").setViewName("user/read");
 //        registry.addViewController("/test.html").setViewName("test");
         registry.addViewController("/login.html").setViewName("user/login");
+        registry.addViewController("/user-setting.html").setViewName("user/user-setting");
+        registry.addViewController("/profile.html").setViewName("user/profile");
+        registry.addViewController("/password.html").setViewName("user/password");
+
 
         //admin页面
         registry.addViewController("/admin/index").setViewName("admin/index");

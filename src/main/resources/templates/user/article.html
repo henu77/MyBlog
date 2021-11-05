@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width"/>
-    <meta name="author" content="www.yanshisan.cn"/>
     <meta name="robots" content="all"/>
     <title>文章</title>
     <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
@@ -35,11 +34,13 @@
                     </li>
                     <li th:if="${ session.userInfo != null and (session.userInfo.getRole() eq 'admin' or session.userInfo.getRole() eq 'root')}">
                         <a th:href="@{/toAdminIndex}">管理员页面</a></li>
+                    <li th:if="${session.userInfo != null}" onclick="setting()">
+                        <a><img id="headImg" th:src="@{/file/getHeadImg}" class="layui-nav-img">
+                            <span id="nickname" th:text="${session.userInfo.getNickname()}"></span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
-            <a href="javascript:void(0)" class="blog-user">
-
-            </a>
             <a class="phone-menu">
                 <i></i>
                 <i></i>
@@ -505,13 +506,27 @@
     window.onload = function () {
         let admin_msg = [[${session.admin_msg}]];
         let a = [[${session.remove}]];
-        console.log(admin_msg);
         if (admin_msg != "" && null != admin_msg) {
             layui.layer.msg(admin_msg);
         }
 
         NProgress.done();
     };
+    window.setting = function () {
+        layer.open({
+            type: 2,
+            title: '修改个人信息',
+            shade: 0.1,
+            area: ['1000px', '550px'],
+            content: basePath + '/user-setting.html'
+        });
+    }
+
+    window.refresh = function (nickname) {
+        $('#headImg').attr('src', basePath + '/file/getHeadImg');
+        console.log(nickname);
+        $('#nickname').text(nickname);
+    }
 
     function logout() {
         //询问框

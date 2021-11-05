@@ -28,6 +28,10 @@
         </li>
         <li th:if="${ session.userInfo != null and session.userInfo.getRole() eq 'admin'}"><a
                 th:href="@{/toAdminIndex}">管理员页面</a></li>
+        <li th:if="${session.userInfo != null}"><a href="#" class="">
+            <img th:src="@{/file/getHeadImg}" class="layui-nav-img">
+            <span th:text="${session.userInfo.getNickname()}"></span>
+        </a></li>
     </ul>
     <div class="logo"><a>MyBlog</a></div>
 </div>
@@ -60,7 +64,7 @@
                     <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">
                         <div class="single-news">
                             <div class="news-head">
-                                <img th:src="@{/image/1.jpg}">
+                                <img th:src="@{/image/bg1.jpg}">
                                 <a href="#" class="link"><i class="fa fa-link"></i></a>
                             </div>
                             <div class="news-content">
@@ -85,7 +89,7 @@
                          style="padding: 0 10px">
                         <div class="single-news">
                             <div class="news-head">
-                                <img th:src="@{/image/1.jpg}">
+                                <img th:src="@{/image/bg1.jpg}">
                                 <a href="#" class="link"><i class="fa fa-link"></i></a>
                             </div>
                             <div class="news-content">
@@ -110,7 +114,7 @@
                          style="padding: 0 10px">
                         <div class="single-news">
                             <div class="news-head">
-                                <img th:src="@{/image/1.jpg}">
+                                <img th:src="@{/image/bg1.jpg}">
                                 <a href="#" class="link"><i class="fa fa-link"></i></a>
                             </div>
                             <div class="news-content">
