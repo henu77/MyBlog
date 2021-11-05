@@ -134,7 +134,6 @@
         });
 
         form.on('submit(user-query)', function (data) {
-            console.log(data)
             window.refresh(data.field);
             return false;
         });
@@ -213,6 +212,7 @@
         }
 
         window.liveUpdate = function () {
+            let data = form.val("user-query-form")
             window.refresh(data.field);
         }
     });
