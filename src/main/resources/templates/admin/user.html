@@ -17,11 +17,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">昵称</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="nickname" placeholder="" type="text">
+                    <input class="layui-input" id="nickname" oninput="liveUpdate()" name="nickname" placeholder=""
+                           type="text">
                 </div>
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="username" placeholder="" type="text">
+                    <input class="layui-input" id="username" oninput="liveUpdate()" name="username" placeholder=""
+                           type="text">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="user-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
@@ -209,6 +211,10 @@
         window.refresh = function (param) {
             table.reload('user-table', {where: param});
         }
-    })
+
+        window.liveUpdate = function () {
+            window.refresh(data.field);
+        }
+    });
 </script>
 </html>

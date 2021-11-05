@@ -66,22 +66,26 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public String getUserDataByLimit(int page, int limit, String nickname, String username) {
+        /**
+         * 参数欲处理
+         */
         int startIndex = (page - 1) * limit;
-        List<UserInfo> userInfoList = new ArrayList<>();
-        //用户输入的 nickname和 username都为 空 则直接调用 只含 page，limit的查询函数
-        if (isEmpty(nickname) && isEmpty(username)) {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimit(startIndex, limit);
-        } else if (isEmpty(nickname)) {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimit_username(startIndex, limit, username);
-        } else if (isEmpty(username)) {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimit_nickname(startIndex, limit, nickname);
-        } else {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimit_nick_username(startIndex, limit, nickname, username);
+        if (null != nickname) {
+            nickname = nickname.replace(StaticString.SPACE, "");
+            if (nickname.equals("")) {
+                nickname = null;
+            }
         }
+        if (null != username) {
+            username = username.replace(StaticString.SPACE, "");
+
+            if (username.equals("")) {
+                username = null;
+            }
+        }
+        List<UserInfo> userInfoList = new ArrayList<>();
+        userInfoList =
+                userInfoMapper.getUserDataByLimit(startIndex, limit, nickname, username, "user");
         return userDataToJson(userInfoList);
     }
 
@@ -125,22 +129,26 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public String getUserDataByLimitAdmin(int page, int limit, String nickname, String username) {
+        /**
+         * 参数预处理
+         */
         int startIndex = (page - 1) * limit;
-        List<UserInfo> userInfoList = new ArrayList<>();
-        //用户输入的 nickname和 username都为 空 则直接调用 只含 page，limit的查询函数
-        if (isEmpty(nickname) && isEmpty(username)) {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimitAdmin(startIndex, limit);
-        } else if (isEmpty(nickname)) {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimit_usernameAdmin(startIndex, limit, username);
-        } else if (isEmpty(username)) {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimit_nicknameAdmin(startIndex, limit, nickname);
-        } else {
-            userInfoList =
-                    userInfoMapper.getUserDataByLimit_nick_usernameAdmin(startIndex, limit, nickname, username);
+        if (null != nickname) {
+            nickname = nickname.replace(StaticString.SPACE, "");
+            if (nickname.equals("")) {
+                nickname = null;
+            }
         }
+        if (null != username) {
+            username = username.replace(StaticString.SPACE, "");
+
+            if (username.equals("")) {
+                username = null;
+            }
+        }
+        List<UserInfo> userInfoList = new ArrayList<>();
+        userInfoList =
+                userInfoMapper.getUserDataByLimitAdmin(startIndex, limit, nickname, username, "admin");
         return userDataToJson(userInfoList);
     }
 
@@ -222,19 +230,6 @@ public class UserServiceImpl implements UserService {
             json.setMsg("修改失败，请检查sql语句");
         }
         return json.toString();
-    }
-
-    private boolean isEmpty(String s) {
-        if (null == s) {
-            return true;
-        }
-        if ("".equals(s)) {
-            return true;
-        }
-        if ("".equals(s.trim())) {
-            return true;
-        }
-        return false;
     }
 
     private String userDataToJson(List<UserInfo> userData) {

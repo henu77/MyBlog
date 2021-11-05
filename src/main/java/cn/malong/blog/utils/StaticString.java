@@ -8,4 +8,6 @@ package cn.malong.blog.utils;
 public class StaticString {
     public final static String ROLE_ADMIN = "admin";
     public final static String ROLE_ROOT = "root";
+    public final static String SPACE = " ";
+
 }

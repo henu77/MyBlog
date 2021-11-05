@@ -20,68 +20,33 @@
     <select id="getUserDataByLimit" resultType="userInfo">
         select *
         from myblog.t_user
-        where role = 'user'
-        limit #{startIndex},#{pageSize};
-    </select>
 
-    <select id="getUserDataByLimit_username" resultType="userInfo">
-        select *
-        from myblog.t_user
-        where username = #{username}
-          and role = 'user'
-        limit #{startIndex},#{pageSize};
-    </select>
-
-    <select id="getUserDataByLimit_nickname" resultType="userInfo">
-        select *
-        from myblog.t_user
-        where nickname = #{nickname}
-          and role = 'user'
-        limit #{startIndex},#{pageSize};
-    </select>
-
-    <select id="getUserDataByLimit_nick_username" resultType="userInfo">
-        select *
-        from myblog.t_user
-        where username = #{username}
-          and nickname = #{nickname}
-          and role = 'user'
+        <where>
+            <if test="role != null">
+                role = #{role}
+            </if>
+            <if test="username != null">
+                and username like concat('%', #{username}, '%')
+            </if>
+            <if test="nickname != null">
+                and nickname like concat('%', #{nickname}, '%')
+            </if>
+        </where>
         limit #{startIndex},#{pageSize};
     </select>
 
     <select id="getUserDataByLimitAdmin" resultType="userInfo">
         select *
         from myblog.t_user
-        where role = 'admin'
-           or role = 'root'
-        limit #{startIndex},#{pageSize};
-    </select>
-
-    <select id="getUserDataByLimit_usernameAdmin" resultType="userInfo">
-        select *
-        from myblog.t_user
-        where username = #{username}
-            and role = 'admin'
-           or role = 'root'
-        limit #{startIndex},#{pageSize};
-    </select>
-
-    <select id="getUserDataByLimit_nicknameAdmin" resultType="userInfo">
-        select *
-        from myblog.t_user
-        where nickname = #{nickname}
-            and role = 'admin'
-           or role = 'root'
-        limit #{startIndex},#{pageSize};
-    </select>
-
-    <select id="getUserDataByLimit_nick_usernameAdmin" resultType="userInfo">
-        select *
-        from myblog.t_user
-        where username = #{username}
-            and nickname = #{nickname}
-            and role = 'admin'
-           or role = 'root'
+        <where>
+            (role = 'admin' or role='root')
+            <if test="username != null">
+                and username like concat('%', #{username}, '%')
+            </if>
+            <if test="nickname != null">
+                and nickname like concat('%', #{nickname}, '%')
+            </if>
+        </where>
         limit #{startIndex},#{pageSize};
     </select>
 
