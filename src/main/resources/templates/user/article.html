@@ -523,7 +523,7 @@
     }
 
     window.refresh = function (nickname) {
-        $('#headImg').attr('src', basePath + '/file/getHeadImg');
+        $('#headImg').attr('src', basePath + '/file/getHeadImg?id=' + Math.random());
         console.log(nickname);
         $('#nickname').text(nickname);
     }

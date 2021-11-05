@@ -13,7 +13,7 @@
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form action="" class="layui-form" lay-filter="user-query-form">
+        <form action="" class="layui-form" id="user-query-form" lay-filter="user-query-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">昵称</label>
                 <div class="layui-input-inline">
@@ -212,8 +212,8 @@
         }
 
         window.liveUpdate = function () {
-            let data = form.val("user-query-form")
-            window.refresh(data.field);
+            let data = {nickname: $('#nickname').val(), username: $('#username').val()};
+            window.refresh(data);
         }
     });
 </script>
