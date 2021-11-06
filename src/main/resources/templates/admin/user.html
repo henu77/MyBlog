@@ -146,6 +146,7 @@
                 area: ['550px', '550px'],
                 content: basePath + '/admin/user-add.html'
             });
+            console.log('我点了增加')
         }
 
         window.edit = function (obj) {
@@ -154,7 +155,7 @@
                 title: '修改',
                 shade: 0.1,
                 area: ['550px', '500px'],
-                content: basePath + '/admin/toUserEdit?Id=' + obj.data['id'],
+                content: basePath + '/admin/toUserEdit?Id=' + obj.data['id']
             });
         }
 

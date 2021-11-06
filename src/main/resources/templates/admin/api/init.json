@@ -23,7 +23,7 @@
         },
         {
           "title": "分类管理",
-          "href": "/admin/tags.html",
+          "href": "/admin/types.html",
           "icon": "fa fa-tags",
           "target": "_self"
         },

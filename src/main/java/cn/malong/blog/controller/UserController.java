@@ -67,7 +67,8 @@ public class UserController {
 
     @PostMapping("/add")
     public String userAdd(@RequestBody UserInfo userInfo) {
-        return userServiceImpl.userAdd(userInfo);
+        return userServiceImpl.
+                userAdd(userInfo);
     }
 
     /**
