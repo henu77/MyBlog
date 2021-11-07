@@ -10053,3 +10053,19 @@ java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a par
 [DEBUG][21-11-06][druid.sql.ResultSet]{conn-10001, pstmt-20000, rs-50000} closed
 [DEBUG][21-11-06][druid.sql.Statement]{conn-10001, pstmt-20000} clearParameters. 
 [DEBUG][21-11-06][druid.sql.Connection]{conn-10001} pool-recycle
+[DEBUG][21-11-07][druid.sql.Connection]{conn-10001,procId-1916} connected
+[DEBUG][21-11-07][druid.sql.Connection]{conn-10001} pool-connect
+[DEBUG][21-11-07][druid.sql.Statement]{conn-10001, pstmt-20000} created. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-07][druid.sql.Statement]{conn-10001, pstmt-20000} Parameters : [admin]
+[DEBUG][21-11-07][druid.sql.Statement]{conn-10001, pstmt-20000} Types : [VARCHAR]
+[DEBUG][21-11-07][druid.sql.Statement]{conn-10001, pstmt-20000} executed. 50.7302 millis. select *
+        from myblog.t_user
+        where username = ?;
+[DEBUG][21-11-07][druid.sql.ResultSet]{conn-10001, pstmt-20000, rs-50000} open
+[DEBUG][21-11-07][druid.sql.ResultSet]{conn-10001, pstmt-20000, rs-50000} Header: [id, nickname, username, password, email, avatar, role]
+[DEBUG][21-11-07][druid.sql.ResultSet]{conn-10001, pstmt-20000, rs-50000} Result: [2, 管理员-01, admin, 21232f297a57a5a743894a0e4a801fc3, 1289596706@qq.com, D:\home\uploads\MyBlog\2021-11-05\1456631347203276800.jpg, admin]
+[DEBUG][21-11-07][druid.sql.ResultSet]{conn-10001, pstmt-20000, rs-50000} closed
+[DEBUG][21-11-07][druid.sql.Statement]{conn-10001, pstmt-20000} clearParameters. 
+[DEBUG][21-11-07][druid.sql.Connection]{conn-10001} pool-recycle
