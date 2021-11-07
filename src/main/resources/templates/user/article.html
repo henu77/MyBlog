@@ -501,6 +501,7 @@
 <script>NProgress.start();</script>
 <script th:src="@{/js/yss/article.js}"></script>
 <script th:inline="javascript">
+
     let basePath = [[${#httpServletRequest.getContextPath()}]];
     window.onload = function () {
         let admin_msg = [[${session.admin_msg}]];
