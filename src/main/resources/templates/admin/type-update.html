@@ -6,7 +6,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <title th:text="修改密码"></title>
+    <title th:text="分类修改"></title>
     <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
 </head>
 <body>
@@ -14,25 +14,18 @@
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">旧密码</label>
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">ID</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="oldPassword"
-                               placeholder="请输入标题" type="password">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="id"
+                               placeholder="请输入ID" th:value="${oldType.getId()}" type="text" disabled="disabled">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">新密码</label>
+                    <label class="layui-form-label">分类名</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="newPassword"
-                               placeholder="请输入标题" type="password">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">确认密码</label>
-                    <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="confirmPassword"
-                               placeholder="请输入标题" type="password">
+                        <input autocomplete="off" class="layui-input" lay-verify="title" name="name"
+                               placeholder="请输如分类名" th:value="${oldType.getName()}" type="text">
                     </div>
                 </div>
             </div>
@@ -40,7 +33,7 @@
     </div>
     <div class="bottom">
         <div class="button-container">
-            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="edit-password" lay-submit=""
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="type-update" lay-submit=""
                     type="submit">
                 <i class="layui-icon layui-icon-ok"></i>
                 提交
@@ -51,36 +44,36 @@
             </button>
         </div>
     </div>
-</form>
+</form></form>
 <script th:src="@{/component/layui/layui.js}"></script>
 <script th:src="@{/component/pear/pear.js}"></script>
 <script th:src="@{/admin/js/jquery.min.js}"></script>
-<script>
-    layui.use(['form', 'jquery', 'popup'], function () {
+<script th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    layui.use(['form', 'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
-        let popup = layui.popup;
 
-        form.on('submit(edit-password)', function (data) {
+        form.on('submit(type-update)', function (data) {
             $.ajax({
-                url: '/user/editPassword',
+                url: basePath + '/type/update',
                 data: JSON.stringify(data.field),
-                contentType: 'application/json',
                 dataType: 'json',
+                contentType: 'application/json',
                 type: 'put',
                 success: function (result) {
-                    if (result.success) {
-                        popup.success(result.msg, function () {
-                            parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    if (result.code) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("type-table");
                         });
                     } else {
-                        popup.failure(result.msg);
+                        layer.msg(result.msg, {icon: 2, time: 1000});
                     }
                 }
             })
             return false;
         });
-
     })
 </script>
 </body>

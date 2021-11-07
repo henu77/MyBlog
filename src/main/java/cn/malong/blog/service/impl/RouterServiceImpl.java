@@ -73,6 +73,13 @@ public class RouterServiceImpl implements RouterService {
         return "/admin/user-edit";
     }
 
+    @Override
+    public String toUpdateType(int id,Model model) {
+        Type type = typesMapper.getTypeById(id);
+        model.addAttribute("oldType",type);
+        return "/admin/type-update";
+    }
+
     /**
      * 设置5s后删除session中的信息
      *

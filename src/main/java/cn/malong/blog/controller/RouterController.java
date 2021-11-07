@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpSession;
 
 /**
@@ -17,6 +16,7 @@ public class RouterController {
 
     @Autowired
     private RouterService routerServiceImpl;
+
 
     @RequestMapping("/toAdminIndex")
     public String toAdminIndex(HttpSession session) {
@@ -32,4 +32,10 @@ public class RouterController {
     public String toUserEdit(int Id, Model model) {
         return routerServiceImpl.toUserEdit(Id, model);
     }
+
+    @RequestMapping("/admin/toUpdateType")
+    public String tpUpdateType(int id,Model model){
+        return routerServiceImpl.toUpdateType(id,model);
+    }
+
 }

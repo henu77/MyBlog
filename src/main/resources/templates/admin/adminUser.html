@@ -17,11 +17,11 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">昵称</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" id="nickname" oninput="liveUpdate()" name="nickname" placeholder="" type="text">
+                    <input class="layui-input" oninput="liveUpdate()" name="nickname" placeholder="" type="text">
                 </div>
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" id="username" oninput="liveUpdate()" name="username" placeholder="" type="text">
+                    <input class="layui-input" oninput="liveUpdate()" name="username" placeholder="" type="text">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="user-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
@@ -131,6 +131,7 @@
         });
 
         form.on('submit(user-query)', function (data) {
+            console.log(data)
             window.refresh(data.field);
             return false;
         });
@@ -140,7 +141,7 @@
                 type: 2,
                 title: '新增',
                 shade: 0.1,
-                area: ['550px', '400px'],
+                area: ['550px', '550px'],
                 content: basePath + '/admin/user-add.html'
             });
         }
@@ -208,8 +209,8 @@
             table.reload('user-table', {where: param});
         }
         window.liveUpdate = function () {
-            let data = {nickname: $('#nickname').val(), username: $('#username').val()};
-            window.refresh(data);
+            let data = form.val("user-query-form")
+            window.refresh(data.field);
         }
     });
 </script>

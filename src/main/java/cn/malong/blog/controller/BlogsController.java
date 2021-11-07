@@ -3,7 +3,10 @@ package cn.malong.blog.controller;
 import cn.malong.blog.pojo.Blog;
 import cn.malong.blog.service.BlogsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Csy

@@ -2,8 +2,11 @@ package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.UserInfo;
-import cn.malong.blog.utils.*;
+import cn.malong.blog.utils.MD5Util;
 import cn.malong.blog.service.UserService;
+import cn.malong.blog.utils.ResponseUtil;
+import cn.malong.blog.utils.StaticString;
+import cn.malong.blog.utils.SysFileUtil;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -225,38 +228,6 @@ public class UserServiceImpl implements UserService {
         } else {
             json.setCode(0);
             json.setMsg("您没有权限设置新增用户的权限！");
-        }
-        return json.toString();
-    }
-
-    /**
-     * 判断旧密码是否正确
-     *
-     * @param updatePwdUtil
-     * @return
-     */
-    @Override
-    public String editOwnPassword(UpdatePwdUtil updatePwdUtil) {
-        ResponseUtil<String> json = new ResponseUtil<>();
-        UserInfo userInfoFromSession = getUserInfoFromSession();
-        if (updatePwdUtil.getOldPassword().equals(userInfoFromSession.getPassword())) {
-            if (updatePwdUtil.isSame()) {
-                userInfoFromSession.setPassword(updatePwdUtil.getNewPassword());
-                int result = userInfoMapper.updateUserInfo(userInfoFromSession);
-                if (result > 0) {
-                    json.setCode(1);
-                    json.setMsg("更新成功！");
-                } else {
-                    json.setCode(0);
-                    json.setMsg("密码更新失败！");
-                }
-            } else {
-                json.setCode(0);
-                json.setMsg("两次输入的密码不一致！");
-            }
-        } else {
-            json.setCode(0);
-            json.setMsg("旧密码错误！");
         }
         return json.toString();
     }
