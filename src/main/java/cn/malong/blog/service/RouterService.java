@@ -26,6 +26,4 @@ public interface RouterService {
     String toAdminWrite(Model model);
 
     String toUserEdit(int Id,Model model);
-
-    String toUpdateType(int id,Model model);
 }

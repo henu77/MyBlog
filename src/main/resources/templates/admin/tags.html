@@ -6,7 +6,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <title th:text="分类列表"></title>
+    <title th:text="用户列表"></title>
     <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
     <link rel="stylesheet" th:href="@{/admin/css/other/user.css}"/>
 </head>
@@ -15,13 +15,13 @@
     <div class="layui-card-body">
         <form action="" class="layui-form" lay-filter="user-query-form">
             <div class="layui-form-item">
-                <label class="layui-form-label">id</label>
+                <label class="layui-form-label">昵称</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="id" placeholder="" type="text">
+                    <input class="layui-input" name="nickname" placeholder="" type="text">
                 </div>
-                <label class="layui-form-label">分类名</label>
+                <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="name" placeholder="" type="text">
+                    <input class="layui-input" name="username" placeholder="" type="text">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="user-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
@@ -35,7 +35,7 @@
         </form>
     </div>
 </div>
-<div class="type-left type-collasped">
+<div class="user-left user-collasped">
     <div class="layui-card">
         <div class="layui-card-body">
             <!--            <div class="button button-primary user-group" user-group=""> 全 部 用 户</div>-->
@@ -46,16 +46,16 @@
         </div>
     </div>
 </div>
-<div class="type-main type-collasped">
+<div class="user-main user-collasped">
     <div class="layui-card">
         <div class="layui-card-body">
-            <table id="type-table" lay-filter="type-table"></table>
+            <table id="user-table" lay-filter="user-table"></table>
         </div>
     </div>
 </div>
 </body>
 
-<script id="type-toolbar" type="text/html">
+<script id="user-toolbar" type="text/html">
     <button
             class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
         <i class="pear-icon pear-icon-add"></i>
@@ -72,7 +72,7 @@
     <!--    </button>-->
 </script>
 
-<script id="type-bar" type="text/html">
+<script id="user-bar" type="text/html">
     <button
             class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="pear-icon pear-icon-edit"></i>
     </button>
@@ -121,18 +121,18 @@
                 {type: 'checkbox'},
                 {title: 'id', field: 'id', align: 'center'},
                 {title: '分类', field: 'name', align: 'center'},
-                {title: '操作', toolbar: '#type-bar', align: 'center', width: 130}
+                {title: '操作', toolbar: '#user-bar', align: 'center', width: 130}
             ]
-        ];
+        ]
 
         table.render({
-            elem: '#type-table',
+            elem: '#user-table',
             url: basePath + '/type/dataLimit',
             page: true,
             cols: cols,
             skin: 'line',
             height: 'full-148',
-            toolbar: '#type-toolbar',
+            toolbar: '#user-toolbar',
             text: {none: '暂无人员信息'},
             defaultToolbar: [{
                 layEvent: 'refresh',
@@ -177,7 +177,7 @@
         //     window.refresh(field);
         // })
 
-        table.on('tool(type-table)', function (obj) {
+        table.on('tool(user-table)', function (obj) {
             if (obj.event === 'remove') {
                 window.remove(obj);
             } else if (obj.event === 'edit') {
@@ -185,7 +185,7 @@
             }
         });
 
-        table.on('toolbar(type-table)', function (obj) {
+        table.on('toolbar(user-table)', function (obj) {
             if (obj.event === 'add') {
                 window.add();
             } else if (obj.event === 'refresh') {
@@ -200,7 +200,7 @@
             // }
         });
 
-        form.on('submit(type-query)', function (data) {
+        form.on('submit(user-query)', function (data) {
             console.log(data)
             window.refresh(data.field);
             return false;
@@ -232,13 +232,12 @@
         // });
 
         window.add = function () {
-            console.log("点击了添加分类");
             layer.open({
                 type: 2,
                 title: '新增',
                 shade: 0.1,
-                area: ['550px', '350px'],
-                content: basePath + '/admin/type-add.html'
+                area: ['550px', '550px'],
+                content: basePath + 'add'
             });
         }
 
@@ -248,16 +247,16 @@
                 title: '修改',
                 shade: 0.1,
                 area: ['550px', '500px'],
-                content: basePath + 'toUpdateType?id=' + obj.data['id']
+                content: basePath + 'edit?userId=' + obj.data['userId']
             });
         }
 
         window.remove = function (obj) {
-            layer.confirm('确定要删除该分类', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除该用户', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: basePath + "/type/delete?id=" + obj.data['id'],
+                    url: basePath + "remove/" + obj.data['userId'],
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
@@ -275,12 +274,12 @@
         }
 
         window.batchRemove = function (obj) {
-            let ids = common.checkField(obj, 'typeId');
+            let ids = common.checkField(obj, 'userId');
             if (common.isEmpty(ids)) {
                 popup.warning("未选中数据");
                 return false;
             }
-            layer.confirm('确定要删除选中分类', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除选中用户', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
@@ -291,7 +290,7 @@
                         layer.close(loading);
                         if (result.success) {
                             popup.success(result.msg, function () {
-                                table.reload('type-table');
+                                table.reload('user-table');
                             })
                         } else {
                             popup.failure(result.msg);
@@ -302,7 +301,7 @@
         }
 
         window.refresh = function (param) {
-            table.reload('type-table', {where: param});
+            table.reload('user-table', {where: param});
         }
     })
 </script>
