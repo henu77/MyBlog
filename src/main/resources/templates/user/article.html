@@ -27,7 +27,6 @@
                     <li><a th:href="@{article.html}">博客</a></li>
                     <li><a th:href="@{message.html}">留言</a></li>
                     <li><a th:href="@{link.html}">友链</a></li>
-                    <!--<span th:if="${session.userInfo == null}"></span>-->
                     <li th:if="${session.userInfo == null}"><a th:href="@{login.html}">登录</a></li>
                     <li th:if="${session.userInfo != null}">
                         <a th:onclick="'javascript: logout()' ">注销</a>
@@ -523,7 +522,7 @@
     }
 
     window.refresh = function (nickname) {
-        $('#headImg').attr('src', basePath + '/file/getHeadImg');
+        $('#headImg').attr('src', basePath + '/file/getHeadImg?id=' + Math.random());
         console.log(nickname);
         $('#nickname').text(nickname);
     }

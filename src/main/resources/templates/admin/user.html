@@ -13,7 +13,7 @@
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
-        <form action="" class="layui-form" lay-filter="user-query-form">
+        <form action="" class="layui-form" id="user-query-form" lay-filter="user-query-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">昵称</label>
                 <div class="layui-input-inline">
@@ -146,7 +146,6 @@
                 area: ['550px', '550px'],
                 content: basePath + '/admin/user-add.html'
             });
-            console.log('我点了增加')
         }
 
         window.edit = function (obj) {
@@ -155,7 +154,7 @@
                 title: '修改',
                 shade: 0.1,
                 area: ['550px', '500px'],
-                content: basePath + '/admin/toUserEdit?Id=' + obj.data['id']
+                content: basePath + '/admin/toUserEdit?Id=' + obj.data['id'],
             });
         }
 
@@ -213,8 +212,8 @@
         }
 
         window.liveUpdate = function () {
-            let data = form.val("user-query-form")
-            window.refresh(data.field);
+            let data = {nickname: $('#nickname').val(), username: $('#username').val()};
+            window.refresh(data);
         }
     });
 </script>

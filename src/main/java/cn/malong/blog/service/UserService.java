@@ -1,6 +1,7 @@
 package cn.malong.blog.service;
 
 import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.utils.UpdatePwdUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -59,4 +60,6 @@ public interface UserService {
     String batchRemove(int[] ids);
 
     String userAdd(UserInfo userInfo);
+
+    String editOwnPassword(UpdatePwdUtil updatePwdUtil);
 }

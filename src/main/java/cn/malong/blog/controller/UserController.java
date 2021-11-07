@@ -2,6 +2,7 @@ package cn.malong.blog.controller;
 
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.UserService;
+import cn.malong.blog.utils.UpdatePwdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,10 @@ public class UserController {
         return userServiceImpl.getAllUserData();
     }
 
+    @PutMapping("/editOwnPassword")
+    public String editOwnPassword(@RequestBody UpdatePwdUtil updatePwdUtil) {
+        return userServiceImpl.editOwnPassword(updatePwdUtil);
+    }
 
     /**
      * 以下函数仅对普通用户进行操作，即权限为user的用户
@@ -67,8 +72,7 @@ public class UserController {
 
     @PostMapping("/add")
     public String userAdd(@RequestBody UserInfo userInfo) {
-        return userServiceImpl.
-                userAdd(userInfo);
+        return userServiceImpl.userAdd(userInfo);
     }
 
     /**
