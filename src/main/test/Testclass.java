@@ -1,21 +1,32 @@
 public class Testclass {
 
-    public void conflict(){
+    public void conflict() {
         System.out.println("resolve conflict0");
     }
-    public void conflict1(){
+
+    public void conflict1() {
         System.out.println("resolve conflict1");
     }
-    public void conflict2(){
+
+    public void doSome() {
+        System.out.println("do something");
+    }
+
+    public void doSome1() {
+        System.out.println("do something");
+    }
+
+
+    public void conflict2() {
         System.out.println("resolve conflict2");
     }
-    public void conflict3(){
+
+    public void conflict3() {
         System.out.println("resolve conflict3");
     }
-    public void conflict4(){
+
+    public void conflict4() {
         System.out.println("resolve conflict4");
-    public void conflict() {
-        System.out.println("resolve conflict");
     }
 
     private void hello1() {
@@ -46,3 +57,4 @@ public class Testclass {
         System.out.println("hello");
     }
 }
+
