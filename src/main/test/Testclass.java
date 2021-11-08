@@ -18,8 +18,8 @@ public class Testclass {
 
 /**
 *
-* @author malong
-* @Date 2021-11-08 08:40:26   
+* @author hahah
+* @Date 2021-11-08 08:40:26
 */
     public void conflict2() {
         System.out.println("resolve conflict2");
