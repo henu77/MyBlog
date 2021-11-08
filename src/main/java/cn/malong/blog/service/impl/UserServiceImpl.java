@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getAllUserData() {
         List<UserInfo> allUserData = userInfoMapper.getAllUserData();
-        return userDataToJson(allUserData);
+        return userDataToJson(allUserData, StaticString.ROLE_USER);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
         List<UserInfo> userInfoList = new ArrayList<>();
         userInfoList =
                 userInfoMapper.getUserDataByLimit(startIndex, limit, nickname, username, "user");
-        return userDataToJson(userInfoList);
+        return userDataToJson(userInfoList, StaticString.ROLE_USER);
     }
 
     /**
@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService {
         List<UserInfo> userInfoList = new ArrayList<>();
         userInfoList =
                 userInfoMapper.getUserDataByLimitAdmin(startIndex, limit, nickname, username, "admin");
-        return userDataToJson(userInfoList);
+        return userDataToJson(userInfoList, StaticString.ROLE_ADMIN);
     }
 
     @Override
@@ -323,7 +323,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private String userDataToJson(List<UserInfo> userData) {
+    private String userDataToJson(List<UserInfo> userData, String role) {
         ResponseUtil<UserInfo> json = new ResponseUtil<>();
         if (null == userData) {
             json.setCode(1);
@@ -333,7 +333,12 @@ public class UserServiceImpl implements UserService {
             json.setMsg("用户信息为空");
         } else {
             json.setCode(0);
-            json.setCount(userData.size());
+            if(role.equals(StaticString.ROLE_USER)){
+                json.setCount(userInfoMapper.countAllUser());
+
+            }else {
+                json.setCount(userInfoMapper.countAllAdmin());
+            }
             json.setMsg("获取用户信息成功");
             json.setData(userData);
         }

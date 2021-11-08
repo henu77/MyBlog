@@ -71,4 +71,8 @@ public interface UserInfoMapper {
     int batchRemoveByIds(int[] ids);
 
     int userAdd(UserInfo userInfo);
+
+    int countAllUser();
+
+    int countAllAdmin();
 }
