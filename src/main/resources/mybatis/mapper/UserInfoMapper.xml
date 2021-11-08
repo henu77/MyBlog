@@ -11,7 +11,16 @@
         from myblog.t_user
         where username = #{usernmae};
     </select>
-
+    <select id="countAllUser" resultType="int">
+        select count(*)
+        from myblog.t_user
+        where role = 'user';
+    </select>
+    <select id="countAllAdmin" resultType="int">
+        select count(*)
+        from myblog.t_user
+        where role = 'admin' or role='root';
+    </select>
     <select id="getAllUserData" resultType="userInfo">
         select *
         from myblog.t_user;
