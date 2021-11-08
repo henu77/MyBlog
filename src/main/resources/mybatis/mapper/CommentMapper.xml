@@ -12,7 +12,13 @@
     </select>
 
     <delete id="deleteComment">
-        delete from t_comment where id = #{id};
+        delete
+        from myblog.t_comment
+        where id = #{id};
     </delete>
-
+    <select id="countCommentsByBlogId" resultType="int">
+        select count(id)
+        from myblog.t_comment
+        where blog_id = #{blogId};
+    </select>
 </mapper>

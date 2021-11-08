@@ -36,6 +36,9 @@ spring:
     multipart:
       #文件上传最大值
       max-file-size: 5MB
+#  mvc:
+#    format:
+#      date: yyyy-MM-dd hh:mm:ss
 #  web:
 #    resources:
 #      static-locations: [classpath:/templates/]

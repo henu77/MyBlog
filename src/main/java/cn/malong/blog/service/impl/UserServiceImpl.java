@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getAllUserData() {
         List<UserInfo> allUserData = userInfoMapper.getAllUserData();
-        return userDataToJson(allUserData, StaticString.ROLE_USER);
+        return userDataToJson(allUserData, StaticVariable.ROLE_USER);
     }
 
     @Override
@@ -69,13 +69,13 @@ public class UserServiceImpl implements UserService {
          */
         int startIndex = (page - 1) * limit;
         if (null != nickname) {
-            nickname = nickname.replace(StaticString.SPACE, "");
+            nickname = nickname.replace(StaticVariable.SPACE, "");
             if (nickname.equals("")) {
                 nickname = null;
             }
         }
         if (null != username) {
-            username = username.replace(StaticString.SPACE, "");
+            username = username.replace(StaticVariable.SPACE, "");
 
             if (username.equals("")) {
                 username = null;
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
         List<UserInfo> userInfoList = new ArrayList<>();
         userInfoList =
                 userInfoMapper.getUserDataByLimit(startIndex, limit, nickname, username, "user");
-        return userDataToJson(userInfoList, StaticString.ROLE_USER);
+        return userDataToJson(userInfoList, StaticVariable.ROLE_USER);
     }
 
     /**
@@ -113,8 +113,8 @@ public class UserServiceImpl implements UserService {
         }
         UserInfo userInfoById = userInfoMapper.getUserInfoById(userInfo.getId());
         UserInfo nowUserInfo = getUserInfoFromSession();
-        if (nowUserInfo.getRole().equals(StaticString.ROLE_ADMIN)
-                && userInfo.getRole().equals(StaticString.ROLE_ROOT) || userInfoById.getRole().equals(StaticString.ROLE_ROOT)) {
+        if (nowUserInfo.getRole().equals(StaticVariable.ROLE_ADMIN)
+                && userInfo.getRole().equals(StaticVariable.ROLE_ROOT) || userInfoById.getRole().equals(StaticVariable.ROLE_ROOT)) {
             //如果当前用户 权限为 admin 但是想要修改用户权限为 root则禁止
             ResponseUtil<String> json = new ResponseUtil<>();
             json.setCode(0);
@@ -139,13 +139,13 @@ public class UserServiceImpl implements UserService {
          */
         int startIndex = (page - 1) * limit;
         if (null != nickname) {
-            nickname = nickname.replace(StaticString.SPACE, "");
+            nickname = nickname.replace(StaticVariable.SPACE, "");
             if (nickname.equals("")) {
                 nickname = null;
             }
         }
         if (null != username) {
-            username = username.replace(StaticString.SPACE, "");
+            username = username.replace(StaticVariable.SPACE, "");
 
             if (username.equals("")) {
                 username = null;
@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService {
         List<UserInfo> userInfoList = new ArrayList<>();
         userInfoList =
                 userInfoMapper.getUserDataByLimitAdmin(startIndex, limit, nickname, username, "admin");
-        return userDataToJson(userInfoList, StaticString.ROLE_ADMIN);
+        return userDataToJson(userInfoList, StaticVariable.ROLE_ADMIN);
     }
 
     @Override
@@ -210,8 +210,8 @@ public class UserServiceImpl implements UserService {
         }
         ResponseUtil<String> json = new ResponseUtil<>();
         UserInfo nowUserInfo = getUserInfoFromSession();
-        if (nowUserInfo.getRole().equals(StaticString.ROLE_ROOT)
-                || (nowUserInfo.getRole().equals(StaticString.ROLE_ADMIN) && !userInfo.getRole().equals(StaticString.ROLE_ROOT))) {
+        if (nowUserInfo.getRole().equals(StaticVariable.ROLE_ROOT)
+                || (nowUserInfo.getRole().equals(StaticVariable.ROLE_ADMIN) && !userInfo.getRole().equals(StaticVariable.ROLE_ROOT))) {
             userInfo.setPassword(MD5Util.string2MD5(userInfo.getPassword()));
             userInfo.setAvatar(SysFileUtil.getUploadPath() + "default.png");
             int result = userInfoMapper.userAdd(userInfo);
@@ -313,10 +313,10 @@ public class UserServiceImpl implements UserService {
 
     private boolean isHavingAuthority() {
         UserInfo userInfoFromSession = getUserInfoFromSession();
-        if (userInfoFromSession.getRole().equals(StaticString.ROLE_USER)) {
+        if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_USER)) {
             return false;
-        } else if (userInfoFromSession.getRole().equals(StaticString.ROLE_ADMIN)
-                || userInfoFromSession.getRole().equals(StaticString.ROLE_ROOT)) {
+        } else if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_ADMIN)
+                || userInfoFromSession.getRole().equals(StaticVariable.ROLE_ROOT)) {
             return true;
         } else {
             return false;
@@ -333,7 +333,7 @@ public class UserServiceImpl implements UserService {
             json.setMsg("用户信息为空");
         } else {
             json.setCode(0);
-            if(role.equals(StaticString.ROLE_USER)){
+            if(role.equals(StaticVariable.ROLE_USER)){
                 json.setCount(userInfoMapper.countAllUser());
 
             }else {

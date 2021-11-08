@@ -14,4 +14,6 @@ public interface BlogsService {
     String getBlogsByLimit(int page,int limit,String title,String user);
 
     String postArticle(Blog blog);
+
+    String getBlogsByPage(int page);
 }
