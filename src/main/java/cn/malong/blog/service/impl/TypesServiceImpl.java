@@ -104,7 +104,7 @@ public class TypesServiceImpl implements TypesService {
             json.setMsg("用户信息为空");
         } else {
             json.setCode(0);
-            json.setCount(typeData.size());
+            json.setCount(typesMapper.countTypes());
             json.setMsg("获取用户信息成功");
             json.setData(typeData);
         }

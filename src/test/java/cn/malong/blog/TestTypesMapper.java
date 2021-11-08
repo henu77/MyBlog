@@ -73,4 +73,10 @@ public class TestTypesMapper {
             System.out.println("更新成功");
         }
     }
+
+    @Test
+    void testCountTypes(){
+        int total = typesMapper.countTypes();
+        System.out.println(total);
+    }
 }

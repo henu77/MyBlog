@@ -35,4 +35,8 @@
     <update id="updateType">
         update t_type set name = #{type.name} where id = #{type.id};
     </update>
+
+    <select id="countTypes" resultType="java.lang.Integer">
+        select count(id) from t_type;
+    </select>
 </mapper>

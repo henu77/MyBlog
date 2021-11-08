@@ -11,4 +11,8 @@
         limit #{startIndex},#{pageSize};
     </select>
 
+    <delete id="deleteComment">
+        delete from t_comment where id = #{id};
+    </delete>
+
 </mapper>

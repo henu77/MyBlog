@@ -29,4 +29,6 @@ public interface TypesMapper {
     int deleteType(@Param("typeId")int typeId);
 
     int updateType(@Param("type")Type type);
+
+    int countTypes();
 }

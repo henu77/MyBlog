@@ -11,4 +11,6 @@ public interface CommentsService {
      * @return
      */
     String getCommentDataLimit(int page, int limit);
+
+    String commentDelete(int id);
 }

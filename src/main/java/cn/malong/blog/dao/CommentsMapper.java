@@ -24,4 +24,6 @@ public interface CommentsMapper {
      * @return
      */
     List<Comment> getCommentDataByLimit(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+
+    int deleteComment(@Param("id")int id);
 }

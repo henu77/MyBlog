@@ -5,6 +5,8 @@ import cn.malong.blog.pojo.Comment;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.CommentsService;
 import cn.malong.blog.utils.ResponseUtil;
+import cn.malong.blog.utils.StaticString;
+import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,28 @@ public class CommentsServiceImpl implements CommentsService {
         int startIndex = (page - 1) * limit;
         List<Comment> commentDataByLimit = commentsMapper.getCommentDataByLimit(startIndex, limit);
         return userDataToJson(commentDataByLimit);
+    }
+
+    @Override
+    public String commentDelete(int id) {
+        return null;
+    }
+
+    private UserInfo getUserInfoFromSession() {
+        UserInfo userInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
+        return userInfo;
+    }
+
+    private boolean isHavingAuthority() {
+        UserInfo userInfoFromSession = getUserInfoFromSession();
+        if (userInfoFromSession.getRole().equals(StaticString.ROLE_USER)) {
+            return false;
+        } else if (userInfoFromSession.getRole().equals(StaticString.ROLE_ADMIN)
+                || userInfoFromSession.getRole().equals(StaticString.ROLE_ROOT)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private String userDataToJson(List<Comment> commentData) {
