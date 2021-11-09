@@ -26,12 +26,66 @@ public class CommentsServiceImpl implements CommentsService {
     public String getCommentDataLimit(int page, int limit) {
         int startIndex = (page - 1) * limit;
         List<Comment> commentDataByLimit = commentsMapper.getCommentDataByLimit(startIndex, limit);
-        return userDataToJson(commentDataByLimit);
+        return commentDataToJson(commentDataByLimit);
+    }
+
+    @Override
+    public String getCommentDataByNicknameAndContent(int page,int limit,String nickname,String content){
+        int startIndex = (page-1)*limit;
+        if(null!=nickname){
+            nickname = nickname.replace(" ","");
+            if("".equals(nickname)){
+                nickname = null;
+            }
+        }
+        if(null!=content){
+            content = content.replace(" ","");
+            if("".equals(content)){
+                content = null;
+            }
+        }
+        List<Comment> comments = commentsMapper.getCommentDataByNicknameAndContent(startIndex,limit,nickname,content);
+        return commentDataToJson(comments);
     }
 
     @Override
     public String commentDelete(int id) {
-        return null;
+        if(!isHavingAuthority()){
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您的权限太低，无法删除");
+            return json.toString();
+        }
+        int ret = commentsMapper.deleteComment(id);
+        ResponseUtil<String> json = new ResponseUtil<>();
+        if(ret>0){
+            json.setCode(1);
+            json.setMsg("删除成功");
+        }else{
+            json.setCode(0);
+            json.setMsg("删除失败");
+        }
+        return json.toString();
+    }
+
+    @Override
+    public String commentBatchDelete(int[] ids) {
+        if(!isHavingAuthority()){
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您的权限太低，无法删除");
+            return json.toString();
+        }
+        int ret = commentsMapper.deleteCommentsByBatch(ids);
+        ResponseUtil<String> json = new ResponseUtil<>();
+        if(ret>0){
+            json.setCode(1);
+            json.setMsg("删除成功");
+        }else{
+            json.setCode(0);
+            json.setMsg("删除失败");
+        }
+        return json.toString();
     }
 
     private UserInfo getUserInfoFromSession() {
@@ -51,7 +105,7 @@ public class CommentsServiceImpl implements CommentsService {
         }
     }
 
-    private String userDataToJson(List<Comment> commentData) {
+    private String commentDataToJson(List<Comment> commentData) {
         ResponseUtil<Comment> json = new ResponseUtil<>();
         if (null == commentData) {
             json.setCode(1);
@@ -61,7 +115,7 @@ public class CommentsServiceImpl implements CommentsService {
             json.setMsg("用户信息为空");
         } else {
             json.setCode(0);
-            json.setCount(commentData.size());
+            json.setCount(commentsMapper.countComment());
             json.setMsg("获取用户信息成功");
             json.setData(commentData);
         }

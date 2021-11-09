@@ -12,5 +12,9 @@ public interface CommentsService {
      */
     String getCommentDataLimit(int page, int limit);
 
+    String getCommentDataByNicknameAndContent(int page,int limit,String nickname,String content);
+
     String commentDelete(int id);
+
+    String commentBatchDelete(int[] ids);
 }

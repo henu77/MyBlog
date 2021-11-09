@@ -11,8 +11,32 @@
         limit #{startIndex},#{pageSize};
     </select>
 
+    <select id="getCommentDataByNicknameAndContent" resultType="comment">
+        select * from t_comment
+        <where>
+            <if test="nickname != null">
+                nickname like concat('%',#{nickname},'%')
+            </if>
+            <if test="content != null">
+                and content like concat('%',#{content},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize};
+    </select>
+
     <delete id="deleteComment">
         delete from t_comment where id = #{id};
     </delete>
+    
+    <delete id="deleteCommentsByBatch">
+        delete from t_comment where id in
+        <foreach collection="array" item="id" index="no" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="countComment" resultType="int">
+        select count(id) from t_comment;
+    </select>
 
 </mapper>

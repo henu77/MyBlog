@@ -25,5 +25,23 @@ public interface CommentsMapper {
      */
     List<Comment> getCommentDataByLimit(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
+    /**
+     * 动态sql 基于昵称和内容进行查找
+     * @param startIndex
+     * @param pageSize
+     * @param nickname
+     * @param content
+     * @return
+     */
+    List<Comment> getCommentDataByNicknameAndContent(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize,@Param("nickname")String nickname,@Param("content")String content);
+
     int deleteComment(@Param("id")int id);
+
+    /**
+     *  批量删除
+     */
+    int deleteCommentsByBatch(int[] ids);
+
+    int countComment();
+
 }
