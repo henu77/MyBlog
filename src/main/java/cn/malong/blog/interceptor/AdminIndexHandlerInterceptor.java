@@ -1,7 +1,7 @@
 package cn.malong.blog.interceptor;
 
 import cn.malong.blog.pojo.UserInfo;
-import cn.malong.blog.utils.StaticString;
+import cn.malong.blog.utils.StaticVariable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -35,7 +35,7 @@ public class AdminIndexHandlerInterceptor implements HandlerInterceptor {
             return false;
         } else {
             String role = userInfo.getRole();
-            if (StaticString.ROLE_ADMIN.equals(role) || StaticString.ROLE_ROOT.equals(role)) {
+            if (StaticVariable.ROLE_ADMIN.equals(role) || StaticVariable.ROLE_ROOT.equals(role)) {
                 return true;
             } else {
                 request.setAttribute("Interceptor_msg", "权限不够请切换账号");

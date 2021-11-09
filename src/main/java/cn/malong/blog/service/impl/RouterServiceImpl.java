@@ -1,11 +1,14 @@
 package cn.malong.blog.service.impl;
 
+import cn.malong.blog.dao.BlogsMapper;
 import cn.malong.blog.dao.TypesMapper;
 import cn.malong.blog.dao.UserInfoMapper;
+import cn.malong.blog.pojo.Blog;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.RouterService;
-import cn.malong.blog.utils.StaticString;
+import cn.malong.blog.utils.CalendarUtil;
+import cn.malong.blog.utils.StaticVariable;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +16,7 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * @author malong
@@ -28,6 +29,8 @@ public class RouterServiceImpl implements RouterService {
     private TypesMapper typesMapper;
     @Autowired
     private UserInfoMapper userInfoMapper;
+    @Autowired
+    private BlogsMapper blogsMapper;
 
     /**
      * 1.从session中取用户信息
@@ -48,7 +51,7 @@ public class RouterServiceImpl implements RouterService {
             return "/user/login";
         } else {
             String role = userInfo.getRole();
-            if (StaticString.ROLE_ADMIN.equals(role) || StaticString.ROLE_ROOT.equals(role)) {
+            if (StaticVariable.ROLE_ADMIN.equals(role) || StaticVariable.ROLE_ROOT.equals(role)) {
                 return "redirect:/admin/index.html";
             } else {
                 session.setAttribute("admin_msg", "您没有管理员权限！");
@@ -74,10 +77,23 @@ public class RouterServiceImpl implements RouterService {
     }
 
     @Override
-    public String toUpdateType(int id,Model model) {
+    public String toUpdateType(int id, Model model) {
         Type type = typesMapper.getTypeById(id);
-        model.addAttribute("oldType",type);
+        model.addAttribute("oldType", type);
         return "/admin/type-update";
+    }
+
+    @Override
+    public String toReadBolg(int blogId, Model model) {
+        Blog blogById = blogsMapper.getBlogById(blogId);
+        model.addAttribute("blogById", blogById);
+        Date creatTime = blogById.getCreatTime();
+        Map<String, Integer> calendarMap = new LinkedHashMap<>();
+        calendarMap.put("year", CalendarUtil.getYear(creatTime));
+        calendarMap.put("month", CalendarUtil.getMonth(creatTime));
+        calendarMap.put("day", CalendarUtil.getDay(creatTime));
+        model.addAttribute("calendar", calendarMap);
+        return "/user/read";
     }
 
     /**

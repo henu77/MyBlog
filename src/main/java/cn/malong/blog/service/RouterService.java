@@ -28,4 +28,6 @@ public interface RouterService {
     String toUserEdit(int Id,Model model);
 
     String toUpdateType(int id,Model model);
+
+    String toReadBolg(int blogId, Model model);
 }

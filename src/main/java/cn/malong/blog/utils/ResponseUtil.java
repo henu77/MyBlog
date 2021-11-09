@@ -26,6 +26,8 @@ public class ResponseUtil<T> {
     private String msg;
     private int count;
     private List<T> data;
+    private int pages;
+
 
     public ResponseUtil() {
         code = -1;
@@ -49,6 +51,7 @@ public class ResponseUtil<T> {
         map.put("msg", msg);
         map.put("count", count);
         map.put("data", data.toArray());
+        map.put("pages", pages);
         String result2 = "{\"" + code + "\"" + ":-1}";
         try {
             result2 = mapper.writeValueAsString(map);
@@ -88,5 +91,13 @@ public class ResponseUtil<T> {
 
     public void setData(List<T> data) {
         this.data = data;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
     }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head xmlns:th="http://www.thymeleaf.org">
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="renderer" content="webkit">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" th:href="@{/css/gloable.css}"/>
     <link rel="stylesheet" th:href="@{/css/nprogress.css}"/>
     <link rel="stylesheet" th:href="@{/css/blog.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/editormd/css/editormd.min.css}">
 </head>
 <body>
 <div class="header">
@@ -22,20 +23,21 @@
             <a href="javascript:void(0)" class="header-logo" id="logo">MyBlog</a>
             <nav class="nav" id="nav">
                 <ul>
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="article.html">博客</a></li>
-                    <li><a href="message.html">留言</a></li>
-                    <li><a href="link.html">友链</a></li>
-                    <li th:if="${session.userInfo == null}"><a th:href="@{login.html}">登录</a></li>
+                    <li><a th:href="@{/index.html}">首页</a></li>
+                    <li><a th:href="@{/article.html}">博客</a></li>
+                    <li><a th:href="@{/message.html}">留言</a></li>
+                    <li><a th:href="@{/link.html}">友链</a></li>
+                    <li th:if="${session.userInfo == null}"><a th:href="@{/login.html}">登录</a></li>
                     <li th:if="${session.userInfo != null}">
                         <a th:onclick="'javascript: logout()' ">注销</a>
                     </li>
-                    <li th:if="${ session.userInfo != null and session.userInfo.getRole() eq 'admin'}"><a
-                            th:href="@{/toAdminIndex}">管理员页面</a></li>
-                    <li><a href="#" class="">
-                        <img th:src="@{/file/getHeadImg}" class="layui-nav-img">
-                        <span th:text="${session.userInfo.getNickname()}"></span>
-                    </a></li>
+                    <li th:if="${ session.userInfo != null and (session.userInfo.getRole() eq 'admin' or session.userInfo.getRole() eq 'root')}">
+                        <a th:href="@{/toAdminIndex}">管理员页面</a></li>
+                    <li th:if="${session.userInfo != null}" onclick="setting()">
+                        <a><img id="headImg" th:src="@{/file/getHeadImg}" class="layui-nav-img">
+                            <span id="nickname" th:text="${session.userInfo.getNickname()}"></span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <a href="#" class="blog-user">
@@ -49,7 +51,8 @@
         </div>
     </div>
 </header>
-<div class="doc-container" id="doc-container">
+
+<div class="doc-container">
     <div class="container-fixed">
         <div class="col-content" style="width:100%">
             <div class="inner">
@@ -57,48 +60,61 @@
                     <input type="hidden" value="@Model.BlogTypeID" id="blogtypeid"/>
                     <section class="article-item">
                         <aside class="title" style="line-height:1.5;">
-                            <h4>使用码云和VS托管本地代码</h4>
+                            <h4 th:text="${blogById.getTitle()}"></h4>
                             <p class="fc-grey fs-14">
                                 <small>
-                                    作者：<a href="javascript:void(0)" target="_blank" class="fc-link">燕十三</a>
+                                    作者：<a href="javascript:void(0)" target="_blank" class="fc-link"
+                                          th:text="${blogById.getUserId().getNickname()}"></a>
                                 </small>
-                                <small class="ml10">围观群众：<i class="readcount">37</i></small>
-                                <small class="ml10">更新于 <label>2018-05-22:17:30:24</label> </small>
+                                <small class="ml10">围观群众：<i class="readcount"
+                                                            th:text="${blogById.getViews()}"></i></small>
+                                <small class="ml10">更新于 <label
+                                        th:text="${#dates.format(blogById.getUpdateTime(),'yyyy-mm-dd hh:mm:ss')}"></label>
+                                </small>
                             </p>
                         </aside>
                         <div class="time mt10" style="padding-bottom:0;">
-                            <span class="day">22</span>
-                            <span class="month fs-18">5<small class="fs-14">月</small></span>
-                            <span class="year fs-18">2018</span>
+                            <span class="day" th:text="${calendar.day}"></span>
+                            <span class="month fs-18" th:text="${calendar.month}+月"><small
+                                    class="fs-14">月</small></span>
+                            <span class="year fs-18" th:text="${calendar.year}+年">2018</span>
                         </div>
                         <div class="content artiledetail"
                              style="border-bottom: 1px solid #e1e2e0; padding-bottom: 20px;">
-                            内容自定义
+                            <div class="layui-container">
+                                <div id="markdownToHtml" class="content">
+                                    <!-- Server-side output Markdown text -->
+                                    <textarea style="display:none;" th:text="${blogById.getContent()}"></textarea>
+                                </div>
+                            </div>
+
                             <div class="copyright mt20">
                                 <p class="f-toe fc-black">
-                                    非特殊说明，本文版权归 燕十三 所有，转载请注明出处.
+                                    非特殊说明，本文版权归 <span th:text="${blogById.getUserId().getNickname()}"></span>
+                                    所有，转载请注明出处.
                                 </p>
                                 <p class="f-toe">
                                     本文标题：
-                                    <a href="javascript:void(0)" class="r-title">使用码云和VS托管本地代码</a>
+                                    <a href="#" class="r-title" th:text="${blogById.getTitle()}"></a>
                                 </p>
                                 <p class="f-toe">
                                     本文网址：
-                                    <a href="#">https://www.yanshisan.cn/Blog/Read/7</a>
+                                    <a href="#"
+                                       th:text="'http://www.yanshisan.cn/user/toReadBlog/'+${blogById.getId()}">7</a>
                                 </p>
                             </div>
                             <div id="aplayer" style="margin:5px 0"></div>
-                            <h6>延伸阅读</h6>
+                            <!--                            <h6>延伸阅读</h6>-->
                             <ol class="b-relation"></ol>
                         </div>
                         <div class="bdsharebuttonbox share" data-tag="share_1">
-                            <ul>
-                                <li class="f-praise"><span><a class="s-praise"></a></span></li>
-                                <li class="f-weinxi"><a class="s-weinxi" data-cmd="weixin"></a></li>
-                                <li class="f-sina"><a class="s-sina" data-cmd="tsina"></a></li>
-                                <li class="f-qq" href="#"><i class="fa fa-qq"></i></li>
-                                <li class="f-qzone"><a class="s-qzone" data-cmd="qzone"></a></li>
-                            </ul>
+                            <!--                            <ul>-->
+                            <!--                                <li class="f-praise"><span><a class="s-praise"></a></span></li>-->
+                            <!--                                <li class="f-weinxi"><a class="s-weinxi" data-cmd="weixin"></a></li>-->
+                            <!--                                <li class="f-sina"><a class="s-sina" data-cmd="tsina"></a></li>-->
+                            <!--                                <li class="f-qq" href="#"><i class="fa fa-qq"></i></li>-->
+                            <!--                                <li class="f-qzone"><a class="s-qzone" data-cmd="qzone"></a></li>-->
+                            <!--                            </ul>-->
                         </div>
                         <div class="f-cb"></div>
                         <div class="mt20 f-fwn fs-24 fc-grey comment"
@@ -130,6 +146,7 @@
         </div>
     </div>
 </div>
+
 <footer class="grid-footer">
     <div class="footer-fixed">
         <div class="copyright">
@@ -154,11 +171,22 @@
 <script th:src="@{/js/plugins/nprogress.js}"></script>
 <script th:src="@{/js/pagecomment.js}"></script>
 <script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
+<script th:src="@{/lib/editormd/editormd.min.js}"></script>
+<script th:src="@{/admin/lib/editormd/lib/marked.min.js}"></script>
+<script th:src="@{/admin/lib/editormd/lib/prettify.min.js}"></script>
 <script>NProgress.start();</script>
-<script>
+<script th:inline="javascript">
     window.onload = function () {
         NProgress.done();
     };
+    let markdownView;
+
+    $(function () {
+        markdownView = editormd.markdownToHTML("markdownToHtml", {
+            // markdown: markdownContent,
+            htmlDecode: true,  // Enable / disable HTML tag encode.
+        });
+    });
 
     function logout() {
         //询问框

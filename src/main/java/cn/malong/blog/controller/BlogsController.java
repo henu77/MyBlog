@@ -3,10 +3,7 @@ package cn.malong.blog.controller;
 import cn.malong.blog.pojo.Blog;
 import cn.malong.blog.service.BlogsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Csy
@@ -22,9 +19,9 @@ public class BlogsController {
     private BlogsService blogsService;
 
     @RequestMapping("/dataLimit")
-    public String getBlogsByLimit(int page, int limit,String title,String username) {
+    public String getBlogsByLimit(int page, int limit, String title, String username) {
 //        System.out.println(blogsService.getBlogsByLimit(page, limit));
-        return blogsService.getBlogsByLimit(page, limit,title,username);
+        return blogsService.getBlogsByLimit(page, limit, title, username);
     }
 
     @PostMapping("/postArticle")
@@ -32,9 +29,9 @@ public class BlogsController {
         return blogsService.postArticle(blog);
     }
 
-    @RequestMapping("/more")
-    public String getBlogsByPage(int page){
-        return "";
+    @GetMapping("/more")
+    public String getBlogsByPage(int page) {
+        return blogsService.getBlogsByPage(page);
     }
 
 }

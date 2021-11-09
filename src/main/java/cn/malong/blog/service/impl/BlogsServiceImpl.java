@@ -1,13 +1,16 @@
 package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.BlogsMapper;
+import cn.malong.blog.dao.CommentsMapper;
 import cn.malong.blog.dao.TypesMapper;
 import cn.malong.blog.pojo.Blog;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.BlogsService;
+import cn.malong.blog.utils.CalendarUtil;
 import cn.malong.blog.utils.DateUtils;
 import cn.malong.blog.utils.ResponseUtil;
+import cn.malong.blog.utils.StaticVariable;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,8 @@ public class BlogsServiceImpl implements BlogsService {
 
     @Autowired
     private TypesMapper typesMapper;
+    @Autowired
+    private CommentsMapper commentsMapper;
 
     @Override
     public String getBlogsByLimit(int page, int limit) {
@@ -62,9 +67,45 @@ public class BlogsServiceImpl implements BlogsService {
         return blogDataToJson(blogData);
     }
 
-    public String getBlogsByPage(int page){
-        // 每次下拉时最多加载2条
-        return getBlogsByLimit(page,2);
+    @Override
+    public String getBlogsByPage(int page) {
+        int limit = StaticVariable.FLOW_PAGE_SIZE;
+        int startIndex = (page - 1) * limit;
+        List<Blog> blogData = blogsMapper.getBlogsByLimit(startIndex, limit);
+        ResponseUtil<Map> json = new ResponseUtil<>();
+        if (null == blogData) {
+            json.setCode(1);
+            json.setMsg("获取用户信息失败");
+        } else if (blogData.isEmpty()) {
+            json.setCode(1);
+            json.setMsg("用户信息为空");
+        } else {
+            json.setCode(0);
+            json.setCount(blogData.size());
+            json.setMsg("获取用户信息成功");
+
+            // 处理返回json格式复合表格要求
+            List<Map> jsonMap = new LinkedList<>();
+            for (Blog blog : blogData) {
+                Map<String, Object> temp = new HashMap<>();
+                temp.put("id", blog.getId());
+                temp.put("title", blog.getTitle());
+                temp.put("flag", blog.getFlag());
+                temp.put("type", blog.getTypeId().getName());
+                temp.put("author", blog.getUserId().getUsername());
+                Date updateTime = blog.getUpdateTime();
+                temp.put("day", CalendarUtil.getDay(updateTime));
+                temp.put("month", CalendarUtil.getMonth(updateTime));
+                temp.put("year", CalendarUtil.getYear(updateTime));
+                temp.put("comments", commentsMapper.countCommentsByBlogId(blog.getId()));
+                temp.put("views", blog.getViews());
+                jsonMap.add(temp);
+            }
+            json.setData(jsonMap);
+            int countAllBlogs = blogsMapper.countAllBlogs();
+            json.setPages((int) Math.ceil(1.0 * countAllBlogs / limit));
+        }
+        return json.toString();
     }
 
     /**

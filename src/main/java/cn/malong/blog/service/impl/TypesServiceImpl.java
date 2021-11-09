@@ -5,7 +5,7 @@ import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.TypesService;
 import cn.malong.blog.utils.ResponseUtil;
-import cn.malong.blog.utils.StaticString;
+import cn.malong.blog.utils.StaticVariable;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,10 +118,10 @@ public class TypesServiceImpl implements TypesService {
 
     private boolean isHavingAuthority() {
         UserInfo userInfoFromSession = getUserInfoFromSession();
-        if (userInfoFromSession.getRole().equals(StaticString.ROLE_USER)) {
+        if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_USER)) {
             return false;
-        } else if (userInfoFromSession.getRole().equals(StaticString.ROLE_ADMIN)
-                || userInfoFromSession.getRole().equals(StaticString.ROLE_ROOT)) {
+        } else if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_ADMIN)
+                || userInfoFromSession.getRole().equals(StaticVariable.ROLE_ROOT)) {
             return true;
         } else {
             return false;

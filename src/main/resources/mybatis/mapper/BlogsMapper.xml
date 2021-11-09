@@ -7,6 +7,7 @@
         <id column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="views" property="views"/>
+        <result column="flag" property="flag"/>
         <result column="create_time" property="creatTime"/>
         <result column="update_time" property="updateTime"/>
         <association property="typeId" column="type_id" select="getType"/>
@@ -24,7 +25,7 @@
     </resultMap>
 
     <select id="getBlogsByLimit" resultMap="blogMap">
-        select id, title, views, type_id, user_id, create_time, update_time
+        select id, title, flag,views, type_id, user_id, create_time, update_time
         from myblog.t_blog
         order by id
         limit #{startIndex},#{pageSize};
@@ -71,6 +72,32 @@
         from myblog.t_type
         where id = #{typeId};
     </select>
+    <select id="getBlogById" resultMap="detailsBlog">
+        select *
+        from myblog.t_blog
+        where id = #{id};
+    </select>
+    <resultMap id="detailsBlog" type="blog">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="first_picture" property="firstPicture"/>
+        <result column="flag" property="flag"/>
+        <result column="views" property="views"/>
+        <result column="appreciation" property="appreciation"/>
+        <result column="commentable" property="commentable"/>
+        <result column="published" property="published"/>
+        <result column="recommend" property="recommend"/>
+        <result column="create_time" property="creatTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="description" property="description"/>
+        <association property="typeId" column="type_id" select="getType"/>
+        <association property="userId" column="user_id" select="getUserInfoById"/>
+    </resultMap>
+    <select id="countAllBlogs" resultType="int">
+        select count(id)
+        from myblog.t_blog;
+    </select>
     <insert id="saveBlog" parameterType="blog">
         insert into myblog.t_blog(title, content, first_picture, flag,
                                   views, appreciation,
@@ -83,4 +110,6 @@
                 #{creatTime}, #{updateTime}, #{description},
                 #{typeId.id}, #{userId.id});
     </insert>
+
+
 </mapper>
