@@ -8,11 +8,15 @@
     <title>文章阅读</title>
     <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
-    <link rel="stylesheet" th:href="@{/css/master.css}"/>
     <link rel="stylesheet" th:href="@{/css/gloable.css}"/>
     <link rel="stylesheet" th:href="@{/css/nprogress.css}"/>
     <link rel="stylesheet" th:href="@{/css/blog.css}"/>
-    <link rel="stylesheet" th:href="@{/lib/editormd/css/editormd.min.css}">
+    <link rel="stylesheet" th:href="@{/css/me.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" th:href="@{/css/master.css}"/>
+    <link rel="stylesheet" th:href="@{/prism/prism.css}">
+    <link rel="stylesheet" th:href="@{/tocbot/tocbot.css}">
 </head>
 <body>
 <div class="header">
@@ -20,7 +24,7 @@
 <header class="gird-header">
     <div class="header-fixed">
         <div class="header-inner">
-            <a href="javascript:void(0)" class="header-logo" id="logo">MyBlog</a>
+            <span href="javascript:void(0)" class="header-logo">MyBlog</span>
             <nav class="nav" id="nav">
                 <ul>
                     <li><a th:href="@{/index.html}">首页</a></li>
@@ -40,7 +44,7 @@
                     </li>
                 </ul>
             </nav>
-            <a href="#" class="blog-user">
+            <a href="/User/QQLogin" class="blog-user">
                 <!--                <i class="fa fa-qq"></i>-->
             </a>
             <a class="phone-menu">
@@ -51,100 +55,121 @@
         </div>
     </div>
 </header>
-
 <div class="doc-container">
     <div class="container-fixed">
         <div class="col-content" style="width:100%">
             <div class="inner">
                 <article class="article-list">
                     <input type="hidden" value="@Model.BlogTypeID" id="blogtypeid"/>
-                    <section class="article-item">
-                        <aside class="title" style="line-height:1.5;">
-                            <h4 th:text="${blogById.getTitle()}"></h4>
-                            <p class="fc-grey fs-14">
-                                <small>
-                                    作者：<a href="javascript:void(0)" target="_blank" class="fc-link"
-                                          th:text="${blogById.getUserId().getNickname()}"></a>
-                                </small>
-                                <small class="ml10">围观群众：<i class="readcount"
-                                                            th:text="${blogById.getViews()}"></i></small>
-                                <small class="ml10">更新于 <label
-                                        th:text="${#dates.format(blogById.getUpdateTime(),'yyyy-mm-dd hh:mm:ss')}"></label>
-                                </small>
-                            </p>
-                        </aside>
-                        <div class="time mt10" style="padding-bottom:0;">
-                            <span class="day" th:text="${calendar.day}"></span>
-                            <span class="month fs-18" th:text="${calendar.month}+月"><small
-                                    class="fs-14">月</small></span>
-                            <span class="year fs-18" th:text="${calendar.year}+年">2018</span>
-                        </div>
-                        <div class="content artiledetail"
-                             style="border-bottom: 1px solid #e1e2e0; padding-bottom: 20px;">
-                            <div class="layui-container">
-                                <div id="markdownToHtml" class="content">
-                                    <!-- Server-side output Markdown text -->
-                                    <textarea style="display:none;" th:text="${blogById.getContent()}"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="copyright mt20">
-                                <p class="f-toe fc-black">
-                                    非特殊说明，本文版权归 <span th:text="${blogById.getUserId().getNickname()}"></span>
-                                    所有，转载请注明出处.
-                                </p>
-                                <p class="f-toe">
-                                    本文标题：
-                                    <a href="#" class="r-title" th:text="${blogById.getTitle()}"></a>
-                                </p>
-                                <p class="f-toe">
-                                    本文网址：
-                                    <a href="#"
-                                       th:text="'http://www.yanshisan.cn/user/toReadBlog/'+${blogById.getId()}">7</a>
-                                </p>
-                            </div>
-                            <div id="aplayer" style="margin:5px 0"></div>
-                            <!--                            <h6>延伸阅读</h6>-->
-                            <ol class="b-relation"></ol>
-                        </div>
-                        <div class="bdsharebuttonbox share" data-tag="share_1">
-                            <!--                            <ul>-->
-                            <!--                                <li class="f-praise"><span><a class="s-praise"></a></span></li>-->
-                            <!--                                <li class="f-weinxi"><a class="s-weinxi" data-cmd="weixin"></a></li>-->
-                            <!--                                <li class="f-sina"><a class="s-sina" data-cmd="tsina"></a></li>-->
-                            <!--                                <li class="f-qq" href="#"><i class="fa fa-qq"></i></li>-->
-                            <!--                                <li class="f-qzone"><a class="s-qzone" data-cmd="qzone"></a></li>-->
-                            <!--                            </ul>-->
-                        </div>
-                        <div class="f-cb"></div>
-                        <div class="mt20 f-fwn fs-24 fc-grey comment"
-                             style="border-top: 1px solid #e1e2e0; padding-top: 20px;">
-                        </div>
-                        <fieldset class="layui-elem-field layui-field-title">
-                            <legend>发表评论</legend>
-                            <div class="layui-field-box">
-                                <div class="leavemessage" style="text-align:initial">
-                                    <form class="layui-form blog-editor" action="">
-                                        <input type="hidden" name="articleid" id="articleid" value="@Model.ID">
-                                        <div class="layui-form-item">
-                                            <textarea name="editorContent" lay-verify="content" id="remarkEditor"
-                                                      placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                    <div class="layui-container">
+                        <div class="layui-row layui-col-space10">
+                            <div class="layui-col-md9">
+                                <section class="article-item" id="waypoint">
+                                    <aside class="title" style="line-height:1.5;">
+                                        <h4 th:text="${blogById.getTitle()}"></h4>
+                                        <p class="fc-grey fs-14">
+                                            <small>
+                                                作者：<a href="javascript:void(0)" target="_blank" class="fc-link"
+                                                      th:text="${blogById.getUserId().getNickname()}"></a>
+                                            </small>
+                                            <small class="ml10">围观群众：<i class="readcount"
+                                                                        th:text="${blogById.getViews()}"></i></small>
+                                            <small class="ml10">更新于 <label
+                                                    th:text="${#dates.format(blogById.getUpdateTime(),'yyyy-mm-dd hh:mm:ss')}"></label>
+                                            </small>
+                                        </p>
+                                    </aside>
+                                    <div class="time mt10" style="padding-bottom:0;">
+                                        <span class="day" th:text="${calendar.day}"></span>
+                                        <span class="month fs-18" th:text="${calendar.month}+月"><small
+                                                class="fs-14">月</small></span>
+                                        <span class="year fs-18" th:text="${calendar.year}+年">2018</span>
+                                    </div>
+                                    <div class="content typo js-toc-content"
+                                         style="border-bottom: 1px solid #e1e2e0; padding-bottom: 20px;">
+                                        <div id="markdownToHtml" th:utext="${blogById.content}">
                                         </div>
-                                        <div class="layui-form-item">
-                                            <button class="layui-btn" lay-submit="formLeaveMessage"
-                                                    lay-filter="formLeaveMessage">提交留言
-                                            </button>
+                                        <div class="copyright mt20">
+                                            <p class="f-toe fc-black">
+                                                非特殊说明，本文版权归 <span
+                                                    th:text="${blogById.getUserId().getNickname()}"></span>
+                                                所有，转载请注明出处.
+                                            </p>
+                                            <p class="f-toe">
+                                                本文标题：
+                                                <a href="#" class="r-title" th:text="${blogById.getTitle()}"></a>
+                                            </p>
+                                            <p class="f-toe">
+                                                本文网址：
+                                                <a href="#"
+                                                   th:text="'http://www.yanshisan.cn/user/toReadBlog/'+${blogById.getId()}">7</a>
+                                            </p>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div id="aplayer" style="margin:5px 0"></div>
+                                        <!--                            <h6>延伸阅读</h6>-->
+                                        <ol class="b-relation"></ol>
+                                    </div>
+                                    <fieldset id="comment-container" class="layui-elem-field layui-field-title">
+                                        <legend>发表评论</legend>
+                                        <div class="layui-field-box">
+                                            <div class="leavemessage" style="text-align:initial">
+                                                <form class="layui-form blog-editor" action="">
+                                                    <input type="hidden" name="articleid" id="articleid"
+                                                           value="@Model.ID">
+                                                    <div class="layui-form-item">
+                                                <textarea name="editorContent" lay-verify="content"
+                                                          id="remarkEditor"
+                                                          placeholder="请输入内容"
+                                                          class="layui-textarea"></textarea>
+                                                    </div>
+                                                    <div class="layui-form-item">
+                                                        <button class="layui-btn" lay-submit="formLeaveMessage"
+                                                                lay-filter="formLeaveMessage">提交留言
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <ul class="blog-comment" id="blog-comment"></ul>
+                                </section>
                             </div>
-                        </fieldset>
-                        <ul class="blog-comment" id="blog-comment"></ul>
-                    </section>
+                            <div class="layui-col-md3">
+                                <section class="article-item" style="position: fixed;">
+                                    <div class="toc-container" style="position: fixed;"></div>
+                                    <ol class="js-toc">
+                                    </ol>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
                 </article>
             </div>
         </div>
     </div>
+</div>
+<!--右下角小图标-->
+<div id="toolbar" class="m-fixed m-right-bottom" style="display: none">
+    <div style="height: 40px">
+        <a href="#comment-container" class="layui-btn layui-btn-normal">留言</a>
+    </div>
+    <div id="wechartQR" style="width: 64px;height: 40px">
+        <button class="layui-btn layui-btn-normal layui-icon layui-icon-login-wechat"
+                style="width: 64px;height: 38px; font-size: 25px;">
+        </button>
+    </div>
+
+    <div style="width: 64px;height: 40px">
+        <button style="width: 64px;" id="toTop" class="layui-btn layui-btn-normal">
+            <i class="layui-icon layui-icon-top" style="font-size: 35px;margin-left: -2.5px;"></i>
+        </button>
+    </div>
+</div>
+
+<div class="ui toc-container flowing popup transition hidden" style="width: 250px !important;">
+    <ol class="js-toc">
+
+    </ol>
 </div>
 
 <footer class="grid-footer">
@@ -171,22 +196,31 @@
 <script th:src="@{/js/plugins/nprogress.js}"></script>
 <script th:src="@{/js/pagecomment.js}"></script>
 <script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
-<script th:src="@{/lib/editormd/editormd.min.js}"></script>
-<script th:src="@{/admin/lib/editormd/lib/marked.min.js}"></script>
-<script th:src="@{/admin/lib/editormd/lib/prettify.min.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script th:src="@{/prism/prism.js}"></script>
+<script th:src="@{/tocbot/tocbot.min.js}"></script>
+<script th:src="@{/qrcode/qrcode.min.js}"></script>
+<script th:src="@{/waypoints/jquery.waypoints.js}"></script>
+<!--平滑滚动-->
+<script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.3/jquery.scrollTo.min.js"></script>
 <script>NProgress.start();</script>
 <script th:inline="javascript">
     window.onload = function () {
         NProgress.done();
+        $("ul.layui-fixbar").css("display", "none")//隐藏
     };
-    let markdownView;
-
     $(function () {
-        markdownView = editormd.markdownToHTML("markdownToHtml", {
-            // markdown: markdownContent,
-            htmlDecode: true,  // Enable / disable HTML tag encode.
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '.js-toc',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: '.js-toc-content',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
         });
-    });
+    })
 
     function logout() {
         //询问框
@@ -217,7 +251,35 @@
 
         });
     }
-</script>
 
+    let layerQR;
+    $('#wechartQR').mouseover(function () {
+        let temp = '<img id="wechartQRImg" src="/image/wechartQR.png" style="width: 120px;height: 120px"/>';
+        layerQR = layui.layer.tips(temp, '#wechartQR', {
+            anim: 5,
+            tips: [3, '#ffffff'],
+        });
+    });
+    $('#wechartQR').mouseout(function () {
+        layui.layer.close(layerQR);
+    });
+
+    //返回顶部
+    $('#toTop').click(function () {
+        $(window).scrollTo(0, 500);
+    })
+    //滑动监听
+    let waypoint = new Waypoint({
+        element: $('#waypoint'),
+        handler: function (direction) {
+            if (direction == 'down') {
+                $('#toolbar').show(500);
+            } else {
+                $('#toolbar').hide(500);
+            }
+            console.log('Scrolled to waypoint!' + direction)
+        }
+    })
+</script>
 </body>
 </html>

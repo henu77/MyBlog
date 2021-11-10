@@ -8,6 +8,7 @@ import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.RouterService;
 import cn.malong.blog.utils.CalendarUtil;
+import cn.malong.blog.utils.MarkdownUtils;
 import cn.malong.blog.utils.StaticVariable;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,11 @@ public class RouterServiceImpl implements RouterService {
     @Override
     public String toReadBolg(int blogId, Model model) {
         Blog blogById = blogsMapper.getBlogById(blogId);
+        //markdown转换成html
+        if (blogById != null) {
+            String s = MarkdownUtils.markdownToHtmlExtensions(blogById.getContent());
+            blogById.setContent(s);
+        }
         model.addAttribute("blogById", blogById);
         Date creatTime = blogById.getCreatTime();
         Map<String, Integer> calendarMap = new LinkedHashMap<>();
