@@ -119,7 +119,8 @@
     </resultMap>
     <select id="countAllBlogs" resultType="int">
         select count(id)
-        from myblog.t_blog;
+        from myblog.t_blog
+        where published = true;
     </select>
     <insert id="saveBlog" parameterType="blog">
         insert into myblog.t_blog(title, content, first_picture, flag,
