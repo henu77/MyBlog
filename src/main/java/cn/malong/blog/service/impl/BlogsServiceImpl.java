@@ -68,7 +68,7 @@ public class BlogsServiceImpl implements BlogsService {
     public String getBlogsByPage(int page) {
         int limit = StaticVariable.FLOW_PAGE_SIZE;
         int startIndex = (page - 1) * limit;
-        List<Blog> blogData = blogsMapper.getBlogsByLimit(startIndex, limit);
+        List<Blog> blogData = blogsMapper.getBlogsByLimitForFont(startIndex, limit);
         ResponseUtil<Map> json = new ResponseUtil<>();
         if (null == blogData) {
             json.setCode(1);

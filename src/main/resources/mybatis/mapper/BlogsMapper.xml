@@ -25,8 +25,18 @@
         <id column="id" property="id"/>
         <result column="username" property="username"/>
     </resultMap>
-
     <select id="getBlogsByLimit" resultMap="blogMap">
+        select id,
+               title,
+               type_id,
+               user_id,
+               create_time,
+               update_time
+        from myblog.t_blog
+        order by id
+        limit #{startIndex},#{pageSize};
+    </select>
+    <select id="getBlogsByLimitForFont" resultMap="blogMap">
         select id,
                title,
                flag,
@@ -38,7 +48,9 @@
                create_time,
                update_time
         from myblog.t_blog
-        order by update_time desc, recommend desc
+        where published = true
+        order by update_time
+                desc, recommend desc
         limit #{startIndex},#{pageSize};
     </select>
 
