@@ -301,6 +301,10 @@
                         if (item.recommend) {
                             isRecommend = '<div class="fc-flag">' + '置顶' + '</div>';
                         }
+                        let firstPicPath = item.firstPic;
+                        if (firstPicPath.substr(0, 2) != "D:") {
+                            firstPicPath = '/linux' + firstPicPath;
+                        }
                         console.log(index)
                         lis.push('<section class="article-item zoomIn article">\n' +
                             isRecommend +
@@ -315,7 +319,7 @@
                             '</div>\n' +
                             '<div class="content">\n' +
                             '<a href="' + basePath + '/user/toReadBlog/' + item.id + '" class="cover img-light">\n' +
-                            '<img src="file/getImg/' + item.firstPic + '">\n' +
+                            '<img src="file/getImg/' + firstPicPath + '">\n' +
                             '</a>\n' +
                             item.content +
                             '</div>\n' +
