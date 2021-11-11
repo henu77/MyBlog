@@ -9,6 +9,7 @@
         <result column="views" property="views"/>
         <result column="flag" property="flag"/>
         <result column="content" property="content"/>
+        <result column="first_picture" property="firstPicture"/>
         <result column="recommend" property="recommend"/>
         <result column="create_time" property="creatTime"/>
         <result column="update_time" property="updateTime"/>
@@ -42,6 +43,7 @@
                flag,
                content,
                views,
+               first_picture,
                recommend,
                type_id,
                user_id,
@@ -49,8 +51,7 @@
                update_time
         from myblog.t_blog
         where published = true
-        order by recommend
-                desc, update_time  desc
+        order by recommend desc, update_time desc
         limit #{startIndex},#{pageSize};
     </select>
 

@@ -69,6 +69,12 @@ public class BlogsServiceImpl implements BlogsService {
         int limit = StaticVariable.FLOW_PAGE_SIZE;
         int startIndex = (page - 1) * limit;
         List<Blog> blogData = blogsMapper.getBlogsByLimitForFont(startIndex, limit);
+//        System.out.println("参数startIndex===>：" + startIndex);
+//        System.out.println("参数limit===>：" + limit);
+//        System.out.println("结果===>：");
+//        for (Blog blog : blogData) {
+//            System.out.println("ID: "+blog.getId() + "是否推荐：" + blog.isRecommend()+"创建时间" + blog.getCreatTime());
+//        }
         ResponseUtil<Map> json = new ResponseUtil<>();
         if (null == blogData) {
             json.setCode(1);
@@ -98,15 +104,9 @@ public class BlogsServiceImpl implements BlogsService {
                 temp.put("views", blog.getViews());
                 temp.put("recommend", blog.isRecommend());
                 temp.put("firstPic", blog.getFirstPicture());
-                String tempString = "";
-                if (blog.getContent().length() >= 300) {
-                    tempString = MarkdownUtils.markdownToHtml(blog.getContent().substring(0, 300));
-                } else {
-                    tempString = MarkdownUtils.markdownToHtml(blog.getContent().substring(0, blog.getContent().length()));
-                }
-                for(int i=0;i<tempString.length();i++){
-                    if(i%47==0){
-                    }
+                String tempString = blog.getContent();
+                if (blog.getContent().length() >= 250) {
+                    tempString = blog.getContent().substring(0, 250);
                 }
                 temp.put("content", MarkdownUtils.convert(tempString));
                 jsonMap.add(temp);
