@@ -297,44 +297,48 @@
                     console.log(res);
                     //假设你的列表返回在data集合中
                     layui.each(res.data, function (index, item) {
-                        // let isRecommend = '<div class="fc-flag">' + '置顶' + '</div>';
-                        // if (item.recommend) {
-                        //     isRecommend = '<div class="fc-flag">' + '置顶' + '</div>';
-                        // }
+                        let isRecommend = '';
+                        if (item.recommend) {
+                            isRecommend = '<div class="fc-flag">' + '置顶' + '</div>';
+                        }
                         console.log(index)
                         lis.push('<section class="article-item zoomIn article">\n' +
-                            '<div class="fc-flag">置顶</div>\n' +
+                            isRecommend +
                             '<h5 class="title">\n' +
-                            '<span class="fc-blue">【'+item.flag+'】</span>\n' +
-                            '<a href="'+basePath+'/user/toReadBlog/'+item.id+'">'+item.title+'  '+item.id+'</a>\n' +
+                            '<span class="fc-blue">【' + item.flag + '】</span>\n' +
+                            '<a href="' + basePath + '/user/toReadBlog/' + item.id + '">' + item.title + '</a>\n' +
                             '</h5>\n' +
                             '<div class="time">\n' +
-                            '<span class="day">'+item.day+'</span>\n' +
-                            '<span class="month fs-18">'+item.month+'<span class="fs-14">月</span></span>\n' +
-                            '<span class="year fs-18 ml10">'+item.year+'<span class="fs-14">年</span></span>\n' +
+                            '<span class="day">' + item.day + '</span>\n' +
+                            '<span class="month fs-18">' + item.month + '<span class="fs-14">月</span></span>\n' +
+                            '<span class="year fs-18 ml10">' + item.year + '<span class="fs-14">年</span></span>\n' +
                             '</div>\n' +
                             '<div class="content">\n' +
-                            '<a href="'+basePath+'/user/toReadBlog/'+item.id+'" class="cover img-light">\n' +
-                            '<img th:src="@{/image/cover/2019121192339714.png}">\n' +
+                            '<a href="' + basePath + '/user/toReadBlog/' + item.id + '" class="cover img-light">\n' +
+                            '<img src="file/getImg/' + item.firstPic + '">\n' +
                             '</a>\n' +
-                            item.content+
+                            item.content +
                             '</div>\n' +
                             '<div class="read-more">' +
-                            '<a href="'+basePath+'/user/toReadBlog/'+item.id+'" class="fc-black f-fwb">继续阅读</a>' +
+                            '<a href="' + basePath + '/user/toReadBlog/' + item.id + '" class="fc-black f-fwb">继续阅读</a>' +
                             '</div>' +
                             '<aside class="f-oh footer">' +
                             '<div class="f-fl tags">' +
                             '<span class="fa fa-tags fs-16"></span>' +
-                            '<a class="tag">ASP.NET MVC</a>' +
+                            '<a class="tag">' + item.type + '</a>' +
                             '</div>\n' +
                             '<div class="f-fr">' +
                             '<span class="read">' +
+                            '<i class="fa fa-address-card-o fs-16"></i>' +
+                            '<i class="num">&nbsp;' + item.author + '&nbsp;&nbsp;</i>' +
+                            '</span>' +
+                            '<span class="read">' +
                             '<i class="fa fa-eye fs-16"></i>' +
-                            '<i class="num">57</i>' +
+                            '<i class="num">&nbsp;' + item.views + '</i>' +
                             '</span>' +
                             '<span class="ml20">' +
                             '<i class="fa fa-comments fs-16"></i>' +
-                            '<a href="javascript:void(0)" class="num fc-grey">1</a>' +
+                            '<a href="javascript:void(0)" class="num fc-grey">&nbsp;' + item.comments + '</a>' +
                             '</span>' +
                             '</div>' +
                             '</aside>' +

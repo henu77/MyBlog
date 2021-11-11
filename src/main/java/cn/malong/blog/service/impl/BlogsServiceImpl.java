@@ -95,7 +95,7 @@ public class BlogsServiceImpl implements BlogsService {
                 temp.put("title", blog.getTitle());
                 temp.put("flag", blog.getFlag());
                 temp.put("type", blog.getTypeId().getName());
-                temp.put("author", blog.getUserId().getUsername());
+                temp.put("author", blog.getUserId().getNickname());
                 Date updateTime = blog.getUpdateTime();
                 temp.put("day", CalendarUtil.getDay(updateTime));
                 temp.put("month", CalendarUtil.getMonth(updateTime));
@@ -132,9 +132,10 @@ public class BlogsServiceImpl implements BlogsService {
         Date date = new Date();
         blog.setCreatTime(date);
         blog.setUpdateTime(date);
+        blog.setPublished(true);
         blog.setViews(0);
         blog.setDescription("无");
-        blog.setFirstPicture("1111");
+        blog.setFirstPicture(blog.getFirstPicture());
         int result = blogsMapper.saveBlog(blog);
         ResponseUtil<String> json = new ResponseUtil<>();
         if (result > 0) {

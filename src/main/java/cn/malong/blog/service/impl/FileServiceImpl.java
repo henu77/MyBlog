@@ -73,4 +73,16 @@ public class FileServiceImpl implements FileService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void downloadImg(String path) {
+        try {
+            java.io.File files = new java.io.File(path);
+            if (files.exists()) {
+                FileCopyUtils.copy(new FileInputStream(path), ServletUtil.getResponse().getOutputStream());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

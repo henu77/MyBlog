@@ -10,5 +10,6 @@ public class StaticVariable {
     public final static String ROLE_USER = "user";
     public final static String SPACE = " ";
     public final static int FLOW_PAGE_SIZE = 3;
+    public final static String OS_LINUX="linux";
 
 }
