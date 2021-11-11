@@ -49,8 +49,8 @@
                update_time
         from myblog.t_blog
         where published = true
-        order by update_time
-                desc, recommend desc
+        order by recommend
+                desc, update_time  desc
         limit #{startIndex},#{pageSize};
     </select>
 
