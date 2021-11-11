@@ -1,5 +1,6 @@
 package cn.malong.blog.aspect;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import java.util.Arrays;
  */
 @Aspect
 @Component
+@Slf4j
 public class LogAspect {
 
     private final Logger logger= LoggerFactory.getLogger(this.getClass());

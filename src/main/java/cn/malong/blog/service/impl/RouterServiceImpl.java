@@ -99,6 +99,7 @@ public class RouterServiceImpl implements RouterService {
         calendarMap.put("month", CalendarUtil.getMonth(creatTime));
         calendarMap.put("day", CalendarUtil.getDay(creatTime));
         model.addAttribute("calendar", calendarMap);
+        blogsMapper.addViews(blogId);
         return "/user/read";
     }
 

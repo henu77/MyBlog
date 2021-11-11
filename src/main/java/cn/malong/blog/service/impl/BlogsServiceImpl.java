@@ -7,10 +7,7 @@ import cn.malong.blog.pojo.Blog;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.BlogsService;
-import cn.malong.blog.utils.CalendarUtil;
-import cn.malong.blog.utils.DateUtils;
-import cn.malong.blog.utils.ResponseUtil;
-import cn.malong.blog.utils.StaticVariable;
+import cn.malong.blog.utils.*;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,6 +96,19 @@ public class BlogsServiceImpl implements BlogsService {
                 temp.put("year", CalendarUtil.getYear(updateTime));
                 temp.put("comments", commentsMapper.countCommentsByBlogId(blog.getId()));
                 temp.put("views", blog.getViews());
+                temp.put("recommend", blog.isRecommend());
+                temp.put("firstPic", blog.getFirstPicture());
+                String tempString = "";
+                if (blog.getContent().length() >= 300) {
+                    tempString = MarkdownUtils.markdownToHtml(blog.getContent().substring(0, 300));
+                } else {
+                    tempString = MarkdownUtils.markdownToHtml(blog.getContent().substring(0, blog.getContent().length()));
+                }
+                for(int i=0;i<tempString.length();i++){
+                    if(i%47==0){
+                    }
+                }
+                temp.put("content", MarkdownUtils.convert(tempString));
                 jsonMap.add(temp);
             }
             json.setData(jsonMap);

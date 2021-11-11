@@ -28,4 +28,6 @@ public interface BlogsMapper {
      * @return
      */
     int saveBlog(Blog blog);
+
+    void addViews(int blogId);
 }

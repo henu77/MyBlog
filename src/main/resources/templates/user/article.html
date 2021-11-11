@@ -296,8 +296,12 @@
                     res = JSON.parse(res);
                     //假设你的列表返回在data集合中
                     layui.each(res.data, function (index, item) {
+                        let isRecommend = '';
+                        if (item.recommend) {
+                            isRecommend = '<div class="fc-flag">' + '置顶' + '</div>';
+                        }
                         lis.push('<section class="article-item zoomIn article">' +
-                            '<div class="fc-flag">' + '是否置顶' + '</div>' +
+                            isRecommend +
                             '<h5 class="title">' +
                             '<span class="fc-blue">【' + item.flag + '】</span>' +
                             '<a href="/user/toReadBlog/' + item.id + '">' + item.title + '</a>' +
@@ -309,8 +313,8 @@
                             '</div>' +
                             '<div class="content">' +
                             '<a href="/user/toReadBlog/' + item.id + '" class="cover img-light">' +
-                            '<img th:src="@{/image/cover/2019121192339714.png}">' +
-                            '</a>' +
+                            '<img src="' + basePath + item.fistPic + '">'  +
+                            '</a>' + item.content+
                             '</div>' +
                             '<div class="read-more">' +
                             '<a href="/user/toReadBlog/' + item.id + '" class="fc-black f-fwb">' + '继续阅读' + '</a>' +
@@ -320,7 +324,7 @@
                             '</div>' +
                             '<div class="f-fr">' +
                             '<span class="read"> <i class="fa fa-eye fs-16"></i>' +
-                            '<i class="num">' + item.views + '</i>' +
+                            '<a href="javascript:void(0)" class="num fc-grey">' + item.views + '</a>' +
                             '</span>' +
                             '<span class="ml20"> <i class="fa fa-comments fs-16"></i>' +
                             '<a href="javascript:void(0)" class="num fc-grey">' + item.comments + '</a></span>' +

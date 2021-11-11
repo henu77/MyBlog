@@ -116,7 +116,24 @@
             <artifactId>commonmark-ext-gfm-tables</artifactId>
             <version>0.17.0</version>
         </dependency>
+        <!--Html转普通文本-->
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.3</version>
+        </dependency>
 
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
 
     </dependencies>
 
