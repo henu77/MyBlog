@@ -306,12 +306,12 @@ public class UserServiceImpl implements UserService {
         System.out.println();
     }
 
-    private UserInfo getUserInfoFromSession() {
+    public static UserInfo getUserInfoFromSession() {
         UserInfo userInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
         return userInfo;
     }
 
-    private boolean isHavingAuthority() {
+    public static boolean isHavingAuthority() {
         UserInfo userInfoFromSession = getUserInfoFromSession();
         if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_USER)) {
             return false;

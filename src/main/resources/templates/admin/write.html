@@ -147,7 +147,7 @@
                 }
             }
         })
-
+        //发布文章
         form.on('submit(postArticle)', function (data) {
             data.field;
             console.log(JSON.stringify(data.field));
@@ -182,13 +182,47 @@
             })
             return false;
         });
-
+        //保存文章
+        form.on('submit(saveArticle)', function (data) {
+            data.field;
+            console.log(JSON.stringify(data.field));
+            let postLayer;
+            postLayer = layui.layer.msg('正在保存', {icon: 16, shade: 0.01, time: 0});
+            $.ajax({
+                url: basePath + '/blog/saveArticle',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'post',
+                success: function (result) {
+                    layui.layer.close(postLayer);
+                    console.log(result);
+                    if (result.code == 1) {
+                        //成功
+                        layui.layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            miniTab.openNewTabByIframe({
+                                href: basePath + "/admin/blogs.html",
+                                title: "文章管理",
+                            });
+                        });
+                    } else {
+                        //失败
+                        layui.layer.msg(result.msg, {icon: 2});
+                    }
+                },
+                error: function (arg) {
+                    layui.layer.close(postLayer);
+                    layui.layer.msg(arg);
+                }
+            })
+            return false;
+        });
         //普通图片上传
         let uploadInst = upload.render({
             elem: '#uploadFirstPic'
             , url: '/file/upload/'
             , accept: 'images'
-            , size: 50000
+            , size: 5120
             , before: function (obj) {
                 obj.preview(function (index, file, result) {
                     $('#demo1').attr('src', result);

@@ -42,9 +42,6 @@ public class BlogsServiceImpl implements BlogsService {
             return "";
         }
 
-        // 查看是否正确
-//        System.out.println(blogDataToJson(blogData));
-
         return (blogDataToJson(blogData));
     }
 
@@ -69,12 +66,6 @@ public class BlogsServiceImpl implements BlogsService {
         int limit = StaticVariable.FLOW_PAGE_SIZE;
         int startIndex = (page - 1) * limit;
         List<Blog> blogData = blogsMapper.getBlogsByLimitForFont(startIndex, limit);
-//        System.out.println("参数startIndex===>：" + startIndex);
-//        System.out.println("参数limit===>：" + limit);
-//        System.out.println("结果===>：");
-//        for (Blog blog : blogData) {
-//            System.out.println("ID: "+blog.getId() + "是否推荐：" + blog.isRecommend()+"创建时间" + blog.getCreatTime());
-//        }
         ResponseUtil<Map> json = new ResponseUtil<>();
         if (null == blogData) {
             json.setCode(1);
@@ -119,12 +110,57 @@ public class BlogsServiceImpl implements BlogsService {
     }
 
     /**
+     * 保存博客
+     *
      * @param blog
      * @return
-     * @auther MaLong
      */
     @Override
-    public String postArticle(Blog blog) {
+    public String saveArticle(Blog blog) {
+        initBlog(blog);
+        blog.setPublished(false);
+        int result = blogsMapper.saveBlog(blog);
+        ResponseUtil<String> json = new ResponseUtil<>();
+        if (result > 0) {
+            json.setCode(1);
+            json.setMsg("保存成功");
+        } else {
+            json.setCode(0);
+            json.setMsg("保存失败");
+        }
+        return json.toString();
+    }
+
+    @Override
+    public String removeBlogById(int id) {
+        if (!UserServiceImpl.isHavingAuthority()) {
+            //用户权限为 user 时
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您的权限太低！");
+            return json.toString();
+        }
+        UserInfo nowUserInfo = UserServiceImpl.getUserInfoFromSession();
+        if (nowUserInfo.getId() != blogsMapper.getAuthorByBlogId(id)) {
+            //用户删除的博客的作者不是自己的时
+            ResponseUtil<String> json = new ResponseUtil<>();
+            json.setCode(0);
+            json.setMsg("您不能删除别人的博客！");
+            return json.toString();
+        }
+        int result = blogsMapper.removeBlogById(id);
+        ResponseUtil<String> json = new ResponseUtil<>();
+        if (result > 0) {
+            json.setCode(1);
+            json.setMsg("删除成功");
+        } else {
+            json.setCode(0);
+            json.setMsg("删除失败");
+        }
+        return json.toString();
+    }
+
+    private void initBlog(Blog blog) {
         UserInfo userInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
         blog.setUserId(userInfo);
         Type typeById = typesMapper.getTypeById(blog.getTypeId().getId());
@@ -132,10 +168,20 @@ public class BlogsServiceImpl implements BlogsService {
         Date date = new Date();
         blog.setCreatTime(date);
         blog.setUpdateTime(date);
-        blog.setPublished(true);
         blog.setViews(0);
         blog.setDescription("无");
         blog.setFirstPicture(blog.getFirstPicture());
+    }
+
+    /**
+     * @param blog
+     * @return
+     * @auther MaLong
+     */
+    @Override
+    public String postArticle(Blog blog) {
+        initBlog(blog);
+        blog.setPublished(true);
         int result = blogsMapper.saveBlog(blog);
         ResponseUtil<String> json = new ResponseUtil<>();
         if (result > 0) {
@@ -182,8 +228,9 @@ public class BlogsServiceImpl implements BlogsService {
                 temp.put("title", blog.getTitle());
                 temp.put("type", blog.getTypeId().getName());
                 temp.put("user", blog.getUserId().getUsername());
-                temp.put("creatTime", DateUtils.d2t(blog.getCreatTime()).toString());
-                temp.put("updateTime", DateUtils.d2t(blog.getUpdateTime()).toString());
+                temp.put("isPublic", blog.isPublished() == true ? "公开" : "私有");
+                temp.put("creatTime", DateUtils.dateToString(blog.getCreatTime()));
+                temp.put("updateTime", DateUtils.dateToString(blog.getUpdateTime()));
                 jsonMap.add(temp);
             }
             json.setData(jsonMap);

@@ -10,6 +10,7 @@
         <result column="flag" property="flag"/>
         <result column="content" property="content"/>
         <result column="first_picture" property="firstPicture"/>
+        <result column="published" property="published"/>
         <result column="recommend" property="recommend"/>
         <result column="create_time" property="creatTime"/>
         <result column="update_time" property="updateTime"/>
@@ -31,6 +32,7 @@
                title,
                type_id,
                user_id,
+               published,
                create_time,
                update_time
         from myblog.t_blog
@@ -56,7 +58,14 @@
     </select>
 
     <select id="getBlogsByLimitByTitle" resultMap="blogMap">
-        select id, title, views, type_id, user_id, create_time, update_time
+        select id,
+               title,
+               views,
+               published,
+               type_id,
+               user_id,
+               create_time,
+               update_time
         from myblog.t_blog
         where title like concat('%', #{title}, '%')
         order by id
@@ -65,7 +74,14 @@
 
     <!-- 基于用户还是需要用联查 -->
     <select id="getBlogsByLimitByUser" resultMap="blogMap">
-        select blog.id as id, title, views, type_id, user_id, create_time, update_time
+        select blog.id as id,
+               title,
+               views,
+               published,
+               type_id,
+               user_id,
+               create_time,
+               update_time
         from myblog.t_blog blog,
              myblog.t_user user
         where blog.user_id = user.id
@@ -75,7 +91,14 @@
     </select>
 
     <select id="getBlogsByLimitByTitleAndUser" resultMap="blogMap">
-        select blog.id as id, title, views, type_id, user_id, create_time, update_time
+        select blog.id as id,
+               title,
+               views,
+               type_id,
+               published,
+               user_id,
+               create_time,
+               update_time
         from myblog.t_blog blog,
              myblog.t_user user
         where title like '%${title}%'
@@ -123,6 +146,11 @@
         from myblog.t_blog
         where published = true;
     </select>
+    <select id="getAuthorByBlogId" resultType="int" parameterType="int">
+        select user_id
+        from myblog.t_blog
+        where id = #{id};
+    </select>
     <insert id="saveBlog" parameterType="blog">
         insert into myblog.t_blog(title, content, first_picture, flag,
                                   views, appreciation,
@@ -140,5 +168,9 @@
         set views = views + 1
         where id = #{id};
     </update>
-
+    <delete id="removeBlogById" parameterType="int">
+        delete
+        from myblog.t_blog
+        where id = #{id};
+    </delete>
 </mapper>

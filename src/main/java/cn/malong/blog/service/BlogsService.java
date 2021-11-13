@@ -16,4 +16,8 @@ public interface BlogsService {
     String postArticle(Blog blog);
 
     String getBlogsByPage(int page);
+
+    String saveArticle(Blog blog);
+
+    String removeBlogById(int id);
 }

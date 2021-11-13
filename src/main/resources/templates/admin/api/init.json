@@ -40,29 +40,29 @@
           "target": "_self"
         },
         {
+          "title": "用户管理",
+          "href": "",
+          "icon": "fa fa-user-plus",
+          "target": "_self",
+          "child": [
+            {
+              "title": "普通用户管理",
+              "href": "/admin/user.html",
+              "icon": "fa fa-user",
+              "target": "_self"
+            },
+            {
+              "title": "管理员用户管理",
+              "href": "/admin/adminUser.html",
+              "icon": "fa fa-user-md",
+              "target": "_self"
+            }
+          ]
+        },
+        {
           "title": "个人设置",
           "href": "/admin/user-setting.html",
           "icon": "fa fa-user-circle-o",
-          "target": "_self"
-        }
-      ]
-    },
-    {
-      "title": "用户管理",
-      "icon": "fa fa-slideshare",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "普通用户管理",
-          "href": "/admin/user.html",
-          "icon": "fa fa-user",
-          "target": "_self"
-        },
-        {
-          "title": "管理员用户管理",
-          "href": "/admin/adminUser.html",
-          "icon": "fa fa-user-md",
           "target": "_self"
         }
       ]

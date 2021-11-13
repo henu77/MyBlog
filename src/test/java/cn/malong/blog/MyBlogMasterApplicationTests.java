@@ -11,8 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 @SpringBootTest
 class MyBlogMasterApplicationTests {
@@ -47,14 +49,21 @@ class MyBlogMasterApplicationTests {
     @Test
     void test() {
         Date date = new Date();
-        System.out.println(CalendarUtil.getDay(date));
-        System.out.println(CalendarUtil.getMonth(date)+1);
-        System.out.println(CalendarUtil.getYear(date));
-        System.out.println(CalendarUtil.getDay(date));
-        System.out.println(CalendarUtil.getMonth(date)+1);
-        System.out.println(CalendarUtil.getYear(date));
-        System.out.println(CalendarUtil.getDay(date));
-        System.out.println(CalendarUtil.getMonth(date)+1);
-        System.out.println(CalendarUtil.getYear(date));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CHINA);
+        DateFormat timeInstance = DateFormat.getTimeInstance(DateFormat.MEDIUM, Locale.CHINA);
+        String format = dateFormat.format(date);
+        String time = timeInstance.format(date);
+        System.out.println(format+time);
+//        System.out.println(CalendarUtil.getDay(date));
+//        System.out.println(CalendarUtil.getMonth(date)+1);
+//        System.out.println(CalendarUtil.getYear(date));
+//        System.out.println(CalendarUtil.getDay(date));
+//        System.out.println(CalendarUtil.getMonth(date)+1);
+//        System.out.println(CalendarUtil.getYear(date));
+//        System.out.println(CalendarUtil.getDay(date));
+//        System.out.println(CalendarUtil.getMonth(date)+1);
+//        System.out.println(CalendarUtil.getYear(date));
     }
 }

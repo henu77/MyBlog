@@ -35,4 +35,8 @@ public interface BlogsMapper {
     int saveBlog(Blog blog);
 
     void addViews(int blogId);
+
+    int removeBlogById(int id);
+
+    int getAuthorByBlogId(int id);
 }
