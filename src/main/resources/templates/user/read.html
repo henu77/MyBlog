@@ -17,6 +17,16 @@
     <link rel="stylesheet" th:href="@{/css/master.css}"/>
     <link rel="stylesheet" th:href="@{/prism/prism.css}">
     <link rel="stylesheet" th:href="@{/tocbot/tocbot.css}">
+    <link rel="stylesheet" th:href="@{/css/message.css}"/>
+    <style>
+        .commentHr {
+            height: 1px;
+            margin-left: 53px;
+            background-color: #1E9FFF;
+
+            color: #1E9FFF !important
+        }
+    </style>
 </head>
 <body>
 <div class="header">
@@ -106,32 +116,9 @@
                                             </p>
                                         </div>
                                         <div id="aplayer" style="margin:5px 0"></div>
-                                        <!--                            <h6>延伸阅读</h6>-->
+                                        <!--                                        <h6>延伸阅读</h6>-->
                                         <ol class="b-relation"></ol>
                                     </div>
-                                    <fieldset id="comment-container" class="layui-elem-field layui-field-title">
-                                        <legend>发表评论</legend>
-                                        <div class="layui-field-box">
-                                            <div class="leavemessage" style="text-align:initial">
-                                                <form class="layui-form blog-editor" action="">
-                                                    <input type="hidden" name="articleid" id="articleid"
-                                                           value="@Model.ID">
-                                                    <div class="layui-form-item">
-                                                <textarea name="editorContent" lay-verify="content"
-                                                          id="remarkEditor"
-                                                          placeholder="请输入内容"
-                                                          class="layui-textarea"></textarea>
-                                                    </div>
-                                                    <div class="layui-form-item">
-                                                        <button class="layui-btn" lay-submit="formLeaveMessage"
-                                                                lay-filter="formLeaveMessage">提交留言
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <ul class="blog-comment" id="blog-comment"></ul>
                                 </section>
                             </div>
                             <div class="layui-col-md3">
@@ -139,6 +126,41 @@
                                     <div class="toc-container" style="position: fixed;"></div>
                                     <ol class="js-toc">
                                     </ol>
+                                </section>
+                            </div>
+                            <div class="layui-col-md9">
+                                <section class="article-item">
+                                    <fieldset class="layui-elem-field">
+                                        <legend>评论区</legend>
+                                        <div class="layui-field-box">
+                                            <ul class="message-list" id="blog-comment">
+                                            </ul>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset id="comment-container" class="layui-elem-field layui-field-title">
+                                        <legend>发表评论</legend>
+                                        <div class="layui-field-box">
+                                            <div class="leavemessage" style="text-align:initial">
+                                                <form class="layui-form" action="">
+                                                    <input type="hidden" name="blogId"
+                                                           th:value="${blogById.getId()}">
+                                                    <input type="hidden" name="parentCommentId"
+                                                           value="0">
+                                                    <div class="layui-form-item">
+                                                    <textarea name="content" lay-verify="required"
+                                                              placeholder="请输入内容" id="remarkEditor"
+                                                              class="layui-textarea"></textarea>
+                                                    </div>
+                                                    <div class="layui-form-item">
+                                                        <button id="commentBut" class="layui-btn layui-btn-normal"
+                                                                lay-filter="topComment"
+                                                                lay-submit>发表评论
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </section>
                             </div>
                         </div>
@@ -151,7 +173,7 @@
 <!--右下角小图标-->
 <div id="toolbar" class="m-fixed m-right-bottom" style="display: none">
     <div style="height: 40px">
-        <a href="#comment-container" class="layui-btn layui-btn-normal">留言</a>
+        <a href="#comment-container" class="layui-btn layui-btn-normal">评论</a>
     </div>
     <div id="wechartQR" style="width: 64px;height: 40px">
         <button class="layui-btn layui-btn-normal layui-icon layui-icon-login-wechat"
@@ -164,12 +186,6 @@
             <i class="layui-icon layui-icon-top" style="font-size: 35px;margin-left: -2.5px;"></i>
         </button>
     </div>
-</div>
-
-<div class="ui toc-container flowing popup transition hidden" style="width: 250px !important;">
-    <ol class="js-toc">
-
-    </ol>
 </div>
 
 <footer class="grid-footer">
@@ -194,7 +210,7 @@
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/js/yss/gloable.js}"></script>
 <script th:src="@{/js/plugins/nprogress.js}"></script>
-<script th:src="@{/js/pagecomment.js}"></script>
+<!--<script th:src="@{/js/pagecomment.js}"></script>-->
 <script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <script th:src="@{/prism/prism.js}"></script>
@@ -205,11 +221,99 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.3/jquery.scrollTo.min.js"></script>
 <script>NProgress.start();</script>
 <script th:inline="javascript">
+
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+
+        form.on('submit(topComment)', function (data) {
+            let butId = '#' + data.elem.id;
+            $(butId).addClass("layui-btn-disabled")
+            $.ajax({
+                url: basePath + '/comment/commentBlog',
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    $(butId).removeClass("layui-btn-disabled")
+                    if (result.code) {
+                        $(butId).parents('.message-list li').find('.btn-reply').text('回复');
+                        $('#blog-comment').append(result.data[0]);
+                        $(butId).parent().prev().first().find('textarea').val('')
+                        layer.msg(result.msg, {icon: 1, time: 1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                },
+                error: function (arg) {
+                    $(butId).removeClass("layui-btn-disabled")
+                    layer.msg(arg);
+                }
+            })
+            return false;
+        });
+        form.on('submit(replyTopComment)', function (data) {
+            let para = +data.field.parentCommentId
+                + '/' + data.field.repliedUserId + '/' + data.field.blogId + '/' + data.field.content;
+            let butId = '#' + data.elem.id;
+            $(butId).addClass("layui-btn-disabled")
+            $.ajax({
+                url: basePath + '/comment/replyTopComment/' + para,
+                dataType: 'json',
+                type: 'put',
+                success: function (result) {
+                    $(butId).removeClass("layui-btn-disabled")
+                    if (result.code) {
+                        $(butId).parent().parent().parent().addClass('layui-hide')
+                        $(butId).parents('.message-list li').find('.btn-reply').text('回复');
+                        if ($(butId).parent().parent().parent().parent().children().length == 2) {
+                            $(butId).parent().parent().parent().before("<hr class='commentHr'>")
+                        }
+                        $(butId).parent().parent().parent().before(result.data[0]);
+                        $(butId).parent().prev().first().find('textarea').val('')
+                        layer.msg(result.msg, {icon: 1, time: 1000});
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                },
+                error: function (arg) {
+                    $(butId).removeClass("layui-btn-disabled")
+                    layer.msg(arg);
+                }
+            })
+            return false;
+        });
+
+    })
+
     window.onload = function () {
         NProgress.done();
         $("ul.layui-fixbar").css("display", "none")//隐藏
     };
+    $('#blog-comment').on('click', '.btn-reply', function (e) {
+        var ve = $(e.target);//获取当前点击事件的元素
+        var parentCommentId = ve.attr('data-parentCommentId')
+            , repliedUserId = ve.attr('data-repliedUserId')
+            , repliedUserNickname = ve.attr('data-repliedUserNickname')
+            , $container = ve.parent('p').parent().siblings('.replycontainer');
+        if (ve.text() == '回复') {
+            $container.find('textarea').attr('placeholder', '回复【' + repliedUserNickname + '】');
+            $container.removeClass('layui-hide');
+            $container.find('input[name="parentCommentId"]').val(parentCommentId);
+            $container.find('input[name="repliedUserId"]').val(repliedUserId);
+            ve.parents('.message-list li').find('.btn-reply').text('回复');
+            ve.text('收起');
+        } else {
+            $container.addClass('layui-hide');
+            $container.find('input[name="parentCommentId"]').val(0);
+            ve.text('回复');
+        }
+    });
+
     $(function () {
+        //加载目录
         tocbot.init({
             // Where to render the table of contents.
             tocSelector: '.js-toc',
@@ -220,6 +324,24 @@
             // For headings inside relative or absolute positioned containers within content.
             hasInnerContainers: true,
         });
+        //加载评论
+        let blogId = [[${blogById.getId()}]];
+
+        $.ajax({
+            url: basePath + '/comment/getCommentsByBlogId/' + blogId,
+            dataType: 'json',
+            type: 'get',
+            success: function (result) {
+                if (result.code) {
+                    $('#blog-comment').html(result.data[0]);
+                } else {
+                    // layer.msg(result.msg, {icon: 2, time: 1000});
+                }
+            },
+            error: function (arg) {
+                layer.msg(arg);
+            }
+        })
     })
 
     function logout() {

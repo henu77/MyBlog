@@ -5,14 +5,29 @@
 
 <mapper namespace="cn.malong.blog.dao.CommentsMapper">
 
-    <select id="getCommentDataByLimit" resultType="comment">
+    <resultMap id="commentMap" type="comment">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+        <result column="blog_id" property="blogId"/>
+        <result column="parent_comment_id" property="parentCommentId"/>
+        <association property="userId" column="user_id" select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
+        <association property="repliedUserId" column="replied_user_id"
+                     select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
+    </resultMap>
+    <insert id="insertAComment" parameterType="comment">
+        insert into myblog.t_comment
+        (user_id, content, create_time, blog_id, replied_user_id, parent_comment_id)
+        values (#{userId.id}, #{content}, #{createTime}, #{blogId}, #{repliedUserId.id}, #{parentCommentId});
+    </insert>
+    <select id="getCommentDataByLimit" resultMap="commentMap">
         select *
         from myblog.t_comment
         limit #{startIndex},#{pageSize};
     </select>
 
-    <select id="getCommentDataByNicknameAndContent" resultType="comment">
-        select * from t_comment
+    <select id="getCommentDataByNicknameAndContent" resultMap="commentMap">
+        select * from myblog.t_comment
         <where>
             <if test="nickname != null">
                 nickname like concat('%',#{nickname},'%')
@@ -31,14 +46,15 @@
     </delete>
 
     <delete id="deleteCommentsByBatch">
-        delete from t_comment where id in
+        delete from myblog.t_comment where id in
         <foreach collection="array" item="id" index="no" separator="," open="(" close=")">
             #{id}
         </foreach>
     </delete>
 
     <select id="countComment" resultType="int">
-        select count(id) from t_comment;
+        select count(id)
+        from myblog.t_comment;
     </select>
 
     <select id="countCommentsByBlogId" resultType="int">
@@ -46,4 +62,27 @@
         from myblog.t_comment
         where blog_id = #{blogId};
     </select>
+    <select id="getAllChildComments" resultMap="commentMap">
+        select *
+        from myblog.t_comment
+        where parent_comment_id = #{id};
+    </select>
+    <resultMap id="topAndChildComments" type="cn.malong.blog.pojo.Comment">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+        <result column="blog_id" property="blogId"/>
+        <result column="parent_comment_id" property="parentCommentId"/>
+        <association property="userId" column="user_id" select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
+        <association property="repliedUserId" column="replied_user_id"
+                     select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
+        <association property="childComments" column="id" select="getAllChildComments"/>
+    </resultMap>
+    <select id="getAllCommentsByBlogId" resultMap="topAndChildComments">
+        select *
+        from myblog.t_comment
+        where blog_id = #{blogId}
+          and parent_comment_id = 0;
+    </select>
+
 </mapper>

@@ -14,8 +14,9 @@
 .message-list .info span{padding-right:5px}
 .message-list .info img{margin-top:-2px}
 .message-list .info .username{color:#01AAED}
-.message-list .info .btn-reply{color:#009688}
-.message-list .comment-content{padding:2px 0 5px 0;min-height:30px;font-size:13px;word-break: break-all}
+.message-list .info .comments{color:#000000}
+.message-list .info .btn-reply{color: mediumseagreen}
+.message-list .comment-content{padding:2px 0 5px 0;min-height:30px;font-size:13px;word-break: break-all;color: #000000}
 .message-list hr{margin-left:53px}
 .comment-parent>img{width:45px;height:45px;margin:5px 5px 5px 0;position:absolute;border-radius:50px}
 .comment-child>img{width:40px;height:40px;margin:5px 5px 5px 0;position:absolute;border-radius:50px}

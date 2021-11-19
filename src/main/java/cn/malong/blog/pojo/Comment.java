@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author malong
  * @Date 2021-10-30 20:15:21
@@ -13,14 +16,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Comment {
     private int id;
-    private String nickname;
-    private String email;
+    private UserInfo userId;
     private String content;
-    private String avatar;
-    private String createTime;
-    private boolean adminComment;
+    private Date createTime;
     private int blogId;
-    private String replyName;
-    private String parentCommentId;
-    private String topCommentId;
+    private UserInfo repliedUserId;
+    private int parentCommentId;
+    private List<Comment> childComments;
 }

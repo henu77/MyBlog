@@ -1,5 +1,7 @@
 package cn.malong.blog.service;
 
+import cn.malong.blog.pojo.Comment;
+
 /**
 *
 * @author malong
@@ -17,4 +19,10 @@ public interface CommentsService {
     String commentDelete(int id);
 
     String commentBatchDelete(int[] ids);
+
+    String commentBlog(Comment comment);
+
+    String getCommentByBlogId(int blogId);
+
+    String replyTopComment(int parentCommentId, int repliedUserId, int blogId, String content);
 }

@@ -1,5 +1,6 @@
 package cn.malong.blog.dao;
 
+import cn.malong.blog.pojo.Blog;
 import cn.malong.blog.pojo.Comment;
 import cn.malong.blog.pojo.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
@@ -27,22 +28,29 @@ public interface CommentsMapper {
 
     /**
      * 动态sql 基于昵称和内容进行查找
+     *
      * @param startIndex
      * @param pageSize
      * @param nickname
      * @param content
      * @return
      */
-    List<Comment> getCommentDataByNicknameAndContent(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize,@Param("nickname")String nickname,@Param("content")String content);
+    List<Comment> getCommentDataByNicknameAndContent(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize, @Param("nickname") String nickname, @Param("content") String content);
 
-    int deleteComment(@Param("id")int id);
+    int deleteComment(@Param("id") int id);
 
     /**
-     *  批量删除
+     * 批量删除
      */
     int deleteCommentsByBatch(int[] ids);
 
     int countComment();
 
     int countCommentsByBlogId(int blogId);
+
+    int insertAComment(Comment comment);
+
+    List<Comment> getAllCommentsByBlogId(int blogId);
+
+    List<Comment> getAllChildComments(int id);
 }

@@ -651,6 +651,7 @@
 }
 
 .comment-child {
+    margin-top: 2px;
     margin-left: 53px;
     min-height: 50px
 }

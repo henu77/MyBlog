@@ -1,9 +1,11 @@
 package cn.malong.blog.service.impl;
 
 import cn.malong.blog.dao.BlogsMapper;
+import cn.malong.blog.dao.CommentsMapper;
 import cn.malong.blog.dao.TypesMapper;
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.Blog;
+import cn.malong.blog.pojo.Comment;
 import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.RouterService;
@@ -32,6 +34,8 @@ public class RouterServiceImpl implements RouterService {
     private UserInfoMapper userInfoMapper;
     @Autowired
     private BlogsMapper blogsMapper;
+    @Autowired
+    private CommentsMapper commentsMapper;
 
     /**
      * 1.从session中取用户信息
@@ -47,7 +51,6 @@ public class RouterServiceImpl implements RouterService {
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         if (null == userInfo) {
             session.setAttribute("login_msg", "请先登录！");
-            System.out.println("toAdminIndex======>请先登录！");
             this.removeAttribute(session, "login_msg");
             return "/user/login";
         } else {
@@ -100,7 +103,36 @@ public class RouterServiceImpl implements RouterService {
         calendarMap.put("day", CalendarUtil.getDay(creatTime));
         model.addAttribute("calendar", calendarMap);
         blogsMapper.addViews(blogId);
+        List<Comment> allComments = commentsMapper.getAllCommentsByBlogId(blogId);
+        //处理不同系统下头像路径问题
+        transformAvatarPath(allComments);
+        model.addAttribute("allComments", allComments);
         return "/user/read";
+    }
+
+    private void transformAvatarPath(List<Comment> allComments) {
+        String avatar = "";
+        String avatar2 = "";
+        for (Comment c :
+                allComments) {
+            avatar = c.getUserId().getAvatar();
+            if (!avatar.startsWith("D:") && !avatar2.startsWith("/linux")) {
+                avatar = "/linux" + avatar;
+                c.getUserId().setAvatar(avatar);
+            }
+            if (c.getChildComments().size() != 0) {
+                for (Comment childComment :
+                        c.getChildComments()) {
+                    avatar2 = childComment.getUserId().getAvatar();
+                    if (!avatar2.startsWith("D:") && !avatar2.startsWith("/linux")) {
+                        avatar2 = "/linux" + avatar2;
+                        childComment.getUserId().setAvatar(avatar2);
+                    }
+                }
+            } else {
+                c.setChildComments(null);
+            }
+        }
     }
 
     /**
