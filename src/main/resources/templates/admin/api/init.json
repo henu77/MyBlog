@@ -34,12 +34,6 @@
           "target": "_self"
         },
         {
-          "title": "编辑文章",
-          "href": "/admin/write",
-          "icon": "fa fa-pencil-square-o",
-          "target": "_self"
-        },
-        {
           "title": "用户管理",
           "href": "",
           "icon": "fa fa-user-plus",
@@ -58,6 +52,12 @@
               "target": "_self"
             }
           ]
+        },
+        {
+          "title": "编辑文章",
+          "href": "/admin/write",
+          "icon": "fa fa-pencil-square-o",
+          "target": "_self"
         },
         {
           "title": "个人设置",

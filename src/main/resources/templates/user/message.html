@@ -262,7 +262,17 @@
         NProgress.done();
     };
 </script>
-<script>
+<script th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    window.setting = function () {
+        layer.open({
+            type: 2,
+            title: '修改个人信息',
+            shade: 0.1,
+            area: ['1000px', '550px'],
+            content: basePath + '/user-setting.html'
+        });
+    }
     function logout() {
         //询问框
         layer.confirm('真的要退出登录吗？', {

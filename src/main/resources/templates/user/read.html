@@ -382,7 +382,15 @@
 
         });
     }
-
+    window.setting = function () {
+        layer.open({
+            type: 2,
+            title: '修改个人信息',
+            shade: 0.1,
+            area: ['1000px', '550px'],
+            content: basePath + '/user-setting.html'
+        });
+    }
     let layerQR;
     $('#wechartQR').mouseover(function () {
         let temp = '<img id="wechartQRImg" src="/image/wechartQR.png" style="width: 120px;height: 120px"/>';
