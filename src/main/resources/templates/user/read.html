@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="renderer" content="webkit">
@@ -258,6 +258,7 @@
             let para = +data.field.parentCommentId
                 + '/' + data.field.repliedUserId + '/' + data.field.blogId + '/' + data.field.content;
             let butId = '#' + data.elem.id;
+            console.log(butId)
             $(butId).addClass("layui-btn-disabled")
             $.ajax({
                 url: basePath + '/comment/replyTopComment/' + para,

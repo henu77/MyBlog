@@ -15,7 +15,7 @@
         <association property="repliedUserId" column="replied_user_id"
                      select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
     </resultMap>
-    <insert id="insertAComment" parameterType="comment">
+    <insert id="insertAComment" useGeneratedKeys="true" keyProperty="id" parameterType="comment">
         insert into myblog.t_comment
         (user_id, content, create_time, blog_id, replied_user_id, parent_comment_id)
         values (#{userId.id}, #{content}, #{createTime}, #{blogId}, #{repliedUserId.id}, #{parentCommentId});

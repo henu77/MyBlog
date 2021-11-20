@@ -111,6 +111,7 @@ public class CommentsServiceImpl implements CommentsService {
             comment.setRepliedUserId(userInfoById);
             int result = commentsMapper.insertAComment(comment);
             if (result > 0) {
+                System.out.println(comment.getId());
                 json.setCode(1);
                 json.setMsg("评论成功!");
                 List<String> data = new LinkedList<>();
