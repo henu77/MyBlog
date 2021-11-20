@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width"/>
-    <title>文章阅读</title>
+    <title th:text="${blogById.getTitle()}"></title>
     <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
     <link rel="stylesheet" th:href="@{/css/gloable.css}"/>
@@ -244,7 +244,15 @@
                         $(butId).parent().prev().first().find('textarea').val('')
                         layer.msg(result.msg, {icon: 1, time: 1000});
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        layer.msg(result.msg, {icon: 2, time: 500}, function () {
+                            layer.open({
+                                type: 2,
+                                title: '登录',
+                                shade: 0.1,
+                                area: ['550px', '500px'],
+                                content: basePath + '/miniLogin.html',
+                            });
+                        });
                     }
                 },
                 error: function (arg) {
