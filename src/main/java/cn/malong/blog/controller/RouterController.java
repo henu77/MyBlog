@@ -41,7 +41,12 @@ public class RouterController {
     }
 
     @RequestMapping("/user/toReadBlog/{blogId}")
-    public String toReadBolg(@PathVariable("blogId") int blogId,Model model) {
+    public String toReadBolg(@PathVariable("blogId") int blogId, Model model) {
         return routerServiceImpl.toReadBolg(blogId, model);
+    }
+
+    @RequestMapping("/admin/toUpdateBlog")
+    public String toUpdateBlog(int id, Model model) {
+        return routerServiceImpl.toUpdateBlog(id, model);
     }
 }

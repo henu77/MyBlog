@@ -154,7 +154,7 @@
 
         window.edit = function (obj) {
             miniTab.openNewTabByIframe({
-                href: basePath + "/admin/updateBlog.html",
+                href: basePath + "/admin/toUpdateBlog?id=" + obj.data.id,
                 title: "修改文章",
             });
         }

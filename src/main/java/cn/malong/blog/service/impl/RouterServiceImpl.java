@@ -65,7 +65,6 @@ public class RouterServiceImpl implements RouterService {
 
     @Override
     public String toAdminWrite(Model model) {
-        HttpServletRequest request = ServletUtil.getRequest();
         List<Type> allTypes = typesMapper.getAllTypes();
         model.addAttribute("allTypes", allTypes);
         return "/admin/write";
@@ -102,6 +101,20 @@ public class RouterServiceImpl implements RouterService {
         model.addAttribute("calendar", calendarMap);
         blogsMapper.addViews(blogId);
         return "/user/read";
+    }
+
+    @Override
+    public String toUpdateBlog(int id, Model model) {
+        Blog blogById = blogsMapper.getBlogById(id);
+        List<Type> allTypes = typesMapper.getAllTypes();
+        model.addAttribute("allTypes", allTypes);
+        String imgPath = blogById.getFirstPicture();
+        if (!imgPath.startsWith("D:") && !imgPath.startsWith("/linux")) {
+            imgPath = "/linux" + imgPath;
+            blogById.setFirstPicture(imgPath);
+        }
+        model.addAttribute("blog", blogById);
+        return "/admin/updateBlog";
     }
 
     /**

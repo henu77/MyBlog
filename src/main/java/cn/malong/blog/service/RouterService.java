@@ -30,4 +30,6 @@ public interface RouterService {
     String toUpdateType(int id,Model model);
 
     String toReadBolg(int blogId, Model model);
+
+    String toUpdateBlog(int id,Model model);
 }

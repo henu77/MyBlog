@@ -38,22 +38,25 @@
                     <select name="typeId" lay-verify="required">
                         <option value="">请选择文章类别</option>
                         <option th:each="type:${allTypes}" th:text="${type.getName()}"
-                                th:value="${type.getId()}"></option>
+                                th:value="${type.getId()}" th:selected="${type.getId()==blog.typeId.getId()}"></option>
                     </select>
                 </div>
                 <label class="layui-form-label">文章类型</label>
                 <div class="layui-input-inline">
                     <select name="flag" lay-verify="required">
                         <option value="">请选择文章类型</option>
-                        <option value="原创">原创</option>
-                        <option value="转载">转载</option>
+                        <option value="原创" th:selected="${blog.flag=='原创'}">原创</option>
+                        <option value="转载" th:selected="${blog.flag=='转载'}">转载</option>
                     </select>
                 </div>
 
-                <input c type="checkbox" name="recommend" value="true" title="&nbsp;&nbsp;推荐" lay-skin="primary">
-                <input type="checkbox" name="appreciation" value="true" title="&nbsp;&nbsp;赞赏" checked
+                <input c type="checkbox" name="recommend" value="true" th:checked="${blog.recommend}"
+                       title="&nbsp;&nbsp;推荐" lay-skin="primary">
+                <input type="checkbox" name="appreciation" value="true" th:checked="${blog.appreciation}"
+                       title="&nbsp;&nbsp;赞赏" checked
                        lay-skin="primary">
-                <input type="checkbox" name="commentabled" value="true" title="&nbsp;&nbsp;评论" checked
+                <input type="checkbox" name="commentabled" value="true" th:checked="${blog.commentabled}"
+                       title="&nbsp;&nbsp;评论" checked
                        lay-skin="primary">
                 <span style="margin-left: 17%">
                     <button class="pear-btn pear-btn-md " id="save" lay-submit lay-filter="saveArticle">
@@ -65,16 +68,10 @@
                     发布
                 </button>
                 </span>
-                <!--                <div style="padding-top: 15px;">-->
-                <!--                    <label class="layui-form-label">首图</label>-->
-                <!--                    <div class="layui-input-inline">-->
-                <!--                        <input class="layui-input" type="text" name="firstPicture" placeholder="首图引用地址，请用http://开头，可省略">-->
-                <!--                    </div>-->
-                <!--                </div>-->
                 <div style="padding-top: 15px;">
                     <label class="layui-form-label">文章标题</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" lay-verify="required" name="title" placeholder="请输入标题">
+                        <input class="layui-input" lay-verify="required" th:value="${blog.title}" name="title" placeholder="请输入标题">
                     </div>
                 </div>
 
@@ -95,7 +92,7 @@
                         <div class="layui-upload-list">
                             <div class="layui-upload-img">
                                 <span id="uploadTips">请上传图片</span>
-                                <img id="firstPic">
+                                <img id="firstPic" th:src="@{/file/getImg}+${blog.firstPicture}">
                             </div>
                         </div>
                         <div style="width: 300px;">
@@ -109,7 +106,7 @@
             </div>
             <div id="editor">
                 <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
-                <textarea name="content" style="display:none;">### Hello Editor.md !</textarea>
+                <textarea name="content" style="display:none;" th:text="${blog.content}"></textarea>
             </div>
         </form>
     </div>
