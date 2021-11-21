@@ -1,7 +1,8 @@
-﻿// layui.use(['jquery'], function () {
-//     var $ = layui.jquery;
-//     article.Init($);//初始化共用js
-// });
+﻿layui.use(['jquery'], function () {
+    var $ = layui.jquery;
+    article.Init($);//初始化共用js
+   
+});
 var article = {};
 article.Init = function ($) {
     //var $ = layui.jquery,
