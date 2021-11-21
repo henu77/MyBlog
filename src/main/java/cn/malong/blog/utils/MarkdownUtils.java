@@ -98,9 +98,12 @@ public class MarkdownUtils {
         String newHtml = document.html().replaceAll("\\\\n", "\n");
         String plainText = Jsoup.clean(newHtml, "", Whitelist.none(), outputSettings);
         String result = StringEscapeUtils.unescapeHtml(plainText.trim());
-        result.replaceAll("<", "");
-        result.replaceAll(">", "");
-        result.replaceAll("#", "");
+        result.replace("<", "");
+        result.replace(">", "");
+        result.replace("'#'", "");
+        result.replace("*","");
+        result.replace("-","");
+        result.replace("`","");
         return result;
     }
 
