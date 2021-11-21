@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <title th:text="评论列表"></title>
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/other/user.css}"/>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form action="" class="layui-form" lay-filter="comment-query-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">评论</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" id="content" name="content" placeholder="" type="text" oninput="liveUpdate()">
+                </div>
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" id="nickname" name="nickname" placeholder="" type="text" oninput="liveUpdate()">
+                </div>
+                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="comment-query" lay-submit>
+                    <i class="layui-icon layui-icon-search"></i>
+                    查询
+                </button>
+                <button class="pear-btn pear-btn-md" type="reset">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                    重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="user-left user-collasped">
+    <div class="layui-card">
+        <div class="layui-card-body">
+        </div>
+    </div>
+</div>
+<div class="user-main user-collasped">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <table id="ad-table" lay-filter="ad-table"></table>
+        </div>
+    </div>
+</div>
+</body>
+
+<script id="ad-toolbar" type="text/html">
+    <button
+            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="pear-icon pear-icon-add"></i>
+        新增
+    </button>
+    <button class="pear-btn pear-btn-md"
+            lay-event="batchRemove">
+        <i class="pear-icon pear-icon-ashbin"></i>
+        删除
+    </button>
+</script>
+
+<script id="comment-bar" type="text/html">
+    <button
+            class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="pear-icon pear-icon-edit"></i>
+    </button>
+    <button
+            class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="pear-icon pear-icon-ashbin"></i>
+    </button>
+</script>
+
+<script id="user-sex" type="text/html">
+    {{#if (d.sex == 0) { }}
+    <span>男</span>
+    {{# }else if(d.sex == 1){ }}
+    <span>女</span>
+    {{# } }}
+</script>
+
+<script id="user-login" type="text/html">
+    {{#if (d.login == 0) { }}
+    <span>在线</span>
+    {{# }else if(d.sex == 1){ }}
+    <span>离线</span>
+    {{# } }}
+</script>
+
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    console.log(basePath);
+    layui.use(['table', 'dtree', 'form', 'jquery', 'popup', 'common'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let popup = layui.popup;
+        let common = layui.common;
+
+
+        let cols = [
+            [
+                {type: 'checkbox'},
+                {title: '昵称', field: 'nickname', align: 'center'},
+                {title: '邮箱', field: 'email', align: 'center'},
+                {title: '链接地址', field: 'linkPath', align: 'center'},
+                {title: '介绍', field: 'des', align: 'center'},
+                {title: '提交时间', field: 'submitTime', align: 'center'},
+                {title: '当前状态', field: 'nowState', align: 'center'},
+                {title: '操作', toolbar: '#comment-bar', align: 'center', width: 130}
+            ]
+        ]
+
+        table.render({
+            elem: '#ad-table',
+            url: basePath + '/ad/dataLimit',
+            page: true,
+            cols: cols,
+            skin: 'line',
+            height: 'full-148',
+            toolbar: '#ad-toolbar',
+            text: {none: '暂无人员信息'},
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+                title: "刷新"
+            }, 'filter', 'print', 'exports']
+        });
+
+
+        table.on('tool(ad-table)', function (obj) {
+            if (obj.event === 'remove') {
+                window.remove(obj);
+            } else if (obj.event === 'edit') {
+                window.edit(obj);
+            }
+        });
+
+        table.on('toolbar(ad-table)', function (obj) {
+            if (obj.event === 'add') {
+                window.add();
+            } else if (obj.event === 'refresh') {
+                window.refresh();
+            } else if (obj.event === 'batchRemove') {
+                window.batchRemove(obj);
+            }
+        });
+
+        form.on('submit(comment-query)', function (data) {
+            window.refresh(data.field);
+            return false;
+        });
+
+        window.add = function () {
+            layer.open({
+                type: 2,
+                title: '新增',
+                shade: 0.1,
+                area: ['550px', '550px'],
+                content: basePath + 'add'
+            });
+        }
+
+        window.edit = function (obj) {
+            layer.open({
+                type: 2,
+                title: '修改',
+                shade: 0.1,
+                area: ['550px', '500px'],
+                content: basePath + 'edit?userId=' + obj.data['userId']
+            });
+        }
+
+        window.remove = function (obj) {
+            layer.confirm('确定要删除该评论', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: basePath + "/comment/delete?id=" + obj.data['id'],
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        layer.close(loading);
+                        if (result.code) {
+                            popup.success(result.msg, function () {
+                                refresh();
+                                obj.del();
+                            });
+                        } else {
+                            popup.failure(result.msg);
+                        }
+                    }
+                })
+            });
+        }
+
+        window.batchRemove = function (obj) {
+            let ids = common.checkField(obj, 'id');
+            console.log(ids);
+            if (common.isEmpty(ids)) {
+                popup.warning("未选中数据");
+                return false;
+            }
+            layer.confirm('确定要删除选中的评论', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index);
+                let loading = layer.load();
+                $.ajax({
+                    url: basePath + "/comment/batchDelete?ids=" + ids,
+                    dataType: 'json',
+                    type: 'delete',
+                    success: function (result) {
+                        console.log("还没成功");
+                        layer.close(loading);
+                        if (result.code) {
+                            popup.success(result.msg, function () {
+                                table.reload('ad-table');
+                            })
+                        } else {
+                            popup.failure(result.msg);
+                        }
+                        console.log("删除评论成功")
+                    }
+                })
+            });
+        }
+
+        window.refresh = function (param) {
+            table.reload('ad-table', {where: param});
+        }
+
+        window.liveUpdate = function () {
+            let change = {content:$('#content').val(),nickname:$('#nickname').val()};
+            window.refresh(change);
+        }
+    })
+</script>
+</html>

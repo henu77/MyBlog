@@ -54,6 +54,12 @@
           ]
         },
         {
+          "title": "友链管理",
+          "href": "/admin/links.html",
+          "icon": "fa fa-link",
+          "target": "_self"
+        },
+        {
           "title": "编辑文章",
           "href": "/admin/write",
           "icon": "fa fa-pencil-square-o",

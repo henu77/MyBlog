@@ -1,7 +1,9 @@
 package cn.malong.blog;
 
+import cn.malong.blog.dao.AdMapper;
 import cn.malong.blog.dao.CommentsMapper;
 import cn.malong.blog.dao.UserInfoMapper;
+import cn.malong.blog.pojo.Advertisement;
 import cn.malong.blog.pojo.Comment;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.CalendarUtil;
@@ -40,15 +42,26 @@ class MyBlogMasterApplicationTests {
 //        connection.close();
     }
 
+    @Autowired
+    private AdMapper adMapper;
+
     @Test
     void contextLoads1() throws SQLException {
-//        System.out.println(this.dataSource.getClass());
-//        Connection connection = this.dataSource.getConnection();
-//        System.out.println(connection);
-//        DruidDataSource druidDataSource = (DruidDataSource)this.dataSource;
-//        System.out.println("druidDataSource 数据源最大连接数：" + druidDataSource.getMaxActive());
-//        System.out.println("druidDataSource 数据源初始化连接数：" + druidDataSource.getInitialSize());
-//        connection.close();
+//        Advertisement advertisement = new Advertisement();
+//        advertisement.setTitle("广告1");
+//        advertisement.setPath("123");
+//        advertisement.setDes("!!!");
+//        advertisement.setMiniDes("...");
+//        advertisement.setIcon("000");
+//        advertisement.setEmail("@qq.com");
+//        advertisement.setState(true);
+//        int i = adMapper.insertAnAd(advertisement);
+//        System.out.println(i);
+        List<Advertisement> adDataByLimit = adMapper.getAdDataByLimit(0, 10);
+        for (Advertisement a :
+                adDataByLimit) {
+            System.out.println(a);
+        }
     }
 
     private void transformAvatarPath(List<Comment> allComments) {
@@ -57,7 +70,7 @@ class MyBlogMasterApplicationTests {
         for (Comment c :
                 allComments) {
             avatar = c.getUserId().getAvatar();
-            if (!avatar.substring(0, 2).equals("D:")&& !avatar2.substring(0, 6).equals("/linux")) {
+            if (!avatar.substring(0, 2).equals("D:") && !avatar2.substring(0, 6).equals("/linux")) {
                 avatar = "/linux" + avatar;
                 c.getUserId().setAvatar(avatar);
             }

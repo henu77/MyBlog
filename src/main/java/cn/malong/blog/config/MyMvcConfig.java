@@ -36,6 +36,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/user-setting.html").setViewName("user/user-setting");
         registry.addViewController("/profile.html").setViewName("user/profile");
         registry.addViewController("/password.html").setViewName("user/password");
+        registry.addViewController("/ad-edit.html").setViewName("user/ad-edit");
 
 
         //admin页面
@@ -56,7 +57,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/admin/type-update.html").setViewName("admin/type-update");
         registry.addViewController("/admin/user-edit.html").setViewName("admin/user-edit");
         registry.addViewController("/admin/user-add.html").setViewName("admin/user-add");
-
+        registry.addViewController("/admin/links.html").setViewName("admin/links");
 
     }
 

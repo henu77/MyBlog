@@ -96,6 +96,7 @@
                     <p>
                         申请提交后若无其它原因将在24小时内审核,如超过时间还未通过,请私信我.(各种额外因素)
                     </p>
+                    <button onclick="openAdSubmit()" class="layui-btn layui-btn-normal">提交申请</button>
                 </section>
             </article>
             <ul class="link-list">
@@ -210,6 +211,17 @@
 
         });
     }
+
+    function openAdSubmit () {
+        layer.open({
+            type: 2,
+            title: '修改个人信息',
+            shade: 0.1,
+            area: ['600px', '550px'],
+            content: basePath + '/ad-edit.html'
+        });
+    }
+
 </script>
 </body>
 </html>
