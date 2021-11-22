@@ -19,7 +19,8 @@
     <select id="countAllAdmin" resultType="int">
         select count(*)
         from myblog.t_user
-        where role = 'admin' or role='root';
+        where role = 'admin'
+           or role = 'root';
     </select>
     <select id="getAllUserData" resultType="userInfo">
         select *
@@ -63,6 +64,11 @@
         select *
         from myblog.t_user
         where id = #{id}
+    </select>
+    <select id="queryByUserName" resultType="java.lang.Boolean">
+        select *
+        from myblog.t_user
+        where username = #{username};
     </select>
 
     <!--  update  -->

@@ -1,5 +1,6 @@
 package cn.malong.blog.service;
 
+import cn.malong.blog.pojo.UserInfo;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
@@ -23,4 +24,8 @@ public interface LoginService {
      * @return
      */
     String logout(HttpSession session);
+
+    String register(UserInfo userInfo);
+
+    String getDefaultIcon();
 }

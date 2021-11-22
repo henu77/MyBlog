@@ -7,19 +7,20 @@ import cn.malong.blog.pojo.Advertisement;
 import cn.malong.blog.pojo.Comment;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.CalendarUtil;
+import cn.malong.blog.utils.servlet.ServletUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.ResourceUtils;
 
 import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @SpringBootTest
 class MyBlogMasterApplicationTests {
@@ -32,7 +33,7 @@ class MyBlogMasterApplicationTests {
     CommentsMapper commentsMapper;
 
     @Test
-    void contextLoads() throws SQLException {
+    void contextLoads() throws SQLException, FileNotFoundException {
 //        System.out.println(this.dataSource.getClass());
 //        Connection connection = this.dataSource.getConnection();
 //        System.out.println(connection);
@@ -40,6 +41,13 @@ class MyBlogMasterApplicationTests {
 //        System.out.println("druidDataSource 数据源最大连接数：" + druidDataSource.getMaxActive());
 //        System.out.println("druidDataSource 数据源初始化连接数：" + druidDataSource.getInitialSize());
 //        connection.close();
+//        Random random = new Random();
+//        for (int i = 0; i < 100; i++) {
+//            System.out.println(random.nextInt(5)+1);
+//        }
+        File file = ResourceUtils.getFile("src/main/resources/public/defaultIcon1.png");
+        System.out.println(file.getAbsolutePath());
+        System.out.println(ServletUtil.getRequest().getServletContext().getRealPath("src/main/resources/public/defaultIcon1.png"));
     }
 
     @Autowired

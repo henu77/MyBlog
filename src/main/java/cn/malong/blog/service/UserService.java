@@ -62,4 +62,6 @@ public interface UserService {
     String userAdd(UserInfo userInfo);
 
     String editOwnPassword(UpdatePwdUtil updatePwdUtil);
+
+    String queryByUsername(String username);
 }

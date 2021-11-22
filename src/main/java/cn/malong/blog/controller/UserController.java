@@ -82,4 +82,9 @@ public class UserController {
     public String getUserDataLimitAdmin(int page, int limit, String nickname, String username) {
         return userServiceImpl.getUserDataByLimitAdmin(page, limit, nickname, username);
     }
+
+    @RequestMapping("/queryByUsername")
+    public String queryByUsername(String username) {
+        return userServiceImpl.queryByUsername(username);
+    }
 }

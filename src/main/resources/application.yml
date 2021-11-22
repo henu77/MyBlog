@@ -36,6 +36,15 @@ spring:
     multipart:
       #文件上传最大值
       max-file-size: 5MB
+  mail:
+    username: 1289596706@qq.com
+    password: ngddmojllgwtibgb
+    host: smtp.qq.com
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
 #  mvc:
 #    format:
 #      date: yyyy-MM-dd hh:mm:ss

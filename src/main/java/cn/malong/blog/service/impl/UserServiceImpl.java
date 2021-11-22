@@ -261,6 +261,22 @@ public class UserServiceImpl implements UserService {
         return json.toString();
     }
 
+    @Override
+    public String queryByUsername(String username) {
+        ResponseUtil<Boolean> json = new ResponseUtil<>();
+        ArrayList<Boolean> data = new ArrayList<>();
+        Boolean isHaving = userInfoMapper.queryByUserName(username);
+        json.setCode(1);
+        json.setMsg("查询成功");
+        if (null != isHaving) {
+            data.add(true);
+        } else {
+            data.add(false);
+        }
+        json.setData(data);
+        return json.toString();
+    }
+
 
     /**
      * 以下为工具函数
@@ -297,13 +313,6 @@ public class UserServiceImpl implements UserService {
         HttpSession session = ServletUtil.getSession();
         session.removeAttribute("userInfo");
         session.setAttribute("userInfo", userInfo);
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println("刷新了userInfo");
-        System.out.println();
-        System.out.println();
-        System.out.println();
     }
 
     public static UserInfo getUserInfoFromSession() {
@@ -333,10 +342,10 @@ public class UserServiceImpl implements UserService {
             json.setMsg("用户信息为空");
         } else {
             json.setCode(0);
-            if(role.equals(StaticVariable.ROLE_USER)){
+            if (role.equals(StaticVariable.ROLE_USER)) {
                 json.setCount(userInfoMapper.countAllUser());
 
-            }else {
+            } else {
                 json.setCount(userInfoMapper.countAllAdmin());
             }
             json.setMsg("获取用户信息成功");

@@ -14,6 +14,7 @@ import java.util.Arrays;
 
 /**
  * 日志类
+ *
  * @author malong
  */
 @Aspect
@@ -21,40 +22,41 @@ import java.util.Arrays;
 @Slf4j
 public class LogAspect {
 
-    private final Logger logger= LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Pointcut("execution(* cn.malong.blog.controller.*.*(..))")
-    public void log(){}
+    public void log() {
+    }
 
 
     //请求进来时，获取对应的信息
     @Before("log()")
-    public void doBefore(JoinPoint joinPoint){
-        ServletRequestAttributes attributes= (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request=attributes.getRequest();
+    public void doBefore(JoinPoint joinPoint) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
         //获取请求的URL地址
-        String url=request.getRequestURL().toString();
+        String url = request.getRequestURL().toString();
         //获取请求的ip地址
-        String ip=request.getRemoteAddr();
+        String ip = request.getRemoteAddr();
         //获取请求的类以及方法
-        String classMethod=joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName();
+        String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
         //获取请求的参数
-        Object[] args=joinPoint.getArgs();
+        Object[] args = joinPoint.getArgs();
         RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
-        logger.info("Request : {}",requestLog);
+        logger.info("Request : {}", requestLog);
     }
 
     @After("log()")
-    public void doAfter(){
+    public void doAfter() {
     }
 
     //获取响应方法的返回值
-    @AfterReturning(returning = "result",pointcut = "log()")
-    public void doAfterRutrun(Object result){
-        logger.info("Result : {}",result);
+    @AfterReturning(returning = "result", pointcut = "log()")
+    public void doAfterRutrun(Object result) {
+        logger.info("Result : {}", result);
     }
 
-    private class RequestLog{
+    private class RequestLog {
         private String url;
         private String ip;
         private String classMethod;

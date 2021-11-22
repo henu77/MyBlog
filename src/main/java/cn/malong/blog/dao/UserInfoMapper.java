@@ -75,4 +75,6 @@ public interface UserInfoMapper {
     int countAllUser();
 
     int countAllAdmin();
+
+    Boolean queryByUserName(String username);
 }
