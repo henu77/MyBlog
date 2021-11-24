@@ -112,9 +112,23 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-inline">
-                        <input autocomplete="off" class="layui-input" lay-verify="email" name="email"
+                        <input id="email" autocomplete="off" class="layui-input" lay-verify="email" name="email"
                                placeholder="请输入邮箱"
                                type="email">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <button id="sendVerifyCodeBtn" lay-submit lay-filter="sendVerifyCode"
+                                class="layui-btn layui-btn-sm layui-btn-normal">
+                            发送验证码
+                        </button>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码</label>
+                    <div class="layui-input-inline">
+                        <input id="verifyCode" type="text" name="verifyCode"
+                               placeholder="验证码"
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -190,7 +204,58 @@
                 lineColor: '#7ec7fd'
             });
         });
-
+        form.on('submit(sendVerifyCode)', function (data) {
+            data = data.field;
+            if (data.username == '') {
+                layer.msg('用户名不能为空');
+                return false;
+            }
+            if (data.password == '') {
+                layer.msg('密码不能为空');
+                return false;
+            }
+            if (data.password != data.testPassword) {
+                layer.msg('两次输入的密码不一致', {icon: 2});
+                return false;
+            }
+            let sendVerifyCodeBtn = $('#sendVerifyCodeBtn');
+            let layerSentEmail;
+            $.ajax({
+                type: 'POST',
+                url: basePath + '/email/sendVerifyCode',
+                data: {'receiver': data.email},
+                dataType: 'json',
+                async: true,
+                beforeSend: function () {
+                    sendVerifyCodeBtn.addClass("layui-btn-disabled");
+                    layerSentEmail = layer.msg('正在发送', {icon: 16, shade: 0.01, time: 0});
+                },
+                success: function (result) {
+                    let index = 90;
+                    sendVerifyCodeBtn.text((index--) + "S后再次获取");
+                    let timer = setInterval(function () {
+                        sendVerifyCodeBtn.text((index--) + "S后再次获取");
+                        if (index < 0) {
+                            sendVerifyCodeBtn.removeClass("layui-btn-disabled");
+                            sendVerifyCodeBtn.text("发送");
+                            clearInterval(timer);
+                            index = 90;
+                        }
+                    }, 1000);
+                    if (result.code == 1) {
+                        layer.close(layerSentEmail);
+                        layer.msg(result.msg, {icon: 1});
+                    } else {
+                        layer.msg('请求失败!\n提示信息：' + result.msg, {icon: 5});
+                    }
+                }
+                , error: function (par) {
+                    layer.close(layerSentEmail);
+                    layer.msg(par)
+                }
+            });
+            return false;
+        })
         // 进行登录操作
         form.on('submit(register)', function (data) {
             data = data.field;
@@ -204,6 +269,10 @@
             }
             if (data.password != data.testPassword) {
                 layer.msg('两次输入的密码不一致', {icon: 2});
+                return false;
+            }
+            if (data.verifyCode == '' || null == data.verifyCode) {
+                layer.msg('验证码不能为空');
                 return false;
             }
             let registerLayer;

@@ -81,17 +81,25 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public String register(UserInfo userInfo) {
-        userInfo.setPassword(MD5Util.string2MD5(userInfo.getPassword()));
         ResponseUtil<String> json = new ResponseUtil<>();
         String userInfoRole = userInfo.getRole();
+        //权限验证
         if (userInfoRole.equals(StaticVariable.ROLE_USER)) {
-            int result = userInfoMapper.userAdd(userInfo);
-            if (result > 0) {
-                json.setCode(1);
-                json.setMsg("注册成功！");
+            //两次密码验证
+            if (userInfo.getPassword().equals(userInfo.getTestPassword())) {
+                userInfo.setPassword(MD5Util.string2MD5(userInfo.getPassword()));
+                int result = userInfoMapper.userAdd(userInfo);
+                if (result > 0) {
+                    json.setCode(1);
+                    json.setMsg("注册成功！");
+                    ServletUtil.getSession().removeAttribute("registerEmailVerifyCode");
+                } else {
+                    json.setCode(0);
+                    json.setMsg("注册失败！");
+                }
             } else {
                 json.setCode(0);
-                json.setMsg("注册失败！");
+                json.setMsg("两次输入的密码不一致！");
             }
         } else {
             json.setCode(0);

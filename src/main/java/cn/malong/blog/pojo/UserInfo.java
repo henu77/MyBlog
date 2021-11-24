@@ -18,4 +18,7 @@ public class UserInfo {
     private String email;
     private String avatar;
     private String role;
+    //注册时使用
+    private String testPassword;
+    private String verifyCode;
 }
