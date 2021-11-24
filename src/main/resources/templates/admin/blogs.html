@@ -182,11 +182,14 @@
         }
 
         window.batchRemove = function (obj) {
-            let ids = common.checkField(obj, 'userId');
+            let ids = common.checkField(obj, 'id');
+            console.log(obj)
+            console.log(ids)
             if (common.isEmpty(ids)) {
                 popup.warning("未选中数据");
                 return false;
             }
+
             layer.confirm('确定要删除选中博文', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();

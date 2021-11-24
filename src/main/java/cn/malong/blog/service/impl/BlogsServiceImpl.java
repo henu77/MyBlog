@@ -36,12 +36,10 @@ public class BlogsServiceImpl implements BlogsService {
     public String getBlogsByLimit(int page, int limit) {
         int startIndex = (page - 1) * limit;
         List<Blog> blogData = blogsMapper.getBlogsByLimit(startIndex, limit);
-
         if (null == blogData) {
             System.out.println("数据为空");
             return "";
         }
-
         return (blogDataToJson(blogData));
     }
 

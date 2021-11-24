@@ -16,37 +16,42 @@
             <div class="main-container">
                 <div class="layui-form-item layui-hide">
                     <label class="layui-form-label">ID</label>
-                    <div class="layui-input-block">
+                    <div class="layui-input-inline">
                         <input autocomplete="off" class="layui-input" lay-verify="title" name="id"
                                placeholder="请输入ID" th:value="${oldUserInfo.getId()}" type="text" disabled="disabled">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">用户名</label>
-                    <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="title" name="username"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getUsername()}" type="text">
+                    <div class="layui-input-inline">
+                        <input id="username" autocomplete="off" oninput="checkUserName()" class="layui-input"
+                               lay-verify="title" name="username"
+                               placeholder="请输入用户名" th:value="${oldUserInfo.getUsername()}" type="text">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="layui-anim layui-anim-up" style="font-size: small;color: red"
+                              hidden>该用户名已被使用</span>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">昵称</label>
-                    <div class="layui-input-block">
+                    <div class="layui-input-inline">
                         <input autocomplete="off" class="layui-input" lay-verify="title" name="nickname"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getNickname()}" type="text">
+                               placeholder="请输入昵称" th:value="${oldUserInfo.getNickname()}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码</label>
-                    <div class="layui-input-block">
+                    <div class="layui-input-inline">
                         <input autocomplete="off" class="layui-input" lay-verify="title" name="password"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getPassword()}" type="text">
+                               placeholder="请输入密码" th:value="${oldUserInfo.getPassword()}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
-                    <div class="layui-input-block">
+                    <div class="layui-input-inline">
                         <input autocomplete="off" class="layui-input" lay-verify="email" name="email"
-                               placeholder="请输入标题" th:value="${oldUserInfo.getEmail()}" type="text">
+                               placeholder="请输入邮箱" th:value="${oldUserInfo.getEmail()}" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -112,6 +117,34 @@
             })
             return false;
         });
+        window.checkUserName = function () {
+            let username = $('#username');
+            if (username.val() == [[${oldUserInfo.getUsername()}]]) {
+                return;
+            }
+            $.ajax({
+                type: "get",
+                url: basePath + '/user/queryByUsername',
+                data: {'username': username.val()},
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 1) {
+                        //成功
+                        if (result.data[0] == true) {
+                            username.parent().next().children("span").show();
+                        } else {
+                            username.parent().next().children("span").hide();
+                        }
+                    } else {
+                        //失败
+                        console.log(result.msg);
+                    }
+                },
+                error: function (arg) {
+                    layui.layer.msg(arg);
+                }
+            });
+        }
     })
 </script>
 </body>
