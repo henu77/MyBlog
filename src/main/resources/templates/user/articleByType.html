@@ -6,13 +6,27 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width"/>
     <meta name="robots" content="all"/>
-    <title>文章列表</title>
+    <title th:text="${type.name}+'文章'"></title>
     <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
     <link rel="stylesheet" th:href="@{/css/master.css}"/>
     <link rel="stylesheet" th:href="@{/css/gloable.css}"/>
     <link rel="stylesheet" th:href="@{/css/nprogress.css}"/>
     <link rel="stylesheet" th:href="@{/css/blog.css}"/>
+    <style>
+        .topSearch {
+            margin-top: 20px;
+            height: 36px;
+            border: 2px solid white;
+            background: white;
+            border-radius: 20px;
+        }
+
+        .topSearch h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000000;
+        }
+    </style>
 </head>
 <body>
 <div class="header">
@@ -52,6 +66,9 @@
     <div class="container-fixed">
         <div class="col-content">
             <div class="inner">
+                <div class="topSearch">
+                    <h2 align="center" th:text="${type.name}"></h2>
+                </div>
                 <article class="article-list bloglist" id="LAY_bloglist">
                 </article>
             </div>
@@ -69,19 +86,18 @@
                         <ul class="search-result"></ul>
                     </div>
                     <ul class="category mt20" id="category">
-                        <li data-index="3" class="slider"></li>
-                        <li data-index="1"><a href="#">全部文章</a></li>
-                        <li th:each="type,typeStat:${allType}" th:data-index="${typeStat.index}">
-                            <a th:href="@{/user/toArticleByType/}+${type.id}" th:text="${type.name}">全部文章</a>
+                        <li data-index="0" class="slider"></li>
+                        <li data-index="1">
+                            <a th:href="@{/user/toArticleByType/}+${type.id}" th:text="${type.name}"></a>
                         </li>
+                        <li data-index="2"><a th:href="@{/user/toArticle}">全部文章</a></li>
                     </ul>
                 </div>
                 <!--右边悬浮 平板或手机设备显示-->
                 <div class="category-toggle"><i class="layui-icon">&#xe603;</i></div>
                 <div class="article-category">
                     <div class="article-category-title">分类导航</div>
-                    <a th:each="type:${allType}" th:href="@{/user/toArticleByType/}+${type.id}"
-                       th:text="${type.name}"></a>
+                    <a th:href="@{/user/toArticle}">全部文章</a>
                     <div class="f-cb"></div>
                 </div>
                 <!--遮罩-->
@@ -214,7 +230,7 @@
             , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
                 let lis = [];
                 //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                $.get('/blog/more?typeId=' + 0 + '&page=' + page, function (res) {
+                $.get('/blog/more?typeId=' + [[${type.id}]] + '&page=' + page, function (res) {
                     res = JSON.parse(res);
                     //假设你的列表返回在data集合中
                     layui.each(res.data, function (index, item) {

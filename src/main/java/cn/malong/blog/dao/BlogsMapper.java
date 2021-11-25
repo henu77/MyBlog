@@ -13,7 +13,7 @@ public interface BlogsMapper {
 
     List<Blog> getBlogsByLimit(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
-    List<Blog> getBlogsByLimitForFont(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+    List<Blog> getBlogsByLimitForFont(@Param("typeId") int typeId, @Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
     List<Blog> getBlogsByLimitByTitle(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize, @Param("title") String title);
 
@@ -39,4 +39,13 @@ public interface BlogsMapper {
     int removeBlogById(int id);
 
     int getAuthorByBlogId(int id);
+
+    /**
+     * 获得浏览量最高得5篇文章得id、title
+     *
+     * @return
+     */
+    List<Blog> getHotBlogs();
+
+    List<Blog> getTopBlogs();
 }

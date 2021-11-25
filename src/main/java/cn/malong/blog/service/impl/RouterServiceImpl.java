@@ -117,6 +117,34 @@ public class RouterServiceImpl implements RouterService {
         return "/admin/updateBlog";
     }
 
+    @Override
+    public String toArticle(Model model) {
+        List<Blog> hotBlogs = blogsMapper.getHotBlogs();
+        model.addAttribute("hotBlogs", hotBlogs);
+        List<Blog> topBlogs = blogsMapper.getTopBlogs();
+        model.addAttribute("topBlogs", topBlogs);
+        List<Type> allType = typesMapper.getAllTypes();
+        model.addAttribute("allType", allType);
+        List<UserInfo> recentViewUsers =
+                (List<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
+        model.addAttribute("recentViewUser", recentViewUsers);
+        return "/user/article";
+    }
+
+    @Override
+    public String toArticleByType(int typeId, Model model) {
+        Type typeById = typesMapper.getTypeById(typeId);
+        model.addAttribute("type", typeById);
+        List<Blog> hotBlogs = blogsMapper.getHotBlogs();
+        model.addAttribute("hotBlogs", hotBlogs);
+        List<Blog> topBlogs = blogsMapper.getTopBlogs();
+        model.addAttribute("topBlogs", topBlogs);
+        List<UserInfo> recentViewUsers =
+                (List<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
+        model.addAttribute("recentViewUser", recentViewUsers);
+        return "/user/articleByType";
+    }
+
     /**
      * 设置5s后删除session中的信息
      *

@@ -77,4 +77,6 @@ public interface UserInfoMapper {
     int countAllAdmin();
 
     Boolean queryByUserName(String username);
+
+    UserInfo getUserInfoByUsername_recent(String username);
 }

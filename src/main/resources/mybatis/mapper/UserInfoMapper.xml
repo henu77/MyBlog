@@ -70,6 +70,11 @@
         from myblog.t_user
         where username = #{username};
     </select>
+    <select id="getUserInfoByUsername_recent" resultType="cn.malong.blog.pojo.UserInfo">
+        select nickname, avatar
+        from myblog.t_user
+        where username = #{username};
+    </select>
 
     <!--  update  -->
     <update id="updateUserInfo">

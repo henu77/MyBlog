@@ -45,9 +45,27 @@ class MyBlogMasterApplicationTests {
 //        for (int i = 0; i < 100; i++) {
 //            System.out.println(random.nextInt(5)+1);
 //        }
-        File file = ResourceUtils.getFile("src/main/resources/public/defaultIcon1.png");
-        System.out.println(file.getAbsolutePath());
-        System.out.println(ServletUtil.getRequest().getServletContext().getRealPath("src/main/resources/public/defaultIcon1.png"));
+//        File file = ResourceUtils.getFile("src/main/resources/public/defaultIcon1.png");
+//        System.out.println(file.getAbsolutePath());
+//        System.out.println(ServletUtil.getRequest().getServletContext().getRealPath("src/main/resources/public/defaultIcon1.png"));
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+        list.remove(0);
+        System.out.println("移除以后");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+        list.add(10);
+        list.add(11);
+        System.out.println("添加以后");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 
     @Autowired

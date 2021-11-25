@@ -9,6 +9,7 @@ import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.StaticVariable;
 import cn.malong.blog.utils.SysFileUtil;
 import cn.malong.blog.utils.servlet.ServletUtil;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;

@@ -25,7 +25,7 @@
             <nav class="nav" id="nav">
                 <ul>
                     <li><a th:href="@{/index.html}">首页</a></li>
-                    <li><a th:href="@{/article.html}">博客</a></li>
+                    <li><a th:href="@{/user/toArticle}">博客</a></li>
                     <li><a th:href="@{/message.html}">留言</a></li>
                     <li><a th:href="@{/link.html}">友链</a></li>
                     <li th:if="${session.userInfo == null}"><a th:href="@{/login.html}">登录</a></li>
@@ -202,7 +202,7 @@
                     if (jsonData.code == 1) {
                         //成功
                         layui.layer.msg(jsonData.msg, {icon: 1});
-                        window.location = basePath + '/article.html';
+                        window.location = basePath + '/user/toArticle';
                     } else {
                         //失败
                         layer.msg(jsonData.msg, {icon: 2});

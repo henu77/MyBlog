@@ -32,4 +32,8 @@ public interface RouterService {
     String toReadBolg(int blogId, Model model);
 
     String toUpdateBlog(int id,Model model);
+
+    String toArticle(Model model);
+
+    String toArticleByType(int typeId,Model model);
 }

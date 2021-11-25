@@ -1,12 +1,14 @@
 package cn.malong.blog.controller;
 
 import cn.malong.blog.service.RouterService;
+import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -48,5 +50,15 @@ public class RouterController {
     @RequestMapping("/admin/toUpdateBlog")
     public String toUpdateBlog(int id, Model model) {
         return routerServiceImpl.toUpdateBlog(id, model);
+    }
+
+    @RequestMapping("/user/toArticle")
+    public String toArticle(Model model) {
+        return routerServiceImpl.toArticle(model);
+    }
+
+    @RequestMapping("/user/toArticleByType/{typeId}")
+    public String toArticleByType(@PathVariable("typeId") int typeId, Model model) {
+        return routerServiceImpl.toArticleByType(typeId, model);
     }
 }

@@ -27,19 +27,19 @@ public class BlogsController {
     public String postArticle(@RequestBody Blog blog) {
         return blogsService.postArticle(blog);
     }
+
     @PostMapping("/saveArticle")
     public String saveArticle(@RequestBody Blog blog) {
         return blogsService.saveArticle(blog);
     }
 
     @GetMapping("/more")
-    public String getBlogsByPage(int page) {
-        return blogsService.getBlogsByPage(page);
+    public String getBlogsByPage(int typeId, int page) {
+        return blogsService.getBlogsByPage(typeId, page);
     }
 
     @DeleteMapping("/remove/{id}")
-    public String removeBlogById(@PathVariable("id") int id){
+    public String removeBlogById(@PathVariable("id") int id) {
         return blogsService.removeBlogById(id);
     }
-
 }
