@@ -7,6 +7,7 @@ import cn.malong.blog.service.LoginService;
 import cn.malong.blog.utils.MD5Util;
 import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.StaticVariable;
+import cn.malong.blog.utils.SysFileUtil;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,19 +52,16 @@ public class LoginServiceImpl implements LoginService {
         if (null == userInfo) {
             json.setCode(0);
             json.setMsg("用户名不存在");
-//            System.out.println("用户名不存在");
             return json.toString();
         }
         if (!MD5Util.passwordIsTrue(password, userInfo.getPassword())) {
             json.setCode(0);
             json.setMsg("密码错误");
-//            System.out.println("密码错误");
             return json.toString();
         }
         session.setAttribute("userInfo", userInfo);
         json.setCode(1);
         json.setMsg("登录成功");
-//        System.out.println("登录成功");
         return json.toString();
     }
 
@@ -114,7 +112,7 @@ public class LoginServiceImpl implements LoginService {
         String result = "";
         Random random = new Random();
         try {
-            File file = ResourceUtils.getFile("src/main/resources/public/" + "/defaultIcon" + (random.nextInt(5) + 1) + ".png");
+            File file = ResourceUtils.getFile(SysFileUtil.getUploadPath() + "/defaultIcon" + "/defaultIcon" + (random.nextInt(5) + 1) + ".png");
             FileInputStream inputStream = new FileInputStream(file);
             MultipartFile multipartFile = new MockMultipartFile(file.getName(), file.getName(),
                     ContentType.APPLICATION_OCTET_STREAM.toString(), inputStream);
