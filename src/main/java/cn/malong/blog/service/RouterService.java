@@ -36,4 +36,6 @@ public interface RouterService {
     String toArticle(Model model);
 
     String toArticleByType(int typeId,Model model);
+
+    String toWelcome(Model model);
 }

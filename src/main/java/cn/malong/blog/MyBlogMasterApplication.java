@@ -2,8 +2,10 @@ package cn.malong.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * EnableAsync  开启异步注解功能
@@ -15,6 +17,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 public class MyBlogMasterApplication {
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(MyBlogMasterApplication.class, args);

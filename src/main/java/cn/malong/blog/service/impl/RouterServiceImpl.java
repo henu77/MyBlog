@@ -125,8 +125,8 @@ public class RouterServiceImpl implements RouterService {
         model.addAttribute("topBlogs", topBlogs);
         List<Type> allType = typesMapper.getAllTypes();
         model.addAttribute("allType", allType);
-        List<UserInfo> recentViewUsers =
-                (List<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
+        Set<UserInfo> recentViewUsers =
+                (Set<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
         model.addAttribute("recentViewUser", recentViewUsers);
         return "/user/article";
     }
@@ -143,6 +143,11 @@ public class RouterServiceImpl implements RouterService {
                 (List<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
         model.addAttribute("recentViewUser", recentViewUsers);
         return "/user/articleByType";
+    }
+
+    @Override
+    public String toWelcome(Model model) {
+        return "/admin/welcome";
     }
 
     /**

@@ -51,7 +51,10 @@ public class RouterController {
     public String toUpdateBlog(int id, Model model) {
         return routerServiceImpl.toUpdateBlog(id, model);
     }
-
+    @RequestMapping("/admin/toWelcome")
+    public String toWelcome(Model model) {
+        return routerServiceImpl.toWelcome(model);
+    }
     @RequestMapping("/user/toArticle")
     public String toArticle(Model model) {
         return routerServiceImpl.toArticle(model);
@@ -61,4 +64,5 @@ public class RouterController {
     public String toArticleByType(@PathVariable("typeId") int typeId, Model model) {
         return routerServiceImpl.toArticleByType(typeId, model);
     }
+
 }

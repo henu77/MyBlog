@@ -2,6 +2,7 @@ package cn.malong.blog.controller;
 
 import cn.malong.blog.pojo.Advertisement;
 import cn.malong.blog.service.AdService;
+import cn.malong.blog.utils.servlet.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,7 @@ public class AdController {
     public String submit(@RequestBody Advertisement advertisement) {
         return adServiceImpl.submit(advertisement);
     }
+
     @RequestMapping("/dataLimit")
     public String dataLimit(int page, int limit) {
         return adServiceImpl.dataLimit(page, limit);

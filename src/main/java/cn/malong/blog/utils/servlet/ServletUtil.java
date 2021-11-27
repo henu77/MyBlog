@@ -1,5 +1,7 @@
 package cn.malong.blog.utils.servlet;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -98,6 +100,26 @@ public class ServletUtil {
     }
 
     /**
+     * 获取真实IP
+     */
+    public static String getClientIp() {
+        HttpServletRequest request = getRequest();
+        //X-Forwarded-For，不区分大小写
+        String possibleIpStr = request.getHeader("X-Forwarded-For");
+        String remoteIp = getRemoteHost();
+        String clientIp;
+        if (StringUtils.isNotBlank(possibleIpStr) && !"unknown".equalsIgnoreCase(possibleIpStr)) {
+            //可能经过好几个转发流程，第一个是用户的真实ip，后面的是转发服务器的ip
+            clientIp = possibleIpStr.split(",")[0].trim();
+        } else {
+            //如果转发头ip为空，说明是直接访问的，没有经过转发
+            clientIp = remoteIp;
+        }
+        return clientIp;
+    }
+
+
+    /**
      * 获取当前请求方法
      */
     public static String getMethod() {
@@ -153,5 +175,6 @@ public class ServletUtil {
             return ServletConstant.System.UNKNOWN + userAgent;
         }
     }
+
 
 }

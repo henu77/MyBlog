@@ -46,7 +46,6 @@ public class EmailServiceImpl implements EmailService {
         } finally {
             return json.toString();
         }
-
     }
 
     @Override
