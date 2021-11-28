@@ -34,6 +34,11 @@ public class DateUtils {
         System.out.println(t2d(timestamp));
     }
 
+    public static String getYMD(Date date) {
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CHINA);
+        return dateFormat.format(date);
+    }
+
     public static String dateToString(Date date) {
         if (null == date) {
             return null;

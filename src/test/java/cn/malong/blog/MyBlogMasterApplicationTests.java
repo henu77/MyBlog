@@ -2,11 +2,14 @@ package cn.malong.blog;
 
 import cn.malong.blog.dao.AdMapper;
 import cn.malong.blog.dao.CommentsMapper;
+import cn.malong.blog.dao.TrafficStaticsMapper;
 import cn.malong.blog.dao.UserInfoMapper;
 import cn.malong.blog.pojo.Advertisement;
 import cn.malong.blog.pojo.Comment;
+import cn.malong.blog.pojo.TrafficStatics;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.CalendarUtil;
+import cn.malong.blog.utils.DateUtils;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.junit.jupiter.api.Test;
@@ -161,5 +164,15 @@ class MyBlogMasterApplicationTests {
             }
             System.out.println("子评论结束");
         }
+    }
+
+    @Autowired
+    private TrafficStaticsMapper trafficStaticsMapper;
+
+    @Test
+    public void tt() {
+        TrafficStatics trafficStatics = new TrafficStatics(0);
+        trafficStatics.setViews(1999);
+        System.out.println(trafficStaticsMapper.updateTodayViews(trafficStatics));
     }
 }

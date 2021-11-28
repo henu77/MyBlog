@@ -1,6 +1,7 @@
 package cn.malong.blog.config;
 
 import cn.malong.blog.interceptor.AdminIndexHandlerInterceptor;
+import cn.malong.blog.interceptor.TrafficStatisticsInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private AdminIndexHandlerInterceptor adminIndexHandlerInterceptor;
+    @Autowired
+    private TrafficStatisticsInterceptor trafficStatisticsInterceptor;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -73,5 +76,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(adminIndexHandlerInterceptor)
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/", "/index.html", "/admin/lib/**");
+        registry.addInterceptor(trafficStatisticsInterceptor)
+                .addPathPatterns("/user/toArticle", "/user/toReadBlog/*",
+                        "/user/toArticleByType/*", "/user/login");
     }
 }

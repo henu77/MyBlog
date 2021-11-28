@@ -293,7 +293,12 @@
                         <div class="layui-card">
                             <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>访问统计</div>
                             <div class="layui-card-body">
-                                <div id="echarts-records" style="width: 100%;min-height:500px"></div>
+                                <div class="layui-carousel" lay-filter="carousel" id="statisticalCarousel">
+                                    <div carousel-item>
+                                        <div id="echarts-records" style="width: 100%;height:600px;"></div>
+                                        <div id="echarts-records2" style="width: 100%;height:600px;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -483,14 +488,223 @@
 <script th:src="@{/js/lay-config.js?v=2.0.0}" charset="utf-8"></script>
 <script th:src="@{/js/echarts.min.js}"></script>
 <script th:src="@{/js/china.js}"></script>
-<script>
-    layui.use(['layer', 'miniTab'], function () {
+<script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
+<script th:inline="javascript">
+
+    let testData = [
+        {name: '北京', value: 350000},
+        {name: '天津', value: 120000},
+        {name: '上海', value: 300000},
+        {name: '重庆', value: 92000},
+        {name: '河北', value: 25000},
+        {name: '河南', value: 20000},
+        {name: '云南', value: 500},
+        {name: '辽宁', value: 3050},
+        {name: '黑龙江', value: 80000},
+        {name: '湖南', value: 2000},
+        {name: '安徽', value: 24580},
+        {name: '山东', value: 40629},
+        {name: '西藏', value: 36981},
+        {name: '江苏', value: 13569},
+        {name: '浙江', value: 24956},
+        {name: '江西', value: 15194},
+        {name: '湖北', value: 41398},
+        {name: '广西', value: 41150},
+        {name: '甘肃', value: 17630},
+        {name: '山西', value: 27370},
+        {name: '内蒙古', value: 27370},
+        {name: '陕西', value: 97208},
+        {name: '吉林', value: 88290},
+        {name: '福建', value: 19978},
+        {name: '贵州', value: 94485},
+        {name: '广东', value: 89426},
+        {name: '青海', value: 35484},
+        {name: '新疆', value: 97413},
+        {name: '四川', value: 54161},
+        {name: '宁夏', value: 56515},
+        {name: '海南', value: 54871},
+        {name: '台湾', value: 48544},
+        {name: '香港', value: 49474},
+        {name: '澳门', value: 34594}
+    ]
+
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    let provinceData;
+    let echartsRecords;
+    let option;
+
+    let dateData = [];
+    let countData = [];
+    let echartsRecords2;
+    let option2;
+
+    $.ajax({
+        type: "POST",
+        url: basePath + '/admin//trafficStatics/getNearlyAWeekData',
+        dataType: 'json',
+        success: function (result) {
+            if (result.code == 1) {
+                //成功
+                let resultData = result.data;
+                for (let i = 0; i < resultData.length; i++) {
+                    dateData.push(resultData[i].date);
+                    countData.push(resultData[i].views);
+                }
+                drawChart2(dateData, countData);
+            } else {
+                //失败
+                layer.msg(result.msg, {icon: 2});
+            }
+        },
+        error: function (arg) {
+            layer.msg(arg);
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: basePath + '/admin//trafficStatics/getUserFromData',
+        dataType: 'json',
+        success: function (result) {
+            if (result.code == 1) {
+                //成功
+                provinceData = result.data;
+                provinceData.push({name: '南海诸岛', value: 0})
+                let min = Math.min.apply(Math, provinceData.map(function (i) {
+                    return i.value
+                }));
+                let max = Math.max.apply(Math, provinceData.map(function (i) {
+                    return i.value
+                }));
+                drawChart1(provinceData, min, max);
+            } else {
+                //失败
+                layer.msg(result.msg, {icon: 2});
+            }
+        },
+        error: function (arg) {
+            layer.msg(arg);
+        }
+    });
+
+    function drawChart2(data1, data2) {
+        echartsRecords2 = echarts.init(document.getElementById('echarts-records2'), 'walden');
+        option2 = {
+            backgroundColor: '#ffffff',
+            title: {  //标题样式
+                text: '近7天访问量',
+                x: "center",
+                textStyle: {
+                    fontSize: 18,
+                    color: "#007effbf"
+                },
+            },
+            tooltip: {  //这里设置提示框
+                trigger: 'item',  //数据项图形触发
+                backgroundColor: "#131515e0",  //提示框浮层的背景颜色。
+                formatter: '<span style="color: white">日期：{b}</span><br/><span style="color: white">访问量：{c}</span>'
+            },
+            xAxis: {
+                type: 'category',
+                data: data1
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    data: data2,
+                    type: 'line',
+                    smooth: false
+                }
+            ]
+        };
+        echartsRecords2.setOption(option2);
+    }
+
+    function drawChart1(data1, min, max) {
+        /**
+         * 报表功能1
+         */
+        echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+        option = {
+            backgroundColor: '#ffffff',
+            title: {  //标题样式
+                text: '用户访问地址',
+                x: "center",
+                textStyle: {
+                    fontSize: 18,
+                    color: "#007effbf"
+                },
+            },
+            tooltip: {  //这里设置提示框
+                trigger: 'item',  //数据项图形触发
+                backgroundColor: "#131515e0",  //提示框浮层的背景颜色。
+                //字符串模板(地图): {a}（系列名称），{b}（区域名称），{c}（合并数值）,{d}（无）
+
+                formatter: '<span style="color: white">地区：{b}</span><br/><span style="color: white">访问量：{c}</span>'
+            },
+            visualMap: {//视觉映射组件
+                top: 'center',
+                left: 'left',
+                min: min,
+                max: max,
+                text: ['High', 'Low'],
+                realtime: true,  //拖拽时，是否实时更新
+                calculable: true,  //是否显示拖拽用的手柄
+                inRange: {
+                    color: ['#29a4ff', '#22ff66', '#ea3110']
+                }
+            },
+            series: [
+                {
+                    name: '访问量',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: false,//是否开启鼠标缩放和平移漫游
+                    itemStyle: {//地图区域的多边形 图形样式
+                        normal: {//是图形在默认状态下的样式
+                            label: {
+                                show: true,//是否显示标签
+                                textStyle: {
+                                    color: "black"
+                                }
+                            }
+                        },
+                        zoom: 1.5,  //地图缩放比例,默认为1
+                        emphasis: {//是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
+                            label: {show: true}
+                        }
+                    },
+                    top: "3%",//组件距离容器的距离
+                    data: data1
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        echartsRecords.setOption(option);
+        echartsRecords.resize();
+    }
+
+
+    layui.use(['layer', 'carousel', 'miniTab'], function () {
         let $ = layui.jquery,
             layer = layui.layer,
-            miniTab = layui.miniTab;
+            miniTab = layui.miniTab,
+            carousel = layui.carousel;
 
         miniTab.listen();
-
+        carousel.render({
+            elem: '#statisticalCarousel'
+            , height: '600px'
+            , width: '100%' //设置容器宽度
+            , arrow: 'hover' //始终显示箭头
+            , anim: 'fade' //切换动画方式
+            , interval: 4000
+        });
+        carousel.on('change(carousel)', function (obj) { //test1来源于对应HTML容器的 lay-filter="test1" 属性值
+            echartsRecords.resize();
+            echartsRecords2.resize();
+        });
         /**
          * 查看公告信息
          **/
@@ -522,105 +736,10 @@
             });
         });
 
-        /**
-         * 报表功能
-         */
-        let echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
-        let option = {
-
-            title: {  //标题样式
-                text: 'ECharts 中国地图',
-                x: "center",
-                textStyle: {
-                    fontSize: 18,
-                    color: "#ffffff"
-                },
-            },
-            tooltip: {  //这里设置提示框
-                trigger: 'item',  //数据项图形触发
-                backgroundColor: "#131515e0",  //提示框浮层的背景颜色。
-                //字符串模板(地图): {a}（系列名称），{b}（区域名称），{c}（合并数值）,{d}（无）
-
-                formatter: '<span style="color: white">地区：{b}</span><br/><span style="color: white">模拟数据：{c}</span>'
-            },
-            visualMap: {//视觉映射组件
-                top: 'center',
-                left: 'left',
-                min: 10,
-                max: 500000,
-                text: ['High', 'Low'],
-                realtime: false,  //拖拽时，是否实时更新
-                calculable: true,  //是否显示拖拽用的手柄
-                inRange: {
-                    color: ['#29a4ff', '#eef425', '#ea3110']
-                }
-            },
-            series: [
-                {
-                    name: '模拟数据',
-                    type: 'map',
-                    mapType: 'china',
-                    roam: false,//是否开启鼠标缩放和平移漫游
-                    itemStyle: {//地图区域的多边形 图形样式
-                        normal: {//是图形在默认状态下的样式
-                            label: {
-                                show: true,//是否显示标签
-                                textStyle: {
-                                    color: "black"
-                                }
-                            }
-                        },
-                        zoom: 1.5,  //地图缩放比例,默认为1
-                        emphasis: {//是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
-                            label: {show: true}
-                        }
-                    },
-                    top: "3%",//组件距离容器的距离
-                    data: [
-                        {name: '北京', value: 350000},
-                        {name: '天津', value: 120000},
-                        {name: '上海', value: 300000},
-                        {name: '重庆', value: 92000},
-                        {name: '河北', value: 25000},
-                        {name: '河南', value: 20000},
-                        {name: '云南', value: 500},
-                        {name: '辽宁', value: 3050},
-                        {name: '黑龙江', value: 80000},
-                        {name: '湖南', value: 2000},
-                        {name: '安徽', value: 24580},
-                        {name: '山东', value: 40629},
-                        {name: '西藏', value: 36981},
-                        {name: '江苏', value: 13569},
-                        {name: '浙江', value: 24956},
-                        {name: '江西', value: 15194},
-                        {name: '湖北', value: 41398},
-                        {name: '广西', value: 41150},
-                        {name: '甘肃', value: 17630},
-                        {name: '山西', value: 27370},
-                        {name: '内蒙古', value: 27370},
-                        {name: '陕西', value: 97208},
-                        {name: '吉林', value: 88290},
-                        {name: '福建', value: 19978},
-                        {name: '贵州', value: 94485},
-                        {name: '广东', value: 89426},
-                        {name: '青海', value: 35484},
-                        {name: '新疆', value: 97413},
-                        {name: '四川', value: 54161},
-                        {name: '宁夏', value: 56515},
-                        {name: '海南', value: 54871},
-                        {name: '台湾', value: 48544},
-                        // {name: '香港', value: 49474},
-                        // {name: '澳门', value: 34594}
-                    ]
-                }
-            ]
-        };
-        // 使用刚指定的配置项和数据显示图表。
-        echartsRecords.setOption(option);
-
         // echarts 窗口缩放自适应
         window.onresize = function () {
             echartsRecords.resize();
+            echartsRecords2.resize();
         }
 
     });

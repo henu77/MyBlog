@@ -9,4 +9,8 @@
         set count=count + 1
         where name = #{provinceName};
     </update>
+    <select id="getAllData" resultType="cn.malong.blog.pojo.Province">
+        select *
+        from myblog.t_province;
+    </select>
 </mapper>
