@@ -549,6 +549,7 @@
                 for (let i = 0; i < resultData.length; i++) {
                     dateData.push(resultData[i].date);
                     countData.push(resultData[i].views);
+
                 }
                 drawChart2(dateData, countData);
             } else {
@@ -682,6 +683,7 @@
         };
         // 使用刚指定的配置项和数据显示图表。
         echartsRecords.setOption(option);
+
         echartsRecords.resize();
     }
 

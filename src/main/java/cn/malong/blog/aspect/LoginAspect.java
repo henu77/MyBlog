@@ -102,7 +102,7 @@ public class LoginAspect {
                         json);
         logger.info(result.toString());
         logger.info(ServletUtil.getClientIp());
-        if (String.valueOf(result.getInteger("status")).equals(0)) {
+        if (result.getInteger("status").equals(0)) {
             province = String.valueOf(result.getJSONObject("content").getJSONObject("address_detail").get("province"));
         }
         return province;

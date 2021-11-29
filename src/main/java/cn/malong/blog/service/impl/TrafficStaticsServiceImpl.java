@@ -32,6 +32,7 @@ public class TrafficStaticsServiceImpl implements TrafficStaticsService {
             json.setCode(0);
             json.setMsg("最近一周的访问数据为空！");
         } else {
+            Collections.reverse(nearlyAWeekData);
             json.setCode(1);
             json.setMsg("获取数据成功!");
             json.setData(nearlyAWeekData);

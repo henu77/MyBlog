@@ -16,7 +16,7 @@
     <select id="getNearlyAWeekData" resultType="cn.malong.blog.pojo.TrafficStatics">
         select *
         from myblog.t_trafficstatics
-        order by date
+        order by date desc
         limit 7;
     </select>
 

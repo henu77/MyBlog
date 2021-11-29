@@ -15,6 +15,5 @@ import java.util.List;
 @Repository
 public interface ProvinceMapper {
     int addCount(@Param("provinceName") String provinceName);
-
     List<Province> getAllData();
 }
