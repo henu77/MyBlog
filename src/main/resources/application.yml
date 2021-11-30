@@ -16,7 +16,7 @@ spring:
     #druid 数据源专有配置
     initialSize: 1
     minIdle: 5
-    maxActive: 20
+    maxActive: 50
     maxWait: 60000
     timeBetweenEvictionRunsMillis: 60000
     minEvictableIdleTimeMillis: 300000

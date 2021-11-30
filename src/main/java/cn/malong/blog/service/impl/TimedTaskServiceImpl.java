@@ -31,6 +31,7 @@ public class TimedTaskServiceImpl implements TimedTaskService {
     @Override
     @Scheduled(cron = "1 0 0 * * ?")
     public void createTodayTrafficStatistics() {
+
         servletContext.removeAttribute("TrafficStatistics");
         if (trafficStatics.getViews() != 0) {
             trafficStatics.setViews(0);
@@ -44,9 +45,12 @@ public class TimedTaskServiceImpl implements TimedTaskService {
     @Override
     @Scheduled(cron = "0 0/5 * * * ?")
     public void updateTrafficStatistics() {
-        int views = servletContext.getAttribute("TrafficStatistics") == null
-                ? 0 : (int) servletContext.getAttribute("TrafficStatistics");
+        if (servletContext.getAttribute("TrafficStatistics") == null) {
+            servletContext.setAttribute("TrafficStatistics", 0);
+        }
+        int views = (int) servletContext.getAttribute("TrafficStatistics");
         trafficStatics.setViews(views);
+        trafficStatics.setDate(new Date());
         int result = trafficStaticsMapper.updateTodayViews(trafficStatics);
         log.info("访问量统计更新结果==>" + (result >= 1 ? true : false));
     }
