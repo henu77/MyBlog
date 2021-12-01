@@ -509,7 +509,7 @@
                 //成功
                 let resultData = result.data;
                 for (let i = 0; i < resultData.length; i++) {
-                    dateData.push(resultData[i].date);
+                    dateData.push(resultData[i].dateStr);
                     countData.push(resultData[i].views);
                 }
                 drawChart2(dateData, countData);

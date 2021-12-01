@@ -13,7 +13,11 @@
         set views=#{trafficStatics.views}
         where date = #{trafficStatics.date};
     </update>
-    <select id="getNearlyAWeekData" resultType="cn.malong.blog.pojo.TrafficStatics">
+    <resultMap id="trafficMap" type="trafficStatics">
+        <id column="date" property="dateStr"/>
+        <result column="views" property="views"/>
+    </resultMap>
+    <select id="getNearlyAWeekData" resultMap="trafficMap">
         select *
         from myblog.t_trafficstatics
         order by date desc

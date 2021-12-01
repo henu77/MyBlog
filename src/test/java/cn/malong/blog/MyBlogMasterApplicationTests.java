@@ -86,11 +86,12 @@ class MyBlogMasterApplicationTests {
 //        advertisement.setState(true);
 //        int i = adMapper.insertAnAd(advertisement);
 //        System.out.println(i);
-        List<Advertisement> adDataByLimit = adMapper.getAdDataByLimit(0, 10);
-        for (Advertisement a :
-                adDataByLimit) {
-            System.out.println(a);
-        }
+//        List<Advertisement> adDataByLimit = adMapper.getAdDataByLimit(0, 10);
+//        for (Advertisement a :
+//                adDataByLimit) {
+//            System.out.println(a);
+//        }
+        System.out.println(DateUtils.dateToString(new Date()));
     }
 
     private void transformAvatarPath(List<Comment> allComments) {

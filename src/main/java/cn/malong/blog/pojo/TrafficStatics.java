@@ -14,7 +14,7 @@ import java.util.Date;
 public class TrafficStatics {
     private Date date;
     private int views;
-//    private String dateStr;
+    private String dateStr;
 
     public TrafficStatics() {
         this.date = new Date();
@@ -28,4 +28,5 @@ public class TrafficStatics {
     public String getDate() {
         return DateUtils.getYMD(date);
     }
+
 }
