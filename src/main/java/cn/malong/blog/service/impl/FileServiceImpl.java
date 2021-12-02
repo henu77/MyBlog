@@ -6,21 +6,28 @@ import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.SequenceUtil;
 
 import cn.malong.blog.utils.SysFileUtil;
+import cn.malong.blog.utils.VerifyCode;
 import cn.malong.blog.utils.servlet.ServletUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -30,6 +37,8 @@ import java.util.List;
 @Service
 public class FileServiceImpl implements FileService {
 
+    @Autowired
+    private VerifyCode verifyCode;
 
     @Override
     public String upload(MultipartFile file) {
@@ -84,5 +93,29 @@ public class FileServiceImpl implements FileService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void getVerifyCodeImg() {
+        BufferedImage image = verifyCode.getImage();
+        ServletUtil.getSession().setAttribute("login_VerifyCode", verifyCode.getVerifyCode());
+        removeAttributeFromSession("login_VerifyCode", 60);
+        try {
+            verifyCode.outPut(image, ServletUtil.getResponse().getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void removeAttributeFromSession(final String attrName, int seconds) {
+        HttpSession session = ServletUtil.getSession();
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                session.removeAttribute(attrName);
+                timer.cancel();
+            }
+        }, seconds * 1000);
     }
 }

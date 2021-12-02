@@ -137,8 +137,12 @@
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
-
+                    <label class="layui-icon layui-icon-vercode"></label>
+                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码"
+                           autocomplete="off" class="layui-input verification captcha">
+                    <div class="captcha-img" onclick="replaceVerifyCodeImg()">
+                        <img id="captchaPic" th:src="@{/file/getCaptchaImg}">
+                    </div>
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-normal" lay-submit=""
@@ -153,6 +157,8 @@
 </div>
 
 <script type="text/javascript" th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+
     $(function () {
         let HandlerInterceptor = [[${Interceptor_msg}]];
         let login_msg = [[${session.login_msg}]];
@@ -191,22 +197,22 @@
                 layer.msg('密码不能为空');
                 return false;
             }
-            // if (data.captcha == '') {
-            //     layer.msg('验证码不能为空');
-            //     return false;
-            // }
+            if (data.captcha == '') {
+                layer.msg('验证码不能为空');
+                return false;
+            }
             // layer.msg('登录成功', function () {
             //     window.location = '../index.html';
             // });
             let loginLayer;
             loginLayer = layui.layer.msg('正在登录', {icon: 16, shade: 0.01, time: 0});
-            let basePath = [[${#httpServletRequest.getContextPath()}]];
             $.ajax({
                 type: "POST",
                 url: basePath + '/user/login',
                 data: {
                     "username": data.username,
                     "password": data.password,
+                    "captcha": data.captcha
                 },
                 success: function (result) {
                     layui.layer.close(loginLayer);
@@ -230,6 +236,11 @@
             return false;
         });
     });
+
+    //更新验证码
+    function replaceVerifyCodeImg() {
+        $("#captchaPic").attr('src', basePath + "/file/getCaptchaImg" + "?" + Math.random());
+    }
 </script>
 </body>
 </html>

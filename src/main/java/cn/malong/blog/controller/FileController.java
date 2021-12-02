@@ -41,4 +41,9 @@ public class FileController {
         }
         fileServiceImpl.downloadImg(path);
     }
+
+    @RequestMapping("/getCaptchaImg")
+    public void getVerifyCodeImg() {
+        fileServiceImpl.getVerifyCodeImg();
+    }
 }

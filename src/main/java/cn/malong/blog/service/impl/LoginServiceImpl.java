@@ -48,12 +48,23 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     @Override
-    public String login(String username, String password, HttpSession session) {
+    public String login(String username, String password, String captcha, HttpSession session) {
         ResponseUtil<String> json = new ResponseUtil<String>();
         UserInfo userInfo = userInfoMapper.getUserInfoByUsername(username);
         if (null == userInfo) {
             json.setCode(0);
             json.setMsg("用户名不存在");
+            return json.toString();
+        }
+        String captchaFromSession = (String) ServletUtil.getSession().getAttribute("login_VerifyCode");
+        if(null==captchaFromSession){
+            json.setCode(0);
+            json.setMsg("验证码已失效！");
+            return json.toString();
+        }
+        if(!captcha.equals(captchaFromSession)){
+            json.setCode(0);
+            json.setMsg("验证码错误!");
             return json.toString();
         }
         if (!MD5Util.passwordIsTrue(password, userInfo.getPassword())) {

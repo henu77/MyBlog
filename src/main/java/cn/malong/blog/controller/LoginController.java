@@ -20,8 +20,9 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
+                        @RequestParam("captcha") String captcha,
                         HttpSession session) {
-        return loginServiceImpl.login(username, password, session);
+        return loginServiceImpl.login(username, password, captcha, session);
     }
 
     @RequestMapping("/logout")

@@ -23,4 +23,6 @@ public interface FileService {
     void download();
 
     void downloadImg(String path);
+
+    void getVerifyCodeImg();
 }
