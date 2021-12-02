@@ -75,6 +75,10 @@
         from myblog.t_user
         where username = #{username};
     </select>
+    <select id="countAll" resultType="java.lang.Integer">
+        select count(*)
+        from myblog.t_user;
+    </select>
 
     <!--  update  -->
     <update id="updateUserInfo">

@@ -4,6 +4,7 @@ import cn.malong.blog.dao.ProvinceMapper;
 import cn.malong.blog.dao.TrafficStaticsMapper;
 import cn.malong.blog.pojo.TrafficStatics;
 import cn.malong.blog.service.TimedTaskService;
+import cn.malong.blog.utils.DateUtils;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,14 @@ public class TimedTaskServiceImpl implements TimedTaskService {
     @Scheduled(cron = "0 0/5 * * * ?")
     public void updateTrafficStatistics() {
         if (servletContext.getAttribute("TrafficStatistics") == null) {
-            servletContext.setAttribute("TrafficStatistics", 0);
+            TrafficStatics todayViews = trafficStaticsMapper.getTodayViews(DateUtils.dateToString(new Date()));
+            if (null != todayViews) {
+                servletContext.setAttribute("TrafficStatistics", todayViews.getViews());
+            } else {
+                servletContext.setAttribute("TrafficStatistics", 0);
+            }
         }
+
         int views = (int) servletContext.getAttribute("TrafficStatistics");
         trafficStatics.setViews(views);
         trafficStatics.setDate(new Date());

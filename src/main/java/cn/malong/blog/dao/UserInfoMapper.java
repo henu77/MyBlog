@@ -65,7 +65,6 @@ public interface UserInfoMapper {
     int updateAvatar(UserInfo userInfo);
 
     List<UserInfo> getUserDataByLimitAdmin(int startIndex, int pageSize, String nickname, String username, String role);
-
     int removeUserById(int id);
 
     int batchRemoveByIds(int[] ids);
@@ -75,6 +74,7 @@ public interface UserInfoMapper {
     int countAllUser();
 
     int countAllAdmin();
+    int countAll();
 
     Boolean queryByUserName(String username);
 

@@ -164,12 +164,12 @@
                                             <div class="panel layui-bg-number">
                                                 <div class="panel-body">
                                                     <div class="panel-title">
-                                                        <span class="label pull-right layui-bg-blue">实时</span>
+                                                        <span class="label pull-right layui-bg-blue">用户</span>
                                                         <h5>用户统计</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" th:text="${dataStatistics.allUserNum}">1234</h1>
+                                                        <small>当前用户总数</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,12 +178,12 @@
                                             <div class="panel layui-bg-number">
                                                 <div class="panel-body">
                                                     <div class="panel-title">
-                                                        <span class="label pull-right layui-bg-cyan">实时</span>
-                                                        <h5>商品统计</h5>
+                                                        <span class="label pull-right layui-bg-orange">文章</span>
+                                                        <h5>文章统计</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" th:text="${dataStatistics.allBlogNum}">1234</h1>
+                                                        <small>当前文章总数</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,12 +192,12 @@
                                             <div class="panel layui-bg-number">
                                                 <div class="panel-body">
                                                     <div class="panel-title">
-                                                        <span class="label pull-right layui-bg-orange">实时</span>
+                                                        <span class="label pull-right layui-bg-cyan">浏览</span>
                                                         <h5>浏览统计</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" th:text="${dataStatistics.allBlogViews}">1234</h1>
+                                                        <small>当前文章浏览量总记录数</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -206,12 +206,12 @@
                                             <div class="panel layui-bg-number">
                                                 <div class="panel-body">
                                                     <div class="panel-title">
-                                                        <span class="label pull-right layui-bg-green">实时</span>
-                                                        <h5>订单统计</h5>
+                                                        <span class="label pull-right layui-bg-green">评论</span>
+                                                        <h5>评论统计</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" th:text="${dataStatistics.allBLogComment}">1234</h1>
+                                                        <small>当前评论总记录数</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -228,59 +228,59 @@
                                 <div class="welcome-module">
                                     <div class="layui-row layui-col-space10 layuimini-qiuck">
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/menu.html"
-                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
-                                                <i class="fa fa-window-maximize"></i>
-                                                <cite>菜单管理</cite>
+                                            <a href="javascript:;" layuimini-content-href="/admin/blogs.html"
+                                               data-title="文章管理" data-icon="fa fa-book">
+                                                <i class="fa fa-book"></i>
+                                                <cite>文章管理</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/setting.html"
-                                               data-title="系统设置" data-icon="fa fa-gears">
-                                                <i class="fa fa-gears"></i>
-                                                <cite>系统设置</cite>
+                                            <a href="javascript:;" layuimini-content-href="/admin/types.html"
+                                               data-title="分类管理" data-icon="fa fa-tags">
+                                                <i class="fa fa-tags"></i>
+                                                <cite>分类管理</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/table.html"
-                                               data-title="表格示例" data-icon="fa fa-file-text">
-                                                <i class="fa fa-file-text"></i>
-                                                <cite>表格示例</cite>
+                                            <a href="javascript:;" layuimini-content-href="/admin/comments.html"
+                                               data-title="评论管理" data-icon="fa fa-commenting">
+                                                <i class="fa fa-commenting"></i>
+                                                <cite>评论管理</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/icon.html"
-                                               data-title="图标列表" data-icon="fa fa-dot-circle-o">
-                                                <i class="fa fa-dot-circle-o"></i>
-                                                <cite>图标列表</cite>
+                                            <a href="javascript:;" layuimini-content-href="/admin/user.html"
+                                               data-title="普通用户管理" data-icon="fa fa-user">
+                                                <i class="fa fa-user"></i>
+                                                <cite>普通用户管理</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/form.html"
-                                               data-title="表单示例" data-icon="fa fa-calendar">
-                                                <i class="fa fa-calendar"></i>
-                                                <cite>表单示例</cite>
+                                            <a href="javascript:;" layuimini-content-href="/admin/links.html"
+                                               data-title="友链管理" data-icon="fa fa-link">
+                                                <i class="fa fa-link"></i>
+                                                <cite>友链管理</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html"
-                                               data-title="404页面" data-icon="fa fa-hourglass-end">
-                                                <i class="fa fa-hourglass-end"></i>
-                                                <cite>404页面</cite>
+                                            <a href="javascript:;" layuimini-content-href="/admin/write"
+                                               data-title="编辑文章" data-icon="fa fa-pencil-square-o">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                                <cite>编辑文章</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/button.html"
-                                               data-title="按钮示例" data-icon="fa fa-snowflake-o">
-                                                <i class="fa fa-snowflake-o"></i>
-                                                <cite>按钮示例</cite>
+                                            <a href="javascript:;" layuimini-content-href="/admin/user-setting.html"
+                                               data-title="个人设置" data-icon="fa fa-user-circle-o">
+                                                <i class="fa fa-user-circle-o"></i>
+                                                <cite>个人设置</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="https://www.baidu.com"
-                                               data-title="百度搜索" data-icon="fa fa-search">
-                                                <i class="fa fa-search"></i>
-                                                <cite>百度搜索</cite>
+                                            <a href="javascript:;" onclick="returnFont()"
+                                               data-title="返回前台" data-icon="fa fa-reply">
+                                                <i class="fa fa-reply"></i>
+                                                <cite>返回前台</cite>
                                             </a>
                                         </div>
                                     </div>
@@ -500,58 +500,6 @@
     let echartsRecords2;
     let option2;
 
-    $.ajax({
-        type: "POST",
-        url: basePath + '/admin//trafficStatics/getNearlyAWeekData',
-        dataType: 'json',
-        success: function (result) {
-            if (result.code == 1) {
-                //成功
-                let resultData = result.data;
-                for (let i = 0; i < resultData.length; i++) {
-                    dateData.push(resultData[i].dateStr);
-                    countData.push(resultData[i].views);
-                }
-                drawChart2(dateData, countData);
-            } else {
-                //失败
-                layer.msg(result.msg, {icon: 2});
-            }
-        },
-        error: function (arg) {
-            layer.msg(arg);
-        }
-    });
-    $.ajax({
-        type: "POST",
-        url: basePath + '/admin//trafficStatics/getUserFromData',
-        dataType: 'json',
-        success: function (result) {
-            if (result.code == 1) {
-                //成功
-                provinceData = result.data;
-                provinceData.push({name: '南海诸岛', value: 0})
-                let min = Math.min.apply(Math, provinceData.map(function (i) {
-                    return i.value
-                }));
-                let max = Math.max.apply(Math, provinceData.map(function (i) {
-                    return i.value
-                }));
-                drawChart1(provinceData, min, max);
-            } else {
-                //失败
-                layer.msg(result.msg, {icon: 2});
-            }
-        },
-        complete: function () {
-            //请求完成的处理
-            echartsRecords.resize();
-        },
-        error: function (arg) {
-            layer.msg(arg);
-        }
-    });
-
     function drawChart2(data1, data2) {
         echartsRecords2 = echarts.init(document.getElementById('echarts-records2'), 'walden');
         option2 = {
@@ -648,7 +596,6 @@
         };
         // 使用刚指定的配置项和数据显示图表。
         echartsRecords.setOption(option);
-
         echartsRecords.resize();
     }
 
@@ -702,7 +649,60 @@
                 }
             });
         });
-
+        window.initChart = function () {
+            $.ajax({
+                type: "POST",
+                url: basePath + '/admin//trafficStatics/getNearlyAWeekData',
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    if (result.code == 1) {
+                        //成功
+                        let resultData = result.data;
+                        for (let i = 0; i < resultData.length; i++) {
+                            dateData.push(resultData[i].dateStr);
+                            countData.push(resultData[i].views);
+                        }
+                        drawChart2(dateData, countData);
+                    } else {
+                        //失败
+                        layer.msg(result.msg, {icon: 2});
+                    }
+                },
+                error: function (arg) {
+                    layer.msg(arg);
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: basePath + '/admin//trafficStatics/getUserFromData',
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    if (result.code == 1) {
+                        //成功
+                        provinceData = result.data;
+                        provinceData.push({name: '南海诸岛', value: 0})
+                        let min = Math.min.apply(Math, provinceData.map(function (i) {
+                            return i.value
+                        }));
+                        let max = Math.max.apply(Math, provinceData.map(function (i) {
+                            return i.value
+                        }));
+                        drawChart1(provinceData, min, max);
+                    } else {
+                        //失败
+                        layer.msg(result.msg, {icon: 2});
+                    }
+                },
+                error: function (arg) {
+                    layer.msg(arg);
+                }
+            });
+        }
+        initChart();
+        echartsRecords.resize();
+        echartsRecords2.resize();
         // echarts 窗口缩放自适应
         window.onresize = function () {
             echartsRecords.resize();
@@ -710,6 +710,10 @@
         }
 
     });
+
+    let returnFont = function () {
+        parent.window.location = basePath + "/user/toArticle";
+    }
 </script>
 </body>
 </html>

@@ -20,4 +20,8 @@ public interface BlogsService {
     String saveArticle(Blog blog);
 
     String removeBlogById(int id);
+
+    String postArticleUpdate(Blog blog);
+
+    String saveArticleUpdate(Blog blog);
 }

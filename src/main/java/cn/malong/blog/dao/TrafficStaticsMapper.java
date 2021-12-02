@@ -20,4 +20,6 @@ public interface TrafficStaticsMapper {
     int updateTodayViews(@Param("trafficStatics") TrafficStatics trafficStatics);
 
     List<TrafficStatics> getNearlyAWeekData();
+
+    TrafficStatics getTodayViews(String data);
 }

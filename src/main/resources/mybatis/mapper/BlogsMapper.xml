@@ -137,7 +137,7 @@
         <result column="flag" property="flag"/>
         <result column="views" property="views"/>
         <result column="appreciation" property="appreciation"/>
-        <result column="commentable" property="commentable"/>
+        <result column="commentabled" property="commentabled"/>
         <result column="published" property="published"/>
         <result column="recommend" property="recommend"/>
         <result column="create_time" property="creatTime"/>
@@ -146,6 +146,7 @@
         <association property="typeId" column="type_id" select="getType"/>
         <association property="userId" column="user_id" select="getUserInfoById"/>
     </resultMap>
+
     <select id="countAllBlogs" resultType="int">
         select count(id)
         from myblog.t_blog
@@ -169,6 +170,45 @@
         order by views DESC
         limit 5;
     </select>
+    <select id="advancedGetBlogsByLimit" resultMap="detailsBlog">
+        select blog.id as id,
+        title,
+        content,
+        first_picture,
+        flag,
+        views,
+        appreciation,
+        commentabled,
+        published,
+        recommend,
+        description,
+        type_id,
+        user_id,
+        create_time,
+        update_time
+        from myblog.t_blog blog,
+        myblog.t_user user
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="title != null">
+                and title like concat('%', #{title}, '%')
+            </if>
+            <if test="username != null">
+                and username like concat('%', #{username}, '%')
+            </if>
+            <if test="startIndex != null">
+                and blog.user_id = user.id
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize};
+    </select>
+    <select id="countAllBLogViews" resultType="java.lang.Integer">
+        select SUM(views)
+        from myblog.t_blog
+        where published = true;
+    </select>
     <insert id="saveBlog" parameterType="blog">
         insert into myblog.t_blog(title, content, first_picture, flag,
                                   views, appreciation,
@@ -184,6 +224,24 @@
     <update id="addViews" parameterType="int">
         update myblog.t_blog
         set views = views + 1
+        where id = #{id};
+    </update>
+    <update id="updateBlog" parameterType="blog">
+        update myblog.t_blog
+        set title=#{title},
+            content=#{content},
+            first_picture=#{firstPicture},
+            flag=#{flag},
+            views=#{views},
+            appreciation=#{appreciation},
+            commentabled=#{commentabled},
+            published=#{published},
+            recommend=#{recommend},
+            create_time=#{creatTime},
+            update_time=#{updateTime},
+            description=#{description},
+            type_id=#{typeId.id},
+            user_id=#{userId.id}
         where id = #{id};
     </update>
     <delete id="removeBlogById" parameterType="int">

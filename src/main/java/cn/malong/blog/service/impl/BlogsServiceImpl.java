@@ -45,18 +45,37 @@ public class BlogsServiceImpl implements BlogsService {
 
     @Override
     public String getBlogsByLimit(int page, int limit, String title, String user) {
+//        int startIndex = (page - 1) * limit;
+//        List<Blog> blogData = null;
+//        if (isEmpty(title) && isEmpty(user)) {
+//            return getBlogsByLimit(page, limit);
+//        } else if (isEmpty(user)) {
+//            blogData = blogsMapper.getBlogsByLimitByTitle(startIndex, limit, title);
+//        } else if (isEmpty(title)) {
+//            blogData = blogsMapper.getBlogsByLimitByUser(startIndex, limit, user);
+//        } else {
+//            blogData = blogsMapper.getBlogsByLimitByTitleAndUser(startIndex, limit, title, user);
+//        }
+//        return blogDataToJson(blogData);
+        /**
+         * 参数欲处理
+         */
         int startIndex = (page - 1) * limit;
-        List<Blog> blogData = null;
-        if (isEmpty(title) && isEmpty(user)) {
-            return getBlogsByLimit(page, limit);
-        } else if (isEmpty(user)) {
-            blogData = blogsMapper.getBlogsByLimitByTitle(startIndex, limit, title);
-        } else if (isEmpty(title)) {
-            blogData = blogsMapper.getBlogsByLimitByUser(startIndex, limit, user);
-        } else {
-            blogData = blogsMapper.getBlogsByLimitByTitleAndUser(startIndex, limit, title, user);
+        if (null != title) {
+            title = title.replace(StaticVariable.SPACE, "");
+            if (title.equals("")) {
+                title = null;
+            }
         }
-        return blogDataToJson(blogData);
+        if (null != user) {
+            user = user.replace(StaticVariable.SPACE, "");
+
+            if (user.equals("")) {
+                user = null;
+            }
+        }
+        List<Blog> advancedGetBlogsByLimit = blogsMapper.advancedGetBlogsByLimit(startIndex, limit, title, user, UserServiceImpl.getUserInfoFromSession().getId());
+        return blogDataToJson(advancedGetBlogsByLimit);
     }
 
     @Override
@@ -158,6 +177,90 @@ public class BlogsServiceImpl implements BlogsService {
         return json.toString();
     }
 
+    @Override
+    public String postArticleUpdate(Blog blog) {
+        Blog blogById = blogsMapper.getBlogById(blog.getId());
+        blog.setUserId(blogById.getUserId());
+        ResponseUtil<String> json = new ResponseUtil<>();
+        UserInfo userInfoFromSession = UserServiceImpl.getUserInfoFromSession();
+        if (null == userInfoFromSession) {
+            json.setCode(0);
+            json.setMsg("请先登录！");
+        } else {
+            if (!(blog.getUserId().getId() == userInfoFromSession.getId())) {
+                json.setCode(0);
+                json.setMsg("您不能修改别人的文章");
+            } else {
+                if (!blog.isPublished()) {
+                    blog.setPublished(true);
+                }
+                blog.setCreatTime(blogById.getCreatTime());
+                blog.setDescription(blogById.getDescription());
+                blog.setViews(blogById.getViews());
+                Type typeById = typesMapper.getTypeById(blog.getTypeId().getId());
+                blog.setTypeId(typeById);
+                Date date = new Date();
+                blog.setUpdateTime(date);
+                blog.setDescription("无");
+                String firstPicture = blog.getFirstPicture();
+                if (firstPicture.startsWith("/linux")) {
+                    blog.setFirstPicture(blog.getFirstPicture().substring(6));
+                }
+                int result = blogsMapper.updateBlog(blog);
+                if (result > 0) {
+                    json.setCode(1);
+                    json.setMsg("更新成功");
+                } else {
+                    json.setCode(0);
+                    json.setMsg("更新失败");
+                }
+            }
+        }
+        return json.toString();
+    }
+
+    @Override
+    public String saveArticleUpdate(Blog blog) {
+        Blog blogById = blogsMapper.getBlogById(blog.getId());
+        blog.setUserId(blogById.getUserId());
+        ResponseUtil<String> json = new ResponseUtil<>();
+        UserInfo userInfoFromSession = UserServiceImpl.getUserInfoFromSession();
+        if (null == userInfoFromSession) {
+            json.setCode(0);
+            json.setMsg("请先登录！");
+        } else {
+            if (!(blog.getUserId().getId() == userInfoFromSession.getId())) {
+                json.setCode(0);
+                json.setMsg("您不能修改别人的文章");
+            } else {
+                if (blog.isPublished()) {
+                    blog.setPublished(false);
+                }
+                blog.setCreatTime(blogById.getCreatTime());
+                blog.setDescription(blogById.getDescription());
+                blog.setViews(blogById.getViews());
+                Type typeById = typesMapper.getTypeById(blog.getTypeId().getId());
+                blog.setTypeId(typeById);
+                Date date = new Date();
+                blog.setUpdateTime(date);
+                blog.setDescription("无");
+                String firstPicture = blog.getFirstPicture();
+                if (firstPicture.startsWith("/linux")) {
+                    blog.setFirstPicture(blog.getFirstPicture().substring(6));
+                }
+                int result = blogsMapper.updateBlog(blog);
+                if (result > 0) {
+                    json.setCode(1);
+                    json.setMsg("更新成功");
+                } else {
+                    json.setCode(0);
+                    json.setMsg("更新失败");
+                }
+            }
+        }
+        return json.toString();
+    }
+
     private void initBlog(Blog blog) {
         UserInfo userInfo = (UserInfo) ServletUtil.getSession().getAttribute("userInfo");
         blog.setUserId(userInfo);
@@ -168,7 +271,6 @@ public class BlogsServiceImpl implements BlogsService {
         blog.setUpdateTime(date);
         blog.setViews(0);
         blog.setDescription("无");
-        blog.setFirstPicture(blog.getFirstPicture());
     }
 
     /**

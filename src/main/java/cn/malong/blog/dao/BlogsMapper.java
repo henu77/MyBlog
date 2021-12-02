@@ -11,6 +11,12 @@ import java.util.List;
 @Repository
 public interface BlogsMapper {
 
+    List<Blog> advancedGetBlogsByLimit(@Param("startIndex") int startIndex,
+                                       @Param("pageSize") int pageSize,
+                                       @Param("title") String title,
+                                       @Param("username") String username,
+                                       @Param("userId") int userId);
+
     List<Blog> getBlogsByLimit(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
     List<Blog> getBlogsByLimitForFont(@Param("typeId") int typeId, @Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
@@ -48,4 +54,9 @@ public interface BlogsMapper {
     List<Blog> getHotBlogs();
 
     List<Blog> getTopBlogs();
+
+    int updateBlog(Blog blog);
+
+    int countAllBLogViews();
+
 }

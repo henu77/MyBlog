@@ -23,5 +23,11 @@
         order by date desc
         limit 7;
     </select>
+    <select id="getTodayViews" resultType="cn.malong.blog.pojo.TrafficStatics">
+        select *
+        from myblog.t_trafficstatics
+        where date = #{date};
+    </select>
+
 
 </mapper>

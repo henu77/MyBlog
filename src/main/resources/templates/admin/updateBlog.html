@@ -49,8 +49,8 @@
                         <option value="转载" th:selected="${blog.flag=='转载'}">转载</option>
                     </select>
                 </div>
-
-                <input c type="checkbox" name="recommend" value="true" th:checked="${blog.recommend}"
+                <input class="layui-hide" name="id" th:value="${blog.id}">
+                <input type="checkbox" name="recommend" value="true" th:checked="${blog.recommend}"
                        title="&nbsp;&nbsp;推荐" lay-skin="primary">
                 <input type="checkbox" name="appreciation" value="true" th:checked="${blog.appreciation}"
                        title="&nbsp;&nbsp;赞赏" checked
@@ -71,7 +71,8 @@
                 <div style="padding-top: 15px;">
                     <label class="layui-form-label">文章标题</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" lay-verify="required" th:value="${blog.title}" name="title" placeholder="请输入标题">
+                        <input class="layui-input" lay-verify="required" th:value="${blog.title}" name="title"
+                               placeholder="请输入标题">
                     </div>
                 </div>
 
@@ -79,7 +80,8 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">封面图地址</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="firstPicture" lay-verify="firstPic" id="firstPicInput" type="text"
+                    <input class="layui-input" th:value="${blog.firstPicture}" name="firstPicture" lay-verify="firstPic"
+                           id="firstPicInput" type="text"
                            disabled>
                 </div>
                 <div class="layui-btn layui-btn-normal" id="uploadFirstPic">
@@ -91,7 +93,7 @@
                     <div class="layui-upload" style="float: left">
                         <div class="layui-upload-list">
                             <div class="layui-upload-img">
-                                <span id="uploadTips">请上传图片</span>
+                                <span id="uploadTips"></span>
                                 <img id="firstPic" th:src="@{/file/getImg}+${blog.firstPicture}">
                             </div>
                         </div>
@@ -127,6 +129,14 @@
             // markdown: "xxxx",     // dynamic set Markdown text
             path: basePath + "lib/editormd/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
         });
+        let userInfo = [[${blog.userId}]];
+        let a = {
+            'id': userInfo.id,
+            'nickname': userInfo.nickname
+        }
+        console.log(userInfo.id)
+        // console.log(JSON.stringify(userInfo).replace(/\"/g,"'"));
+        $('#userId').val(a);
     });
     layui.use(['element', 'layer', 'form', 'convert', 'miniTab', 'upload'], function () {
         let layer = layui.layer;
@@ -139,7 +149,6 @@
         form.verify({
             firstPic: function (value, item) { //value：表单的值、item：表单的DOM对象
                 if (value == '') {
-                    console.log(value);
                     return '请上传首图';
                 }
             }
@@ -147,21 +156,21 @@
         //发布文章
         form.on('submit(postArticle)', function (data) {
             data.field;
-            console.log(JSON.stringify(data.field));
+            console.log(data.field);
             let postLayer;
             postLayer = layui.layer.msg('正在发布', {icon: 16, shade: 0.01, time: 0});
             $.ajax({
-                url: basePath + '/blog/postArticle',
+                url: basePath + '/blog/postArticleUpdate',
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json',
                 type: 'post',
                 success: function (result) {
                     layui.layer.close(postLayer);
-                    console.log(result);
                     if (result.code == 1) {
                         //成功
                         layui.layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            miniTab.deleteCurrentByIframe();
                             miniTab.openNewTabByIframe({
                                 href: basePath + "/admin/blogs.html",
                                 title: "文章管理",
@@ -181,22 +190,20 @@
         });
         //保存文章
         form.on('submit(saveArticle)', function (data) {
-            data.field;
-            console.log(JSON.stringify(data.field));
             let postLayer;
             postLayer = layui.layer.msg('正在保存', {icon: 16, shade: 0.01, time: 0});
             $.ajax({
-                url: basePath + '/blog/saveArticle',
+                url: basePath + '/blog/saveArticleUpdate',
                 data: JSON.stringify(data.field),
-                dataType: 'json',
                 contentType: 'application/json',
+                dataType: 'json',
                 type: 'post',
                 success: function (result) {
                     layui.layer.close(postLayer);
-                    console.log(result);
                     if (result.code == 1) {
                         //成功
                         layui.layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            miniTab.deleteCurrentByIframe();
                             miniTab.openNewTabByIframe({
                                 href: basePath + "/admin/blogs.html",
                                 title: "文章管理",

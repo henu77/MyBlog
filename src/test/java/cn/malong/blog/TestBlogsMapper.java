@@ -84,7 +84,6 @@ public class TestBlogsMapper {
         blog.setTypeId(new Type(1, "学习"));
         blog.setUserId(userInfoMapper.getUserInfoById(2));
         blog.setTitle("测试");
-        blog.setShareStatement(true);
         blog.setRecommend(true);
         blog.setPublished(true);
         blog.setCommentabled(true);

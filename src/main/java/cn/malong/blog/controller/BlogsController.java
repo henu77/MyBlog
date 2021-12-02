@@ -33,6 +33,17 @@ public class BlogsController {
         return blogsService.saveArticle(blog);
     }
 
+    @PostMapping("/postArticleUpdate")
+    public String postArticleUpdate(@RequestBody Blog blog) {
+        return blogsService.postArticleUpdate(blog);
+    }
+
+    @PostMapping("/saveArticleUpdate")
+    public String saveArticleUpdate(@RequestBody Blog blog) {
+        System.out.println(blog);
+        return blogsService.saveArticleUpdate(blog);
+    }
+
     @GetMapping("/more")
     public String getBlogsByPage(int typeId, int page) {
         return blogsService.getBlogsByPage(typeId, page);

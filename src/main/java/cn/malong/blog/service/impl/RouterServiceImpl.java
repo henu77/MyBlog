@@ -34,7 +34,8 @@ public class RouterServiceImpl implements RouterService {
     private UserInfoMapper userInfoMapper;
     @Autowired
     private BlogsMapper blogsMapper;
-
+    @Autowired
+    private CommentsMapper commentsMapper;
     /**
      * 1.从session中取用户信息
      * 2. 用户信息为空 说明未登录 则返回登录页
@@ -147,6 +148,16 @@ public class RouterServiceImpl implements RouterService {
 
     @Override
     public String toWelcome(Model model) {
+        int allUserNum = userInfoMapper.countAll();
+        int allBlogNum = blogsMapper.countAllBlogs();
+        int allBlogViews = blogsMapper.countAllBLogViews();
+        int allBLogComment = commentsMapper.countComment();
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("allUserNum",allUserNum);
+        data.put("allBlogNum",allBlogNum);
+        data.put("allBlogViews",allBlogViews);
+        data.put("allBLogComment",allBLogComment);
+        model.addAttribute("dataStatistics",data);
         return "/admin/welcome";
     }
 

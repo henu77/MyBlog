@@ -21,7 +21,6 @@ public class Blog {
     private String flag;
     private int views;
     private boolean appreciation;
-    private boolean shareStatement;
     private boolean commentabled;
     private boolean published;
     private boolean recommend;
