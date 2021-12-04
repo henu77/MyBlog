@@ -1,5 +1,7 @@
 package cn.malong.blog.utils;
 
+import java.util.Random;
+
 /**
  * @author malong
  * @Date 2021-10-29 22:39:28
@@ -94,5 +96,17 @@ public class StaticVariable {
             result = null;
         }
         return result;
+    }
+
+    public static String pathTransform(String oldPath) {
+        if (!oldPath.startsWith("D:") && !oldPath.startsWith("/linux")) {
+            oldPath = "/linux" + oldPath;
+        }
+        return oldPath;
+    }
+
+    public static String getDefaultIconPath() {
+        Random random = new Random();
+        return SysFileUtil.getUploadPath() + "/defaultIcon" + "/defaultIcon" + (random.nextInt(5) + 1) + ".png";
     }
 }

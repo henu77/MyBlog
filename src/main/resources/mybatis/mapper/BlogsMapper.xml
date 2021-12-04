@@ -209,6 +209,12 @@
         from myblog.t_blog
         where published = true;
     </select>
+    <select id="getIndexHotBlogs" resultType="cn.malong.blog.pojo.Blog">
+        select id, title, first_picture, create_time
+        from myblog.t_blog
+        order by views DESC
+        limit 3;
+    </select>
     <insert id="saveBlog" parameterType="blog">
         insert into myblog.t_blog(title, content, first_picture, flag,
                                   views, appreciation,

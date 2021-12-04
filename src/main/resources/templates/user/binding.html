@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>后台管理-登陆</title>
+    <title>绑定第三方账号</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -49,10 +49,10 @@
         }
 
         .admin-login-background {
-            width: 360px;
+            width: 500px;
             height: 300px;
             position: absolute;
-            left: 50%;
+            left: 43%;
             top: 35%;
             margin-left: -180px;
             margin-top: -100px;
@@ -82,40 +82,8 @@
             position: relative;
         }
 
-        .login-form .layui-form-item label {
-            position: absolute;
-            left: 1px;
-            top: 1px;
-            width: 38px;
-            line-height: 36px;
-            text-align: center;
-            color: #d2d2d2;
-        }
-
-        .login-form .layui-form-item input {
-            padding-left: 36px;
-        }
-
-        .captcha {
-            width: 60%;
-            display: inline-block;
-        }
-
-        .captcha-img {
-            display: inline-block;
-            width: 34%;
-            float: right;
-        }
-
-        .captcha-img img {
-            height: 34px;
-            border: 1px solid #e6e6e6;
-            height: 36px;
-            width: 100%;
-        }
-
-        .otherAppIcon {
-            width: 32px;
+        .layui-form-label {
+            width: 120px;
         }
     </style>
 </head>
@@ -125,47 +93,57 @@
         <div class="layui-form login-form">
             <form class="layui-form" th:action="@{/user/login}" method="post">
                 <div class="layui-form-item logo-title">
-                    <h1>用户登录</h1>
+                    <h1>绑定第三方账号</h1>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-username"></label>
-                    <input type="text" name="username" lay-verify="required|account" placeholder="用户名或者邮箱"
-                           autocomplete="off" class="layui-input" value="admin">
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-password"></label>
-                    <input type="password" name="password" lay-verify="required|password" placeholder="密码"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-vercode"></label>
-                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码"
-                           autocomplete="off" class="layui-input verification captcha">
-                    <div class="captcha-img" onclick="replaceVerifyCodeImg()">
-                        <img id="captchaPic" th:src="@{/file/getCaptchaImg}">
+                    <label class="layui-form-label">第三方平台:</label>
+                    <div class="layui-input-inline">
+                        <input type="text"
+                               name="source"
+                               th:value="${param.source}"
+                               placeholder="请输入第三方平台" value="" class="layui-input"
+                               lay-verify="required|pass" readonly>
                     </div>
                 </div>
-                <div class="layui-form-item" style="text-align: right;">
-                    <span><a href="#">忘记密码?</a></span>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">第三方平台用户名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text"
+                               name="socialUsername"
+                               th:value="${param.socialUsername}"
+                               placeholder="请输入第三方平台用户名" value="" class="layui-input"
+                               lay-verify="required|pass" readonly>
+                    </div>
+                </div>
+                <input type="text"
+                       name="uuid"
+                       th:value="${param.uuid}"
+                       placeholder="请输入第三方平台uuid" class="layui-input layui-hide"
+                       lay-verify="required" readonly>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">MyBlog账号:</label>
+                    <div class="layui-input-inline">
+                        <input type="text"
+                               name="username"
+                               placeholder="请输入用户名" value="" class="layui-input"
+                               lay-verify="required|pass" hidden required>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码:</label>
+                    <div class="layui-input-inline">
+                        <input type="text"
+                               name="password"
+                               placeholder="请输入密码" hidden value="" class="layui-input"
+                               lay-verify="required|pass" required>
+                    </div>
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-normal" lay-submit=""
-                            lay-filter="login" style="width:45%;margin-left: 3%">登 入
+                            lay-filter="login" style="width:60%;margin-left: 20%">绑 定
                     </button>
-                    <a class="layui-btn layui-btn-primary layui-border-blue"
-                       th:href="@{/register.html}" style="width:45%">注册</a>
                 </div>
             </form>
-            <div>
-                <span>第三方登录</span>
-                <a th:href="@{/oauth/render/gitee}"><img class="otherAppIcon" style="margin-left: 50%"
-                                                         th:src="@{/gitee.png}">
-                </a>
-                <a th:href="@{/oauth/render/aliyun}"><img class="otherAppIcon" style="margin-left: 3%;"
-                                                          th:src="@{/aliyun.png}"></a>
-                <!--                <a th:href="@{/oauth/render/oschina}"><img class="otherAppIcon" style="margin-left: 3%;"-->
-                <!--                                                          th:src="@{/oschina.png}"></a>-->
-            </div>
         </div>
     </div>
 </div>
@@ -186,16 +164,12 @@
             layui.layer.msg(HandlerInterceptor);
         }
         if (Auth_msg != "" && null != Auth_msg) {
-            layui.layer.msg(Auth_msg,{time: 2000});
+            layui.layer.msg(Auth_msg);
         }
     });
     layui.use(['form'], function () {
         var form = layui.form,
             layer = layui.layer;
-
-        // 登录过期的时候，跳出ifram框架
-        if (top.location != self.location) top.location = self.location;
-
         // 粒子线条背景
         $(document).ready(function () {
             $('.layui-container').particleground({
@@ -215,31 +189,25 @@
                 layer.msg('密码不能为空');
                 return false;
             }
-            if (data.captcha == '') {
-                layer.msg('验证码不能为空');
-                return false;
-            }
-            // layer.msg('登录成功', function () {
-            //     window.location = '../index.html';
-            // });
-            let loginLayer;
-            loginLayer = layui.layer.msg('正在登录', {icon: 16, shade: 0.01, time: 0});
+            let bindLayer;
+            bindLayer = layui.layer.msg('正在绑定！', {icon: 16, shade: 0.01, time: 0});
             $.ajax({
                 type: "POST",
-                url: basePath + '/user/login',
+                url: basePath + '/oauth/binding',
                 data: {
                     "username": data.username,
                     "password": data.password,
-                    "captcha": data.captcha
+                    "source": data.source,
+                    "uuid": data.uuid
                 },
                 success: function (result) {
-                    layui.layer.close(loginLayer);
+                    layui.layer.close(bindLayer);
                     console.log(result);
                     let jsonData = JSON.parse(result);
                     if (jsonData.code == 1) {
                         //成功
                         layui.layer.msg(jsonData.msg, {icon: 1, time: 1000}, function () {
-                            window.location = basePath + '/user/toArticle';
+                            parent.window.location = basePath + '/user/toArticle';
                         });
                     } else {
                         //失败
@@ -247,18 +215,13 @@
                     }
                 },
                 error: function (arg) {
-                    layui.layer.close(loginLayer);
+                    layui.layer.close(bindLayer);
                     layer.msg(arg);
                 }
             });
             return false;
         });
     });
-
-    //更新验证码
-    function replaceVerifyCodeImg() {
-        $("#captchaPic").attr('src', basePath + "/file/getCaptchaImg" + "?" + Math.random());
-    }
 </script>
 </body>
 </html>

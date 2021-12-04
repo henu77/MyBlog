@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>分步表单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
+    <link rel="stylesheet" th:href="@{/js/lay-module/step-lay/step.css}" media="all">
+    <style>
+        .layui-card-body {
+            /*width: 600px;*/
+            background: #00000000;
+        }
+
+        .layui-card {
+            margin-top: 5%;
+            margin-left: 25%;
+            width: 800px;
+        }
+
+        .layui-fluid {
+            background: #00000000;
+        }
+
+        .layuimini-main {
+            background: #00000000;
+        }
+
+        body {
+            background: #1E9FFF;
+        }
+
+        .layui-form-label2 {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: center;
+            position: relative;
+
+            background: #0071ffa8;
+            width: 116px;
+            height: 20px;
+            border: 1px solid black;
+            border-radius: 10px 0 0 10px;
+            /*-moz-border-radius-topleft: 10px;*/
+            /*-moz-border-radius-bottomleft: 10px;*/
+            text-align: center;
+        }
+
+        .layui-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .layui-form-mid {
+            width: 230px;
+            height: 20px;
+            border-right: 1px solid black;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            border-radius: 0 10px 10px 0;
+            float: left;
+            display: block;
+            padding: 9px 0 !important;
+            line-height: 20px;
+            margin-right: 10px;
+        }
+
+        .layui-form-mid span {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layuimini-main">
+        <div class="layui-fluid">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding-top: 40px;">
+                    <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+                        <div carousel-item>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 50px;">
+                                    <div class="layui-form-item">
+                                        <span id="tip" class="layui-anim layui-anim-up"
+                                              style="font-size: small;color: red"
+                                              hidden>该用户名已被使用</span>
+                                        <label class="layui-form-label">用户名:</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" id="username" name="username"
+                                                   placeholder="请填写入用户名"
+                                                   class="layui-input" oninput="checkUserName()"
+                                                   lay-verify="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">密码:</label>
+                                        <div class="layui-input-inline">
+                                            <input type="password"
+                                                   id="passowrd"
+                                                   name="password"
+                                                   placeholder="请输入密码" value="" class="layui-input"
+                                                   lay-verify="required|pass" required>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">邮箱:</label>
+                                        <div class="layui-input-inline">
+                                            <input type="required|email" placeholder="请输入邮箱" value=""
+                                                   class="layui-input"
+                                                   name="email"
+                                                   id="email"
+                                                   lay-verify="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formStep">
+                                                &emsp;下一步&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label2">第三方平台:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux">
+                                                <span style="font-size: 18px;color: #1E9FFF;"
+                                                      th:text="${source}">gitee</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label2">第三方平台用户名:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux">
+                                                <span style="font-size: 18px;color: #FFB800;"
+                                                      th:text="${socialUsername}">username</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label2">本应用用户名:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux">
+                                                <span style="font-size: 18px;color: #FF5722;"
+                                                      id="confirm1">username</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label2">登录密码:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux">
+                                                <span style="font-size: 18px;color: #FF5722;"
+                                                      id="confirm2">password</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label2">邮箱:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux">
+                                                <span style="font-size: 18px;color: #FF5722;"
+                                                      id="confirm3">email</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" class="layui-btn layui-btn-primary pre">上一步</button>
+                                            <button class="layui-btn layui-btn-normal" lay-submit
+                                                    lay-filter="formStep2">
+                                                &emsp;确认绑定&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <div style="text-align: center;margin-top: 90px;">
+                                    <i class="layui-icon layui-circle"
+                                       style="color: white;font-size:30px;font-weight:bold;background: #52C41A;padding: 20px;line-height: 80px;">&#xe605;</i>
+                                    <div style="font-size: 24px;color: #333;font-weight: 500;margin-top: 30px;">
+                                        绑定成功
+                                    </div>
+                                    <div style="font-size: 14px;color: #666;margin-top: 20px;"><span
+                                            id="second">5</span>秒后自动跳转
+                                    </div>
+                                </div>
+                                <div style="text-align: center;margin-top: 50px;">
+                                    <button class="layui-btn layui-btn-primary" id="jump">立即跳转</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/lay-config.js?v=1.0.4}" charset="utf-8"></script>
+<script type="text/javascript" th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    let username = $('#username');
+    layui.use(['form', 'step'], function () {
+        let $ = layui.$,
+            form = layui.form,
+            step = layui.step;
+        window.$(function () {
+            layui.layer.confirm('检测到您当前使用的第三方账号还未绑定本平台账号,' +
+                '请选择绑定(已有账号未绑定)或注册', {
+                btn: ['绑定', '注册'] //按钮
+            }, function () {
+                layer.open({
+                    type: 2,
+                    title: '绑定第三方账号。',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: basePath + '/binding.html?source=' + [[${source}]] +
+                        '&uuid=' + [[${uuid}]] + '&socialUsername=' + [[${socialUsername}]]
+                });
+            }, function () {
+
+            });
+        });
+
+        step.render({
+            elem: '#stepForm',
+            filter: 'stepForm',
+            width: '100%', //设置容器宽度
+            stepWidth: '500px',
+            height: '500px',
+            stepItems: [{
+                title: '注册信息'
+            }, {
+                title: '确认绑定'
+            }, {
+                title: '完成'
+            }]
+        });
+
+        form.verify({
+            pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+        });
+        form.on('submit(formStep)', function (data) {
+            $('#confirm1').text(data.field.username);
+            $('#confirm2').text(data.field.password);
+            $('#confirm3').text(data.field.email);
+            step.next('#stepForm');
+            return false;
+        });
+        let isJump = false;
+        form.on('submit(formStep2)', function (data) {
+            console.log("发送注册绑定请求")
+            $.ajax({
+                type: "post",
+                url: basePath + '/oauth/registerAndBinding',
+                data: {
+                    'username': $('#confirm1').text(),
+                    'password': $('#confirm2').text(),
+                    'email': $('#confirm3').text(),
+                    'source': [[${source}]],
+                    'uuid': [[${uuid}]]
+                },
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 1) {
+                        //成功
+                        console.log("注册并绑定成功")
+                        step.next('#stepForm');
+                        let second = $('#second');
+                        let index = 5;
+                        second.text((index--));
+                        let timer = setInterval(function () {
+                            second.text((index--));
+                            if (index < 0) {
+                                clearInterval(timer);
+                                index = 5;
+                                jump();
+                            }
+                        }, 1000);
+                    } else {
+                        //失败
+                        console.log(result.msg);
+                    }
+                },
+                error: function (arg) {
+                    layui.layer.msg(arg);
+                }
+            });
+            return false;
+        });
+
+        $('.pre').click(function () {
+            step.pre('#stepForm');
+        });
+        $('#jump').click(function () {
+            jump();
+        })
+        window.jump = function () {
+            if (isJump == false) {
+                window.location = basePath + "/user/toArticle";
+                isJump = true;
+            }
+        }
+
+        window.checkUserName = function () {
+            let tip = $('#tip');
+            $.ajax({
+                type: "get",
+                url: basePath + '/user/queryByUsername',
+                data: {'username': username.val()},
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 1) {
+                        //成功
+                        if (result.data[0] == true) {
+                            tip.show();
+                        } else {
+                            tip.hide();
+                        }
+                    } else {
+                        //失败
+                        console.log(result.msg);
+                    }
+                },
+                error: function (arg) {
+                    layui.layer.msg(arg);
+                }
+            });
+        }
+
+    })
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>404</title>
@@ -68,6 +68,7 @@
                 </div>
             </div>
             <h2 class="h1">很抱歉，你访问的页面找不到了</h2>
+            <h1 th:text="${errorMsg}" style="color: red;"></h1>
         </div>
     </div>
 </div>

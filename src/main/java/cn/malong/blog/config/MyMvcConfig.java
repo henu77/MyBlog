@@ -31,7 +31,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
         //公共页首页
         registry.addViewController("/article.html").setViewName("user/article");
         registry.addViewController("/articleByType.html").setViewName("user/articleByType");
-        registry.addViewController("/diary.html").setViewName("user/diary");
         registry.addViewController("/link.html").setViewName("user/link");
         registry.addViewController("/message.html").setViewName("user/message");
         registry.addViewController("/read.html").setViewName("user/read");
@@ -42,7 +41,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/profile.html").setViewName("user/profile");
         registry.addViewController("/password.html").setViewName("user/password");
         registry.addViewController("/ad-edit.html").setViewName("user/ad-edit");
+        registry.addViewController("/auth-register.html").setViewName("user/auth-register");
+        registry.addViewController("/binding.html").setViewName("user/binding");
 
+        registry.addViewController("/404.html").setViewName("error/404");
 
         //admin页面
         registry.addViewController("/admin/index").setViewName("admin/index");

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.malong.blog.dao.SocialUserAuthMapper">
+    <resultMap id="socialUserAuth" type="cn.malong.blog.pojo.SocialUserAuth">
+        <id column="id" property="id"/>
+        <association property="userId" column="user_id"
+                     select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
+        <association property="socialUserId" column="social_user_id"
+                     select="cn.malong.blog.dao.SocialUserMapper.querySocialUserById"/>
+    </resultMap>
+    <insert id="addSocialUserAuth">
+        insert into myblog.t_social_user_auth(user_id, social_user_id)
+        values (#{userId}, #{SocialUserId});
+    </insert>
+    <select id="queryBySocialUserId" resultMap="socialUserAuth">
+        select *
+        from myblog.t_social_user_auth
+        where social_user_id = #{id};
+    </select>
+
+
+</mapper>

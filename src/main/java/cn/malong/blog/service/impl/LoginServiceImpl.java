@@ -57,12 +57,12 @@ public class LoginServiceImpl implements LoginService {
             return json.toString();
         }
         String captchaFromSession = (String) ServletUtil.getSession().getAttribute("login_VerifyCode");
-        if(null==captchaFromSession){
+        if (null == captchaFromSession) {
             json.setCode(0);
             json.setMsg("验证码已失效！");
             return json.toString();
         }
-        if(!captcha.equals(captchaFromSession)){
+        if (!captcha.equals(captchaFromSession)) {
             json.setCode(0);
             json.setMsg("验证码错误!");
             return json.toString();
@@ -123,9 +123,8 @@ public class LoginServiceImpl implements LoginService {
     public String getDefaultIcon() {
         ResponseUtil<String> json = new ResponseUtil<>();
         String result = "";
-        Random random = new Random();
         try {
-            File file = ResourceUtils.getFile(SysFileUtil.getUploadPath() + "/defaultIcon" + "/defaultIcon" + (random.nextInt(5) + 1) + ".png");
+            File file = ResourceUtils.getFile(StaticVariable.getDefaultIconPath());
             FileInputStream inputStream = new FileInputStream(file);
             MultipartFile multipartFile = new MockMultipartFile(file.getName(), file.getName(),
                     ContentType.APPLICATION_OCTET_STREAM.toString(), inputStream);

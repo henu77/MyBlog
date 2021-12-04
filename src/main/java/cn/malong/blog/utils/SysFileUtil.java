@@ -23,4 +23,5 @@ public class SysFileUtil {
     public static String getUploadPath() {
         return '\\' == File.separatorChar ? WINDOWS_PATH : LINUX_PATH;
     }
+
 }

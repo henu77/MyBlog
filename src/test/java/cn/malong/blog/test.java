@@ -1,6 +1,11 @@
 package cn.malong.blog;
 
 import cn.malong.blog.dao.ProvinceMapper;
+import cn.malong.blog.dao.SocialUserAuthMapper;
+import cn.malong.blog.dao.SocialUserMapper;
+import cn.malong.blog.pojo.SocialUser;
+import cn.malong.blog.pojo.SocialUserAuth;
+import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.utils.StaticVariable;
 import cn.malong.blog.utils.servlet.ServletUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -12,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 /**
  * @author marlone
@@ -59,5 +66,21 @@ public class test {
         }
         System.out.println(province);
         return province;
+    }
+
+    @Autowired
+    private SocialUserAuthMapper socialUserAuthMapper;
+    @Autowired
+    private SocialUserMapper socialUserMapper;
+    @Test
+    public void ttt() {
+//        List<SocialUserAuth> socialUserAuthList = socialUserAuthMapper.queryByUserId(3);
+//        System.out.println(null==socialUserAuthList);
+//        System.out.println(socialUserAuthList.size());
+        SocialUser socialUser = new SocialUser();
+        socialUser.setSource("gitee");
+        socialUser.setUuid("2313123");
+        socialUserMapper.addSocialUser(socialUser);
+        System.out.println(socialUser);
     }
 }

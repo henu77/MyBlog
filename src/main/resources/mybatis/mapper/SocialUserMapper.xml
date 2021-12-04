@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.malong.blog.dao.SocialUserMapper">
+    <insert id="addSocialUser" useGeneratedKeys="true" keyProperty="id">
+        insert into myblog.t_social_user(uuid, source, access_token)
+        values (#{socialUser.uuid}, #{socialUser.source}, #{socialUser.accessToken});
+    </insert>
+    <update id="updateSocialUser">
+        update myblog.t_social_user
+        set uuid=#{socialUser.uuid},
+            source=#{socialUser.source},
+            access_token=#{socialUser.accessToken}
+        where id = #{socialUser.id};
+    </update>
+    <select id="querySocialUserByUUidAndSource" resultType="cn.malong.blog.pojo.SocialUser">
+        select *
+        from myblog.t_social_user
+        where source = #{source}
+          and uuid = #{uuid};
+    </select>
+    <select id="querySocialUserById" resultType="cn.malong.blog.pojo.SocialUser">
+        select *
+        from myblog.t_social_user
+        where id = #{id};
+    </select>
+
+</mapper>

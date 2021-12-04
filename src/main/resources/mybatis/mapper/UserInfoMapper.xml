@@ -117,7 +117,7 @@
         </foreach>
     </delete>
     <!-- insert -->
-    <insert id="userAdd" parameterType="userInfo">
+    <insert id="userAdd" useGeneratedKeys="true" keyProperty="id" parameterType="userInfo">
         insert into myblog.t_user(nickname, username, password, email, avatar, role)
         values (#{nickname}, #{username}, #{password}, #{email}, #{avatar}, #{role});
     </insert>

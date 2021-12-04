@@ -1,0 +1,46 @@
+{
+  "code": 2000,
+  "data": {
+    "avatar": "https://gitee.com/assets/no_portrait.png",
+    "gender": "UNKNOWN",
+    "nickname": "henu77",
+    "rawUserInfo": {
+      "gists_url": "https://gitee.com/api/v5/users/henu77/gists{/gist_id}",
+      "repos_url": "https://gitee.com/api/v5/users/henu77/repos",
+      "following_url": "https://gitee.com/api/v5/users/henu77/following_url{/other_user}",
+      "created_at": "2021-03-23T12:25:26+08:00",
+      "remark": "",
+      "login": "henu77",
+      "type": "User",
+      "subscriptions_url": "https://gitee.com/api/v5/users/henu77/subscriptions",
+      "updated_at": "2021-12-03T17:14:31+08:00",
+      "id": 8855626,
+      "public_repos": 2,
+      "organizations_url": "https://gitee.com/api/v5/users/henu77/orgs",
+      "starred_url": "https://gitee.com/api/v5/users/henu77/starred{/owner}{/repo}",
+      "followers_url": "https://gitee.com/api/v5/users/henu77/followers",
+      "public_gists": 0,
+      "url": "https://gitee.com/api/v5/users/henu77",
+      "received_events_url": "https://gitee.com/api/v5/users/henu77/received_events",
+      "watched": 3,
+      "followers": 0,
+      "avatar_url": "https://gitee.com/assets/no_portrait.png",
+      "events_url": "https://gitee.com/api/v5/users/henu77/events{/privacy}",
+      "html_url": "https://gitee.com/henu77",
+      "following": 0,
+      "name": "henu77",
+      "stared": 8
+    },
+    "source": "GITEE",
+    "token": {
+      "accessToken": "a2aeb63854ee35d956d24d8190270bf1",
+      "expireIn": 86400,
+      "refreshToken": "25cc14f7341b3b7087dd76b854665ed4eb89007b1006923a7c8c03f3e22ab95e",
+      "refreshTokenExpireIn": 0,
+      "scope": "user_info emails",
+      "tokenType": "bearer"
+    },
+    "username": "henu77",
+    "uuid": "8855626"
+  }
+}

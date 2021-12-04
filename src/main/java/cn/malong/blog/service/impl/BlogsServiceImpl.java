@@ -104,10 +104,9 @@ public class BlogsServiceImpl implements BlogsService {
                 temp.put("flag", blog.getFlag());
                 temp.put("type", blog.getTypeId().getName());
                 temp.put("author", blog.getUserId().getNickname());
-                Date updateTime = blog.getUpdateTime();
-                temp.put("day", CalendarUtil.getDay(updateTime));
-                temp.put("month", CalendarUtil.getMonth(updateTime));
-                temp.put("year", CalendarUtil.getYear(updateTime));
+                temp.put("day", CalendarUtil.getDay(blog.getUpdateTime()));
+                temp.put("month", CalendarUtil.getMonth(blog.getUpdateTime()));
+                temp.put("year", CalendarUtil.getYear(blog.getUpdateTime()));
                 temp.put("comments", commentsMapper.countCommentsByBlogId(blog.getId()));
                 temp.put("views", blog.getViews());
                 temp.put("recommend", blog.isRecommend());

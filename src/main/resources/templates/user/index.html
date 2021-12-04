@@ -19,7 +19,7 @@
 </div>
 <div id="navgation" class="navgation navgation_close">
     <ul class="point">
-        <li><a th:href="@{/index.html}">首页</a></li>
+        <li><a th:href="@{/user/toIndex}">首页</a></li>
         <li><a th:href="@{/user/toArticle}">博客</a></li>
         <li><a th:href="@{/message.html}">留言</a></li>
         <li><a th:href="@{/link.html}">友链</a></li>
@@ -43,7 +43,8 @@
             <div class="nav wow zoomIn" data-wow-duration="2s">
                 <h1>MyBlog</h1>
                 <p>剑气纵横三万里,一剑光寒十九洲</p>
-                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" th:href="@{/user/toArticle}">Enter Blog</a>
+                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" th:href="@{/user/toArticle}">Enter
+                    Blog</a>
             </div>
             <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
         </div>
@@ -63,80 +64,100 @@
                     </div>
                 </div>
                 <div class="layui-row">
-                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">
-                        <div class="single-news">
-                            <div class="news-head">
-                                <img th:src="@{/image/bg1.jpg}">
-                                <a href="#" class="link"><i class="fa fa-link"></i></a>
-                            </div>
-                            <div class="news-content">
-                                <h4>
-                                    <a href="#">
-                                        标题
-                                    </a>
-                                </h4>
-                                <div class="date">
-                                    2017年2月16日
-                                </div>
-                                <p>
-                                    很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
-                                </p>
-                                <a href="#" class="btn">
-                                    阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".2s"
+                    <div th:each="blog,blogStat:${hotBLogs}"
+                         class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp"
+                         th:data-wow-delay="${blogStat.index}==0 ? '.0s':(${blogStat.index}==1?'.3s':'.6s')"
                          style="padding: 0 10px">
                         <div class="single-news">
                             <div class="news-head">
-                                <img th:src="@{/image/bg1.jpg}">
-                                <a href="#" class="link"><i class="fa fa-link"></i></a>
+                                <img th:src="@{/file/getImg}+'/'+${blog.firstPic}">
+                                <a th:href="@{/user/toReadBlog/}+${blog.id}" class="link">
+                                    <i class="fa fa-link"></i>
+                                </a>
                             </div>
                             <div class="news-content">
                                 <h4>
-                                    <a href="#">
+                                    <a th:href="@{/user/toReadBlog/}+${blog.id}" th:text="${blog.title}">
                                         标题
                                     </a>
                                 </h4>
-                                <div class="date">
+                                <div class="date" th:text="${blog.date}">
                                     2017年2月16日
                                 </div>
-                                <p>
-                                    很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
-                                </p>
-                                <a href="#" class="btn">
+                                <a th:href="@{/user/toArticle}" class="btn">
                                     阅读更多
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".4s"
-                         style="padding: 0 10px">
-                        <div class="single-news">
-                            <div class="news-head">
-                                <img th:src="@{/image/bg1.jpg}">
-                                <a href="#" class="link"><i class="fa fa-link"></i></a>
-                            </div>
-                            <div class="news-content">
-                                <h4>
-                                    <a href="#">
-                                        标题
-                                    </a>
-                                </h4>
-                                <div class="date">
-                                    2017年2月16日
-                                </div>
-                                <p>
-                                    很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
-                                </p>
-                                <a href="#" class="btn">
-                                    阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
+                    <!--                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">-->
+                    <!--                        <div class="single-news">-->
+                    <!--                            <div class="news-head">-->
+                    <!--                                <img th:src="@{/image/bg1.jpg}">-->
+                    <!--                                <a href="#" class="link"><i class="fa fa-link"></i></a>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="news-content">-->
+                    <!--                                <h4>-->
+                    <!--                                    <a href="#">-->
+                    <!--                                        标题-->
+                    <!--                                    </a>-->
+                    <!--                                </h4>-->
+                    <!--                                <div class="date">-->
+                    <!--                                    2017年2月16日-->
+                    <!--                                </div>-->
+
+                    <!--                                <a th:href="@{/user/toArticle}" class="btn">-->
+                    <!--                                    阅读更多-->
+                    <!--                                </a>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".2s"-->
+                    <!--                         style="padding: 0 10px">-->
+                    <!--                        <div class="single-news">-->
+                    <!--                            <div class="news-head">-->
+                    <!--                                <img th:src="@{/image/bg1.jpg}">-->
+                    <!--                                <a href="#" class="link"><i class="fa fa-link"></i></a>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="news-content">-->
+                    <!--                                <h4>-->
+                    <!--                                    <a href="#">-->
+                    <!--                                        标题-->
+                    <!--                                    </a>-->
+                    <!--                                </h4>-->
+                    <!--                                <div class="date">-->
+                    <!--                                    2017年2月16日-->
+                    <!--                                </div>-->
+
+                    <!--                                <a th:href="@{/user/toArticle}" class="btn">-->
+                    <!--                                    阅读更多-->
+                    <!--                                </a>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".4s"-->
+                    <!--                         style="padding: 0 10px">-->
+                    <!--                        <div class="single-news">-->
+                    <!--                            <div class="news-head">-->
+                    <!--                                <img th:src="@{/image/bg1.jpg}">-->
+                    <!--                                <a href="#" class="link"><i class="fa fa-link"></i></a>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="news-content">-->
+                    <!--                                <h4>-->
+                    <!--                                    <a href="#">-->
+                    <!--                                        标题-->
+                    <!--                                    </a>-->
+                    <!--                                </h4>-->
+                    <!--                                <div class="date">-->
+                    <!--                                    2017年2月16日-->
+                    <!--                                </div>-->
+                    <!--                                <a th:href="@{/user/toArticle}" class="btn">-->
+                    <!--                                    阅读更多-->
+                    <!--                                </a>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -196,11 +217,12 @@
                     <div class="single-widget">
                         <h2>相关链接</h2>
                         <ul class="social-icon">
-                            <li class="active"><a href="#"><i class="fa fa-book"></i>博文</a></li>
-                            <li class="active"><a href="#"><i class="fa fa-comments"></i>留言</a></li>
-                            <li class="active"><a href="#"><i class="fa fa-share"></i>资源</a></li>
-                            <li class="active"><a href="#"><i class="fa fa-snowflake-o"></i>日记</a></li>
-                            <li class="active"><a href="#"><i class="fa fa-files-o"></i>归档</a></li>
+                            <li class="active"><a th:href="@{/user/toArticle}"><i class="fa fa-book"></i>博文</a></li>
+                            <li class="active"><a th:href="@{/user/toMessage}"><i class="fa fa-comments"></i>留言</a></li>
+                            <li class="active">
+                                <a target="_blank"
+                                   href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1289596706@qq.com">
+                                    <i class="fa fa-phone-square"></i>联系我</a></li>
                         </ul>
                     </div>
                 </div>

@@ -25,17 +25,19 @@ public interface RouterService {
      */
     String toAdminWrite(Model model);
 
-    String toUserEdit(int Id,Model model);
+    String toUserEdit(int Id, Model model);
 
-    String toUpdateType(int id,Model model);
+    String toUpdateType(int id, Model model);
 
     String toReadBolg(int blogId, Model model);
 
-    String toUpdateBlog(int id,Model model);
+    String toUpdateBlog(int id, Model model);
 
     String toArticle(Model model);
 
-    String toArticleByType(int typeId,Model model);
+    String toArticleByType(int typeId, Model model);
 
     String toWelcome(Model model);
+
+    String toUserIndex(Model model);
 }

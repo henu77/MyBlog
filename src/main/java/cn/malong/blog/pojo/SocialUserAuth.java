@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SocialUserAuth {
     private int id;
-    private int user_id;
-    private int socialUserId;
+    private UserInfo userId;
+    private SocialUser socialUserId;
 }

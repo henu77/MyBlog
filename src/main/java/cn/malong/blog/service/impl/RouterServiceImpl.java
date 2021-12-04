@@ -10,6 +10,7 @@ import cn.malong.blog.pojo.Type;
 import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.RouterService;
 import cn.malong.blog.utils.CalendarUtil;
+import cn.malong.blog.utils.DateUtils;
 import cn.malong.blog.utils.MarkdownUtils;
 import cn.malong.blog.utils.StaticVariable;
 import cn.malong.blog.utils.servlet.ServletUtil;
@@ -36,6 +37,7 @@ public class RouterServiceImpl implements RouterService {
     private BlogsMapper blogsMapper;
     @Autowired
     private CommentsMapper commentsMapper;
+
     /**
      * 1.从session中取用户信息
      * 2. 用户信息为空 说明未登录 则返回登录页
@@ -153,12 +155,29 @@ public class RouterServiceImpl implements RouterService {
         int allBlogViews = blogsMapper.countAllBLogViews();
         int allBLogComment = commentsMapper.countComment();
         Map<String, Object> data = new LinkedHashMap<>();
-        data.put("allUserNum",allUserNum);
-        data.put("allBlogNum",allBlogNum);
-        data.put("allBlogViews",allBlogViews);
-        data.put("allBLogComment",allBLogComment);
-        model.addAttribute("dataStatistics",data);
+        data.put("allUserNum", allUserNum);
+        data.put("allBlogNum", allBlogNum);
+        data.put("allBlogViews", allBlogViews);
+        data.put("allBLogComment", allBLogComment);
+        model.addAttribute("dataStatistics", data);
         return "/admin/welcome";
+    }
+
+    @Override
+    public String toUserIndex(Model model) {
+        List<Blog> hotBlogs = blogsMapper.getIndexHotBlogs();
+        List<Map<String, Object>> hotData = new ArrayList<>();
+        for (Blog blog :
+                hotBlogs) {
+            Map<String, Object> temp = new LinkedHashMap<>();
+            temp.put("id", blog.getId());
+            temp.put("firstPic", StaticVariable.pathTransform(blog.getFirstPicture()));
+            temp.put("title", blog.getTitle());
+            temp.put("date", DateUtils.dateToString(blog.getCreatTime()));
+            hotData.add(temp);
+        }
+        model.addAttribute("hotBLogs", hotData);
+        return "/user/index";
     }
 
     /**

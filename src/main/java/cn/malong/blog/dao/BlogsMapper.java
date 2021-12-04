@@ -59,4 +59,5 @@ public interface BlogsMapper {
 
     int countAllBLogViews();
 
+    List<Blog> getIndexHotBlogs();
 }
