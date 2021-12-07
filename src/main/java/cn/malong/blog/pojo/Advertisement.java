@@ -17,7 +17,9 @@ public class Advertisement {
     private String des;
     private String miniDes;
     private String email;
-    private boolean state;
+    private String state;
     private UserInfo userId;
     private Date submitTime;
+
+//    private int userId;
 }

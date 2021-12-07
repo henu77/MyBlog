@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
 </head>
 <body>
-<form action="" class="layui-form" >
+<form action="" class="layui-form">
     <div class="mainBox">
         <div class="main-container">
             <div class="main-container" style="margin-top: 50px">
@@ -19,42 +19,42 @@
                     <label class="layui-form-label">标题</label>
                     <div class="layui-input-block">
                         <input autocomplete="off" class="layui-input" lay-verify="required" name="title"
-                               placeholder="请输入标题"  type="text">
+                               placeholder="请输入标题" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">链接地址</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="required"  name="path"
-                               placeholder="请输入链接地址"  type="text">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="path"
+                               placeholder="请输入链接地址" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">介绍</label>
                     <div class="layui-input-block">
                         <textarea autocomplete="off" class="layui-textarea" lay-verify="required" name="des"
-                                  placeholder="请输入介绍"  ></textarea>
+                                  placeholder="请输入介绍"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">简介</label>
                     <div class="layui-input-block">
                         <input autocomplete="off" class="layui-input" lay-verify="required" name="miniDes"
-                               placeholder="请输入简介"  type="text">
+                               placeholder="请输入简介" type="text">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="email" name="email"
-                               placeholder="请输入联系邮箱"  type="email">
+                        <input autocomplete="off" class="layui-input" lay-verify="email|required" name="email"
+                               placeholder="请输入联系邮箱" type="email">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">邮箱</label>
+                    <label class="layui-form-label">图标</label>
                     <div class="layui-input-block">
-                        <input autocomplete="off" class="layui-input" lay-verify="email" name="icon"
-                               placeholder="请输入联系邮箱"  type="text">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="icon"
+                               placeholder="请输入图标地址" type="text">
                     </div>
                 </div>
             </div>
@@ -93,9 +93,23 @@
                 success: function (result) {
                     if (result.code) {
                         layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
                         });
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        if (result.msg == '请先登录！') {
+                            layer.msg(result.msg, {icon: 2, time: 500}, function () {
+                                layer.open({
+                                    type: 2,
+                                    title: '登录',
+                                    shade: 0.1,
+                                    area: ['550px', '500px'],
+                                    content: basePath + '/miniLogin.html',
+                                });
+                            });
+                        } else {
+                            layer.msg(result.msg, {icon: 2, time: 1000});
+                        }
                     }
                 }
             })

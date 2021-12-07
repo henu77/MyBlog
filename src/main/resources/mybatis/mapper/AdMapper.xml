@@ -5,13 +5,26 @@
 <mapper namespace="cn.malong.blog.dao.AdMapper">
     <insert id="insertAnAd" parameterType="advertisement">
         insert into myblog.t_advertisement (path, icon, title, des, mini_des, email, state, user_id, submit_time)
-        values (#{path}, #{icon}, #{title}, #{des}, #{miniDes}, #{email}, #{state}, #{userId.id}，#{submitTime});
+        values (#{path}, #{icon}, #{title}, #{des}, #{miniDes}, #{email}, #{state}, #{userId.id}, #{submitTime});
     </insert>
-    <select id="getUserInfo" resultType="userInfo">
-        select *
-        from myblog.t_user
-        where id = #{user_id};
-    </select>
+    <update id="updateState">
+        update myblog.t_advertisement
+        set state= #{state}
+        where id = #{id};
+    </update>
+    <delete id="deleteComment">
+        delete
+        from myblog.t_advertisement
+        where id = #{id};
+    </delete>
+    <delete id="deleteCommentsByBatch">
+        delete
+        from myblog.t_advertisement
+        where id in
+        <foreach collection="array" item="id" index="no" separator="," open="(" close=")">
+            #{id}
+        </foreach>;
+    </delete>
     <resultMap id="adMap" type="advertisement">
         <id column="id" property="id"/>
         <result column="path" property="path"/>
@@ -22,7 +35,7 @@
         <result column="email" property="email"/>
         <result column="state" property="state"/>
         <result column="submit_time" property="submitTime"/>
-        <association column="user_id" property="userId" select="getUserInfo"/>
+        <association column="user_id" property="userId" select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
     </resultMap>
     <select id="getAdDataByLimit" resultMap="adMap">
         select *
@@ -32,5 +45,15 @@
     <select id="allAdCount" resultType="int">
         select count(id)
         from myblog.t_advertisement;
+    </select>
+    <select id="queryAdById" resultMap="adMap">
+        select *
+        from myblog.t_advertisement
+        where id = #{id};
+    </select>
+    <select id="queryAllAdsIsPass" resultMap="adMap">
+        select *
+        from myblog.t_advertisement
+        where state = '审核通过';
     </select>
 </mapper>

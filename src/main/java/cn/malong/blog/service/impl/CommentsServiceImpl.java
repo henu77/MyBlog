@@ -58,7 +58,7 @@ public class CommentsServiceImpl implements CommentsService {
 
     @Override
     public String commentDelete(int id) {
-        if (!isHavingAuthority()) {
+        if (!UserServiceImpl.isHavingAuthority()) {
             ResponseUtil<String> json = new ResponseUtil<>();
             json.setCode(0);
             json.setMsg("您的权限太低，无法删除");
@@ -78,7 +78,7 @@ public class CommentsServiceImpl implements CommentsService {
 
     @Override
     public String commentBatchDelete(int[] ids) {
-        if (!isHavingAuthority()) {
+        if (!UserServiceImpl.isHavingAuthority()) {
             ResponseUtil<String> json = new ResponseUtil<>();
             json.setCode(0);
             json.setMsg("您的权限太低，无法删除");
@@ -347,17 +347,7 @@ public class CommentsServiceImpl implements CommentsService {
         return userInfo;
     }
 
-    private boolean isHavingAuthority() {
-        UserInfo userInfoFromSession = getUserInfoFromSession();
-        if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_USER)) {
-            return false;
-        } else if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_ADMIN)
-                || userInfoFromSession.getRole().equals(StaticVariable.ROLE_ROOT)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     private String commentDataToJson(List<Comment> commentData) {
         ResponseUtil<Map> json = new ResponseUtil<>();

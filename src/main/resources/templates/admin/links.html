@@ -11,30 +11,32 @@
     <link rel="stylesheet" th:href="@{/admin/css/other/user.css}"/>
 </head>
 <body class="pear-container">
-<div class="layui-card">
-    <div class="layui-card-body">
-        <form action="" class="layui-form" lay-filter="comment-query-form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">评论</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" id="content" name="content" placeholder="" type="text" oninput="liveUpdate()">
-                </div>
-                <label class="layui-form-label">昵称</label>
-                <div class="layui-input-inline">
-                    <input class="layui-input" id="nickname" name="nickname" placeholder="" type="text" oninput="liveUpdate()">
-                </div>
-                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="comment-query" lay-submit>
-                    <i class="layui-icon layui-icon-search"></i>
-                    查询
-                </button>
-                <button class="pear-btn pear-btn-md" type="reset">
-                    <i class="layui-icon layui-icon-refresh"></i>
-                    重置
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
+<!--<div class="layui-card">-->
+<!--    <div class="layui-card-body">-->
+<!--        <form action="" class="layui-form" lay-filter="comment-query-form">-->
+<!--            <div class="layui-form-item">-->
+<!--                <label class="layui-form-label">评论</label>-->
+<!--                <div class="layui-input-inline">-->
+<!--                    <input class="layui-input" id="content" name="content" placeholder="" type="text"-->
+<!--                           oninput="liveUpdate()">-->
+<!--                </div>-->
+<!--                <label class="layui-form-label">昵称</label>-->
+<!--                <div class="layui-input-inline">-->
+<!--                    <input class="layui-input" id="nickname" name="nickname" placeholder="" type="text"-->
+<!--                           oninput="liveUpdate()">-->
+<!--                </div>-->
+<!--                <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="comment-query" lay-submit>-->
+<!--                    <i class="layui-icon layui-icon-search"></i>-->
+<!--                    查询-->
+<!--                </button>-->
+<!--                <button class="pear-btn pear-btn-md" type="reset">-->
+<!--                    <i class="layui-icon layui-icon-refresh"></i>-->
+<!--                    重置-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
 <div class="user-left user-collasped">
     <div class="layui-card">
         <div class="layui-card-body">
@@ -51,11 +53,11 @@
 </body>
 
 <script id="ad-toolbar" type="text/html">
-    <button
-            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
-        <i class="pear-icon pear-icon-add"></i>
-        新增
-    </button>
+    <!--    <button-->
+    <!--            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">-->
+    <!--        <i class="pear-icon pear-icon-add"></i>-->
+    <!--        新增-->
+    <!--    </button>-->
     <button class="pear-btn pear-btn-md pear-btn-danger"
             lay-event="batchRemove">
         <i class="pear-icon pear-icon-ashbin"></i>
@@ -105,13 +107,18 @@
         let cols = [
             [
                 {type: 'checkbox'},
+                {title: 'ID', field: 'id', hide: true, align: 'center'},
                 {title: '昵称', field: 'nickname', align: 'center'},
                 {title: '邮箱', field: 'email', align: 'center'},
                 {title: '链接地址', field: 'linkPath', align: 'center'},
                 {title: '介绍', field: 'des', align: 'center'},
                 {title: '提交时间', field: 'submitTime', align: 'center'},
                 {title: '当前状态', field: 'nowState', align: 'center'},
-                {title: '操作', toolbar: '#comment-bar', align: 'center', width: 130,fixed:"right"}
+                {title: '图标', field: 'icon', hide: true},
+                {title: '简介', field: 'miniDes', hide: true},
+                {title: '标题', field: 'title', hide: true},
+                {title: '用户ID', field: 'userId', hide: true},
+                {title: '操作', toolbar: '#comment-bar', align: 'center', width: 130, fixed: "right"}
             ]
         ]
 
@@ -121,9 +128,9 @@
             page: true,
             cols: cols,
             skin: 'line',
-            height: 'full-148',
+            height: 'full-40',
             toolbar: '#ad-toolbar',
-            text: {none: '暂无人员信息'},
+            text: {none: '申请为空'},
             defaultToolbar: [{
                 layEvent: 'refresh',
                 icon: 'layui-icon-refresh',
@@ -141,9 +148,10 @@
         });
 
         table.on('toolbar(ad-table)', function (obj) {
-            if (obj.event === 'add') {
-                window.add();
-            } else if (obj.event === 'refresh') {
+            // if (obj.event === 'add') {
+            //     window.add();
+            // } else
+            if (obj.event === 'refresh') {
                 window.refresh();
             } else if (obj.event === 'batchRemove') {
                 window.batchRemove(obj);
@@ -155,32 +163,42 @@
             return false;
         });
 
-        window.add = function () {
-            layer.open({
-                type: 2,
-                title: '新增',
-                shade: 0.1,
-                area: ['550px', '550px'],
-                content: basePath + 'add'
-            });
-        }
+        // window.add = function () {
+        //     layer.open({
+        //         type: 2,
+        //         title: '新增',
+        //         shade: 0.1,
+        //         area: ['550px', '550px'],
+        //         content: basePath + 'add'
+        //     });
+        // }
 
         window.edit = function (obj) {
             layer.open({
                 type: 2,
                 title: '修改',
                 shade: 0.1,
-                area: ['550px', '500px'],
-                content: basePath + 'edit?userId=' + obj.data['userId']
+                area: ['550px', '650px'],
+                content: basePath + '/admin/checkAd.html?id=' + obj.data['id'] +
+                    '&linkPath=' + obj.data['linkPath'] +
+                    '&title=' + obj.data['title'] +
+                    '&miniDes=' + obj.data['miniDes'] +
+                    '&icon=' + obj.data['icon'] +
+                    '&nickname=' + obj.data['nickname'] +
+                    '&email=' + obj.data['email'] +
+                    '&des=' + obj.data['des'] +
+                    '&submitTime=' + obj.data['submitTime'] +
+                    '&nowState=' + obj.data['nowState'] +
+                    '&userId=' + obj.data['userId']
             });
         }
 
         window.remove = function (obj) {
-            layer.confirm('确定要删除该评论', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除该申请', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: basePath + "/comment/delete?id=" + obj.data['id'],
+                    url: basePath + "/ad/delete?id=" + obj.data['id'],
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
@@ -205,11 +223,11 @@
                 popup.warning("未选中数据");
                 return false;
             }
-            layer.confirm('确定要删除选中的评论', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除选中的申请', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: basePath + "/comment/batchDelete?ids=" + ids,
+                    url: basePath + "/ad/batchDelete?ids=" + ids,
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
@@ -222,7 +240,7 @@
                         } else {
                             popup.failure(result.msg);
                         }
-                        console.log("删除评论成功")
+                        console.log("删除ad成功")
                     }
                 })
             });
@@ -233,7 +251,7 @@
         }
 
         window.liveUpdate = function () {
-            let change = {content:$('#content').val(),nickname:$('#nickname').val()};
+            let change = {content: $('#content').val(), nickname: $('#nickname').val()};
             window.refresh(change);
         }
     })

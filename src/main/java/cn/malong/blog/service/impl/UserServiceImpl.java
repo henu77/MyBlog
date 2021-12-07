@@ -332,6 +332,17 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public static boolean isHavingRootAuthority() {
+        UserInfo userInfoFromSession = getUserInfoFromSession();
+        if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_USER)) {
+            return false;
+        } else if (userInfoFromSession.getRole().equals(StaticVariable.ROLE_ROOT)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private String userDataToJson(List<UserInfo> userData, String role) {
         ResponseUtil<UserInfo> json = new ResponseUtil<>();
         if (null == userData) {

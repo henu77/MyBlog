@@ -15,7 +15,11 @@ public class StaticVariable {
     public final static String OS_LINUX = "linux";
     public final static String ADMIN_EMAIL = "1289596706@qq.com";
     public final static String BAIDU_AK = "bCe88I0AvVB3DHhFKYplHOmMwKSbaYKE";
-
+    public static final int OPERATE_PASS = 2000;
+    public static final int OPERATE_REFUSE = 5000;
+    public static final String AD_STATE_PASS = "审核通过";
+    public static final String AD_STATE_REFUSE = "审核未通过";
+    public static final String AD_STATE_UNDEFINED = "暂未审核";
     /**
      * 前缀匹配省份 如果匹配不到返回null
      *

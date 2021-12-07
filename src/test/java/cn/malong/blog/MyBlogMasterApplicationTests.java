@@ -77,13 +77,17 @@ class MyBlogMasterApplicationTests {
     @Test
     void contextLoads1() throws SQLException {
 //        Advertisement advertisement = new Advertisement();
+        System.out.println("拒绝通过".substring(0,2));
 //        advertisement.setTitle("广告1");
 //        advertisement.setPath("123");
 //        advertisement.setDes("!!!");
 //        advertisement.setMiniDes("...");
 //        advertisement.setIcon("000");
 //        advertisement.setEmail("@qq.com");
-//        advertisement.setState(true);
+//        advertisement.setState("未审核");
+//        advertisement.setSubmitTime(new Date());
+//        System.out.println(advertisement.getSubmitTime());
+//        advertisement.setUserId(userInfoMapper.getUserInfoById(2));
 //        int i = adMapper.insertAnAd(advertisement);
 //        System.out.println(i);
 //        List<Advertisement> adDataByLimit = adMapper.getAdDataByLimit(0, 10);
@@ -91,7 +95,7 @@ class MyBlogMasterApplicationTests {
 //                adDataByLimit) {
 //            System.out.println(a);
 //        }
-        System.out.println(DateUtils.dateToString(new Date()));
+//        System.out.println(DateUtils.dateToString(new Date()));
     }
 
     private void transformAvatarPath(List<Comment> allComments) {

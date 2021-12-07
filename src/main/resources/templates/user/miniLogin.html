@@ -136,16 +136,16 @@
                     <input type="password" name="password" lay-verify="required|password" placeholder="密码"
                            autocomplete="off" class="layui-input">
                 </div>
-                <!--                <div class="layui-form-item">-->
-                <!--                    <label class="layui-icon layui-icon-vercode"></label>-->
-                <!--                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码"-->
-                <!--                           autocomplete="off" class="layui-input verification captcha" value="xszg">-->
-                <!--                    <div class="captcha-img">-->
-                <!--                        <img id="captchaPic" src="../images/captcha.jpg">-->
-                <!--                    </div>-->
-                <!--                </div>-->
                 <div class="layui-form-item">
-                    <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
+                    <label class="layui-icon layui-icon-vercode"></label>
+                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码"
+                           autocomplete="off" class="layui-input verification captcha">
+                    <div class="captcha-img" onclick="replaceVerifyCodeImg()">
+                        <img id="captchaPic" th:src="@{/file/getCaptchaImg}">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="text-align: right;">
+                    <span><a href="#">忘记密码?</a></span>
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit=""
@@ -202,6 +202,7 @@
                 data: {
                     "username": data.username,
                     "password": data.password,
+                    "captcha": data.captcha
                 },
                 success: function (result) {
                     layui.layer.close(loginLayer);
@@ -226,6 +227,10 @@
             return false;
         });
     });
+    //更新验证码
+    function replaceVerifyCodeImg() {
+        $("#captchaPic").attr('src', basePath + "/file/getCaptchaImg" + "?" + Math.random());
+    }
 </script>
 </body>
 </html>

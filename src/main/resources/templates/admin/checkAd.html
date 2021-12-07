@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <title th:text="审核连接"></title>
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}">
+</head>
+<body>
+<form action="" class="layui-form">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">ID</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="id"
+                               placeholder="请输入ID" th:value="${param.id}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">标题</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="title"
+                               placeholder="请输入标题" th:value="${param.title}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">简介</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="miniDes"
+                               placeholder="请输入简介" th:value="${param.miniDes}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">详细介绍</label>
+                    <div class="layui-input-block">
+                        <textarea autocomplete="off" class="layui-textarea" lay-verify="required" name="des"
+                                  placeholder="请输入详细介绍" th:text="${param.des}" type="text"
+                                  disabled="disabled"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">网址</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="path"
+                               placeholder="请输入网址" th:value="${param.linkPath}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">图标连接</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="icon"
+                               placeholder="请输入图标链接" th:value="${param.icon}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提交用户</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="name"
+                               placeholder="请输如分类名" th:value="${param.nickname}" type="text" disabled="disabled">
+                        <input autocomplete="off" class="layui-input layui-hide" name="userId.id"
+                               placeholder="请输如分类名" th:value="${param.userId}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联系邮箱</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="email"
+                               placeholder="请输如分类名" th:value="${param.email}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">当前状态</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="name"
+                               placeholder="请输入当前状态" th:value="${param.nowState}" type="text" disabled="disabled">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提交时间</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" lay-verify="required" name="submitTime"
+                               placeholder="请输入提交时间" th:value="${param.submitTime}" type="text" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button class="pear-btn pear-btn-primary pear-btn-sm" lay-filter="type-pass" lay-submit=""
+                    type="submit">
+                <i class="layui-icon layui-icon-ok"></i>
+                通过
+            </button>
+            <button class="pear-btn pear-btn-sm pear-btn-danger" lay-filter="type-refuse" lay-submit=""
+                    type="submit">
+                <i class="layui-icon layui-icon-close"></i>
+                拒绝
+            </button>
+        </div>
+    </div>
+</form>
+</form>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:inline="javascript">
+    let basePath = [[${#httpServletRequest.getContextPath()}]];
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+
+        form.on('submit(type-pass)', function (data) {
+            let submitLayer = layui.layer.msg('正在提交...', {icon: 16, shade: 0.01, time: 0});
+            $.ajax({
+                url: basePath + '/ad/pass/' + data.field.id,
+
+                dataType: 'json',
+                type: 'put',
+                success: function (result) {
+                    layer.close(submitLayer);
+                    if (result.code) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("ad-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                },
+                error: function (para) {
+                    layer.close(submitLayer);
+                    layer.msg(para);
+                }
+            })
+            return false;
+        });
+        form.on('submit(type-refuse)', function (data) {
+            let submitLayer = layui.layer.msg('正在提交...', {icon: 16, shade: 0.01, time: 0});
+            $.ajax({
+                url: basePath + '/ad/refuse/' + data.field.id,
+                dataType: 'json',
+                type: 'put',
+                success: function (result) {
+                    layer.close(submitLayer);
+                    if (result.code) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("ad-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                },
+                error: function (para) {
+                    layer.close(submitLayer);
+                    layer.msg(para);
+                }
+            })
+            return false;
+        });
+    })
+</script>
+</body>
+</html>

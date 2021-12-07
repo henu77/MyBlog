@@ -1,13 +1,7 @@
 package cn.malong.blog.service.impl;
 
-import cn.malong.blog.dao.BlogsMapper;
-import cn.malong.blog.dao.CommentsMapper;
-import cn.malong.blog.dao.TypesMapper;
-import cn.malong.blog.dao.UserInfoMapper;
-import cn.malong.blog.pojo.Blog;
-import cn.malong.blog.pojo.Comment;
-import cn.malong.blog.pojo.Type;
-import cn.malong.blog.pojo.UserInfo;
+import cn.malong.blog.dao.*;
+import cn.malong.blog.pojo.*;
 import cn.malong.blog.service.RouterService;
 import cn.malong.blog.utils.CalendarUtil;
 import cn.malong.blog.utils.DateUtils;
@@ -37,6 +31,8 @@ public class RouterServiceImpl implements RouterService {
     private BlogsMapper blogsMapper;
     @Autowired
     private CommentsMapper commentsMapper;
+    @Autowired
+    private AdMapper adMapper;
 
     /**
      * 1.从session中取用户信息
@@ -191,6 +187,13 @@ public class RouterServiceImpl implements RouterService {
         model.addAttribute("recentViewUser", recentViewUsers);
         model.addAttribute("title", title);
         return "/user/articleSearch";
+    }
+
+    @Override
+    public String toLink(Model model) {
+        List<Advertisement> queryAllAds = adMapper.queryAllAdsIsPass();
+        model.addAttribute("allAds", queryAllAds);
+        return "/user/link";
     }
 
     /**

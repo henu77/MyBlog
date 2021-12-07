@@ -27,7 +27,7 @@
                     <li><a th:href="@{/user/toIndex}">首页</a></li>
                     <li><a th:href="@{/user/toArticle}">博客</a></li>
                     <li><a th:href="@{/message.html}">留言</a></li>
-                    <li><a th:href="@{/link.html}">友链</a></li>
+                    <li><a th:href="@{/user/toLink}">友链</a></li>
                     <li th:if="${session.userInfo == null}"><a th:href="@{/login.html}">登录</a></li>
                     <li th:if="${session.userInfo != null}">
                         <a th:onclick="'javascript: logout()' ">注销</a>
@@ -42,7 +42,7 @@
                 </ul>
             </nav>
             <a href="/User/QQLogin" class="blog-user">
-<!--                <i class="fa fa-qq"></i>-->
+                <!--                <i class="fa fa-qq"></i>-->
             </a>
             <a class="phone-menu">
                 <i></i>
@@ -99,40 +99,14 @@
                     <button onclick="openAdSubmit()" class="layui-btn layui-btn-normal">提交申请</button>
                 </section>
             </article>
-            <ul class="link-list">
+            <ul class="link-list" th:each="link:${allAds}">
+
                 <li>
                     <div class="pd-lr-10">
-                        <a href="https://www.yanshisan.cn" target="_blank">
-                            <img src="https://www.yanshisan.cn/logo.png">
-                            <h3>燕十三</h3>
-                            <p>燕十三·一个人的江湖</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.yanshisan.cn" target="_blank">
-                            <img src="https://www.yanshisan.cn/logo.png">
-                            <h3>燕十三</h3>
-                            <p>燕十三·一个人的江湖</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.yanshisan.cn" target="_blank">
-                            <img src="https://www.yanshisan.cn/logo.png">
-                            <h3>燕十三</h3>
-                            <p>燕十三·一个人的江湖</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.yanshisan.cn" target="_blank">
-                            <img src="https://www.yanshisan.cn/logo.png">
-                            <h3>燕十三</h3>
-                            <p>燕十三·一个人的江湖</p>
+                        <a th:href="${link.path}" target="_blank">
+                            <img th:src="${link.icon}">
+                            <h3 th:text="${link.title}"></h3>
+                            <p th:text="${link.miniDes}"></p>
                         </a>
                     </div>
                 </li>
@@ -181,6 +155,7 @@
             content: basePath + '/user-setting.html'
         });
     }
+
     function logout() {
         //询问框
         layer.confirm('真的要退出登录吗？', {
@@ -211,7 +186,7 @@
         });
     }
 
-    function openAdSubmit () {
+    function openAdSubmit() {
         layer.open({
             type: 2,
             title: '修改个人信息',

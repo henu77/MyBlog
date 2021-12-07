@@ -67,7 +67,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/admin/user-edit.html").setViewName("admin/user-edit");
         registry.addViewController("/admin/user-add.html").setViewName("admin/user-add");
         registry.addViewController("/admin/links.html").setViewName("admin/links");
-
+        registry.addViewController("/admin/checkAd.html").setViewName("admin/checkAd");
     }
 
     @Bean
