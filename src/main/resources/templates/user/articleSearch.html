@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width"/>
     <meta name="robots" content="all"/>
-    <title>文章列表</title>
+    <title th:text="${title}+' - MyBlog搜索'"></title>
     <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
     <link rel="stylesheet" th:href="@{/css/master.css}"/>
@@ -61,12 +61,11 @@
                 <div class="other-item" id="categoryandsearch">
                     <div class="search">
                         <label class="search-wrap">
-
-                            <input type="text" name="title" id="searchTxt" placeholder="输入关键字搜索"/>
-
+                            <input type="text" name="title" th:value="${title}" id="searchTxt"
+                                   placeholder="输入关键字搜索"/>
                             <span class="search-icon" id="searchIcon">
 					                <i class="fa fa-search"></i>
-					            </span>
+                            </span>
                         </label>
                         <ul class="search-result"></ul>
                     </div>
@@ -209,11 +208,16 @@
         });
     }
 
+    let type = [[${type}]];
+    if (null == [[${type}]]) {
+        type = 0;
+    }
+    let title = $('#searchTxt').val();
     let turnToSearch = function () {
-        let para = $('#searchTxt').val();
-        window.open(basePath + "/user/toSearchArticle/"  + para, "_blank");
+        window.location = basePath + "/user/toSearchArticle/" + title;
     }
     $('#searchTxt').keydown(function (e) {
+        title = $('#searchTxt').val();
         if (e.keyCode == 13) {
             turnToSearch();
         }
@@ -228,7 +232,7 @@
             , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
                 let lis = [];
                 //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                $.get('/blog/more?typeId=' + 0 + '&page=' + page, function (res) {
+                $.get('/blog/more?typeId=' + 0 + '&page=' + page + '&title=' + title, function (res) {
                     res = JSON.parse(res);
                     //假设你的列表返回在data集合中
                     layui.each(res.data, function (index, item) {

@@ -45,8 +45,8 @@ public class BlogsController {
     }
 
     @GetMapping("/more")
-    public String getBlogsByPage(int typeId, int page) {
-        return blogsService.getBlogsByPage(typeId, page);
+    public String getBlogsByPage(int typeId, int page, String title) {
+        return blogsService.getBlogsByPage(typeId, page, title);
     }
 
     @DeleteMapping("/remove/{id}")

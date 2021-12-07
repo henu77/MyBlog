@@ -79,10 +79,10 @@ public class BlogsServiceImpl implements BlogsService {
     }
 
     @Override
-    public String getBlogsByPage(int typeId, int page) {
+    public String getBlogsByPage(int typeId, int page, String title) {
         int limit = StaticVariable.FLOW_PAGE_SIZE;
         int startIndex = (page - 1) * limit;
-        List<Blog> blogData = blogsMapper.getBlogsByLimitForFont(typeId, startIndex, limit);
+        List<Blog> blogData = blogsMapper.getBlogsByLimitForFont(typeId, startIndex, limit, title);
         ResponseUtil<Map> json = new ResponseUtil<>();
         if (null == blogData) {
             json.setCode(1);
@@ -97,10 +97,13 @@ public class BlogsServiceImpl implements BlogsService {
 
             // 处理返回json格式复合表格要求
             List<Map> jsonMap = new LinkedList<>();
+            if (null == title) {
+                title = "";
+            }
             for (Blog blog : blogData) {
                 Map<String, Object> temp = new HashMap<>();
                 temp.put("id", blog.getId());
-                temp.put("title", blog.getTitle());
+                temp.put("title", blog.getTitle().replace(title, "<span style='color: #FF5722;font-size: 18px;'>" + title + "</span>"));
                 temp.put("flag", blog.getFlag());
                 temp.put("type", blog.getTypeId().getName());
                 temp.put("author", blog.getUserId().getNickname());

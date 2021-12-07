@@ -78,8 +78,9 @@
                 <div class="other-item" id="categoryandsearch">
                     <div class="search">
                         <label class="search-wrap">
-                            <input type="text" id="searchtxt" placeholder="输入关键字搜索"/>
-                            <span class="search-icon">
+                            <input type="text" name="title" id="searchTxt" placeholder="输入关键字搜索"/>
+
+                            <span class="search-icon" id="searchIcon">
 					                <i class="fa fa-search"></i>
 					            </span>
                         </label>
@@ -122,19 +123,6 @@
                                    th:text="${topBlog.title}"></a>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                <div class="other-item">
-                    <h5 class="other-item-title">最近访客</h5>
-                    <div class="inner">
-                        <dl class="vistor">
-                            <dd th:each="userInfo:${recentViewUser}">
-                                <a href="javasript:;">
-                                    <img th:src="@{/file/getImg}+'/'+${userInfo.avatar}">
-                                    <cite th:text="${userInfo.nickname}"></cite>
-                                </a>
-                            </dd>
-                        </dl>
                     </div>
                 </div>
             </div>
@@ -223,6 +211,18 @@
         });
     }
 
+    let turnToSearch = function () {
+        let para = $('#searchTxt').val();
+        window.open(basePath + "/user/toSearchArticle/"  + para, "_blank");
+    }
+    $('#searchTxt').keydown(function (e) {
+        if (e.keyCode == 13) {
+            turnToSearch();
+        }
+    });
+    $('#searchIcon').click(function () {
+        turnToSearch();
+    })
     layui.use('flow', function () {
         let flow = layui.flow;
         flow.load({

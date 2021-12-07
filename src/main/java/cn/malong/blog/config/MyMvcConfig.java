@@ -30,6 +30,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
         //公共页首页
         registry.addViewController("/article.html").setViewName("user/article");
+        registry.addViewController("/articleSearch.html").setViewName("user/articleSearch");
         registry.addViewController("/articleByType.html").setViewName("user/articleByType");
         registry.addViewController("/link.html").setViewName("user/link");
         registry.addViewController("/message.html").setViewName("user/message");

@@ -95,15 +95,15 @@ public class MarkdownUtils {
         document.select("br").append("\\n");
         document.select("p").prepend("\\n");
         document.select("p").append("\\n");
-        String newHtml = document.html().replaceAll("\\\\n", "\n");
+        String newHtml = document.html().replace("\\\\n", "\n");
         String plainText = Jsoup.clean(newHtml, "", Whitelist.none(), outputSettings);
         String result = StringEscapeUtils.unescapeHtml(plainText.trim());
-        result.replace("<", "");
-        result.replace(">", "");
-        result.replace("'#'", "");
-        result.replace("*","");
-        result.replace("-","");
-        result.replace("`","");
+        result = result.replace("<", "");
+        result = result.replace(">", "");
+        result = result.replace("#", "");
+        result = result.replace("*", "");
+        result = result.replace("-", "");
+        result = result.replace("`", "");
         return result;
     }
 

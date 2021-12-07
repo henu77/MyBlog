@@ -1,7 +1,6 @@
 package cn.malong.blog.utils.servlet;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

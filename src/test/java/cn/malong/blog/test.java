@@ -77,10 +77,18 @@ public class test {
 //        List<SocialUserAuth> socialUserAuthList = socialUserAuthMapper.queryByUserId(3);
 //        System.out.println(null==socialUserAuthList);
 //        System.out.println(socialUserAuthList.size());
-        SocialUser socialUser = new SocialUser();
-        socialUser.setSource("gitee");
-        socialUser.setUuid("2313123");
-        socialUserMapper.addSocialUser(socialUser);
-        System.out.println(socialUser);
+//        SocialUser socialUser = new SocialUser();
+//        socialUser.setSource("gitee");
+//        socialUser.setUuid("2313123");
+//        socialUserMapper.addSocialUser(socialUser);
+//        System.out.println(socialUser);
+        String str = "12312223";
+        System.out.println(str.replace("",""));
+        System.out.println(str);
+        System.out.println("==============");
+        String str1 = "1231223";
+        System.out.println(str1.replaceAll("",""));
+        System.out.println(str1);
+        System.out.println(null+"123123");
     }
 }

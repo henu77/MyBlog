@@ -19,7 +19,7 @@ public interface BlogsMapper {
 
     List<Blog> getBlogsByLimit(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
-    List<Blog> getBlogsByLimitForFont(@Param("typeId") int typeId, @Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+    List<Blog> getBlogsByLimitForFont(@Param("typeId") int typeId, @Param("startIndex") int startIndex, @Param("pageSize") int pageSize,@Param("title") String title);
 
     List<Blog> getBlogsByLimitByTitle(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize, @Param("title") String title);
 

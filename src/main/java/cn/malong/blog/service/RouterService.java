@@ -40,4 +40,6 @@ public interface RouterService {
     String toWelcome(Model model);
 
     String toUserIndex(Model model);
+
+    String toSearchArticle(String title, Model model);
 }

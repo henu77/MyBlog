@@ -57,6 +57,9 @@
             <if test="typeId != 0">
                 and type_id =#{typeId}
             </if>
+            <if test="title != null">
+                and title like concat('%', #{title}, '%')
+            </if>
         </where>
         order by recommend desc, update_time desc
         limit #{startIndex},#{pageSize};

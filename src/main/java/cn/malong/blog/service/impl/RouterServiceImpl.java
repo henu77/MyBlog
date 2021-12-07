@@ -180,6 +180,19 @@ public class RouterServiceImpl implements RouterService {
         return "/user/index";
     }
 
+    @Override
+    public String toSearchArticle(String title, Model model) {
+        List<Blog> hotBlogs = blogsMapper.getHotBlogs();
+        model.addAttribute("hotBlogs", hotBlogs);
+        List<Blog> topBlogs = blogsMapper.getTopBlogs();
+        model.addAttribute("topBlogs", topBlogs);
+        List<UserInfo> recentViewUsers =
+                (List<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
+        model.addAttribute("recentViewUser", recentViewUsers);
+        model.addAttribute("title", title);
+        return "/user/articleSearch";
+    }
+
     /**
      * 设置5s后删除session中的信息
      *
