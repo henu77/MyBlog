@@ -211,7 +211,12 @@
 
     let turnToSearch = function () {
         let para = $('#searchTxt').val();
-        window.open(basePath + "/user/toSearchArticle/"  + para, "_blank");
+        console.log(para)
+        console.log(para=='');
+        if (para==''){
+            para="";
+        }
+        window.open(basePath + "/user/toSearchArticle?title="  + para, "_blank");
     }
     $('#searchTxt').keydown(function (e) {
         if (e.keyCode == 13) {
@@ -263,7 +268,7 @@
                             '<aside class="f-oh footer">' +
                             '<div class="f-fl tags">' +
                             '<span class="fa fa-tags fs-16"></span>' +
-                            '<a class="tag">' + item.type + '</a>' +
+                            '<a class="tag" target="_blank" href="' + basePath + '/user/toArticleByType/' + item.type.id + '">' + item.type.name + '</a>' +
                             '</div>\n' +
                             '<div class="f-fr">' +
                             '<span class="read">' +

@@ -53,4 +53,8 @@ public interface CommentsMapper {
     List<Comment> getAllCommentsByBlogId(int blogId);
 
     List<Comment> getAllChildComments(int id);
+
+    Comment getCommentById(int id);
+
+    int updateCommentById(int id , String content);
 }

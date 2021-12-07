@@ -20,6 +20,11 @@
         (user_id, content, create_time, blog_id, replied_user_id, parent_comment_id)
         values (#{userId.id}, #{content}, #{createTime}, #{blogId}, #{repliedUserId.id}, #{parentCommentId});
     </insert>
+    <update id="updateCommentById">
+        update myblog.t_comment
+        set content=#{content}
+        where id = #{id};
+    </update>
     <select id="getCommentDataByLimit" resultMap="commentMap">
         select *
         from myblog.t_comment
@@ -83,6 +88,11 @@
         from myblog.t_comment
         where blog_id = #{blogId}
           and parent_comment_id = 0;
+    </select>
+    <select id="getCommentById" resultMap="commentMap">
+        select *
+        from myblog.t_comment
+        where id = #{id};
     </select>
 
 </mapper>

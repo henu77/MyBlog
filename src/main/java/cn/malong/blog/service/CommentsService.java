@@ -25,4 +25,6 @@ public interface CommentsService {
     String getCommentByBlogId(int blogId);
 
     String replyTopComment(int parentCommentId, int repliedUserId, int blogId, String content);
+
+    String update(int id, String content);
 }

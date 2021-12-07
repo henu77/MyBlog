@@ -49,4 +49,8 @@ public class DateUtils {
         String time = timeInstance.format(date);
         return format + " " + time;
     }
+
+    public static String getToDayYY_MM_DD() {
+        return getYMD(new Date());
+    }
 }

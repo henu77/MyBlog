@@ -59,6 +59,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/admin/password.html").setViewName("admin/password");
         registry.addViewController("/admin/profile.html").setViewName("admin/profile");
         registry.addViewController("/admin/comments.html").setViewName("admin/comments");
+        registry.addViewController("/admin/comment-edit.html").setViewName("admin/comment-edit");
         registry.addViewController("/admin/blogs.html").setViewName("admin/blogs");
         registry.addViewController("/admin/types.html").setViewName("admin/types");
         registry.addViewController("/admin/type-add.html").setViewName("admin/type-add");
@@ -80,7 +81,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/", "/index.html", "/admin/lib/**");
         registry.addInterceptor(trafficStatisticsInterceptor)
-                .addPathPatterns("/user/toArticle", "/user/toReadBlog/*",
-                        "/user/toArticleByType/*", "/user/login");
+                .addPathPatterns("/user/toArticle**", "/user/toReadBlog/**",
+                        "/user/toArticleByType/**", "/user/login**");
     }
 }

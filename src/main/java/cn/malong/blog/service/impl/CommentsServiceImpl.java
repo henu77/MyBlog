@@ -277,6 +277,27 @@ public class CommentsServiceImpl implements CommentsService {
         return json.toString();
     }
 
+    @Override
+    public String update(int id, String content) {
+        ResponseUtil<String> json = new ResponseUtil<>();
+        Comment commentById = commentsMapper.getCommentById(id);
+        if (null == commentById) {
+            json.setCode(0);
+            json.setMsg("该评论不存在");
+        } else {
+            commentById.setContent(content);
+            int result = commentsMapper.updateCommentById(id, content);
+            if (result > 0) {
+                json.setCode(1);
+                json.setMsg("修改成功！");
+            } else {
+                json.setCode(0);
+                json.setMsg("修改失败！");
+            }
+        }
+        return json.toString();
+    }
+
     @NotNull
     private String getChildCommentHtml(Comment comment, String resultStr, String projectPath, UserInfo userId) {
         resultStr += "<div class=\"comment-child\">";

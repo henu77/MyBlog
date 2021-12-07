@@ -67,9 +67,8 @@ public class RouterController {
         return routerServiceImpl.toArticleByType(typeId, model);
     }
 
-    @RequestMapping("/user/toSearchArticle/{title}")
-    public String toSearchArticle(
-                                  @PathVariable("title") String title,
+    @RequestMapping("/user/toSearchArticle")
+    public String toSearchArticle(String title,
                                   Model model) {
         return routerServiceImpl.toSearchArticle(title, model);
     }

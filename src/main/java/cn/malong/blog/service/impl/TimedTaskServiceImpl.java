@@ -44,13 +44,15 @@ public class TimedTaskServiceImpl implements TimedTaskService {
     }
 
     @Override
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void updateTrafficStatistics() {
         if (servletContext.getAttribute("TrafficStatistics") == null) {
-            TrafficStatics todayViews = trafficStaticsMapper.getTodayViews(DateUtils.dateToString(new Date()));
+            TrafficStatics todayViews = trafficStaticsMapper.getTodayViews(DateUtils.getToDayYY_MM_DD());
             if (null != todayViews) {
+                log.info("servletContext中没有该信息  从数据库中读取的是" + todayViews.getViews());
                 servletContext.setAttribute("TrafficStatistics", todayViews.getViews());
             } else {
+                log.info("servletContext中没有该信息  且从数据库中读取的也是null");
                 servletContext.setAttribute("TrafficStatistics", 0);
             }
         }
@@ -58,6 +60,8 @@ public class TimedTaskServiceImpl implements TimedTaskService {
         int views = (int) servletContext.getAttribute("TrafficStatistics");
         trafficStatics.setViews(views);
         trafficStatics.setDate(new Date());
+        log.info("当前时间===>" + trafficStatics.getDate());
+        log.info("内容===>" + trafficStatics.toString());
         int result = trafficStaticsMapper.updateTodayViews(trafficStatics);
         log.info("访问量统计更新结果==>" + (result >= 1 ? true : false));
     }

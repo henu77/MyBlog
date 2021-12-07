@@ -46,6 +46,11 @@ public class CommentsController {
         return commentsServiceImpl.replyTopComment(parentCommentId, repliedUserId, blogId, content);
     }
 
+    @PutMapping("/update")
+    public String update(int id, String content) {
+        return commentsServiceImpl.update(id, content);
+    }
+
     @GetMapping("/getCommentsByBlogId/{blogId}")
     public String getCommentsByBlogId(@PathVariable("blogId") int blogId) {
         return commentsServiceImpl.getCommentByBlogId(blogId);

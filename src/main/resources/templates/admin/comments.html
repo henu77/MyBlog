@@ -17,11 +17,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">评论</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" id="content" name="content" placeholder="" type="text" oninput="liveUpdate()">
+                    <input class="layui-input" id="content" name="content" placeholder="" type="text"
+                           oninput="liveUpdate()">
                 </div>
                 <label class="layui-form-label">昵称</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" id="nickname" name="nickname" placeholder="" type="text" oninput="liveUpdate()">
+                    <input class="layui-input" id="nickname" name="nickname" placeholder="" type="text"
+                           oninput="liveUpdate()">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="comment-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
@@ -56,20 +58,11 @@
 </body>
 
 <script id="comment-toolbar" type="text/html">
-    <button
-            class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
-        <i class="pear-icon pear-icon-add"></i>
-        新增
-    </button>
-    <button class="pear-btn pear-btn-md"
+    <button class="pear-btn pear-btn-md pear-btn-danger"
             lay-event="batchRemove">
         <i class="pear-icon pear-icon-ashbin"></i>
         删除
     </button>
-    <!--    <button class="pear-btn pear-btn-md" lay-event="collasped">-->
-    <!--        <i class="pear-icon pear-icon-modular"></i>-->
-    <!--        高级-->
-    <!--    </button>-->
 </script>
 
 <script id="comment-bar" type="text/html">
@@ -112,7 +105,6 @@
         let table = layui.table;
         let form = layui.form;
         let $ = layui.jquery;
-        // let dtree = layui.dtree;
         let popup = layui.popup;
         let common = layui.common;
 
@@ -120,14 +112,15 @@
         let cols = [
             [
                 {type: 'checkbox'},
+                {title: 'ID', field: 'id', hide: true, align: 'center'},
                 {title: '昵称', field: 'nickname', align: 'center'},
                 {title: '邮箱', field: 'email', align: 'center'},
-                {title: '评论', field: 'content', align: 'center'},
+                {title: '评论内容', field: 'content', align: 'center'},
                 {title: '评论时间', field: 'createTime', align: 'center'},
                 {title: '博客Id', field: 'blogId', align: 'center'},
                 {title: '被回复人昵称', field: 'replyName', align: 'center'},
                 {title: '父评论编号', field: 'parentCommentId', align: 'center'},
-                {title: '操作', toolbar: '#comment-bar', align: 'center', width: 130}
+                {title: '操作', toolbar: '#comment-bar', align: 'center', width: 130, fixed: "right"}
             ]
         ]
 
@@ -147,42 +140,6 @@
             }, 'filter', 'print', 'exports']
         });
 
-        // dtree.render({
-        //     elem: "#dept-tree",
-        //     method: "get",
-        //     url: "/system/dept/tree",
-        //     dataFormat: "list",
-        //     line: true,
-        //     skin: "laySimple",
-        //     icon: "-1",
-        //     response: {treeId: "deptId", parentId: "parentId", title: "deptName"},
-        // });
-
-        // dtree.on("node('dept-tree')", function (obj) {
-        //     let field = form.val("user-query-form");
-        //     field.deptId = obj.param.nodeId;
-        //     window.refresh(field);
-        // });
-
-        // $(".user-group").click(function () {
-        //     let group = $(this).attr("user-group");
-        //     let field = form.val("user-query-form");
-        //     if (group === "-1") {
-        //         field.deptId = group;
-        //         $(this).removeClass("button-default");
-        //         $(this).prev().removeClass("button-primary");
-        //         $(this).prev().addClass("button-default");
-        //         $(this).addClass("button-primary");
-        //     } else {
-        //         field.deptId = group;
-        //         $(this).removeClass("button-default");
-        //         $(this).next().removeClass("button-primary");
-        //         $(this).next().addClass("button-default");
-        //         $(this).addClass("button-primary");
-        //     }
-        //     window.refresh(field);
-        // })
-
         table.on('tool(comment-table)', function (obj) {
             if (obj.event === 'remove') {
                 window.remove(obj);
@@ -192,18 +149,11 @@
         });
 
         table.on('toolbar(comment-table)', function (obj) {
-            if (obj.event === 'add') {
-                window.add();
-            } else if (obj.event === 'refresh') {
+            if (obj.event === 'refresh') {
                 window.refresh();
             } else if (obj.event === 'batchRemove') {
                 window.batchRemove(obj);
             }
-            // else if (obj.event == 'collasped') {
-            //     $(".user-left").toggleClass("user-collasped");
-            //     $(".user-main").toggleClass("user-collasped");
-            //     table.resize();
-            // }
         });
 
         form.on('submit(comment-query)', function (data) {
@@ -211,40 +161,6 @@
             return false;
         });
 
-        // form.on('switch(user-enable)', function (obj) {
-        //     let operate;
-        //     if (obj.elem.checked) {
-        //         operate = "enable";
-        //     } else {
-        //         operate = "disable";
-        //     }
-        //     let loading = layer.load();
-        //     $.ajax({
-        //         url: '/system/user/' + operate,
-        //         data: JSON.stringify({userId: this.value}),
-        //         dataType: 'json',
-        //         contentType: 'application/json',
-        //         type: 'put',
-        //         success: function (result) {
-        //             layer.close(loading);
-        //             if (result.success) {
-        //                 popup.success(result.msg);
-        //             } else {
-        //                 popup.failure(result.msg);
-        //             }
-        //         }
-        //     })
-        // });
-
-        window.add = function () {
-            layer.open({
-                type: 2,
-                title: '新增',
-                shade: 0.1,
-                area: ['550px', '550px'],
-                content: basePath + 'add'
-            });
-        }
 
         window.edit = function (obj) {
             layer.open({
@@ -252,7 +168,11 @@
                 title: '修改',
                 shade: 0.1,
                 area: ['550px', '500px'],
-                content: basePath + 'edit?userId=' + obj.data['userId']
+                content: basePath + '/admin/comment-edit.html?' +
+                    'id=' + obj.data['id'] +
+                    '&content=' + obj.data['content'] +
+                    '&nickname=' + obj.data['nickname'] +
+                    '&replyName=' + obj.data['replyName']
             });
         }
 
@@ -314,7 +234,7 @@
         }
 
         window.liveUpdate = function () {
-            let change = {content:$('#content').val(),nickname:$('#nickname').val()};
+            let change = {content: $('#content').val(), nickname: $('#nickname').val()};
             window.refresh(change);
         }
     })

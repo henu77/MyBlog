@@ -214,7 +214,7 @@
     }
     let title = $('#searchTxt').val();
     let turnToSearch = function () {
-        window.location = basePath + "/user/toSearchArticle/" + title;
+        window.location = basePath + "/user/toSearchArticle?title=" + title;
     }
     $('#searchTxt').keydown(function (e) {
         title = $('#searchTxt').val();
@@ -267,7 +267,7 @@
                             '<aside class="f-oh footer">' +
                             '<div class="f-fl tags">' +
                             '<span class="fa fa-tags fs-16"></span>' +
-                            '<a class="tag">' + item.type + '</a>' +
+                            '<a class="tag" target="_blank" href="' + basePath + '/user/toArticleByType/' + item.type.id + '">' + item.type.name + '</a>' +
                             '</div>\n' +
                             '<div class="f-fr">' +
                             '<span class="read">' +

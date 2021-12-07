@@ -172,8 +172,11 @@ class MyBlogMasterApplicationTests {
 
     @Test
     public void tt() {
-        TrafficStatics trafficStatics = new TrafficStatics(0);
-        trafficStatics.setViews(1999);
-        System.out.println(trafficStaticsMapper.updateTodayViews(trafficStatics));
+//        TrafficStatics trafficStatics = new TrafficStatics(0);
+//        trafficStatics.setViews(1999);
+//        System.out.println(trafficStaticsMapper.updateTodayViews(trafficStatics));
+        String today = (DateUtils.getToDayYY_MM_DD());
+        System.out.println(today);
+        System.out.println(trafficStaticsMapper.getTodayViews(today));
     }
 }

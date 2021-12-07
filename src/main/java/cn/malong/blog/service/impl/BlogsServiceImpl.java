@@ -37,7 +37,6 @@ public class BlogsServiceImpl implements BlogsService {
         int startIndex = (page - 1) * limit;
         List<Blog> blogData = blogsMapper.getBlogsByLimit(startIndex, limit);
         if (null == blogData) {
-            System.out.println("数据为空");
             return "";
         }
         return (blogDataToJson(blogData));
@@ -58,7 +57,7 @@ public class BlogsServiceImpl implements BlogsService {
 //        }
 //        return blogDataToJson(blogData);
         /**
-         * 参数欲处理
+         * 参数预处理
          */
         int startIndex = (page - 1) * limit;
         if (null != title) {
@@ -105,7 +104,7 @@ public class BlogsServiceImpl implements BlogsService {
                 temp.put("id", blog.getId());
                 temp.put("title", blog.getTitle().replace(title, "<span style='color: #FF5722;font-size: 18px;'>" + title + "</span>"));
                 temp.put("flag", blog.getFlag());
-                temp.put("type", blog.getTypeId().getName());
+                temp.put("type", blog.getTypeId());
                 temp.put("author", blog.getUserId().getNickname());
                 temp.put("day", CalendarUtil.getDay(blog.getUpdateTime()));
                 temp.put("month", CalendarUtil.getMonth(blog.getUpdateTime()));
@@ -114,11 +113,11 @@ public class BlogsServiceImpl implements BlogsService {
                 temp.put("views", blog.getViews());
                 temp.put("recommend", blog.isRecommend());
                 temp.put("firstPic", blog.getFirstPicture());
-                String tempString = blog.getContent();
-                if (blog.getContent().length() >= 250) {
-                    tempString = blog.getContent().substring(0, 250);
+                String tempString = MarkdownUtils.convert(blog.getContent());
+                if (tempString.length() >= 250) {
+                    tempString = tempString.substring(0, 250);
                 }
-                temp.put("content", MarkdownUtils.convert(tempString));
+                temp.put("content",tempString);
                 jsonMap.add(temp);
             }
             json.setData(jsonMap);
