@@ -1,5 +1,7 @@
 package cn.malong.blog.service.impl;
 
+import cn.malong.blog.dao.UserInfoMapper;
+import cn.malong.blog.pojo.UserInfo;
 import cn.malong.blog.service.EmailService;
 import cn.malong.blog.utils.ResponseUtil;
 import cn.malong.blog.utils.StaticVariable;
@@ -26,6 +28,8 @@ import java.util.TimerTask;
 public class EmailServiceImpl implements EmailService {
     @Autowired
     JavaMailSenderImpl mailSender;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @Override
     public String sentVerifyCode(String receiver) {
@@ -34,7 +38,7 @@ public class EmailServiceImpl implements EmailService {
             String verifyCode = getVerifyCode();
             HttpSession session = ServletUtil.getSession();
             session.setAttribute("registerEmailVerifyCode", verifyCode);
-            sendEmail(receiver, verifyCode);
+            sendEmail(receiver, verifyCode, "MyBlog注册验证码");
             //定时90s删除
             removeAttributeFromSession("registerEmailVerifyCode", 90);
             json.setCode(1);
@@ -49,14 +53,19 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendEmail(String receiver, String verifyCode) throws Exception {
+    public void sendEmail(String receiver, String verifyCode, String subject) throws Exception {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
-        messageHelper.setSubject("MyBlog注册验证码");
+        messageHelper.setSubject(subject);
         String context = "<div>\n" +
                 "\t<p>欢迎使用 MyBlog !</p>\n" +
+                "  \t<p></p>\n" +
+                "  \t<p></p>\n" +
                 "  \t<p>您的验证码是：<span style=\"color: coral;font-size: 25px;font-weight: bold\">" + verifyCode + "</span></p>\n" +
                 "  \t<p>如果您有任何疑问，可以联系管理员" + StaticVariable.ADMIN_EMAIL + "</p>\n" +
+                "  \t<p></p>\n" +
+                "  \t<p></p>\n" +
+                "  \t<p></p>\n" +
                 "  \t<p></p>\n" +
                 "  \t<p></p>\n" +
                 "  \t<p>(这是一封自动产生的email，请勿回复。)</p>\n" +
@@ -67,6 +76,37 @@ public class EmailServiceImpl implements EmailService {
         mailSender.send(mimeMessage);
     }
 
+    @Override
+    public String sendPwdVerifyCode(String receiver, String username) {
+        ResponseUtil<String> json = new ResponseUtil<>();
+        UserInfo userInfoByUsername = userInfoMapper.getUserInfoByUsername(username);
+        if (null == userInfoByUsername) {
+            json.setCode(0);
+            json.setMsg("用户名不存在");
+            return json.toString();
+        }
+        if (!userInfoByUsername.getEmail().equals(receiver)) {
+            json.setCode(0);
+            json.setMsg("您输入的邮箱与该用户的邮箱不匹配");
+            return json.toString();
+        }
+        try {
+            String verifyCode = getVerifyCode();
+            HttpSession session = ServletUtil.getSession();
+            session.setAttribute("retrievePasswordEmailVerifyCode", verifyCode);
+            sendEmail(receiver, verifyCode, "MyBlog找回密码验证码");
+            //定时90s删除
+            removeAttributeFromSession("retrievePasswordEmailVerifyCode", 90);
+            json.setCode(1);
+            json.setMsg("验证码发送成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            json.setCode(0);
+            json.setMsg("验证码发送失败！");
+        } finally {
+            return json.toString();
+        }
+    }
 
     String getVerifyCode() {
         String code = "";

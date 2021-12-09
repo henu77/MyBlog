@@ -35,6 +35,12 @@ public class LoginController {
         return loginServiceImpl.register(userInfo);
     }
 
+    @PutMapping("/resetPwd")
+    public String resetPwd(@RequestBody UserInfo userInfo) {
+        return loginServiceImpl.resetPwd(userInfo);
+    }
+
+
     @RequestMapping("/getDefaultIcon")
     public String getDefaultIcon() {
         return loginServiceImpl.getDefaultIcon();

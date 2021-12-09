@@ -21,4 +21,10 @@ public class EmailController {
     public String sendVerifyCode(@RequestParam("receiver") String receiver) {
         return emailServiceImpl.sentVerifyCode(receiver);
     }
+
+    @PostMapping("/sendPwdVerifyCode")
+    public String sendPwdVerifyCode(@RequestParam("receiver") String receiver,
+                                    @RequestParam("username") String username) {
+        return emailServiceImpl.sendPwdVerifyCode(receiver, username);
+    }
 }

@@ -212,11 +212,11 @@
     let turnToSearch = function () {
         let para = $('#searchTxt').val();
         console.log(para)
-        console.log(para=='');
-        if (para==''){
-            para="";
+        console.log(para == '');
+        if (para == '') {
+            para = "";
         }
-        window.open(basePath + "/user/toSearchArticle?title="  + para, "_blank");
+        window.open(basePath + "/user/toSearchArticle?title=" + para, "_blank");
     }
     $('#searchTxt').keydown(function (e) {
         if (e.keyCode == 13) {

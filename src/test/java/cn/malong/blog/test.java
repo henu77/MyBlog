@@ -72,6 +72,7 @@ public class test {
     private SocialUserAuthMapper socialUserAuthMapper;
     @Autowired
     private SocialUserMapper socialUserMapper;
+
     @Test
     public void ttt() {
 //        List<SocialUserAuth> socialUserAuthList = socialUserAuthMapper.queryByUserId(3);
@@ -83,12 +84,13 @@ public class test {
 //        socialUserMapper.addSocialUser(socialUser);
 //        System.out.println(socialUser);
         String str = "12312223";
-        System.out.println(str.replace("",""));
+        System.out.println(str.replace("", ""));
         System.out.println(str);
         System.out.println("==============");
         String str1 = "1231223";
-        System.out.println(str1.replaceAll("",""));
+        System.out.println(str1.replaceAll("", ""));
         System.out.println(str1);
-        System.out.println(null+"123123");
+        System.out.println(null + "123123");
     }
+
 }

@@ -44,7 +44,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/ad-edit.html").setViewName("user/ad-edit");
         registry.addViewController("/auth-register.html").setViewName("user/auth-register");
         registry.addViewController("/binding.html").setViewName("user/binding");
-
+        registry.addViewController("/forgetPwd.html").setViewName("user/forgetPwd");
         registry.addViewController("/404.html").setViewName("error/404");
 
         //admin页面

@@ -7,5 +7,7 @@ package cn.malong.blog.service;
 public interface EmailService {
     String sentVerifyCode(String receiver);
 
-    void sendEmail(String receiver, String verifyCode) throws Exception;
+    void sendEmail(String receiver, String verifyCode, String subject) throws Exception;
+
+    String sendPwdVerifyCode(String receiver, String username);
 }

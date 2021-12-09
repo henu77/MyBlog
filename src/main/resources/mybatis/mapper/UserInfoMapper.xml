@@ -97,6 +97,11 @@
         set avatar=#{avatar}
         where id = #{id}
     </update>
+    <update id="updatePwd">
+        update myblog.t_user
+        set password=#{password}
+        where id = #{id};
+    </update>
 
     <!-- delete -->
     <delete id="removeUserById">

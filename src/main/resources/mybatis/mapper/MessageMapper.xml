@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.malong.blog.dao.MessageMapper">
+
+    <resultMap id="messageMap" type="message">
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="content" property="content"/>
+        <association column="user_id" property="userId" select="cn.malong.blog.dao.UserInfoMapper.getUserInfoById"/>
+    </resultMap>
+    <insert id="addAMessage">
+        insert into myblog.t_message
+            (user_id, content, create_time)
+        values (#{userId.id}, #{content}, #{createTime});
+    </insert>
+    <select id="queryMessageByPage" resultMap="messageMap">
+        select *
+        from myblog.t_message
+        order by create_time desc
+        limit #{startIndex},#{limit};;
+    </select>
+    <select id="countAllMessages" resultType="java.lang.Integer">
+        select COUNT(id)
+        from myblog.t_message;
+    </select>
+
+
+</mapper>

@@ -31,8 +31,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private UserInfoMapper userInfoMapper;
-    @Autowired
-    private FileService fileServiceImpl;
 
     /**
      * 1. 通过用户名获取 userInfo
@@ -122,20 +120,50 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String getDefaultIcon() {
         ResponseUtil<String> json = new ResponseUtil<>();
-        String result = "";
-        try {
-            File file = ResourceUtils.getFile(StaticVariable.getDefaultIconPath());
-            FileInputStream inputStream = new FileInputStream(file);
-            MultipartFile multipartFile = new MockMultipartFile(file.getName(), file.getName(),
-                    ContentType.APPLICATION_OCTET_STREAM.toString(), inputStream);
-            result = fileServiceImpl.upload(multipartFile);
-        } catch (Exception e) {
-            e.printStackTrace();
+        String avatar = StaticVariable.getDefaultIconPath();
+        List<String> data = new ArrayList<>();
+        data.add(avatar);
+        json.setMsg("获取默认头像成功");
+        json.setCode(1);
+        json.setData(data);
+        return json.toString();
+    }
+
+    @Override
+    public String resetPwd(UserInfo userInfo) {
+        ResponseUtil<String> json = new ResponseUtil<>();
+        String retrievePasswordEmailVerifyCode =
+                (String) ServletUtil.getSession().getAttribute("retrievePasswordEmailVerifyCode");
+        if (null == retrievePasswordEmailVerifyCode) {
             json.setCode(0);
-            json.setMsg("获取默认头像失败！");
-            result = json.toString();
+            json.setMsg("您还未发送验证码！");
+            return json.toString();
         }
-        return result;
+        if (!retrievePasswordEmailVerifyCode.equals(userInfo.getVerifyCode())) {
+            json.setCode(0);
+            json.setMsg("验证码错误！");
+            return json.toString();
+        }
+        UserInfo userInfoByUsername = userInfoMapper.getUserInfoByUsername(userInfo.getUsername());
+        if (null == userInfoByUsername) {
+            json.setCode(0);
+            json.setMsg("用户名不存在");
+            return json.toString();
+        }
+        if (!userInfo.getPassword().equals(userInfo.getTestPassword())) {
+            json.setCode(0);
+            json.setMsg("两次输入的密码不一致");
+            return json.toString();
+        }
+        int result = userInfoMapper.updatePwd(userInfoByUsername.getId(), MD5Util.string2MD5(userInfo.getTestPassword()));
+        if (result > 0) {
+            json.setCode(1);
+            json.setMsg("修改成功！");
+        } else {
+            json.setCode(0);
+            json.setMsg("修改失败！更新错误");
+        }
+        return json.toString();
     }
 
     /**

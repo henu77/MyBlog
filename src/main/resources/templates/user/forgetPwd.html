@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>注册</title>
+    <title>忘记密码</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -87,7 +87,7 @@
         <div class="layui-form login-form">
             <form class="layui-form" method="post">
                 <div class="layui-form-item logo-title">
-                    <h1>用户注册</h1>
+                    <h1>重置密码</h1>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">用户名</label>
@@ -99,16 +99,10 @@
                     </div>
                     <div class="layui-form-mid layui-word-aux">
                         <span class="layui-anim layui-anim-up" style="font-size: small;color: red"
-                              hidden>该用户名已被使用</span>
+                              hidden>该用户名不存在</span>
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">昵称</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="nickname" lay-verify="required" placeholder="请输入昵称"
-                               autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码</label>
                     <div class="layui-input-inline">
@@ -130,10 +124,6 @@
                         <span class="layui-anim layui-anim-up" style="font-size: small;color: red"
                               hidden>您输入的密码不匹配</span>
                     </div>
-                </div>
-                <div class="layui-form-item" hidden>
-                    <input id="avatarId" type="text" name="avatar"
-                           autocomplete="off">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
@@ -157,29 +147,20 @@
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">权限</label>
-                    <div class="layui-input-inline">
-                        <select name="role">
-                            <option value="root" disabled>超级管理员</option>
-                            <option value="admin" disabled>管理员</option>
-                            <option value="user" selected>普通用户</option>
-                        </select>
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">更高权限请联系管理员</div>
-                </div>
+
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit=""
-                            lay-filter="register">注 册
+                            lay-filter="resetPwd">重置
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
 <script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
 <script th:src="@{/js/jq-module/jquery.particleground.min.js}" charset="utf-8"></script>
+<script th:src="@{/js/lay-config.js?v=1.0.4}" charset="utf-8"></script>
 <script type="text/javascript" th:inline="javascript">
     let basePath = [[${#httpServletRequest.getContextPath()}]];
     $(function () {
@@ -192,10 +173,10 @@
             layui.layer.msg(HandlerInterceptor);
         }
     });
-    layui.use(['form'], function () {
+
+    layui.use(['form', 'step'], function () {
         let form = layui.form,
-            layer = layui.layer,
-            $ = layui.jquery;
+            layer = layui.layer;
 
         // 粒子线条背景
         $(document).ready(function () {
@@ -204,6 +185,8 @@
                 lineColor: '#7ec7fd'
             });
         });
+
+
         form.on('submit(sendVerifyCode)', function (data) {
             data = data.field;
             if (data.username == '') {
@@ -222,8 +205,11 @@
             let layerSentEmail;
             $.ajax({
                 type: 'POST',
-                url: basePath + '/email/sendVerifyCode',
-                data: {'receiver': data.email},
+                url: basePath + '/email/sendPwdVerifyCode',
+                data: {
+                    'receiver': data.email,
+                    'username': data.username
+                },
                 dataType: 'json',
                 async: true,
                 beforeSend: function () {
@@ -246,7 +232,10 @@
                         layer.close(layerSentEmail);
                         layer.msg(result.msg, {icon: 1});
                     } else {
-                        layer.msg('请求失败!\n提示信息：' + result.msg, {icon: 5});
+                        sendVerifyCodeBtn.removeClass("layui-btn-disabled");
+                        sendVerifyCodeBtn.text("发送");
+                        clearInterval(timer);
+                        layer.msg('请求失败!\n提示信息：' + result.msg, {icon: 5, time: 1500});
                     }
                 }
                 , error: function (par) {
@@ -256,8 +245,7 @@
             });
             return false;
         })
-        // 进行注册操作
-        form.on('submit(register)', function (data) {
+        form.on('submit(resetPwd)', function (data) {
             data = data.field;
             if (data.username == '') {
                 layer.msg('用户名不能为空');
@@ -271,61 +259,37 @@
                 layer.msg('两次输入的密码不一致', {icon: 2});
                 return false;
             }
-            if (data.verifyCode == '' || null == data.verifyCode) {
-                layer.msg('验证码不能为空');
-                return false;
-            }
-            let registerLayer;
-            registerLayer = layui.layer.msg('正在注册...', {icon: 16, shade: 0.01, time: 0});
+
+            let layerResetPwd = layer.msg('正在发送', {icon: 16, shade: 0.01, time: 0});
+            console.log(JSON.stringify(data));
             $.ajax({
-                type: "POST",
-                url: basePath + '/user/getDefaultIcon',
-                async: false,
+                type: 'put',
+                url: basePath + '/user/resetPwd',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                dataType: 'json',
+                async: true,
                 success: function (result) {
-                    layui.layer.close(registerLayer);
-                    console.log(result);
-                    let jsonData = JSON.parse(result);
-                    if (jsonData.code == 1) {
-                        data.avatar = jsonData.data[0];
-                        //成功
-                        $.ajax({
-                            type: "POST",
-                            url: basePath + '/user/register',
-                            async: false,
-                            data: JSON.stringify(data),
-                            dataType: 'json',
-                            contentType: 'application/json',
-                            success: function (result) {
-                                layui.layer.close(registerLayer);
-                                if (result.code == 1) {
-                                    //成功
-                                    layui.layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                                        window.location = basePath + '/login.html';
-                                    });
-                                } else {
-                                    //失败
-                                    layui.layer.msg(result.msg, {icon: 2});
-                                }
-                            },
-                            error: function (arg) {
-                                layui.layer.close(registerLayer);
-                                layui.layer.msg(arg);
-                            }
+                    layer.close(layerResetPwd);
+                    if (result.code == 1) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            window.location = basePath + '/login.html';
                         });
                     } else {
-                        //失败
-                        layui.layer.msg(jsonData.msg, {icon: 2});
+                        layer.msg('请求失败!\n提示信息：' + result.msg, {icon: 5});
                     }
-                },
-                error: function (arg) {
-                    layui.layer.close(registerLayer);
-                    layui.layer.msg(arg);
+                }
+                , error: function (arg) {
+                    layer.close(layerResetPwd);
+                    layer.msg(arg)
                 }
             });
+
             return false;
-        });
+        })
         window.checkUserName = function () {
             let username = $('#username');
+
             $.ajax({
                 type: "get",
                 url: basePath + '/user/queryByUsername',
@@ -334,8 +298,11 @@
                 success: function (result) {
                     if (result.code == 1) {
                         //成功
-                        if (result.data[0] == true) {
+                        if (result.data[0] == false) {
                             username.parent().next().children("span").show();
+                            if (username.val() == '') {
+                                username.parent().next().children("span").hide();
+                            }
                         } else {
                             username.parent().next().children("span").hide();
                         }
@@ -349,6 +316,7 @@
                 }
             });
         }
+
         window.checkPwd = function () {
             let pwd = $('#pwd');
             let rePwd = $('#rePwd');

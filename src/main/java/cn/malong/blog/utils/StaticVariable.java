@@ -11,7 +11,8 @@ public class StaticVariable {
     public final static String ROLE_ROOT = "root";
     public final static String ROLE_USER = "user";
     public final static String SPACE = " ";
-    public final static int FLOW_PAGE_SIZE = 3;
+    public final static int FLOW_ARTICLE_PAGE_SIZE = 3;
+    public final static int FLOW_MESSAGE_PAGE_SIZE = 6;
     public final static String OS_LINUX = "linux";
     public final static String ADMIN_EMAIL = "1289596706@qq.com";
     public final static String BAIDU_AK = "bCe88I0AvVB3DHhFKYplHOmMwKSbaYKE";

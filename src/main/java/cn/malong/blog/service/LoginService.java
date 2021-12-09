@@ -30,4 +30,7 @@ public interface LoginService {
     String register(UserInfo userInfo);
 
     String getDefaultIcon();
+
+    String resetPwd(UserInfo userInfo);
+
 }

@@ -64,6 +64,11 @@ public class RouterController {
     public String toArticle(Model model) {
         return routerServiceImpl.toArticle(model);
     }
+    @RequestMapping("/user/toMessage")
+    public String toMessage(Model model) {
+        return routerServiceImpl.toMessage(model);
+    }
+
 
     @RequestMapping("/user/toArticleByType/{typeId}")
     public String toArticleByType(@PathVariable("typeId") int typeId, Model model) {

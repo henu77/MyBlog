@@ -79,4 +79,6 @@ public interface UserInfoMapper {
     Boolean queryByUserName(String username);
 
     UserInfo getUserInfoByUsername_recent(String username);
+
+    int updatePwd(@Param("id") int id, @Param("password") String testPassword);
 }

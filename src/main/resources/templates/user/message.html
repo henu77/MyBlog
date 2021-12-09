@@ -14,6 +14,11 @@
     <link rel="stylesheet" th:href="@{/css/gloable.css}"/>
     <link rel="stylesheet" th:href="@{/css/nprogress.css}"/>
     <link rel="stylesheet" th:href="@{/css/message.css}"/>
+    <style>
+        .panel {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 <div class="header">
@@ -42,7 +47,7 @@
                 </ul>
             </nav>
             <a href="#" class="blog-user">
-<!--                <i class="fa fa-qq"></i>-->
+                <!--                <i class="fa fa-qq"></i>-->
             </a>
             <a class="phone-menu">
                 <i></i>
@@ -60,172 +65,26 @@
                 <p>
                     沟通交流，拉近你我！
                 </p>
-            </section>
-            <div class="textarea-wrap message" id="textarea-wrap">
-                <form class="layui-form blog-editor" action="">
-                    <div class="layui-form-item">
-                        <textarea name="editorContent" lay-verify="content" id="remarkEditor" placeholder="请输入内容"
-                                  class="layui-textarea layui-hide"></textarea>
-                    </div>
-                    <div class="layui-form-item">
-                        <button class="layui-btn" lay-submit="formLeaveMessage" lay-filter="formLeaveMessage">提交留言
+                <div class="panel">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                        <textarea lay-verify="required" name="content" placeholder="请输入内容"
+                                  class="layui-textarea"></textarea>
+                        </div>
+
+                        <button id="leaveMessage" class="layui-btn layui-btn layui-btn-normal" lay-submit="leaveMessage"
+                                lay-filter="leaveMessage">提交留言
                         </button>
-                    </div>
-                </form>
-            </div>
+
+                    </form>
+                </div>
+            </section>
         </div>
         <div class="f-cb"></div>
         <div class="mt20">
             <ul class="message-list" id="message-list">
-                <li class="zoomIn article">
-                    <div class="comment-parent">
-                        <a name="remark-1"></a>
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101465933/7627F745B95BFAC18C6C481FE72B4EB1/100"/>
-                        <div class="info">
-                            <span class="username">燕十三</span>
-                        </div>
-                        <div class="comment-content">
-                            剑气纵横三万里
-                        </div>
-                        <p class="info info-footer">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>四川</span>
-                            <span class="comment-time">2018-01-01</span>
-                            <a href="javascript:;" class="btn-reply" data-targetid="1" data-targetname="燕十三">回复</a>
-                        </p>
-                    </div>
-                    <hr/>
-                    <div class="comment-child">
-                        <a name="reply-1"></a>
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101465933/7627F745B95BFAC18C6C481FE72B4EB1/100">
-                        <div class="info">
-                            <span class="username">燕十四</span>
-                            <span style="padding-right:0;margin-left:-5px;">回复</span>
-                            <span class="username">燕十三</span>
-                            <span>一剑光寒十九洲</span>
-                        </div>
-                        <p class="info">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>四川</span>
-                            <span class="comment-time">2018-01-01</span>
-                            <a href="javascript:;" class="btn-reply" data-targetid="2" data-targetname="燕十四">回复</a>
-                        </p>
-                    </div>
-                    <div class="comment-child">
-                        <a name="reply-1"></a>
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101465933/7627F745B95BFAC18C6C481FE72B4EB1/100">
-                        <div class="info">
-                            <span class="username">燕十四</span>
-                            <span style="padding-right:0;margin-left:-5px;">回复</span>
-                            <span class="username">燕十三</span>
-                            <span>一剑光寒十九洲</span>
-                        </div>
-                        <p class="info">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>四川</span>
-                            <span class="comment-time">2018-01-01</span>
-                            <a href="javascript:;" class="btn-reply" data-targetid="2" data-targetname="燕十四">回复</a>
-                        </p>
-                    </div>
-                    <div class="comment-child">
-                        <a name="reply-1"></a>
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101465933/7627F745B95BFAC18C6C481FE72B4EB1/100">
-                        <div class="info">
-                            <span class="username">燕十四</span>
-                            <span style="padding-right:0;margin-left:-5px;">回复</span>
-                            <span class="username">燕十三</span>
-                            <span>一剑光寒十九洲</span>
-                        </div>
-                        <p class="info">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>四川</span>
-                            <span class="comment-time">2018-01-01</span>
-                            <a href="javascript:;" class="btn-reply" data-targetid="2" data-targetname="燕十四">回复</a>
-                        </p>
-                    </div>
-                    <div class="replycontainer layui-hide">
-                        <form class="layui-form" action="">
-                            <input type="hidden" name="remarkId" value="1">
-                            <input type="hidden" name="targetUserId" value="0">
-                            <div class="layui-form-item">
-                                <textarea name="replyContent" lay-verify="replyContent" placeholder="请输入回复内容"
-                                          class="layui-textarea" style="min-height:80px;"></textarea>
-                            </div>
-                            <div class="layui-form-item">
-                                <button class="layui-btn layui-btn-xs" lay-submit="formReply" lay-filter="formReply">
-                                    提交
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-                <li class="zoomIn article">
-                    <div class="comment-parent">
-                        <a name="remark-1"></a>
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101465933/7627F745B95BFAC18C6C481FE72B4EB1/100"
-                             alt="{{name}}"/>
-                        <div class="info">
-                            <span class="username">燕十三</span>
-                        </div>
-                        <div class="comment-content">
-                            剑气纵横三万里
-                        </div>
-                        <p class="info info-footer">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>四川</span>
-                            <span class="comment-time">2018-01-01</span>
-                            <a href="javascript:;" class="btn-reply" data-targetid="1" data-targetname="燕十三">回复</a>
-                        </p>
-                    </div>
-                    <div class="replycontainer layui-hide">
-                        <form class="layui-form" action="">
-                            <input type="hidden" name="remarkId" value="1">
-                            <input type="hidden" name="targetUserId" value="0">
-                            <div class="layui-form-item">
-                                <textarea name="replyContent" lay-verify="replyContent" placeholder="请输入回复内容"
-                                          class="layui-textarea" style="min-height:80px;"></textarea>
-                            </div>
-                            <div class="layui-form-item">
-                                <button class="layui-btn layui-btn-xs" lay-submit="formReply" lay-filter="formReply">
-                                    提交
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-                <li class="zoomIn article">
-                    <div class="comment-parent">
-                        <a name="remark-1"></a>
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101465933/7627F745B95BFAC18C6C481FE72B4EB1/100"/>
-                        <div class="info">
-                            <span class="username">燕十三</span>
-                        </div>
-                        <div class="comment-content">
-                            剑气纵横三万里
-                        </div>
-                        <p class="info info-footer">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>四川</span>
-                            <span class="comment-time">2018-01-01</span>
-                            <a href="javascript:;" class="btn-reply" data-targetid="1" data-targetname="燕十三">回复</a>
-                        </p>
-                    </div>
-                    <hr/>
-                    <div class="replycontainer layui-hide">
-                        <form class="layui-form" action="">
-                            <input type="hidden" name="remarkId" value="1">
-                            <input type="hidden" name="targetUserId" value="0">
-                            <div class="layui-form-item">
-                                <textarea name="replyContent" lay-verify="replyContent" placeholder="请输入回复内容"
-                                          class="layui-textarea" style="min-height:80px;"></textarea>
-                            </div>
-                            <div class="layui-form-item">
-                                <button class="layui-btn layui-btn-xs" lay-submit="formReply" lay-filter="formReply">
-                                    提交
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                <li class="zoomIn article layui-hide" id="first_child">
+
                 </li>
             </ul>
         </div>
@@ -273,6 +132,84 @@
             content: basePath + '/user-setting.html'
         });
     }
+    layui.use(['form', 'flow'], function () {
+        let form = layui.form,
+            layer = layui.layer,
+            flow = layui.flow;
+        let first_child = $('#first_child');
+        form.on('submit(leaveMessage)', function (data) {
+            data = data.field;
+            if (data.content == '') {
+                layer.msg('留言内容不能为空');
+                return false;
+            }
+            let leaveMessage = $('#leaveMessage');
+            leaveMessage.addClass("layui-btn-disabled")
+            $.ajax({
+                type: "POST",
+                url: basePath + '/message/leaveAMessage',
+                data: {
+                    "content": data.content
+                },
+                dataType: 'json',
+                success: function (result) {
+                    leaveMessage.removeClass("layui-btn-disabled")
+                    if (result.code == 1) {
+                        //成功
+                        layui.layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            first_child.after(result.data[0]);
+                        });
+                    } else {
+                        //失败
+                        layer.msg(result.msg, {icon: 2, time: 500}, function () {
+                            if (result.msg == '请先登录！') {
+                                layer.open({
+                                    type: 2,
+                                    title: '登录',
+                                    shade: 0.1,
+                                    area: ['550px', '500px'],
+                                    content: basePath + '/miniLogin.html',
+                                });
+                            }
+                        });
+                    }
+                },
+                error: function (arg) {
+                    leaveMessage.removeClass("layui-btn-disabled")
+                    layer.msg(arg, {icon: 2, time: 500});
+                }
+            });
+
+            return false;
+        })
+
+        //流加载
+        flow.load({
+            elem: '#message-list' //指定列表容器
+            , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
+                let lis = [];
+                //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                $.get('/message/more?page=' + page, function (res) {
+                    res = JSON.parse(res);
+                    //假设你的列表返回在data集合中
+                    if (res.code == 1) {
+                        layui.each(res.data, function (index, item) {
+                            lis.push(item);
+                        });
+                        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                        next(lis.join(''), page < res.pages);
+                    } else {
+                        layer.msg(res.msg, {icon: 2, time: 100});
+                    }
+                });
+            }
+            , end: "<h3 style='color: black;font-weight:bold'>没有更多了</h3>"
+        });
+
+    });
+
+
     function logout() {
         //询问框
         layer.confirm('真的要退出登录吗？', {

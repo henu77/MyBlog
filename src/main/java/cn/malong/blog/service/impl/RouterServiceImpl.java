@@ -33,6 +33,8 @@ public class RouterServiceImpl implements RouterService {
     private CommentsMapper commentsMapper;
     @Autowired
     private AdMapper adMapper;
+    @Autowired
+    private MessageMapper messageMapper;
 
     /**
      * 1.从session中取用户信息
@@ -194,6 +196,11 @@ public class RouterServiceImpl implements RouterService {
         List<Advertisement> queryAllAds = adMapper.queryAllAdsIsPass();
         model.addAttribute("allAds", queryAllAds);
         return "/user/link";
+    }
+
+    @Override
+    public String toMessage(Model model) {
+        return "/user/message";
     }
 
     /**
