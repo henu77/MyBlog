@@ -15,20 +15,20 @@
 
 #### 安装教程
 
-      1. 下载项目
-      2. 在您的数据库运行sql文件下的myblog.sql文件，导入数据。
-      3. 将项目根目录下的home文件夹(上传的图片)复制到D盘
-      4. 修改application.yml配置文件中的邮箱用户名、第三方授权码为您的邮箱（需开启SMTP服务）
-      5. 修改application.yml配置文件中的==<font style="background:#ff0">数据库用户名密码配置</font>==
-      6. 运行项目
+1. 下载项目
+2. 在您的数据库运行sql文件下的myblog.sql文件，导入数据。
+3. 将项目根目录下的home文件夹(上传的图片)复制到D盘
+4. 修改application.yml配置文件中的邮箱用户名、第三方授权码为您的邮箱（需开启SMTP服务）
+5. 修改application.yml配置文件中的==<font style="background:#ff0">数据库用户名密码配置</font>==
+6. 运行项目
 
 #### 使用说明
 
-1. home文件夹要在==<font style="background:#ff0">D盘的根目录下。</font>==
+1. home文件夹要在<font style="background:#ff0">D盘的根目录下。</font>
 
-2. myblog.sql文件已经包含建database的语句，如果在运行前，==<font style="background:#ff0">您的数据库中已经存在名为myblog的database请备份您的数据。</font>==
+2. myblog.sql文件已经包含建database的语句，如果在运行前，<font style="background:#ff0">您的数据库中已经存在名为myblog的database请备份您的数据。</font>
 
-3. ==<font>超级管理员 用户名为：root，密码：root。</font>==
+3. <font>超级管理员 用户名为：root，密码：root。</font>
 
 4. 若项目在局域网中运行，则用户登陆地统计功能无效。
 
@@ -40,12 +40,7 @@
    请注意回调地址一定要填写正确。本项目的参考格式http://localhost:8080/oauth/callback/gitee
 
    <img src="https://gitee.com/henu77/blogimg/raw/master/img/image-20211212231751135.png" alt="image-20211212231751135" style="zoom:67%;" />
-
-
-
-
-
-      申请成功后，请修改service/impl包下的<font style="background:#ff0">RestAuthServiceImpl类</font>中的<font style='background:#ff0'>getAuthRequest()</font>函数
+申请成功后，请修改service/impl包下的<font style="background:#ff0">RestAuthServiceImpl类</font>中的<font style='background:#ff0'>getAuthRequest()</font>函数
 
 <img src="https://gitee.com/henu77/blogimg/raw/master/img/image-20211212232152410.png" alt="image-20211212232152410" style="zoom:50%;" />
 
