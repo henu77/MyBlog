@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('403')"/>
+    <link rel="stylesheet" th:href="@{/admin/css/other/error.css}"/>
+</head>
+<body>
+<div class="content">
+    <img alt="" th:src="@{/500.svg}">
+    <div class="content-r">
+        <h1>500</h1>
+        <p>抱歉，服务器出错了</p>
+        <button class="pear-btn pear-btn-primary">返回首页</button>
+    </div>
+</div>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+</body>
+</html>

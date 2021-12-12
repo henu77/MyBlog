@@ -57,7 +57,7 @@ public class TestEmail {
                 "  \t<p>(这是一封自动产生的email，请勿回复。)</p>\n" +
                 "</div>";
         messageHelper.setText(context, true);
-        messageHelper.setTo("1289596706@qq.com");
+        messageHelper.setTo(StaticVariable.ADMIN_EMAIL);
         messageHelper.setFrom(StaticVariable.ADMIN_EMAIL);
         System.out.println("开始发邮件===》"+ DateUtils.dateToString(new Date()));
         mailSender.send(mimeMessage);

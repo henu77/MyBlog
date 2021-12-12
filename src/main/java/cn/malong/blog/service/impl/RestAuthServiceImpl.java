@@ -95,23 +95,16 @@ public class RestAuthServiceImpl implements RestAuthService {
         switch (source.toLowerCase()) {
             case "aliyun":
                 authRequest = new AuthAliyunRequest(AuthConfig.builder()
-                        .clientId("4710766938518379518")
-                        .clientSecret("f1pm443iIP6ZLdUbQA1qLN9ZE98rRsZbGbXseZwxaDCmwHGkm4ETFsw6CsdXULa0")
+                        .clientId("4230439939055063852")
+                        .clientSecret("eN7w7Mre7aD9ljyOS44IulnpjgS6LGpS0ST8Neq6udtr30EK6xRERPD5Y990Vm9I")
                         .redirectUri("http://localhost:8080/oauth/callback/aliyun")
                         .build());
                 break;
             case "gitee":
                 authRequest = new AuthGiteeRequest(AuthConfig.builder()
-                        .clientId("76c650ce3901f75ce005dee187b6534a316c7872c3b6fbb852b9b038f3334ff9")
-                        .clientSecret("78055b31c7317c49590da85c319b48556fc114be0d3e46d7ab4eebb3eac56ab1")
+                        .clientId("1f52a0c526d84f5926568af1f43f851b44aed9a7c5535ec6b547b6d2db6c746f")
+                        .clientSecret("3cd53dbb61c9b1c9e9a83b2b24619c975da3ce73aed43e936c142194537b784c")
                         .redirectUri("http://localhost:8080/oauth/callback/gitee")
-                        .build());
-                break;
-            case "oschina":
-                authRequest = new AuthGiteeRequest(AuthConfig.builder()
-                        .clientId("JpqCuNeD76MVKSxEiDP1")
-                        .clientSecret("s3rd0UNojS7XSyCygWV5QGE6FfyKZpQr")
-                        .redirectUri("http://localhost:8080/oauth/callback/oschina")
                         .build());
                 break;
             default:

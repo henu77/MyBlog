@@ -36,7 +36,21 @@ public class DateUtils {
 
     public static String getYMD(Date date) {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CHINA);
-        return dateFormat.format(date);
+        String dataString = dateFormat.format(date);
+        int first = dataString.indexOf("-");
+        int end = dataString.lastIndexOf("-");
+        int mm = Integer.parseInt(dataString.substring(first + 1, end));
+        int dd = Integer.parseInt(dataString.substring(end + 1));
+        dataString = dataString.substring(0, first);
+        if (mm < 10)
+            dataString += "-0" + mm;
+        else
+            dataString += "-" + mm;
+        if (dd < 10)
+            dataString += "-0" + dd;
+        else
+            dataString += "-" + dd;
+        return dataString;
     }
 
     public static String dateToString(Date date) {

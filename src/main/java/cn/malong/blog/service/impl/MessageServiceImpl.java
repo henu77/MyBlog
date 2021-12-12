@@ -70,10 +70,12 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public String more(int page) {
         ResponseUtil<String> json = new ResponseUtil<>();
-        int limit = StaticVariable.FLOW_ARTICLE_PAGE_SIZE;
+        int limit = StaticVariable.FLOW_MESSAGE_PAGE_SIZE;
         int startIndex = (page - 1) * limit;
+        int countAllMessages = messageMapper.countAllMessages();
+        json.setPages((int) Math.ceil(1.0 * countAllMessages / limit));
         List<Message> messageByPage = messageMapper.queryMessageByPage(startIndex, limit);
-        if (null != messageByPage && messageByPage.size() > 0) {
+        if (null != messageByPage) {
             json.setCode(1);
             json.setMsg("查询成功");
             List<String> data = new ArrayList<>();
@@ -101,8 +103,6 @@ public class MessageServiceImpl implements MessageService {
             json.setCode(0);
             json.setMsg("查询失败,请求接口错误");
         }
-        int countAllMessages = messageMapper.countAllMessages();
-        json.setPages((int) Math.ceil(1.0 * countAllMessages / limit));
         return json.toString();
     }
 }

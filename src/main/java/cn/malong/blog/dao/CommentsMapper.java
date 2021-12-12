@@ -44,7 +44,7 @@ public interface CommentsMapper {
      */
     int deleteCommentsByBatch(int[] ids);
 
-    int countComment();
+    Integer countComment();
 
     int countCommentsByBlogId(int blogId);
 

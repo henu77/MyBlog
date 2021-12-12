@@ -148,15 +148,16 @@ public class RouterServiceImpl implements RouterService {
 
     @Override
     public String toWelcome(Model model) {
-        int allUserNum = userInfoMapper.countAll();
-        int allBlogNum = blogsMapper.countAllBlogs();
-        int allBlogViews = blogsMapper.countAllBLogViews();
-        int allBLogComment = commentsMapper.countComment();
+        Integer allUserNum = userInfoMapper.countAll();
+        Integer allBlogNum = blogsMapper.countAllBlogs();
+        Integer allBlogViews = blogsMapper.countAllBLogViews();
+        Integer allBLogComment = commentsMapper.countComment();
+
         Map<String, Object> data = new LinkedHashMap<>();
-        data.put("allUserNum", allUserNum);
-        data.put("allBlogNum", allBlogNum);
-        data.put("allBlogViews", allBlogViews);
-        data.put("allBLogComment", allBLogComment);
+        data.put("allUserNum", allUserNum==null?0:allUserNum);
+        data.put("allBlogNum", allBlogNum==null?0:allBlogNum);
+        data.put("allBlogViews", allBlogViews==null?0:allBlogViews);
+        data.put("allBLogComment", allBLogComment==null?0:allBLogComment);
         model.addAttribute("dataStatistics", data);
         return "/admin/welcome";
     }

@@ -77,7 +77,7 @@ class MyBlogMasterApplicationTests {
     @Test
     void contextLoads1() throws SQLException {
 //        Advertisement advertisement = new Advertisement();
-        System.out.println("拒绝通过".substring(0,2));
+        System.out.println("拒绝通过".substring(0, 2));
 //        advertisement.setTitle("广告1");
 //        advertisement.setPath("123");
 //        advertisement.setDes("!!!");
@@ -179,8 +179,33 @@ class MyBlogMasterApplicationTests {
 //        TrafficStatics trafficStatics = new TrafficStatics(0);
 //        trafficStatics.setViews(1999);
 //        System.out.println(trafficStaticsMapper.updateTodayViews(trafficStatics));
-        String today = (DateUtils.getToDayYY_MM_DD());
-        System.out.println(today);
-        System.out.println(trafficStaticsMapper.getTodayViews(today));
+//        String today = (DateUtils.getToDayYY_MM_DD());
+//        System.out.println(today);
+//        System.out.println(trafficStaticsMapper.getTodayViews(today));
+        String data = "2021-11-1";
+        String date2 = "2021-9-10";
+        String date3 = "2021-10-9";
+        System.out.println(f(data));
+        System.out.println("=========================");
+        System.out.println(f(date2));
+        System.out.println("=======================");
+        System.out.println(f(date3));
+    }
+
+    String f(String data) {
+        int first = data.indexOf("-");
+        int end = data.lastIndexOf("-");
+        int mm = Integer.parseInt(data.substring(first + 1, end));
+        int dd = Integer.parseInt(data.substring(end + 1));
+        data = data.substring(0, first);
+        if (mm < 10)
+            data += "-0" + mm;
+        else
+            data += "-" + mm;
+        if (dd < 10)
+            data += "-0" + dd;
+        else
+            data += "-" + dd;
+        return data;
     }
 }

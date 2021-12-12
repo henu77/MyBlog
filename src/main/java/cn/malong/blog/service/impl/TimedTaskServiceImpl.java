@@ -21,24 +21,18 @@ import java.util.Date;
 @Service
 @Slf4j
 public class TimedTaskServiceImpl implements TimedTaskService {
-    private TrafficStatics trafficStatics = new TrafficStatics(0);
     @Autowired
     private TrafficStaticsMapper trafficStaticsMapper;
     @Autowired
     private ServletContext servletContext;
-    @Autowired
-    private ProvinceMapper provinceMapper;
 
     @Override
-    @Scheduled(cron = "1 0 0 * * ?")
+    @Scheduled(cron = "5 0 0 * * ?")
     public void createTodayTrafficStatistics() {
-
         servletContext.removeAttribute("TrafficStatistics");
-        if (trafficStatics.getViews() != 0) {
-            trafficStatics.setViews(0);
-        }
-        trafficStatics.setDate(new Date());
-        servletContext.setAttribute("TrafficStatistics", 0);
+        TrafficStatics trafficStatics = new TrafficStatics();
+        trafficStatics.setViews(0);
+        servletContext.setAttribute("TrafficStatistics", trafficStatics.getViews());
         int result = trafficStaticsMapper.initTodayViews(trafficStatics);
         log.info("访问量统计初始化结果==>" + (result >= 1 ? true : false));
     }
@@ -58,11 +52,20 @@ public class TimedTaskServiceImpl implements TimedTaskService {
         }
 
         int views = (int) servletContext.getAttribute("TrafficStatistics");
+        TrafficStatics trafficStatics = new TrafficStatics();
         trafficStatics.setViews(views);
-        trafficStatics.setDate(new Date());
         log.info("当前时间===>" + trafficStatics.getDate());
         log.info("内容===>" + trafficStatics.toString());
         int result = trafficStaticsMapper.updateTodayViews(trafficStatics);
         log.info("访问量统计更新结果==>" + (result >= 1 ? true : false));
+        if (result < 1) {
+            TrafficStatics todayViews = trafficStaticsMapper.getTodayViews(DateUtils.getToDayYY_MM_DD());
+            if (null == todayViews) {
+                trafficStatics.setViews(0);
+                trafficStatics.setDate(new Date());
+                int result2 = trafficStaticsMapper.initTodayViews(trafficStatics);
+                log.info("失败当天0点初始化时失败,访问量统计初始化结果===>" + (result2 >= 1 ? true : false));
+            }
+        }
     }
 }

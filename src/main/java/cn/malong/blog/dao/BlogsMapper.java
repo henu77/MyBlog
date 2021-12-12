@@ -29,7 +29,7 @@ public interface BlogsMapper {
 
     Blog getBlogById(int id);
 
-    int countAllBlogs();
+    Integer countAllBlogs();
 
     /**
      * 保存博客
@@ -57,7 +57,7 @@ public interface BlogsMapper {
 
     int updateBlog(Blog blog);
 
-    int countAllBLogViews();
+    Integer countAllBLogViews();
 
     List<Blog> getIndexHotBlogs();
 }
