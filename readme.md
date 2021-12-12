@@ -19,7 +19,7 @@
 2. 在您的数据库运行sql文件下的myblog.sql文件，导入数据。
 3. 将项目根目录下的home文件夹(上传的图片)复制到D盘
 4. 修改application.yml配置文件中的邮箱用户名、第三方授权码为您的邮箱（需开启SMTP服务）
-5. 修改application.yml配置文件中的==<font style="background:#ff0">数据库用户名密码配置</font>==
+5. 修改application.yml配置文件中的<font style="background:#ff0">数据库用户名密码配置</font>
 6. 运行项目
 
 #### 使用说明
