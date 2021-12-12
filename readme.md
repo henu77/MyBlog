@@ -52,5 +52,4 @@ getAuthRequest()</font>函数
 
 红框中的内容修改为你的即可。
 
-7.
-百度云API密钥申请请查看：https://lbsyun.baidu.com/index.php?title=webapi/ip-api（IP定位功能文档）https://lbsyun.baidu.com/apiconsole/key/create#/home（获取AK）
+7. 百度云API密钥申请请查看：https://lbsyun.baidu.com/index.php?title=webapi/ip-api（IP定位功能文档）https://lbsyun.baidu.com/apiconsole/key/create#/home（获取AK）
