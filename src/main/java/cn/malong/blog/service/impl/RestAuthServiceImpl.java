@@ -95,15 +95,15 @@ public class RestAuthServiceImpl implements RestAuthService {
         switch (source.toLowerCase()) {
             case "aliyun":
                 authRequest = new AuthAliyunRequest(AuthConfig.builder()
-                        .clientId("4230439939055063852")
-                        .clientSecret("eN7w7Mre7aD9ljyOS44IulnpjgS6LGpS0ST8Neq6udtr30EK6xRERPD5Y990Vm9I")
+                        .clientId("********************此处填写您的阿里云第三方认证应用ID号")
+                        .clientSecret("******************此处填写您的阿里云第三方认证应用密码")
                         .redirectUri("http://localhost:8080/oauth/callback/aliyun")
                         .build());
                 break;
             case "gitee":
                 authRequest = new AuthGiteeRequest(AuthConfig.builder()
-                        .clientId("1f52a0c526d84f5926568af1f43f851b44aed9a7c5535ec6b547b6d2db6c746f")
-                        .clientSecret("3cd53dbb61c9b1c9e9a83b2b24619c975da3ce73aed43e936c142194537b784c")
+                        .clientId("*******************此处填写您的Gitee第三方认证应用ID号")
+                        .clientSecret("*********************此处填写您的Gitee第三方认证应用密码")
                         .redirectUri("http://localhost:8080/oauth/callback/gitee")
                         .build());
                 break;

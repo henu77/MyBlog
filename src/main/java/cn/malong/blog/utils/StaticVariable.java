@@ -20,7 +20,8 @@ public class StaticVariable {
     public final static int FLOW_MESSAGE_PAGE_SIZE = 6;
     public final static String OS_LINUX = "linux";
     public static String ADMIN_EMAIL = "1289596706@qq.com";
-    public final static String BAIDU_AK = "bCe88I0AvVB3DHhFKYplHOmMwKSbaYKE";
+    //百度云 api 密钥
+    public final static String BAIDU_AK = "**************此处填写您的百度云API密钥";
     public static final int OPERATE_PASS = 2000;
     public static final int OPERATE_REFUSE = 5000;
     public static final String AD_STATE_PASS = "审核通过";

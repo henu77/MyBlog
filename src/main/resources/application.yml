@@ -7,7 +7,7 @@ spring:
     mode: HTML # 模板模式
   datasource:
     username: root
-    password: mysql0.0
+    password: #此处填写您的数据库密码
     #?serverTimezone=UTC解决时区的报错
     url: jdbc:mysql://localhost:3306/myblog?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -37,8 +37,8 @@ spring:
       #文件上传最大值
       max-file-size: 5MB
   mail:
-    username: 1289596706@qq.com
-    password: ngddmojllgwtibgb
+    username: #***************此处填写您的邮箱
+    password: #**************此处填写您的邮箱第三方登录授权码
     host: smtp.qq.com
     properties:
       mail:

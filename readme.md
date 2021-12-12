@@ -20,19 +20,23 @@
 3. 将项目根目录下的home文件夹(上传的图片)复制到D盘
 4. 修改application.yml配置文件中的邮箱用户名、第三方授权码为您的邮箱（需开启SMTP服务）
 5. 修改application.yml配置文件中的<font style="background:#ff0">数据库用户名密码配置</font>
-6. 运行项目
+6. 修改utils包中StaticVariable类中的变量 ADMIN_EMAIL、BAIDU_AK（百度云API密钥）
+7. 运行项目
 
 #### 使用说明
 
-1. home文件夹要在<font style="background:#ff0">D盘的根目录下。</font>
 
-2. myblog.sql文件已经包含建database的语句，如果在运行前，<font style="background:#ff0">您的数据库中已经存在名为myblog的database请备份您的数据。</font>
+1. 项目中所有的*****号均为需要你自己填写的信息（如账号密码等）
 
-3. <font>超级管理员 用户名为：root，密码：root。</font>
+2. home文件夹要在<font style="background:#ff0">D盘的根目录下。</font>
 
-4. 若项目在局域网中运行，则用户登陆地统计功能无效。
+3. myblog.sql文件已经包含建database的语句，如果在运行前，<font style="background:#ff0">您的数据库中已经存在名为myblog的database请备份您的数据。</font>
 
-5. <font style="background:#ff0">若使用第三方登录功能则需要自自行创建第三方授权应用并填写相应信息。</font>
+4. <font>超级管理员 用户名为：root，密码：root。</font>
+
+5. 若项目在局域网中运行，则用户登陆地统计功能无效。
+
+6. <font style="background:#ff0">若使用第三方登录功能则需要自自行创建第三方授权应用并填写相应信息。</font>
 
     - gitee平台申请参考：https://justauth.wiki/guide/oauth/gitee/
     - 阿里云平台申请参考：https://justauth.wiki/guide/oauth/aliyun/
@@ -45,3 +49,4 @@
 <img src="https://gitee.com/henu77/blogimg/raw/master/img/image-20211212232152410.png" alt="image-20211212232152410" style="zoom:50%;" />
 
 红框中的内容修改为你的即可。
+7. 百度云API密钥申请请查看：https://lbsyun.baidu.com/index.php?title=webapi/ip-api（IP定位功能文档）https://lbsyun.baidu.com/apiconsole/key/create#/home（获取AK）
