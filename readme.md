@@ -2,16 +2,17 @@
 
 #### 介绍
 
-本项目采用Spring Boot+MyBatis+Thymelef搭建而成。使用Maven对项目进行管理，前端使用到的技术\框架有Thymelef、Ajax、Jquery、Layui、Editor.js、Tocbot.js等，后端使用主流开发框架Spring
-Boot，持久层设计采用MyBatis。具体功能有后台管理、发布文章、评论文章、留言、友链、第三方登录、数据统计等。演示地址http://www.marlone.xyz/
+   本项目采用Spring
+   Boot+MyBatis+Thymelef搭建而成。使用Maven对项目进行管理，前端使用到的技术\框架有Thymelef、Ajax、Jquery、Layui、Editor.js、Tocbot.js等，后端使用主流开发框架Spring
+   Boot，持久层设计采用MyBatis。具体功能有后台管理、发布文章、评论文章、留言、友链、第三方登录、数据统计等。
 
 #### 软件架构
 
-JDK：1.8
+   JDK：1.8
 
-MySql：8.0.25
+   MySql：8.0.25
 
-Spring Boot：2.5.6
+   Spring Boot：2.5.6
 
 #### 安装教程
 
