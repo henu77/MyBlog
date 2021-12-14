@@ -19,7 +19,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 	
 DROP DATABASE IF EXISTS `myblog`;
 CREATE DATABASE `myblog`;
-
+use myblog;
 -- ----------------------------
 -- Table structure for t_advertisement
 -- ----------------------------
