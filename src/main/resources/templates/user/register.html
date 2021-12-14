@@ -300,7 +300,7 @@
                                 if (result.code == 1) {
                                     //成功
                                     layui.layer.msg(result.msg, {icon: 1, time: 1000}, function () {
-                                        window.location = basePath + '/login.html';
+                                        window.location = basePath + '/login.html?username=' + data.username;
                                     });
                                 } else {
                                     //失败
