@@ -115,31 +115,15 @@
         </div>
     </div>
 </div>
-<footer class="grid-footer">
-    <div class="footer-fixed">
-        <div class="copyright">
-            <div class="info">
-                <div class="contact">
-                    <a href="https://github.com/henu77" class="github" target="_blank"><i class="fa fa-github"></i></a>
-                    <a href="https://wpa.qq.com/msgrd?v=3&uin=1289596706&site=qq&menu=yes" class="qq" target="_blank"
-                       title="1289596706"><i class="fa fa-qq"></i></a>
-                    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1289596706@qq.com"
-                       class="email" target="_blank" title="1289596706@qq.com"><i class="fa fa-envelope"></i></a>
-                    <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
-                </div>
-                <p class="mt05">
-                    Copyright &copy; 2021-2021 MyBlog All Rights Reserved V.0.0.1
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
+<th:block th:include="include :: footer"/>
 <script th:src="@{/js/jquery/jquery.min.js}" charset="utf-8"></script>
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/js/yss/gloable.js}"></script>
 <script th:src="@{/js/plugins/nprogress.js}"></script>
 <script>NProgress.start();</script>
 <script th:src="@{/js/yss/article.js}"></script>
+<th:block th:include="include :: commonJs"/>
+<th:block th:include="include :: showWeChartQR"/>
 <script th:inline="javascript">
 
     let basePath = [[${#httpServletRequest.getContextPath()}]];
