@@ -186,7 +186,7 @@
             layui.layer.msg(HandlerInterceptor);
         }
         if (Auth_msg != "" && null != Auth_msg) {
-            layui.layer.msg(Auth_msg,{time: 2000});
+            layui.layer.msg(Auth_msg, {time: 2000});
         }
     });
     layui.use(['form'], function () {
@@ -243,7 +243,8 @@
                         });
                     } else {
                         //失败
-                        layer.msg(jsonData.msg, {icon: 2});
+                        replaceVerifyCodeImg();
+                        layer.msg(jsonData.msg, {icon: 2, time: 1000});
                     }
                 },
                 error: function (arg) {

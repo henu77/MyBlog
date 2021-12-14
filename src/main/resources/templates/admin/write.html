@@ -109,9 +109,9 @@
     </div>
 </div>
 
+<script th:src="@{/component/layui/layui.js}"></script>
 <script th:src="@{/js/jquery/jquery.min.js}"></script>
 <script th:src="@{/lib/editormd/editormd.min.js}"></script>
-<script th:src="@{/layui/layui.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     let basePath = [[${#httpServletRequest.getContextPath()}]];
 
@@ -126,12 +126,12 @@
         });
     });
     layui.use(['element', 'layer', 'form', 'convert', 'miniTab', 'upload'], function () {
-        let layer = layui.layer;
-        let form = layui.form;
-        let convert = layui.convert;
-        let miniTab = layui.miniTab;
-        let upload = layui.upload;
-        let element = layui.element;
+        let element = layui.element,
+            layer = layui.layer,
+            form = layui.form,
+            miniTab = layui.miniTab,
+            upload = layui.upload;
+
 
         form.verify({
             firstPic: function (value, item) { //value：表单的值、item：表单的DOM对象
@@ -219,14 +219,17 @@
             , url: '/file/upload/'
             , accept: 'images'
             , size: 5120
-            , before: function (obj) {
-                obj.preview(function (index, file, result) {
-                    $('#demo1').attr('src', result);
-                });
+            , progress: function (n, elem, res, index) {
+                console.log(elem)
+                console.log(res)
+                console.log(index)
+                console.log(n)
+                let percent = n + '%' //获取进度百分比
+                $("#uploadImgProg").attr("lay-percent", percent);
+                element.render(); //进度条
             }
             , done: function (res) {
                 // res = JSON.parse(res);
-                console.log(res)
                 layer.msg(res.msg);
                 if (res.code) {
                     let fileUpload = $("#firstPic");
@@ -243,11 +246,7 @@
                 //演示失败状态，并实现重传
                 layer.msg(res);
             }
-            , progress: function (n) {
-                let percent = n + '%' //获取进度百分比
-                $("#uploadImgProg").attr("lay-percent", percent);
-                element.render(); //进度条
-            }
+
         });
 
     });
