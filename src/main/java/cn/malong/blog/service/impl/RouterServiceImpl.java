@@ -140,8 +140,8 @@ public class RouterServiceImpl implements RouterService {
         model.addAttribute("hotBlogs", hotBlogs);
         List<Blog> topBlogs = blogsMapper.getTopBlogs();
         model.addAttribute("topBlogs", topBlogs);
-        List<UserInfo> recentViewUsers =
-                (List<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
+        Set<UserInfo> recentViewUsers =
+                (Set<UserInfo>) ServletUtil.getRequest().getServletContext().getAttribute("recentViewUser");
         model.addAttribute("recentViewUser", recentViewUsers);
         return "/user/articleByType";
     }
