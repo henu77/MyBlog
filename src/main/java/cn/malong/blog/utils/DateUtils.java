@@ -35,22 +35,20 @@ public class DateUtils {
     }
 
     public static String getYMD(Date date) {
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CHINA);
-        String dataString = dateFormat.format(date);
-        int first = dataString.indexOf("-");
-        int end = dataString.lastIndexOf("-");
-        int mm = Integer.parseInt(dataString.substring(first + 1, end));
-        int dd = Integer.parseInt(dataString.substring(end + 1));
-        dataString = dataString.substring(0, first);
-        if (mm < 10)
-            dataString += "-0" + mm;
+        String ymd = "";
+        int year = CalendarUtil.getYear(date);
+        int month = CalendarUtil.getMonth(date);
+        int day = CalendarUtil.getDay(date);
+        ymd +=year;
+        if (month < 10)
+            ymd += "-0" + month;
         else
-            dataString += "-" + mm;
-        if (dd < 10)
-            dataString += "-0" + dd;
+            ymd += "-" + month;
+        if (day < 10)
+            ymd += "-0" + day;
         else
-            dataString += "-" + dd;
-        return dataString;
+            ymd += "-" + day;
+        return ymd;
     }
 
     public static String dateToString(Date date) {
