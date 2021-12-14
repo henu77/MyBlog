@@ -94,7 +94,7 @@
                         <div class="layui-upload-list">
                             <div class="layui-upload-img">
                                 <span id="uploadTips"></span>
-                                <img id="firstPic" th:src="@{/file/getImg}+${blog.firstPicture}">
+                                <img id="firstPic" th:src="@{/file/getImg/}+${blog.firstPicture}">
                             </div>
                         </div>
                         <div style="width: 300px;">
@@ -116,7 +116,7 @@
 
 <script th:src="@{/js/jquery/jquery.min.js}"></script>
 <script th:src="@{/lib/editormd/editormd.min.js}"></script>
-<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/component/layui/layui.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     let basePath = [[${#httpServletRequest.getContextPath()}]];
 
