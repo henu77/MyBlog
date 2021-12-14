@@ -15,7 +15,7 @@ public interface BlogsMapper {
                                        @Param("pageSize") int pageSize,
                                        @Param("title") String title,
                                        @Param("username") String username,
-                                       @Param("userId") int userId);
+                                       @Param("userId") int userId,@Param("role") String role);
 
     List<Blog> getBlogsByLimit(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 

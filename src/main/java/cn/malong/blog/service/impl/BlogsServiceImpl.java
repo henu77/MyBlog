@@ -44,18 +44,6 @@ public class BlogsServiceImpl implements BlogsService {
 
     @Override
     public String getBlogsByLimit(int page, int limit, String title, String user) {
-//        int startIndex = (page - 1) * limit;
-//        List<Blog> blogData = null;
-//        if (isEmpty(title) && isEmpty(user)) {
-//            return getBlogsByLimit(page, limit);
-//        } else if (isEmpty(user)) {
-//            blogData = blogsMapper.getBlogsByLimitByTitle(startIndex, limit, title);
-//        } else if (isEmpty(title)) {
-//            blogData = blogsMapper.getBlogsByLimitByUser(startIndex, limit, user);
-//        } else {
-//            blogData = blogsMapper.getBlogsByLimitByTitleAndUser(startIndex, limit, title, user);
-//        }
-//        return blogDataToJson(blogData);
         /**
          * 参数预处理
          */
@@ -73,7 +61,14 @@ public class BlogsServiceImpl implements BlogsService {
                 user = null;
             }
         }
-        List<Blog> advancedGetBlogsByLimit = blogsMapper.advancedGetBlogsByLimit(startIndex, limit, title, user, UserServiceImpl.getUserInfoFromSession().getId());
+        String role = "";
+        if(UserServiceImpl.getUserInfoFromSession().getRole().equals(StaticVariable.ROLE_ROOT)){
+            role=null;
+        }
+        List<Blog> advancedGetBlogsByLimit =
+                blogsMapper.advancedGetBlogsByLimit(startIndex, limit, title, user,
+                        UserServiceImpl.getUserInfoFromSession().getId(),
+                        role);
         return blogDataToJson(advancedGetBlogsByLimit);
     }
 

@@ -192,17 +192,30 @@
         from myblog.t_blog blog,
         myblog.t_user user
         <where>
-            <if test="userId != null">
-                user_id = #{userId}
+            <if test="role!=null">
+                <if test="userId != null">
+                    user_id = #{userId}
+                </if>
+                <if test="title != null">
+                    and title like concat('%', #{title}, '%')
+                </if>
+                <if test="username != null">
+                    and username like concat('%', #{username}, '%')
+                </if>
+                <if test="startIndex != null">
+                    and blog.user_id = user.id
+                </if>
             </if>
-            <if test="title != null">
-                and title like concat('%', #{title}, '%')
-            </if>
-            <if test="username != null">
-                and username like concat('%', #{username}, '%')
-            </if>
-            <if test="startIndex != null">
-                and blog.user_id = user.id
+            <if test="role==null">
+                <if test="title != null">
+                    and title like concat('%', #{title}, '%')
+                </if>
+                <if test="username != null">
+                    and username like concat('%', #{username}, '%')
+                </if>
+                <if test="startIndex != null">
+                    and blog.user_id = user.id
+                </if>
             </if>
         </where>
         limit #{startIndex},#{pageSize};

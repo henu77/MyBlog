@@ -17,11 +17,11 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">文章标题</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="title" placeholder="" type="text">
+                    <input class="layui-input" id="title" oninput="liveUpdate()" name="title" placeholder="" type="text">
                 </div>
                 <label class="layui-form-label">作者</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="username" placeholder="" type="text">
+                    <input class="layui-input" id="username" oninput="liveUpdate()" name="username" placeholder="" type="text">
                 </div>
                 <button class="pear-btn pear-btn-md pear-btn-primary" lay-filter="user-query" lay-submit>
                     <i class="layui-icon layui-icon-search"></i>
@@ -213,6 +213,10 @@
 
         window.refresh = function (param) {
             table.reload('blog-table', {where: param});
+        }
+        window.liveUpdate = function () {
+            let data = {title: $('#title').val(), username: $('#username').val()};
+            window.refresh(data);
         }
     })
 </script>
