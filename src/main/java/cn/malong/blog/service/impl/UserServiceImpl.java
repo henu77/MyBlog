@@ -104,11 +104,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updateUserDate_userEdit(UserInfo userInfo) {
+        ResponseUtil<String> json = new ResponseUtil<>();
         if (!isHavingAuthority()) {
             //用户权限为 user 时
-            ResponseUtil<String> json = new ResponseUtil<>();
             json.setCode(0);
             json.setMsg("您的权限太低！");
+            return json.toString();
+        }
+        UserInfo userInfoByUsername = userInfoMapper.getUserInfoByUsername(userInfo.getUsername());
+        if (null != userInfoByUsername) {
+            json.setCode(0);
+            json.setMsg("此用户名已存在！");
             return json.toString();
         }
         UserInfo userInfoById = userInfoMapper.getUserInfoById(userInfo.getId());
@@ -116,7 +122,6 @@ public class UserServiceImpl implements UserService {
         if (nowUserInfo.getRole().equals(StaticVariable.ROLE_ADMIN)
                 && userInfo.getRole().equals(StaticVariable.ROLE_ROOT) || userInfoById.getRole().equals(StaticVariable.ROLE_ROOT)) {
             //如果当前用户 权限为 admin 但是想要修改用户权限为 root则禁止
-            ResponseUtil<String> json = new ResponseUtil<>();
             json.setCode(0);
             json.setMsg("修改失败，您没有权限修改!");
             return json.toString();

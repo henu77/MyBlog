@@ -40,7 +40,8 @@ public class DruidConfig {
         initParameters.put("loginPassword", "admin");
 
         //允许谁能访问
-        initParameters.put("allow", "127.0.0.1");
+        initParameters.put("allow", "");
+        //initParams.put("allow", "")：为空或者为null时，表示允许所有访问
         //禁止谁能访问
 //        initParameters.put("malong", "47.98.147.150");
 
