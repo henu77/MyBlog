@@ -62,8 +62,8 @@ public class BlogsServiceImpl implements BlogsService {
             }
         }
         String role = "";
-        if(UserServiceImpl.getUserInfoFromSession().getRole().equals(StaticVariable.ROLE_ROOT)){
-            role=null;
+        if (UserServiceImpl.getUserInfoFromSession().getRole().equals(StaticVariable.ROLE_ROOT)) {
+            role = null;
         }
         List<Blog> advancedGetBlogsByLimit =
                 blogsMapper.advancedGetBlogsByLimit(startIndex, limit, title, user,
@@ -112,7 +112,7 @@ public class BlogsServiceImpl implements BlogsService {
                 if (tempString.length() >= 250) {
                     tempString = tempString.substring(0, 250);
                 }
-                temp.put("content",tempString);
+                temp.put("content", tempString);
                 jsonMap.add(temp);
             }
             json.setData(jsonMap);
@@ -183,7 +183,8 @@ public class BlogsServiceImpl implements BlogsService {
             json.setCode(0);
             json.setMsg("请先登录！");
         } else {
-            if (!(blog.getUserId().getId() == userInfoFromSession.getId())) {
+            if ((blog.getUserId().getId() != userInfoFromSession.getId()) &&
+                    !userInfoFromSession.getRole().equals(StaticVariable.ROLE_ROOT)) {
                 json.setCode(0);
                 json.setMsg("您不能修改别人的文章");
             } else {
@@ -225,7 +226,8 @@ public class BlogsServiceImpl implements BlogsService {
             json.setCode(0);
             json.setMsg("请先登录！");
         } else {
-            if (!(blog.getUserId().getId() == userInfoFromSession.getId())) {
+            if ((blog.getUserId().getId() != userInfoFromSession.getId()) &&
+                    !userInfoFromSession.getRole().equals(StaticVariable.ROLE_ROOT)) {
                 json.setCode(0);
                 json.setMsg("您不能修改别人的文章");
             } else {
@@ -307,14 +309,14 @@ public class BlogsServiceImpl implements BlogsService {
         ResponseUtil<Map> json = new ResponseUtil<>();
         if (null == blogData) {
             json.setCode(1);
-            json.setMsg("获取用户信息失败");
+            json.setMsg("获取博客信息失败");
         } else if (blogData.isEmpty()) {
             json.setCode(1);
-            json.setMsg("用户信息为空");
+            json.setMsg("未查询到文章");
         } else {
             json.setCode(0);
             json.setCount(blogData.size());
-            json.setMsg("获取用户信息成功");
+            json.setMsg("获取文章信息成功");
 
             // 处理返回json格式复合表格要求
             List<Map> jsonMap = new LinkedList<>();
